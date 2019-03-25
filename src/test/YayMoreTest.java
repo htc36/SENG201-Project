@@ -6,16 +6,16 @@ import template.Yay;
 
 import org.junit.jupiter.api.Test;
 
-class YayTest {
+class YayMoreTest {
 
 	@Test
-	void successTest() {
+	void successTestAgain() {
 		Yay y = new Yay();
 		assertEquals("test", y.test());
 	}
 
 	@Test
-	void failTest() {
+	void failTestAgain() {
 		Yay y = new Yay();
 		assertEquals("Test123", y.test());
 	}
