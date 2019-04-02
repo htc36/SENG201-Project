@@ -7,5 +7,6 @@ public class Yay {
 	
 	public static void main(String[] args) {
 		System.out.println("boomshakalaha");
+		System.out.println("hi");
 	}
 }
