@@ -2,9 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import unit.Unit;
-import unit.Spaceship;
-import unit.CrewMember;
+import unit.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +24,10 @@ class UnitTest {
         Spaceship s = new Spaceship(name);
         s.reduceHealth(60); // ship should have 40 hp left
         c.reduceAction();
-        assertEquals(1, c.getActionsLeft());
+        assertEquals(1, c.getActions());
         c.repairShield(s); // adds 10 to ship hp
         assertEquals(50, s.getHealth());
-        assertEquals(0, c.getActionsLeft());
+        assertEquals(0, c.getActions());
     }
 
     @Test

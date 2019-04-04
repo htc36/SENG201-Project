@@ -13,6 +13,9 @@ public class CrewMember extends Unit {
     /* 
      * Constructor for Unit
      * @param memberName name of the new unit
+     * @param luckStat unit's percentage chance of finding 
+     *                 ship pieces, the higher the luckStat
+     *                 the more likely they will find a ship piece
      */
     public CrewMember(String memberName, int luckStat) {
         super(memberName);
@@ -27,7 +30,7 @@ public class CrewMember extends Unit {
     /* 
      * @return number of actions the crew member has
      */
-    public int getActionsLeft() {
+    public int getActions() {
         return actions;
     }
     
