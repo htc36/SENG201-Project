@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCE_DIRS=(
-    "src/template"
+    "src/unit"
     )
 
 for JAVA_PACKAGE in "${SOURCE_DIRS[*]}"
