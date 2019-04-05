@@ -68,6 +68,16 @@ public class CrewMember extends Unit {
     public boolean isSick() {
         return hasPlague;
     }
+    
+    public void makeSick() {
+    	System.out.println(getName() + " is dead");
+    	hasPlague = true;
+    }
+    
+    public void cureSick() {
+    	hasPlague = false;
+    }
+    
 
     /* 
      * Pilot the spaceship to another planet along with
