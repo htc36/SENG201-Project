@@ -42,6 +42,18 @@ public class Crew {
         money += sum;
     }
 
+    public int getConsumableCount(String itemName) {
+        int itemCount = 0;
+        for (Consumable c : consumables.keySet()) {
+            String consumableName = c.getName();
+            if (consumableName == itemName) {
+                itemCount = consumables.get(c);
+            }
+        }
+
+        return itemCount;
+    }
+    
     public Consumable popConsumable(String itemName) {
         int itemCount = 0;
         for (Consumable c : consumables.keySet()) {
@@ -126,5 +138,5 @@ public class Crew {
     	Consumable i = cr.popConsumable("Rice");
     	System.out.println(i.getName());
     }
-    
+
 }
