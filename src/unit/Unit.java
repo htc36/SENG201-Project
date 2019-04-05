@@ -50,10 +50,6 @@ public class Unit {
     public int getHealth() {
         return health;
     }
-    
-    public void setHealth(int hp) {
-        health = hp;
-    }
 
     /* 
      * Returns the Unit's name
