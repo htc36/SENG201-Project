@@ -134,6 +134,10 @@ public class CrewMember extends Unit {
             throw new InsufficientActionException();
         }
     }
+
+    public void refreshActions() {
+        actions = 2;
+    }
     
     //public void useMedicalSupply(MedicalSupply item) {
     //}
