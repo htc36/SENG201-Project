@@ -25,6 +25,14 @@ public class Crew {
         ship = newShip;
     }
 
+    public Spaceship getSpaceship() {
+        return ship;
+    }
+
+    public ArrayList<CrewMember> getCrewMembers() {
+        return crewMembers;
+    }
+
     public int getMoney() {
         return money;
     }
