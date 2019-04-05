@@ -1,9 +1,8 @@
 package random_events;
 
-import unit.CrewMember;
-import java.util.ArrayList;
+import crew.Crew;
 
 public interface RandomEvents {
-	public static void causeDamage(ArrayList<CrewMember> c) {};
+	public static void causeDamage(Crew c) {};
 
 }

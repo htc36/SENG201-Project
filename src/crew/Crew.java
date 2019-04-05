@@ -16,12 +16,12 @@ public class Crew {
     private ArrayList<CrewMember> crewMembers;
     private Spaceship ship;
 
-    public Crew(CrewMember[] crews, Spaceship newShip) {
+    public Crew(ArrayList<CrewMember> crews, Spaceship newShip) {
         consumables = new TreeMap<>();
         consumablesList = new ArrayList<>();
 
         money = 0;
-        crewMembers = new ArrayList<>();
+        crewMembers = crews;
         ship = newShip;
     }
 
