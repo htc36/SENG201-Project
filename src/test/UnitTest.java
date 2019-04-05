@@ -2,11 +2,34 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import unit.*;
 
 import org.junit.jupiter.api.Test;
 
 class UnitTest {
+
+    @Test
+    void createMedic() {
+        String name = "medic001";
+        Medic u = new Medic(name, 10);
+        u.reduceHealth(10); // should only take 5 damage
+        assertEquals(95, u.getHealth());
+        u.reduceHealth(20); // should only take 10 damage
+        assertEquals(85, u.getHealth());
+        u.reduceHealth(1000); // should set health to 0
+        assertEquals(0, u.getHealth());
+    }
+
+    @Test
+    void medicPartOfCrewMemberTest() {
+        String name = "medic002";
+        Medic u = new Medic(name, 10);
+        ArrayList<CrewMember> cr = new ArrayList<>();
+        cr.add(u);
+        assertEquals(1, cr.size());
+    }
 
     @Test
     void createUnit() {
