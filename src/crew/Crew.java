@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import consumable.Consumable;
+import consumable.Food;
 import unit.CrewMember;
 import unit.Spaceship;
 
@@ -48,7 +49,8 @@ public class Crew {
             if (consumableName == itemName) {
                 itemCount = consumables.get(c);
                 if (itemCount > 0) {
-                    consumables.put(c, itemCount - 1);
+                	itemCount--;
+                    consumables.put(c, itemCount);
                     if (itemCount == 0) {
                         consumablesList.remove(itemName);
                     }
@@ -63,6 +65,7 @@ public class Crew {
     
     public void addConsumable(Consumable item) {
         int itemCount = 0;
+        System.out.println("calling this function??");
         if (consumables.containsKey(item)) { 
             itemCount = consumables.get(item);
         }
@@ -108,5 +111,20 @@ public class Crew {
         }
         return;
     }
-
+    
+    public static void main(String[]args) {
+    	ArrayList<CrewMember> cm = new ArrayList<>();
+    	cm.add(new CrewMember("ASD", 1));
+    	cm.add(new CrewMember("ASDA", 2));
+    	cm.add(new CrewMember("ASDF", 3));
+    	cm.add(new CrewMember("ASDG", 4));
+    	
+    	Spaceship s = new Spaceship("SADASD");
+    	
+    	Crew cr = new Crew(cm, s);
+    	cr.addConsumable(new Food("Rice", 10, 10, 10));
+    	Consumable i = cr.popConsumable("Rice");
+    	System.out.println(i.getName());
+    }
+    
 }
