@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import consumable.Consumable;
-import consumable.Food;
-import consumable.MedicalSupply;
 import crew.Crew;
 
 public class Outpost {
