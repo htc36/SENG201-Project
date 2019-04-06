@@ -26,4 +26,11 @@ public class Spaceship extends Unit {
         super.reduceHealth(amount);
     }
 
+    public String toString() {
+        String template = "%12.12s"; // name
+        template += "%8d"; // shield level
+
+        return String.format(template, super.getName(), super.getHealth());
+    }
+
 }
