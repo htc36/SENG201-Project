@@ -11,4 +11,19 @@ public class MedicalSupply extends Consumable {
         return healsSpacePlague;
     }
 
+    public String toString() {
+        String effect = "F";
+        if (healsSpacePlague) {
+            effect = "T";
+        }
+
+        String template = "[Meds] %12.12s"; // name
+        template += "%6d"; // price
+        template += "%5d"; // heal
+        template += "%18s"; // cures plague
+
+        return String.format(template, super.getName(), super.getPrice(),
+                super.getHealingAmount(), effect);
+    }
+
 }
