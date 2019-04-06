@@ -172,6 +172,8 @@ public class GameEngine {
      * Prints out String message as if it was typed
      * the delay between each char can be set with param
      * delay (in miliseconds)
+     * @param message the message it prints
+     * @param delay delay between each chars
      */
     public void typePrint(String message, int delay) {
         int msgLength = message.length();
@@ -188,6 +190,11 @@ public class GameEngine {
         }
     }
 
+    /*
+     * Prints out String message as if it was typed
+     * the delay is set to 10 by default
+     * @param message the message it prints
+     */
     public void typePrint(String message) {
         int msgLength = message.length();
         int i;
@@ -203,6 +210,9 @@ public class GameEngine {
         }
     }
 
+    /*
+     * Wrapper around System.out.println() for consistencies
+     */
     public void typePrint() {
         System.out.println();
     }
