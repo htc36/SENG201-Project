@@ -137,7 +137,7 @@ public class GameEngine {
 
     public void viewCrewMemberStatus() {
         typePrint();
-        typePrint("*** Crew Members Status ***");
+        typePrint("*** Crew Members Status ***", 50);
         typePrint();
         typePrint("        Name  Health Luck Plagued Hunger Fatique Actions");
         typePrint("--------------------------------------------------------");
@@ -147,7 +147,7 @@ public class GameEngine {
 
     public void viewSpaceshipStatus() {
         typePrint();
-        typePrint("*** Spaceship Status ***");
+        typePrint("*** Spaceship Status ***", 50);
         typePrint();
         typePrint("        Name  Health");
         typePrint("--------------------");
@@ -156,9 +156,10 @@ public class GameEngine {
 
     public void visitOutpost() {
         typePrint();
-        typePrint("*** Welcome to the outpost ***");
+        typePrint("*** Welcome to the outpost ***", 50);
         typePrint();
-        typePrint("Please place your items in the bagging area");
+        typePrint("[[ Please place your items in the bagging area ]]", 30);
+        typePrint();
         typePrint("Here are the things on sale today:");
         typePrint("----------------------------------");
         typePrint("Type           Name Price Heal Fill Cures_Plague");
@@ -167,8 +168,24 @@ public class GameEngine {
         typePrint();
     }
 
-    public void typePrint() {
-        System.out.println();
+    /*
+     * Prints out String message as if it was typed
+     * the delay between each char can be set with param
+     * delay (in miliseconds)
+     */
+    public void typePrint(String message, int delay) {
+        int msgLength = message.length();
+        int i;
+        for (i = 0; i < msgLength; i++) {
+            System.out.print(message.charAt(i));
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {};
+        }
+
+        if (message.charAt(--i) != '\n') {
+            System.out.println();
+        }
     }
 
     public void typePrint(String message) {
@@ -186,6 +203,10 @@ public class GameEngine {
         }
     }
 
+    public void typePrint() {
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         final String ANSI_CLS = "\u001b[2J";
         final String ANSI_HOME = "\u001b[H";
@@ -193,10 +214,10 @@ public class GameEngine {
         System.out.flush();
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
-        System.out.println("Spaceship name: ");
+        //System.out.println("Spaceship name: ");
         g.setupSpaceship("Andromeda");
         //g.setupSpaceship(g.getInputSpaceshipName(reader));
-        System.out.println("Number of days: ");
+        //System.out.println("Number of days: ");
         g.setGameLength(10);
         //g.setGameLength(g.getInputNumDays(reader));
         g.setShipPieces();
@@ -204,8 +225,8 @@ public class GameEngine {
         //g.setCrewMembers(g.getInputCrewMembers(reader));
         g.setupCrew();
         reader.close();
-        g.viewCrewMemberStatus();
-        g.viewSpaceshipStatus();
+        //g.viewCrewMemberStatus();
+        //g.viewSpaceshipStatus();
         g.visitOutpost();
     }
 
