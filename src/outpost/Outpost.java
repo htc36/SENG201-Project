@@ -11,6 +11,7 @@ public class Outpost {
     private TreeMap<String, Consumable> conMap;
     private ArrayList<String> shoppingBag;
     private int totalPrice;
+
     public Outpost(Consumable[] cons) {
         consumables = cons;
         conMap = new TreeMap<>();
