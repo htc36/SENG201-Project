@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import consumable.*;
 import crew.Crew;
+import outpost.Outpost;
 import unit.CrewMember;
 import unit.Explorer;
 import unit.Medic;
@@ -18,6 +20,7 @@ public class GameEngine {
     private ArrayList<CrewMember> crewMembers;
     private Spaceship ship;
     private Crew crew;
+    private Outpost outpost;
     private int currDay;
 
     public GameEngine() {
@@ -26,6 +29,20 @@ public class GameEngine {
         crewMemberTypes = new ArrayList<>();
         crewMemberTypes.add("Medic");
         crewMemberTypes.add("Explorer");
+
+        Food f1 = new Food("Banana", 100, 180, 1);
+        Food f2 = new Food("Melon", 100, 180, 1);
+        Food f3 = new Food("Apple", 100, 180, 1);
+        Food f4 = new Food("Beef", 100, 180, 1);
+        Food f5 = new Food("Pork", 100, 180, 1);
+        Food f6 = new Food("Chicken", 100, 180, 1);
+
+        MedicalSupply m1 = new MedicalSupply("M1", 10, 10, false);
+        MedicalSupply m2 = new MedicalSupply("Vaxxin", 10, 10, false);
+        MedicalSupply m3 = new MedicalSupply("Cockroach Powder", 10, 10, false);
+
+        Consumable[] c = new Consumable[]{f1, f2, f3, f4, f5, f6, m1, m2, m3};
+        outpost = new Outpost(c);
     }
 
     public int getInputNumDays(Scanner reader) {
@@ -39,12 +56,12 @@ public class GameEngine {
             choices = reader.next();
         } while (isInvalidCrewMemberInput(choices));
 
-        return choices;
+        return choices.replaceAll("\\s","");
     }
 
     public String getInputSpaceshipName(Scanner reader) {
         String name = reader.next();
-        return name;
+        return name.replaceAll("\\s","");
     }
 
     public boolean isInvalidCrewMemberInput(String choices) {
@@ -76,7 +93,7 @@ public class GameEngine {
     public void setCrewMembers(String members) {
         crewMembers = new ArrayList<>();
         String[] membersList = members.split(",");
-        String memberName = "27";
+        String memberName = "Gengis Khannnnn";
         for (String m : membersList) {
             switch(m) {
                 case "Medic":
@@ -115,6 +132,58 @@ public class GameEngine {
     }
 
     public void run() {
+
+    }
+
+    public void viewCrewMemberStatus() {
+        typePrint();
+        typePrint("*** Crew Members Status ***");
+        typePrint();
+        typePrint("        Name  Health Luck Plagued Hunger Fatique Actions");
+        typePrint("--------------------------------------------------------");
+        String crewStatus = crew.getCrewMemberStatus();
+        typePrint(crewStatus);
+    }
+
+    public void viewSpaceshipStatus() {
+        typePrint();
+        typePrint("*** Spaceship Status ***");
+        typePrint();
+        typePrint("        Name  Health");
+        typePrint("--------------------");
+        typePrint(ship.toString());
+    }
+
+    public void visitOutpost() {
+        typePrint();
+        typePrint("*** Welcome to the outpost ***");
+        typePrint();
+        typePrint("Please place your items in the bagging area");
+        typePrint("Here are the things on sale today:");
+        typePrint("----------------------------------");
+        typePrint("Type           Name Price Heal Fill Cures_Plague");
+        typePrint("------------------------------------------------");
+        typePrint(outpost.saleProductsToString());
+        typePrint();
+    }
+
+    public void typePrint() {
+        System.out.println();
+    }
+
+    public void typePrint(String message) {
+        int msgLength = message.length();
+        int i;
+        for (i = 0; i < msgLength; i++) {
+            System.out.print(message.charAt(i));
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {};
+        }
+
+        if (message.charAt(--i) != '\n') {
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
@@ -124,14 +193,20 @@ public class GameEngine {
         System.out.flush();
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
-        System.out.print("Spaceship name: ");
-        g.setupSpaceship(g.getInputSpaceshipName(reader));
-        System.out.print("Number of days: ");
-        g.setGameLength(g.getInputNumDays(reader));
+        System.out.println("Spaceship name: ");
+        g.setupSpaceship("Andromeda");
+        //g.setupSpaceship(g.getInputSpaceshipName(reader));
+        System.out.println("Number of days: ");
+        g.setGameLength(10);
+        //g.setGameLength(g.getInputNumDays(reader));
         g.setShipPieces();
-        g.setCrewMembers(g.getInputCrewMembers(reader));
+        g.setCrewMembers("Medic,Medic,Medic");
+        //g.setCrewMembers(g.getInputCrewMembers(reader));
         g.setupCrew();
         reader.close();
+        g.viewCrewMemberStatus();
+        g.viewSpaceshipStatus();
+        g.visitOutpost();
     }
 
 }
