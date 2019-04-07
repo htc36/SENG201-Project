@@ -11,7 +11,15 @@ public class Food extends Consumable {
     public int getFillStomach() {
         return fillStomach;
     }
+
+    public String toString() {
+        String template = "[Food] %12.12s"; // name
+        template += "%6d"; // price
+        template += "%5d"; // heal
+        template += "%5d"; // fill
+
+        return String.format(template, super.getName(), super.getPrice(),
+                super.getHealingAmount(), fillStomach);
+    }
     
 }
-
-

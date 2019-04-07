@@ -70,7 +70,6 @@ public class CrewMember extends Unit {
     }
     
     public void makeSick() {
-    	System.out.println(getName() + " is dead");
     	hasPlague = true;
     }
     
@@ -134,7 +133,29 @@ public class CrewMember extends Unit {
             throw new InsufficientActionException();
         }
     }
+
+    public void refreshActions() {
+        actions = 2;
+    }
     
+    public String toString() {
+        String status = "F";
+        if (hasPlague) {
+            status = "T";
+        }
+
+        String template = "%12.12s"; // name
+        template += "%7d"; // health stat
+        template += "%6d"; // luck stat
+        template += "%8.1s"; // has plague
+        template += "%7d"; // hunger level
+        template += "%8d"; // fatique level
+        template += "%8d"; // actions
+
+        return String.format(template, super.getName(), super.getHealth(),
+                luck, status, hungerLevel, fatiqueLevel, actions);
+    }
+
     //public void useMedicalSupply(MedicalSupply item) {
     //}
 
