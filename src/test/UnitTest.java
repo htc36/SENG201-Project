@@ -13,7 +13,7 @@ class UnitTest {
     @Test
     void createMedic() {
         String name = "medic001";
-        Medic u = new Medic(name, 10);
+        Medic u = new Medic(name);
         u.reduceHealth(10); // should only take 5 damage
         assertEquals(95, u.getHealth());
         u.reduceHealth(20); // should only take 10 damage
@@ -25,7 +25,7 @@ class UnitTest {
     @Test
     void medicPartOfCrewMemberTest() {
         String name = "medic002";
-        Medic u = new Medic(name, 10);
+        Medic u = new Medic(name);
         ArrayList<CrewMember> cr = new ArrayList<>();
         cr.add(u);
         assertEquals(1, cr.size());
@@ -48,7 +48,7 @@ class UnitTest {
         s.reduceHealth(60); // ship should have 40 hp left
         c.reduceAction();
         assertEquals(1, c.getActions());
-        c.repairShield(s); // adds 10 to ship hp
+        c.repairShield(s, 10); // adds 10 to ship hp
         assertEquals(50, s.getHealth());
         assertEquals(0, c.getActions());
     }
