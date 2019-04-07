@@ -3,6 +3,8 @@ package game;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import consumable.*;
 import crew.Crew;
@@ -27,8 +29,8 @@ public class GameEngine {
         currDay = 1;
 
         crewMemberTypes = new ArrayList<>();
-        crewMemberTypes.add("Medic");
-        crewMemberTypes.add("Explorer");
+        crewMemberTypes.add("medic");
+        crewMemberTypes.add("explorer");
 
         Food f1 = new Food("Banana", 100, 180, 1);
         Food f2 = new Food("Melon", 100, 180, 1);
@@ -45,25 +47,53 @@ public class GameEngine {
         outpost = new Outpost(c);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Description>>
+     */
+    public void addCrewConsumable(Consumable item) {
+        crew.addConsumable(item);
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Description>>
+     * @return int <<Return Description>>
+     */
     public int getInputNumDays(Scanner reader) {
         int numOfDays = reader.nextInt();
         return numOfDays;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Description>>
+     * @return String <<Return Description>>
+     */
     public String getInputCrewMembers(Scanner reader) {
         String choices = "";
         do {
             choices = reader.next();
         } while (isInvalidCrewMemberInput(choices));
 
-        return choices.replaceAll("\\s","");
+        return choices.replaceAll("\\s","").toLowerCase();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Description>>
+     * @return String <<Return Description>>
+     */
     public String getInputSpaceshipName(Scanner reader) {
         String name = reader.next();
         return name.replaceAll("\\s","");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param choices <<Param Description>>
+     * @return boolean <<Return Description>>
+     */
     public boolean isInvalidCrewMemberInput(String choices) {
         String[] membersList = choices.split(",");
         for (String m : membersList) {
@@ -74,22 +104,47 @@ public class GameEngine {
         return false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param length <<Param Description>>
+     */
     public void setGameLength(int length) {
         gameLength = length;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param name <<Param Description>>
+     */
     public void setupSpaceship(String name) {
         ship = new Spaceship(name);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void setupCrew() {
         crew = new Crew(crewMembers, ship);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void setShipPieces() {
         shipPieces = calculateShipPieces(gameLength);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
+    public void getInputName() {
+
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param members <<Param Description>>
+     */
     public void setCrewMembers(String members) {
         crewMembers = new ArrayList<>();
         String[] membersList = members.split(",");
@@ -106,10 +161,18 @@ public class GameEngine {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param days <<Param Description>>
+     * @return int <<Return Description>>
+     */
     public int calculateShipPieces(int days) {
         return days * 2 / 3;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void startDay() {
         // We start the day with random events occuring, what fun!
         Random rand = new Random();
@@ -122,6 +185,9 @@ public class GameEngine {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void endDay() {
         // by the end of the day, everyone went to bed and get ready
         // for the next day. Refreshes all the crew members action to 2
@@ -131,10 +197,16 @@ public class GameEngine {
         currDay++;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void run() {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void viewCrewMemberStatus() {
         typePrint();
         typePrint("*** Crew Members Status ***", 50);
@@ -145,6 +217,9 @@ public class GameEngine {
         typePrint(crewStatus);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void viewSpaceshipStatus() {
         typePrint();
         typePrint("*** Spaceship Status ***", 50);
@@ -154,18 +229,103 @@ public class GameEngine {
         typePrint(ship.toString());
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void visitOutpost() {
         typePrint();
         typePrint("*** Welcome to the outpost ***", 50);
         typePrint();
-        typePrint("[[ Please place your items in the bagging area ]]", 30);
+        typePrint("Clerk: Don't forget to place your items in the bagging area", 30);
+        typePrint("Clerk: Here are the things on sale today :}");
         typePrint();
-        typePrint("Here are the things on sale today:");
-        typePrint("----------------------------------");
-        typePrint("Type           Name Price Heal Fill Cures_Plague");
-        typePrint("------------------------------------------------");
-        typePrint(outpost.saleProductsToString());
+        typePrint("    Type           Name Price Heal Fill Cures_Plague");
+        typePrint("    ------------------------------------------------");
+        for (String s : outpost.saleProductsToString().split("\n")) {
+            typePrint("    " + s);
+        }
+        //typePrint(outpost.saleProductsToString());
         typePrint();
+        typePrint("    Your inventory:");
+        String currInventory = crew.consumablesToString();
+        typePrint(currInventory);
+        typePrint();
+        int crewMoney = crew.getMoney();
+        typePrint(String.format("    You have $%3d", crewMoney));
+        typePrint();
+        if (crewMoney < 50) {
+            typePrint("Clerk: Tight on money, eh? What do you want today?");
+        }
+        typePrint("Clerk: You know the drill, say the amount and the item");
+        typePrint("Clerk: Like 2xBanana");
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Description>>
+     * @return String <<Return Description>>
+     */
+    public String getInputShoppingList(Scanner reader) {
+        String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
+        String allQueries = "";
+        String query = "";
+        while (true) {
+            System.out.print("> ");
+            query = reader.next();
+            if (isValidQuery(query)) {
+                allQueries += query + ",";
+            } else {
+                if (query.equals("done")) {
+                    break;
+                }
+                typePrint(errMsg);
+            }
+        }
+
+        System.out.println(allQueries);
+        return allQueries;
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param query <<Param Description>>
+     * @return boolean <<Return Description>>
+     */
+    public boolean isValidQuery(String query) {
+        Pattern p = Pattern.compile("\\d+x\\w+");
+        Matcher m = p.matcher(query);
+        if (m.find()) {
+            String itemName = query.split("x")[1];
+            return outpost.hasItemInStock(itemName);
+        }
+
+        return false;
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param queries <<Param Description>>
+     */
+    public void addItemToShoppingBag(String queries) {
+        int amount = 0;
+        String itemName = "";
+        System.out.println(queries);
+        String[] querySplit = queries.split(",");
+        for (String query : querySplit) {
+            amount = Integer.valueOf(query.split("x")[0]);
+            itemName = query.split("x")[1];
+            for (int i = 0; i < amount; i ++ ) {
+                outpost.addItemToShoppingBag(itemName);
+            }
+        }
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     */
+    public void viewShoppingBag() {
+        typePrint(outpost.shoppingBagToString());
+        typePrint("Total price: $" + String.valueOf(outpost.getTotalPrice()));
     }
 
     /*
@@ -177,6 +337,10 @@ public class GameEngine {
      */
     public void typePrint(String message, int delay) {
         int msgLength = message.length();
+        if (msgLength == 0) {
+            System.out.println();
+        }
+
         int i;
         for (i = 0; i < msgLength; i++) {
             System.out.print(message.charAt(i));
@@ -197,11 +361,15 @@ public class GameEngine {
      */
     public void typePrint(String message) {
         int msgLength = message.length();
+        if (msgLength == 0) {
+            System.out.println();
+        }
         int i;
+
         for (i = 0; i < msgLength; i++) {
             System.out.print(message.charAt(i));
             try {
-                Thread.sleep(10);
+                Thread.sleep(2);
             } catch (InterruptedException e) {};
         }
 
@@ -234,10 +402,19 @@ public class GameEngine {
         g.setCrewMembers("Medic,Medic,Medic");
         //g.setCrewMembers(g.getInputCrewMembers(reader));
         g.setupCrew();
-        reader.close();
+        g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
+        g.addCrewConsumable(new Food("Banana", 10, 10, 10));
+        g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
+        g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
         //g.viewCrewMemberStatus();
         //g.viewSpaceshipStatus();
         g.visitOutpost();
+        String queries = g.getInputShoppingList(reader);
+        g.addItemToShoppingBag(queries);
+        g.viewShoppingBag();
+
+        reader.close();
     }
+
 
 }
