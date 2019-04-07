@@ -96,6 +96,7 @@ public class GameEngine {
         int amount = 0;
         do {
             System.out.println("Crew amount must be between 2 and 4");
+            System.out.print("> ");
             amount = reader.nextInt();
         }
         while (amount < 2 || amount > 4);
@@ -161,10 +162,6 @@ public class GameEngine {
         return m.find();
     }
 
-    /**
-     * <<auto generated javadoc comment>>
-     * @param members <<Param Description>>
-     */
     public void setCrewMembers(int crewNumbers, Scanner reader) {
         crewMembers = new ArrayList<>();
 
@@ -175,8 +172,9 @@ public class GameEngine {
             String crewInfo = "";
             do{
                 System.out.print("Input crew name followed by their type");
-                System.out.print("(" + (crewNumbers - i) + " to go)\n");
+                System.out.print(" (" + (crewNumbers - i) + " to go)\n");
                 do{
+                    System.out.print("> ");
                     crewInfo = reader.next();
                     if (!isCrewInfoValid(crewInfo)){
                         System.out.println("Invalid input");
@@ -185,7 +183,6 @@ public class GameEngine {
                 String[] splitter = crewInfo.split("-");
                 memberName = splitter[0];
                 crewType = splitter[1].toLowerCase();
-                System.out.println(memberName);
                 if (!crewMemberTypes.contains(crewType)){
                     System.out.println("Invalid Crew Type");
                 }
@@ -332,11 +329,10 @@ public class GameEngine {
                 if (query.equals("done")) {
                     break;
                 }
-                typePrint(errMsg);
+                System.out.println(errMsg);
             }
         }
 
-        System.out.println(allQueries);
         return allQueries;
     }
 
@@ -363,7 +359,6 @@ public class GameEngine {
     public void addItemToShoppingBag(String queries) {
         int amount = 0;
         String itemName = "";
-        System.out.println(queries);
         String[] querySplit = queries.split(",");
         for (String query : querySplit) {
             amount = Integer.valueOf(query.split("x")[0]);
@@ -446,9 +441,9 @@ public class GameEngine {
         final String ANSI_HOME = "\u001b[H";
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
-        System.out.println("Spaceship name: ");
+        System.out.print("Spaceship name: ");
         g.setupSpaceship(g.getInputSpaceshipName(reader));
-        System.out.println("Number of days: ");
+        System.out.print("Number of days: ");
         g.setGameLength(g.getInputNumDays(reader));
         g.setShipPieces();
         System.out.println("Number of crew members (2-4)?");
