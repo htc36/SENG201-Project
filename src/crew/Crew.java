@@ -128,4 +128,13 @@ public class Crew {
         return;
     }
 
+    public String consumablesToString() {
+        String template = "";
+        for (Consumable c : consumables.keySet()) {
+            template += c + "\n";
+        }
+
+        return template;
+    }
+
 }
