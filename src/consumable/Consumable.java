@@ -17,10 +17,6 @@ public class Consumable implements Comparable<Consumable> {
             throw new InvalidParameterException("Name can't be empty");
         }
 
-        if (healingAmount <= 0) {
-            throw new InvalidParameterException("Healing amount can't be below 0");
-        }
-
         if (price <= 0) {
             throw new InvalidParameterException("Price can't be below $0");
         }
