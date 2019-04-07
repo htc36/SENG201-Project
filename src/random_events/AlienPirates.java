@@ -4,7 +4,7 @@ import crew.Crew;
 
 public class AlienPirates implements RandomEvents{
 	
-	public void cause_damage(Crew c) {
+	public void causeDamage(Crew c) {
 		c.popRandomItem();
 		
 	}
