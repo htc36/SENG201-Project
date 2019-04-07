@@ -58,4 +58,23 @@ public class Outpost {
         return template;
     }
 
+    public boolean hasItemInStock(String itemName) {
+        for (String s : conMap.keySet()) {
+            if (s.equals(itemName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public String shoppingBagToString() {
+        String template = "";
+        for (String s : shoppingBag) {
+            template += s + "\n";
+        }
+
+        return template;
+    }
+
 }
