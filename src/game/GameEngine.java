@@ -28,12 +28,12 @@ public class GameEngine {
         currDay = 1;
 
         crewMemberTypes = new ArrayList<>();
-        crewMemberTypes.add("Medic");
-        crewMemberTypes.add("Explorer");
-        crewMemberTypes.add("Hungus");
-        crewMemberTypes.add("Sleeper");
-        crewMemberTypes.add("HardWorker");
-        crewMemberTypes.add("Builder");
+        crewMemberTypes.add("medic");
+        crewMemberTypes.add("explorer");
+        crewMemberTypes.add("hungus");
+        crewMemberTypes.add("sleeper");
+        crewMemberTypes.add("hardWorker");
+        crewMemberTypes.add("builder");
 
         Food f1 = new Brownie();
         Food f2 = new FriedRice();
@@ -91,6 +91,17 @@ public class GameEngine {
         String name = reader.next();
         return name.replaceAll("\\s","");
     }
+    
+    public int getCrewAmount(Scanner reader) {
+    	int amount = 0;
+    	do {
+    	System.out.println("Crew amount must be between 2 and 4");
+    	amount = reader.nextInt();
+    	}
+    	while (amount < 2 || amount > 4);
+    		
+    	return amount;
+    }
 
     /**
      * <<auto generated javadoc comment>>
@@ -144,23 +155,65 @@ public class GameEngine {
 
     }
 
+    public boolean isCrewInfoValid(String crewInfo){
+        Pattern p = Pattern.compile("\\w+-\\w+");
+        Matcher m = p.matcher(crewInfo);
+        return m.find();
+    }
+
     /**
      * <<auto generated javadoc comment>>
      * @param members <<Param Description>>
      */
-    public void setCrewMembers(String members) {
+    public void setCrewMembers(int crewNumbers, Scanner reader) {
         crewMembers = new ArrayList<>();
-        String[] membersList = members.split(",");
-        String memberName = "Gengis Khannnnn";
-        for (String m : membersList) {
-            switch(m) {
-                case "Medic":
-                    crewMembers.add(new Medic(memberName));
-                    break;
-                case "Explorer":
-                    crewMembers.add(new Explorer(memberName));
-                    break;
-            }
+        
+        
+        for (int i = 0; i < crewNumbers; i++) {
+            String crewType = "";
+            String memberName = "";
+            String crewInfo = "";
+                do{
+                System.out.print("Input crew name followed by their type");
+                System.out.print("(" + (crewNumbers - i) + " to go)\n");
+                do{
+        	crewInfo = reader.next();
+                if (!isCrewInfoValid(crewInfo)){
+                    System.out.println("Invalid input");
+                }
+                }
+                while(!isCrewInfoValid(crewInfo));
+                String[] splitter = crewInfo.split("-");
+        	memberName = splitter[0];
+        	crewType = splitter[1].toLowerCase();
+                System.out.println(memberName);
+                if (!crewMemberTypes.contains(crewType)){
+                    System.out.println("Invalid Crew Type");
+                }
+
+                }
+                while (!crewMemberTypes.contains(crewType));
+        	
+        	switch(crewType) {
+            case "medic":
+                crewMembers.add(new Medic(memberName));
+                break;
+            case "explorer":
+                crewMembers.add(new Explorer(memberName));
+                break;
+            case "builder":
+            	crewMembers.add(new Builder(memberName));
+            	break;
+            case "sleeper":
+            	crewMembers.add(new Sleeper(memberName));
+            	break;
+            case "hardworker":
+            	crewMembers.add(new HardWorker(memberName));
+            	break;
+            case "hungus":
+            	crewMembers.add(new Hungus(memberName));
+            	break;
+        	}
         }
     }
 
@@ -214,8 +267,8 @@ public class GameEngine {
         typePrint();
         typePrint("*** Crew Members Status ***", 50);
         typePrint();
-        typePrint("        Name  Health Luck Plagued Hunger Fatique Actions");
-        typePrint("--------------------------------------------------------");
+        typePrint("        Name       Type Health Luck Plagued Hunger Fatique Actions");
+        typePrint("--------------------------------------------------------------------");
         String crewStatus = crew.getCrewMemberStatus();
         typePrint(crewStatus);
     }
@@ -393,8 +446,6 @@ public class GameEngine {
     public static void main(String[] args) {
         final String ANSI_CLS = "\u001b[2J";
         final String ANSI_HOME = "\u001b[H";
-        System.out.print(ANSI_CLS + ANSI_HOME);
-        System.out.flush();
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
         System.out.println("Spaceship name: ");
@@ -402,7 +453,8 @@ public class GameEngine {
         System.out.println("Number of days: ");
         g.setGameLength(g.getInputNumDays(reader));
         g.setShipPieces();
-        g.setCrewMembers(g.getInputCrewMembers(reader));
+        System.out.println("Number of crew members (2-4)?");
+        g.setCrewMembers(g.getCrewAmount(reader), reader);
         g.setupCrew();
         g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
         g.addCrewConsumable(new Food("Banana", 10, 10, 10));
