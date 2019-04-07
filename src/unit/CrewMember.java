@@ -45,6 +45,14 @@ public class CrewMember extends Unit {
         return actions;
     }
     
+    public int getFatiqueLevel() {
+    	return fatiqueLevel;
+    }
+    
+    public int getLuck() {
+    	return luck;
+    }
+    
     /* 
      * @return fatique level of crew member
      */
