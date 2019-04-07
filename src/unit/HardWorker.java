@@ -2,8 +2,8 @@ package unit;
 
 public class HardWorker extends CrewMember{
 	
-	public HardWorker(String memberName, int luckStat, int actions) {
-		super(memberName, luckStat, 3);
+	public HardWorker(String memberName) {
+		super(memberName, 10, 3);
 	}
 	
 	@Override

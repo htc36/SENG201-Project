@@ -2,7 +2,7 @@ package unit;
 
 public class Hungus extends CrewMember{
 	
-	public Hungus(String memberName, int luckStat) {
+	public Hungus(String memberName) {
 		super(memberName, 10);
 		
 	}

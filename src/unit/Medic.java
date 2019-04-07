@@ -2,7 +2,7 @@ package unit;
 
 public class Medic extends CrewMember {
 
-    public Medic(String memberName, int luckStat) {
+    public Medic(String memberName) {
         super(memberName, 10);
     }
     @Override

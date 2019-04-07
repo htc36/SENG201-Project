@@ -2,7 +2,7 @@ package unit;
 
 public class Builder extends CrewMember{
 	
-	public Builder(String memberName, int luckStat) {
+	public Builder(String memberName) {
 		super(memberName, 10);
 	}
 	

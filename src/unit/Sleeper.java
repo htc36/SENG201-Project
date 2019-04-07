@@ -2,7 +2,7 @@ package unit;
 
 public class Sleeper extends CrewMember{
 	
-	public Sleeper(String memberName, int luckStat) {
+	public Sleeper(String memberName) {
         super(memberName, 10);
     }
 	
