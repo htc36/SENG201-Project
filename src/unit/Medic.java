@@ -5,6 +5,10 @@ public class Medic extends CrewMember {
     public Medic(String memberName, int luckStat) {
         super(memberName, 10);
     }
+    @Override
+    public void makeSick() {
+    	return ;
+    }
 
     @Override
     public void reduceHealth(int amount) {

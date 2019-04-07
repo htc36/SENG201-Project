@@ -2,6 +2,8 @@ package unit;
 
 import java.util.Random;
 
+import consumable.Food;
+
 public class CrewMember extends Unit {
 
     private int hungerLevel;
@@ -25,6 +27,15 @@ public class CrewMember extends Unit {
         fatiqueLevel = 0;
         hasPlague = false;
     }
+    
+    public CrewMember(String memberName, int luckStat, int actions) {
+        super(memberName);
+        luck = luckStat;
+        this.actions = actions;
+        hungerLevel = 0;
+        fatiqueLevel = 0;
+        hasPlague = false;
+    }
 
     // Getters and Setters
     /* 
@@ -44,8 +55,8 @@ public class CrewMember extends Unit {
     /* 
      * Increases the crew member's fatique level
      */
-    public void increaseFatique() {
-        fatiqueLevel += 5;
+    public void increaseFatique(int amount) {
+        fatiqueLevel += amount;
     }
 
     /* 
@@ -54,12 +65,20 @@ public class CrewMember extends Unit {
     public int getHunger() {
         return hungerLevel;
     }
+    
+    public void decreaseHunger(int amount) {
+    	
+    	hungerLevel -= amount;
+    	if (hungerLevel < 0) {
+    		hungerLevel = 0;
+    	}
+    }
 
     /* 
      * Increases the crew member's hunger level
      */
-    public void increaseHunger() {
-        hungerLevel += 5;
+    public void increaseHunger(int amount) {
+        hungerLevel += amount;
     }
     /* 
      * @return crew member's health status
@@ -91,19 +110,21 @@ public class CrewMember extends Unit {
     /* 
      * The crew member sleeps, decreasing their fatique level
      */
-    public void sleep() {
+    public void sleep(int amount) {
         reduceAction();
-        fatiqueLevel -= 10;
+        fatiqueLevel -= amount;
     }
+    
+    
 
     /* 
      * Repairs the shield of the spaceship, increasing
      * its health by a certain amount
      * @param memberName name of the new unit
      */
-    public void repairShield(Spaceship s) {
+    public void repairShield(Spaceship s, int amount) {
         reduceAction();
-        s.repairShield(10);
+        s.repairShield(amount);
     }
 
     /* 
@@ -134,8 +155,8 @@ public class CrewMember extends Unit {
         }
     }
 
-    public void refreshActions() {
-        actions = 2;
+    public void refreshActions(int amount) {
+        actions = amount;
     }
     
     public String toString() {
@@ -159,7 +180,16 @@ public class CrewMember extends Unit {
     //public void useMedicalSupply(MedicalSupply item) {
     //}
 
-    //public void feed(Food item) {
-    //}
+    public void feed(Food item) {
+    	addHealth(item.getHealingAmount());
+    	decreaseHunger(item.getFillStomach());
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
 
 }

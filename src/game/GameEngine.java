@@ -7,6 +7,8 @@ import java.util.Scanner;
 import consumable.*;
 import crew.Crew;
 import outpost.Outpost;
+import random_events.AlienPirates;
+import random_events.SpacePlague;
 import unit.CrewMember;
 import unit.Explorer;
 import unit.Medic;
@@ -116,9 +118,9 @@ public class GameEngine {
         int randomEvent = rand.nextInt(2);
         switch (randomEvent) {
             case 1:
-                break;
+                AlienPirates.causeDamage(crew); break; 
             case 0:
-                break;
+                SpacePlague.causeDamage(crew);break;
         }
     }
 
