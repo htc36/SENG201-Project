@@ -181,8 +181,7 @@ public class GameEngine {
                     if (!isCrewInfoValid(crewInfo)){
                         System.out.println("Invalid input");
                     }
-                }
-                while(!isCrewInfoValid(crewInfo));
+                } while(!isCrewInfoValid(crewInfo));
                 String[] splitter = crewInfo.split("-");
                 memberName = splitter[0];
                 crewType = splitter[1].toLowerCase();
@@ -191,8 +190,7 @@ public class GameEngine {
                     System.out.println("Invalid Crew Type");
                 }
 
-            }
-            while (!crewMemberTypes.contains(crewType));
+            } while (!crewMemberTypes.contains(crewType));
 
             switch(crewType) {
                 case "medic":
