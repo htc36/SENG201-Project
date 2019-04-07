@@ -28,8 +28,12 @@ public class GameEngine {
         currDay = 1;
 
         crewMemberTypes = new ArrayList<>();
-        crewMemberTypes.add("medic");
-        crewMemberTypes.add("explorer");
+        crewMemberTypes.add("Medic");
+        crewMemberTypes.add("Explorer");
+        crewMemberTypes.add("Hungus");
+        crewMemberTypes.add("Sleeper");
+        crewMemberTypes.add("HardWorker");
+        crewMemberTypes.add("Builder");
 
         Food f1 = new Brownie();
         Food f2 = new FriedRice();
@@ -338,6 +342,7 @@ public class GameEngine {
         int msgLength = message.length();
         if (msgLength == 0) {
             System.out.println();
+            return;
         }
 
         int i;
@@ -362,6 +367,7 @@ public class GameEngine {
         int msgLength = message.length();
         if (msgLength == 0) {
             System.out.println();
+            return;
         }
         int i;
 
@@ -391,22 +397,19 @@ public class GameEngine {
         System.out.flush();
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
-        //System.out.println("Spaceship name: ");
-        g.setupSpaceship("Andromeda");
-        //g.setupSpaceship(g.getInputSpaceshipName(reader));
-        //System.out.println("Number of days: ");
-        g.setGameLength(10);
-        //g.setGameLength(g.getInputNumDays(reader));
+        System.out.println("Spaceship name: ");
+        g.setupSpaceship(g.getInputSpaceshipName(reader));
+        System.out.println("Number of days: ");
+        g.setGameLength(g.getInputNumDays(reader));
         g.setShipPieces();
-        g.setCrewMembers("Medic,Medic,Medic");
-        //g.setCrewMembers(g.getInputCrewMembers(reader));
+        g.setCrewMembers(g.getInputCrewMembers(reader));
         g.setupCrew();
         g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
         g.addCrewConsumable(new Food("Banana", 10, 10, 10));
         g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
         g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
-        //g.viewCrewMemberStatus();
-        //g.viewSpaceshipStatus();
+        g.viewCrewMemberStatus();
+        g.viewSpaceshipStatus();
         g.visitOutpost();
         String queries = g.getInputShoppingList(reader);
         g.addItemToShoppingBag(queries);
