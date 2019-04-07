@@ -33,16 +33,16 @@ public class Consumable implements Comparable<Consumable> {
     public int getHealingAmount() {
         return healingAmount;
     }
-    
+
     public boolean equals(Consumable other) {
-    	System.out.println("calloing this funcoitn");
-    	return other.getName() == getName();
+        System.out.println("calloing this funcoitn");
+        return other.getName() == getName();
     }
 
-	@Override
-	public int compareTo(Consumable c) {
-		String itemName = getName();
-		return itemName.compareTo(c.getName());
-		
-	}
+    @Override
+    public int compareTo(Consumable c) {
+        String itemName = getName();
+        return itemName.compareTo(c.getName());
+
+    }
 }

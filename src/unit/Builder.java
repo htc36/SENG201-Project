@@ -1,17 +1,17 @@
 package unit;
 
 public class Builder extends CrewMember{
-	
-	public Builder(String memberName) {
-		super(memberName, 10);
-	}
-	
-	@Override
-	public void repairShield(Spaceship s, int amount) {
+
+    public Builder(String memberName) {
+        super(memberName, 10);
+    }
+
+    @Override
+    public void repairShield(Spaceship s, int amount) {
         super.repairShield(s, amount * 2);
-	}
-	
-	@Override
+    }
+
+    @Override
     public String toString() {
         String status = "F";
         if (super.isSick()) {
@@ -30,9 +30,9 @@ public class Builder extends CrewMember{
         return String.format(template, super.getName(), "Builder", super.getHealth(),
                 super.getLuck(), status, super.getHunger(), super.getFatiqueLevel(), super.getActions());
     }
-	
-	
-	
-	
+
+
+
+
 
 }

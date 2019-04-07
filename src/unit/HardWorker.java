@@ -1,18 +1,18 @@
 package unit;
 
 public class HardWorker extends CrewMember{
-	
-	public HardWorker(String memberName) {
-		super(memberName, 10, 3);
-	}
-	
-	@Override
-	public void refreshActions(int amount) {
-		super.refreshActions(3);
-		
-	}
-	
-	@Override
+
+    public HardWorker(String memberName) {
+        super(memberName, 10, 3);
+    }
+
+    @Override
+    public void refreshActions(int amount) {
+        super.refreshActions(3);
+
+    }
+
+    @Override
     public String toString() {
         String status = "F";
         if (super.isSick()) {
@@ -31,6 +31,6 @@ public class HardWorker extends CrewMember{
         return String.format(template, super.getName(), "HardWorker", super.getHealth(),
                 super.getLuck(), status, super.getHunger(), super.getFatiqueLevel(), super.getActions());
     }
-	
+
 
 }

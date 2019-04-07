@@ -27,7 +27,7 @@ public class CrewMember extends Unit {
         fatiqueLevel = 0;
         hasPlague = false;
     }
-    
+
     public CrewMember(String memberName, int luckStat, int actions) {
         super(memberName);
         luck = luckStat;
@@ -44,15 +44,15 @@ public class CrewMember extends Unit {
     public int getActions() {
         return actions;
     }
-    
+
     public int getFatiqueLevel() {
-    	return fatiqueLevel;
+        return fatiqueLevel;
     }
-    
+
     public int getLuck() {
-    	return luck;
+        return luck;
     }
-    
+
     /* 
      * @return fatique level of crew member
      */
@@ -73,13 +73,13 @@ public class CrewMember extends Unit {
     public int getHunger() {
         return hungerLevel;
     }
-    
+
     public void decreaseHunger(int amount) {
-    	
-    	hungerLevel -= amount;
-    	if (hungerLevel < 0) {
-    		hungerLevel = 0;
-    	}
+
+        hungerLevel -= amount;
+        if (hungerLevel < 0) {
+            hungerLevel = 0;
+        }
     }
 
     /* 
@@ -95,15 +95,15 @@ public class CrewMember extends Unit {
     public boolean isSick() {
         return hasPlague;
     }
-    
+
     public void makeSick() {
-    	hasPlague = true;
+        hasPlague = true;
     }
-    
+
     public void cureSick() {
-    	hasPlague = false;
+        hasPlague = false;
     }
-    
+
 
     /* 
      * Pilot the spaceship to another planet along with
@@ -122,8 +122,8 @@ public class CrewMember extends Unit {
         reduceAction();
         fatiqueLevel -= amount;
     }
-    
-    
+
+
 
     /* 
      * Repairs the shield of the spaceship, increasing
@@ -166,7 +166,7 @@ public class CrewMember extends Unit {
     public void refreshActions(int amount) {
         actions = amount;
     }
-    
+
     public String toString() {
         String status = "F";
         if (hasPlague) {
@@ -189,15 +189,15 @@ public class CrewMember extends Unit {
     //}
 
     public void feed(Food item) {
-    	addHealth(item.getHealingAmount());
-    	decreaseHunger(item.getFillStomach());
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+        addHealth(item.getHealingAmount());
+        decreaseHunger(item.getFillStomach());
+
+
+
+
+
+
+
     }
 
 }

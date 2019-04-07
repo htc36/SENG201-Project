@@ -7,14 +7,14 @@ public class Medic extends CrewMember {
     }
     @Override
     public void makeSick() {
-    	return ;
+        return ;
     }
 
     @Override
     public void reduceHealth(int amount) {
         super.reduceHealth(amount / 2);
     }
-    
+
     @Override
     public String toString() {
         String status = "F";

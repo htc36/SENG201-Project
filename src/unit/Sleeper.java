@@ -1,17 +1,17 @@
 package unit;
 
 public class Sleeper extends CrewMember{
-	
-	public Sleeper(String memberName) {
+
+    public Sleeper(String memberName) {
         super(memberName, 10);
     }
-	
-	@Override
-	public void sleep(int amount) {
+
+    @Override
+    public void sleep(int amount) {
         super.sleep(amount * 2);
     }
-	
-	@Override
+
+    @Override
     public String toString() {
         String status = "F";
         if (super.isSick()) {

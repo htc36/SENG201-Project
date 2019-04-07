@@ -230,7 +230,7 @@ public class GameEngine {
         int randomEvent = rand.nextInt(2);
         switch (randomEvent) {
             case 1:
-                AlienPirates.causeDamage(crew); break; 
+                AlienPirates.causeDamage(crew); break;
             case 0:
                 SpacePlague.causeDamage(crew);break;
         }

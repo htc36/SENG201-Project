@@ -21,5 +21,5 @@ public class Food extends Consumable {
         return String.format(template, super.getName(), super.getPrice(),
                 super.getHealingAmount(), fillStomach);
     }
-    
+
 }

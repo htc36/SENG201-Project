@@ -42,7 +42,7 @@ public class Unit {
             health = 100;
         }
     }
-    
+
     /**
      * Returns the Unit's health points
      * @return health of the unit
