@@ -91,16 +91,16 @@ public class GameEngine {
         String name = reader.next();
         return name.replaceAll("\\s","");
     }
-    
+
     public int getCrewAmount(Scanner reader) {
-    	int amount = 0;
-    	do {
-    	System.out.println("Crew amount must be between 2 and 4");
-    	amount = reader.nextInt();
-    	}
-    	while (amount < 2 || amount > 4);
-    		
-    	return amount;
+        int amount = 0;
+        do {
+            System.out.println("Crew amount must be between 2 and 4");
+            amount = reader.nextInt();
+        }
+        while (amount < 2 || amount > 4);
+
+        return amount;
     }
 
     /**
@@ -167,53 +167,53 @@ public class GameEngine {
      */
     public void setCrewMembers(int crewNumbers, Scanner reader) {
         crewMembers = new ArrayList<>();
-        
-        
+
+
         for (int i = 0; i < crewNumbers; i++) {
             String crewType = "";
             String memberName = "";
             String crewInfo = "";
-                do{
+            do{
                 System.out.print("Input crew name followed by their type");
                 System.out.print("(" + (crewNumbers - i) + " to go)\n");
                 do{
-        	crewInfo = reader.next();
-                if (!isCrewInfoValid(crewInfo)){
-                    System.out.println("Invalid input");
-                }
+                    crewInfo = reader.next();
+                    if (!isCrewInfoValid(crewInfo)){
+                        System.out.println("Invalid input");
+                    }
                 }
                 while(!isCrewInfoValid(crewInfo));
                 String[] splitter = crewInfo.split("-");
-        	memberName = splitter[0];
-        	crewType = splitter[1].toLowerCase();
+                memberName = splitter[0];
+                crewType = splitter[1].toLowerCase();
                 System.out.println(memberName);
                 if (!crewMemberTypes.contains(crewType)){
                     System.out.println("Invalid Crew Type");
                 }
 
-                }
-                while (!crewMemberTypes.contains(crewType));
-        	
-        	switch(crewType) {
-            case "medic":
-                crewMembers.add(new Medic(memberName));
-                break;
-            case "explorer":
-                crewMembers.add(new Explorer(memberName));
-                break;
-            case "builder":
-            	crewMembers.add(new Builder(memberName));
-            	break;
-            case "sleeper":
-            	crewMembers.add(new Sleeper(memberName));
-            	break;
-            case "hardworker":
-            	crewMembers.add(new HardWorker(memberName));
-            	break;
-            case "hungus":
-            	crewMembers.add(new Hungus(memberName));
-            	break;
-        	}
+            }
+            while (!crewMemberTypes.contains(crewType));
+
+            switch(crewType) {
+                case "medic":
+                    crewMembers.add(new Medic(memberName));
+                    break;
+                case "explorer":
+                    crewMembers.add(new Explorer(memberName));
+                    break;
+                case "builder":
+                    crewMembers.add(new Builder(memberName));
+                    break;
+                case "sleeper":
+                    crewMembers.add(new Sleeper(memberName));
+                    break;
+                case "hardworker":
+                    crewMembers.add(new HardWorker(memberName));
+                    break;
+                case "hungus":
+                    crewMembers.add(new Hungus(memberName));
+                    break;
+            }
         }
     }
 
@@ -384,7 +384,7 @@ public class GameEngine {
         typePrint("Total price: $" + String.valueOf(outpost.getTotalPrice()));
     }
 
-    /*
+    /**
      * Prints out String message as if it was typed
      * the delay between each char can be set with param
      * delay (in miliseconds)
@@ -411,7 +411,7 @@ public class GameEngine {
         }
     }
 
-    /*
+    /**
      * Prints out String message as if it was typed
      * the delay is set to 10 by default
      * @param message the message it prints
@@ -436,7 +436,7 @@ public class GameEngine {
         }
     }
 
-    /*
+    /**
      * Wrapper around System.out.println() for consistencies
      */
     public void typePrint() {
