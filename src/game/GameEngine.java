@@ -7,14 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import consumable.*;
+import unit.*;
 import crew.Crew;
 import outpost.Outpost;
 import random_events.AlienPirates;
 import random_events.SpacePlague;
-import unit.CrewMember;
-import unit.Explorer;
-import unit.Medic;
-import unit.Spaceship;
 
 public class GameEngine {
 
@@ -34,16 +31,16 @@ public class GameEngine {
         crewMemberTypes.add("medic");
         crewMemberTypes.add("explorer");
 
-        Food f1 = new Food("Banana", 100, 180, 1);
-        Food f2 = new Food("Melon", 100, 180, 1);
-        Food f3 = new Food("Apple", 100, 180, 1);
-        Food f4 = new Food("Beef", 100, 180, 1);
-        Food f5 = new Food("Pork", 100, 180, 1);
-        Food f6 = new Food("Chicken", 100, 180, 1);
+        Food f1 = new Brownie();
+        Food f2 = new FriedRice();
+        Food f3 = new CockroachPowder();
+        Food f4 = new SpaceCake();
+        Food f5 = new TikkaMasala();
+        Food f6 = new Hotbot();
 
-        MedicalSupply m1 = new MedicalSupply("M1", 10, 10, false);
-        MedicalSupply m2 = new MedicalSupply("Vaxxin", 10, 10, false);
-        MedicalSupply m3 = new MedicalSupply("Cockroach Powder", 10, 10, false);
+        MedicalSupply m1 = new PolyJuice();
+        MedicalSupply m2 = new AlienSpinalFluid();
+        MedicalSupply m3 = new Vaccine();
 
         Consumable[] c = new Consumable[]{f1, f2, f3, f4, f5, f6, m1, m2, m3};
         outpost = new Outpost(c);
@@ -154,10 +151,10 @@ public class GameEngine {
         for (String m : membersList) {
             switch(m) {
                 case "Medic":
-                    crewMembers.add(new Medic(memberName, 100));
+                    crewMembers.add(new Medic(memberName));
                     break;
                 case "Explorer":
-                    crewMembers.add(new Explorer(memberName, 100));
+                    crewMembers.add(new Explorer(memberName));
                     break;
             }
         }
@@ -194,7 +191,7 @@ public class GameEngine {
         // by the end of the day, everyone went to bed and get ready
         // for the next day. Refreshes all the crew members action to 2
         for (CrewMember c : crewMembers) {
-            c.refreshActions();
+            c.refreshActions(2);
         }
         currDay++;
     }
