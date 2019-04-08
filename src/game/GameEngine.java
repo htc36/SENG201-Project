@@ -414,6 +414,48 @@ public class GameEngine {
     public void typePrint() {
         System.out.println();
     }
+    
+    public static void homePage(GameEngine g) {
+    	System.out.println("Welcome to the homepage");
+    	
+        
+        System.out.println("\nPress 1 to veiw crew staus\nPress 2 to veiw ship staus\nPress 3 to visit Outpost\nMove to next day");
+        Scanner reader = new Scanner(System.in);
+        String name = reader.next(); 
+        System.out.println(name);
+        
+        switch(name) {
+        	case "1":
+        		g.viewCrewMemberStatus();
+        		homePage(g);
+        		break;
+        	case "2":
+        		g.viewSpaceshipStatus();
+        		homePage(g);
+        		break;
+        	case "3":
+        		g.visitOutpost();
+                String queries = g.getInputShoppingList(reader);
+                g.addItemToShoppingBag(queries);
+                g.viewShoppingBag();
+                homePage(g);
+                break;
+        	case "4":
+        		g.endDay();
+        		homePage(g);
+        		break;
+        		
+        
+        		
+        	
+        		
+        		
+        }
+        
+        reader.close();
+        
+    	
+    }
 
     public static void main(String[] args) {
         final String ANSI_CLS = "\u001b[2J";
@@ -428,16 +470,16 @@ public class GameEngine {
         System.out.println("Number of crew members (2-4)?");
         g.setCrewMembers(g.getCrewAmount(reader), reader);
         g.setupCrew();
-        g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
-        g.addCrewConsumable(new Food("Banana", 10, 10, 10));
-        g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
-        g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
-        g.viewCrewMemberStatus();
-        g.viewSpaceshipStatus();
-        g.visitOutpost();
-        String queries = g.getInputShoppingList(reader);
-        g.addItemToShoppingBag(queries);
-        g.viewShoppingBag();
+        //g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
+        //g.addCrewConsumable(new Food("Banana", 10, 10, 10));
+        //g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
+        //g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
+        homePage(g);
+        //g.visitOutpost();
+        //String queries = g.getInputShoppingList(reader);
+        //g.addItemToShoppingBag(queries);
+        //g.viewShoppingBag();
+        
 
         reader.close();
     }
