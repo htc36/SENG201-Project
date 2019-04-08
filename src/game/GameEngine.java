@@ -64,22 +64,16 @@ public class GameEngine {
      * @return int <<Return Description>>
      */
     public int getInputNumDays(Scanner reader) {
-        int numOfDays = reader.nextInt();
+        int numOfDays = 0;
+        do {
+            numOfDays = reader.nextInt();
+        } while (!isValidNumOfDays(numOfDays));
+
         return numOfDays;
     }
 
-    /**
-     * <<auto generated javadoc comment>>
-     * @param reader <<Param Description>>
-     * @return String <<Return Description>>
-     */
-    public String getInputCrewMembers(Scanner reader) {
-        String choices = "";
-        do {
-            choices = reader.next();
-        } while (isInvalidCrewMemberInput(choices));
-
-        return choices.replaceAll("\\s","").toLowerCase();
+    public boolean isValidNumOfDays(int numOfDays) {
+        return numOfDays <= 10 && numOfDays >= 3;
     }
 
     /**
@@ -102,21 +96,6 @@ public class GameEngine {
         while (amount < 2 || amount > 4);
 
         return amount;
-    }
-
-    /**
-     * <<auto generated javadoc comment>>
-     * @param choices <<Param Description>>
-     * @return boolean <<Return Description>>
-     */
-    public boolean isInvalidCrewMemberInput(String choices) {
-        String[] membersList = choices.split(",");
-        for (String m : membersList) {
-            if (!crewMemberTypes.contains(m)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -170,10 +149,10 @@ public class GameEngine {
             String crewType = "";
             String memberName = "";
             String crewInfo = "";
-            do{
+            do {
                 System.out.print("Input crew name followed by their type");
                 System.out.print(" (" + (crewNumbers - i) + " to go)\n");
-                do{
+                do {
                     System.out.print("> ");
                     crewInfo = reader.next();
                     if (!isCrewInfoValid(crewInfo)){
