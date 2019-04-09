@@ -3,6 +3,7 @@ package unit;
 import java.util.Random;
 
 import consumable.Food;
+import consumable.MedicalSupply;
 
 public abstract class CrewMember extends Unit {
 
@@ -29,10 +30,12 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
-     * @param luckStat <<Param Desc>>
-     * @param actions <<Param Desc>>
+     * Constructor for a crew member
+     * This constructor will be called by the unit type
+     * subclasses
+     * @param memberName name of the unit
+     * @param luckStat luck stat that a unit has
+     * @param actions number of actions a unit has
      */
     public CrewMember(String memberName, int luckStat, int actions) {
         super(memberName);
@@ -52,16 +55,14 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * @return int returns the fatique level of a crew member
      */
     public int getFatiqueLevel() {
         return fatiqueLevel;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * @return int returns the luck stat of a crew member
      */
     public int getLuck() {
         return luck;
@@ -89,8 +90,8 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * decreases the hunger level of a unit for amount specified
+     * @param amount decreased hunger level
      */
     public void decreaseHunger(int amount) {
 
@@ -100,36 +101,38 @@ public abstract class CrewMember extends Unit {
         }
     }
 
-    /* 
+    /** 
      * Increases the crew member's hunger level
+     * @param amount increased hunger level
      */
     public void increaseHunger(int amount) {
         hungerLevel += amount;
     }
-    /* 
+
+    /** 
      * @return crew member's health status
-     * if true, crew member will lose health over time
+     * returns true if crew member has the plague
      */
     public boolean isSick() {
         return hasPlague;
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * gives a plagued status to a crew member
      */
     public void makeSick() {
         hasPlague = true;
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * removes plagued status from a crew member
      */
     public void cureSick() {
         hasPlague = false;
     }
 
 
-    /* 
+    /**
      * Pilot the spaceship to another planet along with
      * another crew member co-pilot
      * @param c the co-pilot
@@ -139,27 +142,27 @@ public abstract class CrewMember extends Unit {
         c.reduceAction();
     }
 
-    /* 
+    /**
      * The crew member sleeps, decreasing their fatique level
+     * @param amount reduced fatique level
      */
     public void sleep(int amount) {
         reduceAction();
         fatiqueLevel -= amount;
     }
 
-
-
-    /* 
+    /**
      * Repairs the shield of the spaceship, increasing
      * its health by a certain amount
-     * @param memberName name of the new unit
+     * @param s the spaceship that is being repaired
+     * @param amount increased shield health by repairing
      */
     public void repairShield(Spaceship s, int amount) {
         reduceAction();
         s.repairShield(amount);
     }
 
-    /* 
+    /**
      * The crew member searches for ship pieces on the planet
      * The probability they found one depends on their luck stat
      * @return whether they found a ship piece or not
@@ -172,7 +175,7 @@ public abstract class CrewMember extends Unit {
         return chance < luck;
     }
 
-    /* 
+    /**
      * Reduces actions for a crew member by 1
      * Crew member has a minimum of 0 action and 
      * a maximum of 2.
@@ -188,16 +191,18 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * refreshes a crew member's actions setting it back to
+     * the amount specified
+     * @param amount number of actions a crew member has
      */
     public void refreshActions(int amount) {
         actions = amount;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of crew member
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a crew member
      */
     public String toString() {
         String status = "F";
@@ -216,13 +221,18 @@ public abstract class CrewMember extends Unit {
 
         return template;
     }   
-    //
-    //public void useMedicalSupply(MedicalSupply item) {
-    //}
+    
+    public void useMedicalSupply(MedicalSupply item) {
+        addHealth(item.getHealingAmount());
+        if (item.canHealSpacePlague()) {
+            cureSick();
+        }
+    }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param item <<Param Desc>>
+     * feeding an item to a crew member, increasing their health
+     * and decreasing their hunger level
+     * @param item the food object item
      */
     public void feed(Food item) {
         addHealth(item.getHealingAmount());
