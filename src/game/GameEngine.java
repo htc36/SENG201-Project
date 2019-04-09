@@ -64,22 +64,19 @@ public class GameEngine {
      * @return int <<Return Description>>
      */
     public int getInputNumDays(Scanner reader) {
-        int numOfDays = reader.nextInt();
+        int numOfDays = 0;
+        do {
+            numOfDays = reader.nextInt();
+            if (!isValidNumOfDays(numOfDays)) {
+            	System.out.println("Please enter a value between 3 and 10");
+            }
+        } while (!isValidNumOfDays(numOfDays));
+
         return numOfDays;
     }
 
-    /**
-     * <<auto generated javadoc comment>>
-     * @param reader <<Param Description>>
-     * @return String <<Return Description>>
-     */
-    public String getInputCrewMembers(Scanner reader) {
-        String choices = "";
-        do {
-            choices = reader.next();
-        } while (isInvalidCrewMemberInput(choices));
-
-        return choices.replaceAll("\\s","").toLowerCase();
+    public boolean isValidNumOfDays(int numOfDays) {
+        return numOfDays <= 10 && numOfDays >= 3;
     }
 
     /**
@@ -102,21 +99,6 @@ public class GameEngine {
         while (amount < 2 || amount > 4);
 
         return amount;
-    }
-
-    /**
-     * <<auto generated javadoc comment>>
-     * @param choices <<Param Description>>
-     * @return boolean <<Return Description>>
-     */
-    public boolean isInvalidCrewMemberInput(String choices) {
-        String[] membersList = choices.split(",");
-        for (String m : membersList) {
-            if (!crewMemberTypes.contains(m)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -170,10 +152,10 @@ public class GameEngine {
             String crewType = "";
             String memberName = "";
             String crewInfo = "";
-            do{
+            do {
                 System.out.print("Input crew name followed by their type");
                 System.out.print(" (" + (crewNumbers - i) + " to go)\n");
-                do{
+                do {
                     System.out.print("> ");
                     crewInfo = reader.next();
                     if (!isCrewInfoValid(crewInfo)){
@@ -436,9 +418,67 @@ public class GameEngine {
         System.out.println();
     }
 
+    public void enterToContinue(Scanner reader) {
+    	System.out.println("\nPress Enter to exit to homepage");
+        reader.nextLine();
+    }
+   
+
+    public void homePage(Scanner reader) {
+    	boolean quit = false;
+        do {
+			System.out.println("Welcome to the homepage");
+			System.out.println("Press 1 to view crew status");
+			System.out.println("Press 2 to view ship status");
+			System.out.println("Press 3 to visit Outpost");
+			System.out.println("Press 4 to move to next day");
+			System.out.println("Press 5 to end game");
+                        System.out.print("> ");
+			String name = reader.next();
+			System.out.print("\033[H\033[2J");
+			System.out.flush();
+			switch (name) {
+			case "1":
+				viewCrewMemberStatus();
+				enterToContinue(reader);
+				break;
+			case "2":
+				viewSpaceshipStatus();
+				enterToContinue(reader);
+				break;
+			case "3":
+				visitOutpost();
+				String queries = getInputShoppingList(reader);
+				addItemToShoppingBag(queries);
+				viewShoppingBag();
+				enterToContinue(reader);
+				break;
+			case "4":
+				endDay();
+				if (gameLength - currDay == -1) {
+					System.out.println("You reached your day limit thanks for playing");
+					quit = true;
+				}
+				else {
+				System.out.println("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
+				}
+				
+				enterToContinue(reader);
+				break;
+			case "5":
+				
+				System.out.println("Thanks for playing");
+				quit = true;
+			}
+		} while (quit == false);  
+
+       
+
+    }
+
     public static void main(String[] args) {
-        final String ANSI_CLS = "\u001b[2J";
-        final String ANSI_HOME = "\u001b[H";
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
         System.out.print("Spaceship name: ");
@@ -449,16 +489,16 @@ public class GameEngine {
         System.out.println("Number of crew members (2-4)?");
         g.setCrewMembers(g.getCrewAmount(reader), reader);
         g.setupCrew();
-        g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
-        g.addCrewConsumable(new Food("Banana", 10, 10, 10));
-        g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
-        g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
-        g.viewCrewMemberStatus();
-        g.viewSpaceshipStatus();
-        g.visitOutpost();
-        String queries = g.getInputShoppingList(reader);
-        g.addItemToShoppingBag(queries);
-        g.viewShoppingBag();
+        //g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
+        //g.addCrewConsumable(new Food("Banana", 10, 10, 10));
+        //g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
+        //g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
+        g.homePage(reader);
+        //g.visitOutpost();
+        //String queries = g.getInputShoppingList(reader);
+        //g.addItemToShoppingBag(queries);
+        //g.viewShoppingBag();
+
 
         reader.close();
     }

@@ -17,14 +17,10 @@ class ConsumableTest {
                 () -> new MedicalSupply("", 0, 1000, false));
         assertThrows(InvalidParameterException.class, 
                 () -> new MedicalSupply("Potion", 10, 0, false));
-        assertThrows(InvalidParameterException.class, 
-                () -> new MedicalSupply("Hi-Potion", 0, 1000, false));
     }
 
     @Test
     void foodErrorTest() {
-        assertThrows(InvalidParameterException.class, 
-                () -> new Food("Satay", 0, 1000, 1));
         assertThrows(InvalidParameterException.class, 
                 () -> new Food("", 10, 100, 1));
         assertThrows(InvalidParameterException.class, 
