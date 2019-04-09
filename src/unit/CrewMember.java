@@ -46,8 +46,7 @@ public abstract class CrewMember extends Unit {
         hasPlague = false;
     }
 
-    // Getters and Setters
-    /* 
+    /**
      * @return number of actions the crew member has
      */
     public int getActions() {
@@ -68,21 +67,21 @@ public abstract class CrewMember extends Unit {
         return luck;
     }
 
-    /* 
+    /**
      * @return fatique level of crew member
      */
     public int getFatique() {
         return fatiqueLevel;
     }
 
-    /* 
+    /**
      * Increases the crew member's fatique level
      */
     public void increaseFatique(int amount) {
         fatiqueLevel += amount;
     }
 
-    /* 
+    /**
      * @return hunger level of crew member
      */
     public int getHunger() {
@@ -222,6 +221,11 @@ public abstract class CrewMember extends Unit {
         return template;
     }   
     
+    /**
+     * use a medical item on a crew member, increasing their health
+     * and possibly curing them from space plague
+     * @param item the medicalsupply object item
+     */
     public void useMedicalSupply(MedicalSupply item) {
         addHealth(item.getHealingAmount());
         if (item.canHealSpacePlague()) {
