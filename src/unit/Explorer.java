@@ -14,12 +14,12 @@ public class Explorer extends CrewMember {
 
         String template = "%12.12s"; // name
         template += "%11.11s"; //type
-        template += "%7d"; // health stat
-        template += "%5d"; // luck stat
-        template += "%8.1s"; // has plague
-        template += "%7d"; // hunger level
-        template += "%8d"; // fatique level
-        template += "%8d"; // actions
+        template += "%9d"; // health stat
+        template += "%7d"; // luck stat
+        template += "%10.1s"; // has plague
+        template += "%9d"; // hunger level
+        template += "%10d"; // fatique level
+        template += "%10d"; // actions
 
         return String.format(template, super.getName(), "Explorer", super.getHealth(),
                 super.getLuck(), status, super.getHunger(), super.getFatiqueLevel(), super.getActions());
