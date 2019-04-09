@@ -26,9 +26,6 @@ public class Outpost {
     public int getTotalPrice() {
         return totalPrice;
     }
-    public int getPrice(String itemName) {
-    	return conMap.get(itemName).getPrice();
-    }
 
     public void addItemToShoppingBag(String itemName) {
         shoppingBag.add(itemName);
@@ -40,6 +37,10 @@ public class Outpost {
         shoppingBag.remove(itemName);
         int itemPrice = conMap.get(itemName).getPrice();
         totalPrice -= itemPrice;
+    }
+
+    public boolean hasItemInShoppingBag(String itemName) {
+        return shoppingBag.contains(itemName);
     }
 
     public void purchaseItems(Crew c) {
