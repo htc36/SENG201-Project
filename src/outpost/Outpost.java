@@ -1,6 +1,7 @@
 package outpost;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeMap;
 
 import consumable.Consumable;
@@ -75,7 +76,7 @@ public class Outpost {
     public String shoppingBagToString() {
         String template = "";
         for (String s : shoppingBag) {
-            template += s + "\n";
+            template += Collections.frequency(shoppingBag, s) + "\n";
         }
 
         return template;
