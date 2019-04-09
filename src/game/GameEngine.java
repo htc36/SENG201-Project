@@ -25,6 +25,7 @@ public class GameEngine {
     private Outpost outpost;
     private int currDay;
     private int moneySpentInCurrSession;
+    private boolean hasEnded;
 
     public GameEngine() {
         currDay = 1;
@@ -50,6 +51,8 @@ public class GameEngine {
 
         Consumable[] c = new Consumable[]{f1, f2, f3, f4, f5, f6, m1, m2, m3};
         outpost = new Outpost(c);
+
+        hasEnded = false;
     }
 
     /**
@@ -66,19 +69,26 @@ public class GameEngine {
      * @return int <<Return Description>>
      */
     public int getInputNumDays(Scanner reader) {
-        int numOfDays = 0;
+        String numOfDays = "";
         do {
-            numOfDays = reader.nextInt();
+            numOfDays = reader.next();
             if (!isValidNumOfDays(numOfDays)) {
-            	System.out.println("Please enter a value between 3 and 10");
+                System.out.println("Please enter a value between 3 and 10");
             }
         } while (!isValidNumOfDays(numOfDays));
 
-        return numOfDays;
+        return Integer.valueOf(numOfDays);
     }
 
-    public boolean isValidNumOfDays(int numOfDays) {
-        return numOfDays <= 10 && numOfDays >= 3;
+    public boolean isValidNumOfDays(String numOfDays) {
+        Pattern p = Pattern.compile("^\\d+$");
+        Matcher m = p.matcher(numOfDays);
+        if (m.find()) {
+            int days = Integer.valueOf(numOfDays);
+            return days <= 10 && days >= 3;
+        }
+
+        return false;
     }
 
     /**
@@ -156,7 +166,8 @@ public class GameEngine {
             String crewInfo = "";
             do {
                 System.out.print("Input crew name followed by their type");
-                System.out.print(" (" + (crewNumbers - i) + " to go)\n");
+                System.out.println(" (" + (crewNumbers - i) + " to go)");
+                System.out.println("For example: dora-explorer");
                 do {
                     System.out.print("> ");
                     crewInfo = reader.next();
@@ -268,7 +279,7 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void visitOutpost() {
-    	moneySpentInCurrSession = 0;
+        moneySpentInCurrSession = 0;
         typePrint();
         typePrint("*** Welcome to the outpost ***", 50);
         typePrint();
@@ -305,16 +316,13 @@ public class GameEngine {
         String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
         String allQueries = "";
         String query = "";
-        
+
         while (true) {
             System.out.print("> ");
             query = reader.next();
             if (isValidQuery(query)) {
             	addItemToShoppingBag(query, reader);
-            	
-	
             	}
-                
             else {
                 if (query.equals("done")) {
                     break;
@@ -325,7 +333,7 @@ public class GameEngine {
 
         return allQueries;
     }
-    
+
 
     /**
      * <<auto generated javadoc comment>>
@@ -333,38 +341,21 @@ public class GameEngine {
      * @return boolean <<Return Description>>
      */
     public boolean isValidQuery(String query) {
-        Pattern p = Pattern.compile("\\d+x\\w+");
+        Pattern p = Pattern.compile("^\\d+x\\w+$");
         Matcher m = p.matcher(query);
         if (m.find()) {
             String itemName = query.split("x")[1];
+            int itemCount = Integer.valueOf(query.split("x")[0]);
+            if (itemCount < 0) {
+                typePrint("Clerk: NO Refunds >:(");
+                return false;
+            }
             return outpost.hasItemInStock(itemName);
         }
 
         return false;
     }
-    public boolean enoughMoneyToPurchase(String query) {
-    	int itemPrice = 0;
-    	int amount = 0;
-        String itemName = "";
-        
-        amount = Integer.valueOf(query.split("x")[0]);
-        itemName = query.split("x")[1];
-        for (int i = 0; i < amount; i ++ ) {
-        	itemPrice += outpost.getPrice(itemName);
-         }
-        moneySpentInCurrSession += itemPrice;
-        System.out.println(moneySpentInCurrSession);
-        if (moneySpentInCurrSession <= crew.getMoney()) {
-        	return true;
-        }
-        else {
-        	moneySpentInCurrSession -= itemPrice;
-        	return false;
-        }
 
-    }
-    
-    
 
     /**
      * <<auto generated javadoc comment>>
@@ -404,7 +395,7 @@ public class GameEngine {
     public void viewShoppingBag() {
         typePrint(outpost.shoppingBagToString());
         typePrint("Total price: $" + String.valueOf(outpost.getTotalPrice()));
-        
+
     }
 
     /**
@@ -485,67 +476,64 @@ public class GameEngine {
         	System.out.print(i +"    ");
         	System.out.println(crewMembers.get(i));
         }
-        	
-    	
     }
-   
+        	
+
 
     public void homePage(Scanner reader) {
-    	boolean quit = false;
         do {
-        	typePrint("Welcome to the homepage");
-        	typePrint("Press 1 to view crew status");
-        	typePrint("Press 2 to view ship status");
-        	typePrint("Press 3 commit action");
-        	typePrint("Press 4 to visit Outpost");
-        	typePrint("Press 5 to move to next day");
-        	typePrint("Press 6 to end game");
 
-			String name = reader.next();
-			System.out.print("\033[H\033[2J");
-			System.out.flush();
-			switch (name) {
-			case "1":
-				viewCrewMemberStatus();
-				enterToContinue(reader);
-				break;
-			
-			case "2":
-				viewSpaceshipStatus();
-				enterToContinue(reader);
-				break;
-			case "3":
-				commitActionPage(reader);
-				break;
-			case "4":
-				visitOutpost();
-				String queries = getInputShoppingList(reader);
-				
-				viewShoppingBag();
+            System.out.println("Welcome to the homepage");
+            System.out.println("Press 1 to view crew status");
+            System.out.println("Press 2 to view ship status");
+            System.out.println("Press 3 commit action");
+            System.out.println("Press 4 to visit Outpost");
+            System.out.println("Press 5 to move to next day");
+            System.out.println("Press 6 to end game");
 
-				outpost.purchaseItems(crew);
-				enterToContinue(reader);
-				break;
-			case "5":
-				endDay();
-				if (gameLength - currDay == -1) {
-					System.out.println("You reached your day limit thanks for playing");
-					quit = true;
-				}
-				else {
-				System.out.println("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
-				}
-				
-				enterToContinue(reader);
-				break;
-			case "6":
-				
-				System.out.println("Thanks for playing");
-				quit = true;
-			}
-		} while (quit == false);  
+            String name = reader.next();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            switch (name) {
+                case "1":
+                    viewCrewMemberStatus();
+                    enterToContinue(reader);
+                    break;
 
-       
+                case "2":
+                    viewSpaceshipStatus();
+                    enterToContinue(reader);
+                    break;
+                case "3":
+                    commitActionPage(reader);
+                    break;
+                case "4":
+                    visitOutpost();
+                    String queries = getInputShoppingList(reader);
+                    viewShoppingBag();
+
+                    outpost.purchaseItems(crew);
+                    enterToContinue(reader);
+                    break;
+                case "5":
+                    endDay();
+                    if (gameLength - currDay == -1) {
+                        System.out.println("You reached your day limit thanks for playing");
+                        hasEnded = true;
+                    }
+                    else {
+                        System.out.println("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
+                    }
+
+                    enterToContinue(reader);
+                    break;
+                case "6":
+
+                    System.out.println("Thanks for playing");
+                    hasEnded = true;
+            }
+        } while (!hasEnded);  
+
 
     }
 
