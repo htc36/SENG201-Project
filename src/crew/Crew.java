@@ -16,6 +16,11 @@ public class Crew {
     private ArrayList<CrewMember> crewMembers;
     private Spaceship ship;
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param crews <<Param Desc>>
+     * @param newShip <<Param Desc>>
+     */
     public Crew(ArrayList<CrewMember> crews, Spaceship newShip) {
         consumables = new TreeMap<>();
         consumablesList = new ArrayList<>();
@@ -25,6 +30,10 @@ public class Crew {
         ship = newShip;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return Spaceship <<Return Desc>>
+     */
     public Spaceship getSpaceship() {
         return ship;
     }
@@ -33,14 +42,26 @@ public class Crew {
         return crewMembers;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getMoney() {
         return money;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param sum <<Param Desc>>
+     */
     public void addMoney(int sum) {
         money += sum;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param sum <<Param Desc>>
+     */
     public void shellOutMoney(int sum) {
         if (money < sum) {
             String errTemplate = "You don't have enough money to do this action";
@@ -50,6 +71,11 @@ public class Crew {
         money -= sum;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     * @return int <<Return Desc>>
+     */
     public int getConsumableCount(String itemName) {
         int itemCount = 0;
         for (Consumable c : consumables.keySet()) {
@@ -62,6 +88,11 @@ public class Crew {
         return itemCount;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     * @return Consumable <<Return Desc>>
+     */
     public Consumable popConsumable(String itemName) {
         int itemCount = 0;
         for (Consumable c : consumables.keySet()) {
@@ -83,6 +114,10 @@ public class Crew {
         throw new InsufficientItemInStock(errTemplate);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Desc>>
+     */
     public void addConsumable(Consumable item) {
         int itemCount = 0;
         if (consumables.containsKey(item)) { 
@@ -96,6 +131,10 @@ public class Crew {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String getCrewMemberStatus() {
         String template = "";
         for (CrewMember c : crewMembers) {
@@ -104,10 +143,17 @@ public class Crew {
         return template;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String getSpaceshipStatus() {
         return ship.toString();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void popRandomItem() {
         Random rand = new Random();
         int totalItems = consumablesList.size();
@@ -128,6 +174,10 @@ public class Crew {
         return;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String consumablesToString() {
         String template = "";
         for (Consumable c : consumables.keySet()) {

@@ -8,6 +8,12 @@ public class Consumable implements Comparable<Consumable> {
     private int healingAmount;
     private String name;
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     * @param heal <<Param Desc>>
+     * @param itemPrice <<Param Desc>>
+     */
     public Consumable(String itemName, int heal, int itemPrice) {
         name = itemName;
         healingAmount = heal;
@@ -22,23 +28,45 @@ public class Consumable implements Comparable<Consumable> {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getHealingAmount() {
         return healingAmount;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param other <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean equals(Consumable other) {
         System.out.println("calloing this funcoitn");
         return other.getName() == getName();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param c <<Param Desc>>
+     * @return int <<Return Desc>>
+     */
     @Override
     public int compareTo(Consumable c) {
         String itemName = getName();

@@ -5,8 +5,6 @@ import java.util.Random;
 
 import crew.Crew;
 import unit.CrewMember;
-import unit.Spaceship;
-
 
 public class SpacePlague implements RandomEvents {
 
@@ -24,23 +22,5 @@ public class SpacePlague implements RandomEvents {
         }
 
     }
-
-    public static void main(String[] args) {
-        ArrayList<CrewMember> crews = new ArrayList<>();
-        crews.add(new CrewMember("Walter", 0));
-        crews.add(new CrewMember("Richard", 100));
-        crews.add(new CrewMember("Matthias", 50));
-        crews.add(new CrewMember("Adrian", 10));
-
-        Spaceship s = new Spaceship("DeathStar");
-        Crew c = new Crew(crews, s);
-
-        SpacePlague.causeDamage(c);
-
-
-    }
-
-
-
 
 }

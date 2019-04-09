@@ -17,9 +17,9 @@ class CrewTest {
 
     @Test
     void createCrew() {
-        CrewMember c1 = new CrewMember("Walter", 10);
-        CrewMember c2 = new CrewMember("Richard", 10);
-        CrewMember c3 = new CrewMember("Matthias", 10);
+        Medic c1 = new Medic("Walter");
+        Sleeper c2 = new Sleeper("Richard");
+        HardWorker c3 = new HardWorker("Matthias");
         ArrayList<CrewMember> members = new ArrayList<>();
         members.add(c1);
         members.add(c2);
