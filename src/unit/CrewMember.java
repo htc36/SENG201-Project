@@ -4,7 +4,7 @@ import java.util.Random;
 
 import consumable.Food;
 
-public class CrewMember extends Unit {
+public abstract class CrewMember extends Unit {
 
     private int hungerLevel;
     private int fatiqueLevel;
@@ -12,7 +12,7 @@ public class CrewMember extends Unit {
     private int actions;
     private boolean hasPlague;
 
-    /* 
+    /**
      * Constructor for Unit
      * @param memberName name of the new unit
      * @param luckStat unit's percentage chance of finding 
