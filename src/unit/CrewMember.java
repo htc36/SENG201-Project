@@ -173,18 +173,18 @@ public class CrewMember extends Unit {
             status = "T";
         }
 
-        String template = "%12.12s"; // name
-        template += "%7d"; // health stat
-        template += "%6d"; // luck stat
-        template += "%8.1s"; // has plague
-        template += "%7d"; // hunger level
-        template += "%8d"; // fatique level
-        template += "%8d"; // actions
+        String template = String.format("%12.12s", super.getName()); // name
+        template += "%11.11s"; //type
+        template += String.format("%9d", super.getHealth()); // health stat
+        template += String.format("%7d", luck); // luck stat
+        template += String.format("%10.1s", status); // has plague
+        template += String.format("%9d", hungerLevel); // hunger level
+        template += String.format("%10d", fatiqueLevel); // fatique level
+        template += String.format("%10d", actions); // actions
 
-        return String.format(template, super.getName(), super.getHealth(),
-                luck, status, hungerLevel, fatiqueLevel, actions);
-    }
-
+        return template;
+    }   
+    //
     //public void useMedicalSupply(MedicalSupply item) {
     //}
 
