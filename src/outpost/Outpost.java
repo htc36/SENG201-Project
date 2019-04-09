@@ -3,6 +3,7 @@ package outpost;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import consumable.Consumable;
 import crew.Crew;
@@ -75,8 +76,13 @@ public class Outpost {
 
     public String shoppingBagToString() {
         String template = "";
+        TreeSet<String> itemsInBag = new TreeSet<String>();
         for (String s : shoppingBag) {
-            template += Collections.frequency(shoppingBag, s) + "\n";
+            itemsInBag.add(s);
+        }
+
+        for (String s : itemsInBag) {
+            template += Collections.frequency(shoppingBag, s) + "x" + s + "\n";
         }
 
         return template;
