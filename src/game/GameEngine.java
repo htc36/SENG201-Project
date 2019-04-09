@@ -26,6 +26,9 @@ public class GameEngine {
     private int moneySpentInCurrSession;
     private boolean hasEnded;
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public GameEngine() {
         currDay = 1;
 
@@ -56,7 +59,7 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param item <<Param Description>>
+     * @param item <<Param Desc>>
      */
     public void addCrewConsumable(Consumable item) {
         crew.addConsumable(item);
@@ -64,8 +67,8 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Description>>
-     * @return int <<Return Description>>
+     * @param reader <<Param Desc>>
+     * @return int <<Return Desc>>
      */
     public int getInputNumDays(Scanner reader) {
         String numOfDays = "";
@@ -79,6 +82,11 @@ public class GameEngine {
         return Integer.valueOf(numOfDays);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param numOfDays <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean isValidNumOfDays(String numOfDays) {
         Pattern p = Pattern.compile("^\\d+$");
         Matcher m = p.matcher(numOfDays);
@@ -92,14 +100,19 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Description>>
-     * @return String <<Return Description>>
+     * @param reader <<Param Desc>>
+     * @return String <<Return Desc>>
      */
     public String getInputSpaceshipName(Scanner reader) {
         String name = reader.next();
         return name.replaceAll("\\s","");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Desc>>
+     * @return int <<Return Desc>>
+     */
     public int getCrewAmount(Scanner reader) {
         int amount = 0;
         do {
@@ -114,7 +127,7 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param length <<Param Description>>
+     * @param length <<Param Desc>>
      */
     public void setGameLength(int length) {
         gameLength = length;
@@ -122,7 +135,7 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param name <<Param Description>>
+     * @param name <<Param Desc>>
      */
     public void setupSpaceship(String name) {
         ship = new Spaceship(name);
@@ -149,12 +162,22 @@ public class GameEngine {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param crewInfo <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean isCrewInfoValid(String crewInfo){
         Pattern p = Pattern.compile("\\w+-\\w+");
         Matcher m = p.matcher(crewInfo);
         return m.find();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param crewNumbers <<Param Desc>>
+     * @param reader <<Param Desc>>
+     */
     public void setCrewMembers(int crewNumbers, Scanner reader) {
         crewMembers = new ArrayList<>();
 
@@ -208,8 +231,8 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param days <<Param Description>>
-     * @return int <<Return Description>>
+     * @param days <<Param Desc>>
+     * @return int <<Return Desc>>
      */
     public int calculateShipPieces(int days) {
         return days * 2 / 3;
@@ -308,8 +331,8 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Description>>
-     * @return String <<Return Description>>
+     * @param reader <<Param Desc>>
+     * @return String <<Return Desc>>
      */
     public String getInputShoppingList(Scanner reader) {
         String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
@@ -335,8 +358,8 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param query <<Param Description>>
-     * @return boolean <<Return Description>>
+     * @param query <<Param Desc>>
+     * @return boolean <<Return Desc>>
      */
     public boolean isValidQuery(String query) {
         Pattern p = Pattern.compile("^\\d+x\\w+$");
@@ -356,7 +379,7 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param queries <<Param Description>>
+     * @param queries <<Param Desc>>
      */
     public void addItemToShoppingBag(String queries) {
         int amount = 0;
@@ -439,16 +462,28 @@ public class GameEngine {
         System.out.println();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Desc>>
+     */
     public void enterToContinue(Scanner reader) {
         System.out.println("\nPress Enter to exit to homepage");
         reader.nextLine();
     }
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Desc>>
+     */
     public void commitActionPage(Scanner reader) {
         System.out.println("Welcome to the action center");
         System.out.println("Select crew member to complete action with");
     }
 
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param reader <<Param Desc>>
+     */
     public void homePage(Scanner reader) {
         do {
             System.out.println("Welcome to the homepage");

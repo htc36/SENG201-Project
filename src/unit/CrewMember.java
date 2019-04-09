@@ -28,6 +28,12 @@ public class CrewMember extends Unit {
         hasPlague = false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param memberName <<Param Desc>>
+     * @param luckStat <<Param Desc>>
+     * @param actions <<Param Desc>>
+     */
     public CrewMember(String memberName, int luckStat, int actions) {
         super(memberName);
         luck = luckStat;
@@ -45,10 +51,18 @@ public class CrewMember extends Unit {
         return actions;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getFatiqueLevel() {
         return fatiqueLevel;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getLuck() {
         return luck;
     }
@@ -74,6 +88,10 @@ public class CrewMember extends Unit {
         return hungerLevel;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
     public void decreaseHunger(int amount) {
 
         hungerLevel -= amount;
@@ -96,10 +114,16 @@ public class CrewMember extends Unit {
         return hasPlague;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void makeSick() {
         hasPlague = true;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void cureSick() {
         hasPlague = false;
     }
@@ -163,10 +187,18 @@ public class CrewMember extends Unit {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
     public void refreshActions(int amount) {
         actions = amount;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String toString() {
         String status = "F";
         if (hasPlague) {
@@ -188,6 +220,10 @@ public class CrewMember extends Unit {
     //public void useMedicalSupply(MedicalSupply item) {
     //}
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Desc>>
+     */
     public void feed(Food item) {
         addHealth(item.getHealingAmount());
         decreaseHunger(item.getFillStomach());
