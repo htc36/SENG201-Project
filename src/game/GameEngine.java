@@ -417,19 +417,13 @@ public class GameEngine {
     public void typePrint() {
         System.out.println();
     }
-    public void enterToContinue() {
+
+    public void enterToContinue(Scanner reader) {
     	System.out.println("\nPress Enter to exit to homepage");
-		Scanner reader = new Scanner(System.in); //for some reason it only works if i make a new scanner rather than using one as a parameter
-		reader.nextLine();
-		
+        reader.nextLine();
     }
    
 
-    // the function does not need to be static
-    // static means we can call the function without initializing
-    // the GameEngine object
-    // but we want to initialize the GameEngine first to setup
-    // the crew, outpost and other game elements
     public void homePage(Scanner reader) {
     	boolean quit = false;
         do {
@@ -439,39 +433,25 @@ public class GameEngine {
 			System.out.println("Press 3 to visit Outpost");
 			System.out.println("Press 4 to move to next day");
 			System.out.println("Press 5 to end game");
+                        System.out.print("> ");
 			String name = reader.next();
 			System.out.print("\033[H\033[2J");
 			System.out.flush();
 			switch (name) {
 			case "1":
 				viewCrewMemberStatus();
-				// dont call recursion here, use do while loop instead
-				//
-				// there is a limit to how deep you can go in recursion
-				// so there is a tiny little chance if someone decided
-				// to run viewCrewMemberStatus thousands of times
-				// the program will just crash
-				// TODO: replace recursion call to homepage() with loop
-				enterToContinue();
-				
-				
-				
-
+				enterToContinue(reader);
 				break;
 			case "2":
 				viewSpaceshipStatus();
-				// dont call recursion here, use do while loop instead
-				enterToContinue();
-
+				enterToContinue(reader);
 				break;
 			case "3":
 				visitOutpost();
 				String queries = getInputShoppingList(reader);
 				addItemToShoppingBag(queries);
 				viewShoppingBag();
-				// dont call recursion here, use do while loop instead
-				enterToContinue();
-
+				enterToContinue(reader);
 				break;
 			case "4":
 				endDay();
@@ -483,17 +463,13 @@ public class GameEngine {
 				System.out.println("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
 				}
 				
-				// dont call recursion here, use do while loop instead
-				enterToContinue();
-
+				enterToContinue(reader);
 				break;
 			case "5":
 				
 				System.out.println("Thanks for playing");
 				quit = true;
 			}
-			System.out.print("\033[H\033[2J");
-			System.out.flush();
 		} while (quit == false);  
 
        
