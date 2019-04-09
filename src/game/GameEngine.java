@@ -470,8 +470,8 @@ public class GameEngine {
     	System.out.println("Welcome to the action center");
     	System.out.println("Select crew member to complete action with");
     	System.out.println(crew.getCrewMemberStatus());
-        typePrint("Index        Name       Type Health Luck Plagued Hunger Fatique Actions");
-        typePrint("-----------------------------------------------------------------------");
+        typePrint("Index        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
+        typePrint("-----------------------------------------------------------------------------------");
         for (int i = 0; i < crewMembers.size(); i++) {
         	System.out.print(i +"    ");
         	System.out.println(crewMembers.get(i));
