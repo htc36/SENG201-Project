@@ -191,13 +191,6 @@ public class CrewMember extends Unit {
     public void feed(Food item) {
         addHealth(item.getHealingAmount());
         decreaseHunger(item.getFillStomach());
-
-
-
-
-
-
-
     }
 
 }

@@ -15,7 +15,7 @@ public class Explorer extends CrewMember {
         String template = "%12.12s"; // name
         template += "%11.11s"; //type
         template += "%7d"; // health stat
-        template += "%6d"; // luck stat
+        template += "%5d"; // luck stat
         template += "%8.1s"; // has plague
         template += "%7d"; // hunger level
         template += "%8d"; // fatique level
