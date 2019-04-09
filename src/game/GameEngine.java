@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -309,15 +310,12 @@ public class GameEngine {
             System.out.print("> ");
             query = reader.next();
             if (isValidQuery(query)) {
-            	System.out.println(moneySpentInCurrSession);
-            	if (enoughMoneyToPurchase(query)) {
-            		allQueries += query + ",";
-            	} else {
-            		System.out.println("Not enough moola");
+            	addItemToShoppingBag(query, reader);
+            	
 	
             	}
                 
-            } else {
+            else {
                 if (query.equals("done")) {
                     break;
                 }
@@ -349,7 +347,6 @@ public class GameEngine {
     	int amount = 0;
         String itemName = "";
         
-        
         amount = Integer.valueOf(query.split("x")[0]);
         itemName = query.split("x")[1];
         for (int i = 0; i < amount; i ++ ) {
@@ -366,23 +363,40 @@ public class GameEngine {
         }
 
     }
+    
+    
 
     /**
      * <<auto generated javadoc comment>>
      * @param queries <<Param Description>>
      */
-    public void addItemToShoppingBag(String queries) {
+    public void addItemToShoppingBag(String query, Scanner reader) {
         int amount = 0;
         String itemName = "";
-        String[] querySplit = queries.split(",");
-        for (String query : querySplit) {
-            amount = Integer.valueOf(query.split("x")[0]);
-            itemName = query.split("x")[1];
-            for (int i = 0; i < amount; i ++ ) {
-                outpost.addItemToShoppingBag(itemName);
-            }
+        amount = Integer.valueOf(query.split("x")[0]);
+        itemName = query.split("x")[1];
+        for (int i = 0; i < amount; i ++ ) {
+        	outpost.addItemToShoppingBag(itemName);
         }
-    }
+        while (outpost.getTotalPrice() > crew.getMoney()) {
+        
+        	System.out.println("You do not have enough money to purchase all the items");
+        	System.out.println("Your shopping list");
+        	viewShoppingBag();
+        	System.out.println("Pick item to remove");
+        	String removedItem = reader.next();
+        	while (outpost.hasItemInShoppingBag(removedItem)) {
+        		outpost.removeItemFromShoppingBag(removedItem);
+        	}
+        	
+        }
+        System.out.println("Good to go your shooping list is now:");
+        viewShoppingBag();
+        }
+        	
+        
+    
+    
 
     /**
      * <<auto generated javadoc comment>>
@@ -453,25 +467,39 @@ public class GameEngine {
     }
 
     public void enterToContinue(Scanner reader) {
+    	
     	System.out.println("\nPress Enter to exit to homepage");
-        reader.nextLine();
+        try {
+			System.in.read();
+		} catch (IOException e) {
+			
+		}
     }
     public void commitActionPage(Scanner reader) {
     	System.out.println("Welcome to the action center");
     	System.out.println("Select crew member to complete action with");
+    	System.out.println(crew.getCrewMemberStatus());
+        typePrint("Index        Name       Type Health Luck Plagued Hunger Fatique Actions");
+        typePrint("-----------------------------------------------------------------------");
+        for (int i = 0; i < crewMembers.size(); i++) {
+        	System.out.print(i +"    ");
+        	System.out.println(crewMembers.get(i));
+        }
+        	
+    	
     }
    
 
     public void homePage(Scanner reader) {
     	boolean quit = false;
         do {
-			System.out.println("Welcome to the homepage");
-			System.out.println("Press 1 to view crew status");
-			System.out.println("Press 2 to view ship status");
-			System.out.println("Press 3 commit action");
-			System.out.println("Press 4 to visit Outpost");
-			System.out.println("Press 5 to move to next day");
-			System.out.println("Press 6 to end game");
+        	typePrint("Welcome to the homepage");
+        	typePrint("Press 1 to view crew status");
+        	typePrint("Press 2 to view ship status");
+        	typePrint("Press 3 commit action");
+        	typePrint("Press 4 to visit Outpost");
+        	typePrint("Press 5 to move to next day");
+        	typePrint("Press 6 to end game");
 
 			String name = reader.next();
 			System.out.print("\033[H\033[2J");
@@ -492,7 +520,7 @@ public class GameEngine {
 			case "4":
 				visitOutpost();
 				String queries = getInputShoppingList(reader);
-				addItemToShoppingBag(queries);
+				
 				viewShoppingBag();
 
 				outpost.purchaseItems(crew);
@@ -527,9 +555,9 @@ public class GameEngine {
         GameEngine g = new GameEngine();
         Scanner reader = new Scanner(System.in);
         System.out.print("Spaceship name: ");
-        g.setupSpaceship(g.getInputSpaceshipName(reader));
+        g.setupSpaceship("ghfgh");
         System.out.print("Number of days: ");
-        g.setGameLength(g.getInputNumDays(reader));
+        g.setGameLength(5);
         g.setShipPieces();
         System.out.println("Number of crew members (2-4)?");
         g.setCrewMembers(g.getCrewAmount(reader), reader);
