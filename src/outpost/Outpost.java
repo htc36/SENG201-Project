@@ -14,6 +14,10 @@ public class Outpost {
     private ArrayList<String> shoppingBag;
     private int totalPrice;
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param cons <<Param Desc>>
+     */
     public Outpost(Consumable[] cons) {
         consumables = cons;
         conMap = new TreeMap<>();
@@ -25,26 +29,47 @@ public class Outpost {
         totalPrice = 0;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getTotalPrice() {
         return totalPrice;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     */
     public void addItemToShoppingBag(String itemName) {
         shoppingBag.add(itemName);
         int itemPrice = conMap.get(itemName).getPrice();
         totalPrice += itemPrice;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     */
     public void removeItemFromShoppingBag(String itemName) {
         shoppingBag.remove(itemName);
         int itemPrice = conMap.get(itemName).getPrice();
         totalPrice -= itemPrice;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean hasItemInShoppingBag(String itemName) {
         return shoppingBag.contains(itemName);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param c <<Param Desc>>
+     */
     public void purchaseItems(Crew c) {
         c.shellOutMoney(totalPrice);
         for (String itemName : shoppingBag) {
@@ -56,6 +81,10 @@ public class Outpost {
         shoppingBag.clear();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String saleProductsToString() {
         String template = "";
         for (Consumable c : consumables) {
@@ -64,6 +93,11 @@ public class Outpost {
         return template;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean hasItemInStock(String itemName) {
         for (String s : conMap.keySet()) {
             if (s.equals(itemName)) {
@@ -74,6 +108,10 @@ public class Outpost {
         return false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String shoppingBagToString() {
         String template = "";
         TreeSet<String> itemsInBag = new TreeSet<String>();

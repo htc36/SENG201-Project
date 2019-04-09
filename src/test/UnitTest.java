@@ -41,19 +41,6 @@ class UnitTest {
     }
 
     @Test
-    void createCrewMember() {
-        String name = "johncena";
-        CrewMember c = new CrewMember(name, 50);
-        Spaceship s = new Spaceship(name);
-        s.reduceHealth(60); // ship should have 40 hp left
-        c.reduceAction();
-        assertEquals(1, c.getActions());
-        c.repairShield(s, 10); // adds 10 to ship hp
-        assertEquals(50, s.getHealth());
-        assertEquals(0, c.getActions());
-    }
-
-    @Test
     void createSpaceship() {
         String name = "deathstar";
         Spaceship s = new Spaceship(name);

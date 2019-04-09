@@ -4,7 +4,7 @@ import java.util.Random;
 
 import consumable.Food;
 
-public class CrewMember extends Unit {
+public abstract class CrewMember extends Unit {
 
     private int hungerLevel;
     private int fatiqueLevel;
@@ -12,7 +12,7 @@ public class CrewMember extends Unit {
     private int actions;
     private boolean hasPlague;
 
-    /* 
+    /**
      * Constructor for Unit
      * @param memberName name of the new unit
      * @param luckStat unit's percentage chance of finding 
@@ -28,6 +28,12 @@ public class CrewMember extends Unit {
         hasPlague = false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param memberName <<Param Desc>>
+     * @param luckStat <<Param Desc>>
+     * @param actions <<Param Desc>>
+     */
     public CrewMember(String memberName, int luckStat, int actions) {
         super(memberName);
         luck = luckStat;
@@ -45,10 +51,18 @@ public class CrewMember extends Unit {
         return actions;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getFatiqueLevel() {
         return fatiqueLevel;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getLuck() {
         return luck;
     }
@@ -74,6 +88,10 @@ public class CrewMember extends Unit {
         return hungerLevel;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
     public void decreaseHunger(int amount) {
 
         hungerLevel -= amount;
@@ -96,10 +114,16 @@ public class CrewMember extends Unit {
         return hasPlague;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void makeSick() {
         hasPlague = true;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void cureSick() {
         hasPlague = false;
     }
@@ -163,31 +187,43 @@ public class CrewMember extends Unit {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
     public void refreshActions(int amount) {
         actions = amount;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String toString() {
         String status = "F";
         if (hasPlague) {
             status = "T";
         }
 
-        String template = "%12.12s"; // name
-        template += "%7d"; // health stat
-        template += "%6d"; // luck stat
-        template += "%8.1s"; // has plague
-        template += "%7d"; // hunger level
-        template += "%8d"; // fatique level
-        template += "%8d"; // actions
+        String template = String.format("%12.12s", super.getName()); // name
+        template += "%11.11s"; //type
+        template += String.format("%9d", super.getHealth()); // health stat
+        template += String.format("%7d", luck); // luck stat
+        template += String.format("%10.1s", status); // has plague
+        template += String.format("%9d", hungerLevel); // hunger level
+        template += String.format("%10d", fatiqueLevel); // fatique level
+        template += String.format("%10d", actions); // actions
 
-        return String.format(template, super.getName(), super.getHealth(),
-                luck, status, hungerLevel, fatiqueLevel, actions);
-    }
-
+        return template;
+    }   
+    //
     //public void useMedicalSupply(MedicalSupply item) {
     //}
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Desc>>
+     */
     public void feed(Food item) {
         addHealth(item.getHealingAmount());
         decreaseHunger(item.getFillStomach());
