@@ -72,7 +72,7 @@ public class GameEngine {
         do {
             numOfDays = reader.next();
             if (!isValidNumOfDays(numOfDays)) {
-                System.out.println("Please enter a value between 3 and 10");
+                System.out.println("[Error] Please enter a value between 3 and 10");
             }
         } while (!isValidNumOfDays(numOfDays));
 
@@ -256,8 +256,8 @@ public class GameEngine {
         typePrint();
         typePrint("*** Crew Members Status ***", 50);
         typePrint();
-        typePrint("        Name       Type Health Luck Plagued Hunger Fatique Actions");
-        typePrint("--------------------------------------------------------------------");
+        typePrint("        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
+        typePrint("------------------------------------------------------------------------------");
         String crewStatus = crew.getCrewMemberStatus();
         typePrint(crewStatus);
     }
