@@ -26,6 +26,9 @@ public class Outpost {
     public int getTotalPrice() {
         return totalPrice;
     }
+    public int getPrice(String itemName) {
+    	return conMap.get(itemName).getPrice();
+    }
 
     public void addItemToShoppingBag(String itemName) {
         shoppingBag.add(itemName);

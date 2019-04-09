@@ -23,6 +23,7 @@ public class GameEngine {
     private Crew crew;
     private Outpost outpost;
     private int currDay;
+    private int moneySpentInCurrSession;
 
     public GameEngine() {
         currDay = 1;
@@ -266,6 +267,7 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void visitOutpost() {
+    	moneySpentInCurrSession = 0;
         typePrint();
         typePrint("*** Welcome to the outpost ***", 50);
         typePrint();
@@ -302,11 +304,19 @@ public class GameEngine {
         String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
         String allQueries = "";
         String query = "";
+        
         while (true) {
             System.out.print("> ");
             query = reader.next();
             if (isValidQuery(query)) {
-                allQueries += query + ",";
+            	System.out.println(moneySpentInCurrSession);
+            	if (enoughMoneyToPurchase(query)) {
+            		allQueries += query + ",";
+            	} else {
+            		System.out.println("Not enough moola");
+	
+            	}
+                
             } else {
                 if (query.equals("done")) {
                     break;
@@ -317,6 +327,7 @@ public class GameEngine {
 
         return allQueries;
     }
+    
 
     /**
      * <<auto generated javadoc comment>>
@@ -332,6 +343,28 @@ public class GameEngine {
         }
 
         return false;
+    }
+    public boolean enoughMoneyToPurchase(String query) {
+    	int itemPrice = 0;
+    	int amount = 0;
+        String itemName = "";
+        
+        
+        amount = Integer.valueOf(query.split("x")[0]);
+        itemName = query.split("x")[1];
+        for (int i = 0; i < amount; i ++ ) {
+        	itemPrice += outpost.getPrice(itemName);
+         }
+        moneySpentInCurrSession += itemPrice;
+        System.out.println(moneySpentInCurrSession);
+        if (moneySpentInCurrSession <= crew.getMoney()) {
+        	return true;
+        }
+        else {
+        	moneySpentInCurrSession -= itemPrice;
+        	return false;
+        }
+
     }
 
     /**
@@ -357,6 +390,7 @@ public class GameEngine {
     public void viewShoppingBag() {
         typePrint(outpost.shoppingBagToString());
         typePrint("Total price: $" + String.valueOf(outpost.getTotalPrice()));
+        
     }
 
     /**
@@ -423,6 +457,10 @@ public class GameEngine {
 		reader.nextLine();
 		
     }
+    public void commitActionPage(Scanner reader) {
+    	System.out.println("Welcome to the action center");
+    	System.out.println("Select crew member to complete action with");
+    }
    
 
     // the function does not need to be static
@@ -436,9 +474,10 @@ public class GameEngine {
 			System.out.println("Welcome to the homepage");
 			System.out.println("Press 1 to view crew status");
 			System.out.println("Press 2 to view ship status");
-			System.out.println("Press 3 to visit Outpost");
-			System.out.println("Press 4 to move to next day");
-			System.out.println("Press 5 to end game");
+			System.out.println("Press 3 commit action");
+			System.out.println("Press 4 to visit Outpost");
+			System.out.println("Press 5 to move to next day");
+			System.out.println("Press 6 to end game");
 			String name = reader.next();
 			System.out.print("\033[H\033[2J");
 			System.out.flush();
@@ -458,6 +497,7 @@ public class GameEngine {
 				
 
 				break;
+			
 			case "2":
 				viewSpaceshipStatus();
 				// dont call recursion here, use do while loop instead
@@ -465,15 +505,19 @@ public class GameEngine {
 
 				break;
 			case "3":
+				commitActionPage(reader);
+				break;
+			case "4":
 				visitOutpost();
 				String queries = getInputShoppingList(reader);
 				addItemToShoppingBag(queries);
 				viewShoppingBag();
+				outpost.purchaseItems(crew);
 				// dont call recursion here, use do while loop instead
 				enterToContinue();
 
 				break;
-			case "4":
+			case "5":
 				endDay();
 				if (gameLength - currDay == -1) {
 					System.out.println("You reached your day limit thanks for playing");
@@ -487,7 +531,7 @@ public class GameEngine {
 				enterToContinue();
 
 				break;
-			case "5":
+			case "6":
 				
 				System.out.println("Thanks for playing");
 				quit = true;
