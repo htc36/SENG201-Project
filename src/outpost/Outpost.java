@@ -2,6 +2,7 @@ package outpost;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -128,6 +129,12 @@ public class Outpost {
         }
 
         return template;
+    }
+
+    public Consumable getRandomItem() {
+        Random rand = new Random();
+        int randomItemIndex = rand.nextInt(consumables.length);
+        return consumables[randomItemIndex];
     }
 
 }

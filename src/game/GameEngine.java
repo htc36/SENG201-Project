@@ -12,6 +12,7 @@ import consumable.*;
 import unit.*;
 import crew.Crew;
 import outpost.Outpost;
+import planet.Planet;
 import random_events.AlienPirates;
 import random_events.SpacePlague;
 
@@ -27,6 +28,9 @@ public class GameEngine {
     private int currDay;
     private int moneySpentInCurrSession;
     private boolean hasEnded;
+    private ArrayList<Planet> planets;
+    private int currentPlanetIndex;
+    private int foundShipPieces;
 
     /**
      * <<auto generated javadoc comment>>
@@ -57,6 +61,22 @@ public class GameEngine {
         outpost = new Outpost(c);
 
         hasEnded = false;
+
+        String[] firstName;
+        String[] lastName;
+
+        planets = new ArrayList<>();
+        planets.add(new Planet("CX1332"));
+        planets.add(new Planet("Aiur"));
+        planets.add(new Planet("Earth0x02"));
+        planets.add(new Planet("RuhRoh"));
+        planets.add(new Planet("BobbyBobBob"));
+        planets.add(new Planet("Walterland"));
+
+        currentPlanetIndex = 0;
+        
+        foundShipPieces = 0;
+        
     }
 
     /**
@@ -505,8 +525,10 @@ public class GameEngine {
         typePrint("Index        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
         typePrint("-----------------------------------------------------------------------------------");
         for (int i = 0; i < crewMembers.size(); i++) {
-        	System.out.print(i +"    ");
-        	System.out.println(crewMembers.get(i));
+            if (crewMembers.get(i).stillHasActions()) {
+                System.out.print(i + "    ");
+                System.out.println(crewMembers.get(i));
+            }
         }
         System.out.println("\nPlease enter index of Crewmember you want to apply action to");
         int index = reader.nextInt();
@@ -540,11 +562,51 @@ public class GameEngine {
                 int chosenItem = reader.nextInt();
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
+            case 4:
+                boolean planetHasPieces = planets.get(currentPlanetIndex).stillHasShipPieces();
+                boolean foundPieces = selectedCrew.searchPlanet();
+                if (planetHasPieces) {
+                    if (foundPieces) {
+                        typePrint(selectedCrew.getName() + " has found a ship piece!");
+                        foundShipPieces++;
+                        typePrint("The crew now has " + foundShipPieces + " ship pieces");
+                        planets.get(currentPlanetIndex).extractShipPieces();
+                        break;
+                    } 
+                } 
+
+                crew.addConsumable(outpost.getRandomItem());
+                break;
+            case 5:
+                int copilotIndex = 0;
+                copilotIndex = reader.nextInt();
+                CrewMember copilot = crewMembers.get(copilotIndex); 
+                selectedCrew.pilotShip(copilot);
+                Random rand = new Random();
+                int nextPlanetIndex;
+                do {
+                    nextPlanetIndex = rand.nextInt(planets.size());
+                } while (nextPlanetIndex == currentPlanetIndex);
+                currentPlanetIndex = nextPlanetIndex;
+                Planet currentPlanet = planets.get(currentPlanetIndex);
+                typePrint("You have arrived at " + currentPlanet.getName());
+                String shipPiecePresence = "Our radar has detected ";
+                if (currentPlanet.stillHasShipPieces()) {
+                    shipPiecePresence += "presence of a ship piece ";
+                } else {
+                    shipPiecePresence += "no presence of ship piece ";
+                }
+                shipPiecePresence += "here\n";
+                typePrint(shipPiecePresence);
+                break;
+            default:
+                typePrint("~> Your selection was not in one of the choices");
+                break;
         }
 
-        
+
     }
-        
+
 
 
     /**
