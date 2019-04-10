@@ -8,7 +8,7 @@ public class Builder extends CrewMember{
      * @param memberName name of the builder unit
      */
     public Builder(String memberName) {
-        super(memberName, 10);
+        super(memberName, 40);
     }
 
     /**

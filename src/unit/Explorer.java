@@ -8,7 +8,7 @@ public class Explorer extends CrewMember {
      * @param memberName name of the explorer unit
      */
     public Explorer(String memberName) {
-        super(memberName, 25);
+        super(memberName, 75);
     }
 
     /**

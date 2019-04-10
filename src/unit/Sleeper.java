@@ -8,7 +8,7 @@ public class Sleeper extends CrewMember{
      * @param memberName name of the sleeper unit
      */
     public Sleeper(String memberName) {
-        super(memberName, 10);
+        super(memberName, 40);
     }
 
     /**
