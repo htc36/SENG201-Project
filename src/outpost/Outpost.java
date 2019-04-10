@@ -15,8 +15,10 @@ public class Outpost {
     private int totalPrice;
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param cons <<Param Desc>>
+     * constructor for Outpost
+     * Outpost acts like a shop for the player
+     * Player can purchase foods and medical items from the Outpost
+     * @param cons List of consumables that the outpost sells
      */
     public Outpost(Consumable[] cons) {
         consumables = cons;
@@ -30,16 +32,17 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * get the total price of items the player has in their shopping bag
+     * @return int total price of items
      */
     public int getTotalPrice() {
         return totalPrice;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
+     * adds an item to the player's shopping bag
+     * also calculates the total price of items in the shopping bag
+     * @param itemName name of the item
      */
     public void addItemToShoppingBag(String itemName) {
         shoppingBag.add(itemName);
@@ -48,8 +51,8 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
+     * removes an item from the player's shopping bag
+     * @param itemName name of the item
      */
     public void removeItemFromShoppingBag(String itemName) {
         shoppingBag.remove(itemName);
@@ -58,17 +61,17 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
-     * @return boolean <<Return Desc>>
+     * checks if the item is in player's shopping bag
+     * @param itemName name of item in question
+     * @return boolean true of item exists, false otherwise
      */
     public boolean hasItemInShoppingBag(String itemName) {
         return shoppingBag.contains(itemName);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param c <<Param Desc>>
+     * the player purchases 
+     * @param c the crew
      */
     public void purchaseItems(Crew c) {
         c.shellOutMoney(totalPrice);
@@ -82,8 +85,8 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * string representation of items on sale
+     * @return String string of items on sale
      */
     public String saleProductsToString() {
         String template = "";
@@ -94,9 +97,9 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
-     * @return boolean <<Return Desc>>
+     * checks if outpost has particular item in their stock
+     * @param itemName name of the item
+     * @return boolean true if in stock, false otherwise
      */
     public boolean hasItemInStock(String itemName) {
         for (String s : conMap.keySet()) {
@@ -109,8 +112,9 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * string representation of the player's shopping bag
+     * it is formatted such that if fits nicely in a table
+     * @return String string representation of the player's shopping bag
      */
     public String shoppingBagToString() {
         String template = "";

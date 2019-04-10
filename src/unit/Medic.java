@@ -3,23 +3,18 @@ package unit;
 public class Medic extends CrewMember {
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
+     * constructor for medic type crew member
+     * medic type units receive less damage compared to other units
+     * @param memberName name of the medic unit
      */
     public Medic(String memberName) {
         super(memberName, 10);
     }
-    /**
-     * <<auto generated javadoc comment>>
-     */
-    @Override
-    public void makeSick() {
-        return ;
-    }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * reduces the health of medic type unit
+     * medic type units receive less damage compared to other units
+     * @param amount amount of damage received
      */
     @Override
     public void reduceHealth(int amount) {
@@ -27,8 +22,9 @@ public class Medic extends CrewMember {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of medic type unit
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a medic unit
      */
     @Override
     public String toString() {

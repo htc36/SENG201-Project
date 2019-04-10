@@ -6,19 +6,14 @@ import unit.Spaceship;
 public class AsteroidBelt implements RandomEvents{
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param c <<Param Desc>>
+     * Asteroid Belt causes damage to the crew!
+     * Crew's spaceship receives some damage
+     * @param c the crew
      */
     public void causeDamage(Crew c) {
         Spaceship spaceShip = c.getSpaceship();
         spaceShip.receiveDamage(20);
 
     }
-
-
-
-
-
-
 
 }

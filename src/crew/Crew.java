@@ -17,9 +17,11 @@ public class Crew {
     private Spaceship ship;
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param crews <<Param Desc>>
-     * @param newShip <<Param Desc>>
+     * constructor for a crew
+     * Crew object is responsible for the state of a player in the game
+     * It keeps track of player's items, money, spaceship, and crew members
+     * @param crews list of crew members inside this crew
+     * @param newShip the spaceship of the crew
      */
     public Crew(ArrayList<CrewMember> crews, Spaceship newShip) {
         consumables = new TreeMap<>();
@@ -35,36 +37,40 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return Spaceship <<Return Desc>>
+     * get the spaceship of the crew
+     * @return Spaceship the spaceship of the crew
      */
     public Spaceship getSpaceship() {
         return ship;
     }
 
+    /**
+     * get the list of crew members of the crew
+     * @return list of the crew members
+     */
     public ArrayList<CrewMember> getCrewMembers() {
         return crewMembers;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * get the amount of money the crew has
+     * @return int amount of money
      */
     public int getMoney() {
         return money;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param sum <<Param Desc>>
+     * adds money to crew's pocket
+     * @param sum the amount of money added
      */
     public void addMoney(int sum) {
         money += sum;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param sum <<Param Desc>>
+     * takes out money from a crew's pocket for purchasing stuff
+     * @param sum amount of money taken out
      */
     public void shellOutMoney(int sum) {
         if (money < sum) {
@@ -76,9 +82,9 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
-     * @return int <<Return Desc>>
+     * get the count of particular consumable in crew's possession
+     * @param itemName the name of the consumable
+     * @return int count of the consumable
      */
     public int getConsumableCount(String itemName) {
         int itemCount = 0;
@@ -93,9 +99,9 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
-     * @return Consumable <<Return Desc>>
+     * pops a consumable from the crew's possession, removing it
+     * @param itemName name of the consumable
+     * @return Consumable the consumable object removed
      */
     public Consumable popConsumable(String itemName) {
         int itemCount = 0;
@@ -119,8 +125,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param item <<Param Desc>>
+     * adds a consumable to the crew's possession
+     * @param item the consumable item
      */
     public void addConsumable(Consumable item) {
         int itemCount = 0;
@@ -136,8 +142,9 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * get a string representation of crew members status
+     * it is formatted such that it fits nicely in a table
+     * @return String string representation of crew members
      */
     public String getCrewMemberStatus() {
         String template = "";
@@ -148,15 +155,16 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * get a string representation of crew's spaceship
+     * it is formatted such that it fits nicely in a table
+     * @return String string representation of a spaceship
      */
     public String getSpaceshipStatus() {
         return ship.toString();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * pops a random consumable from crew's inventory
      */
     public void popRandomItem() {
         Random rand = new Random();
@@ -179,8 +187,10 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * 
+     * get a string representation of crew's consumables
+     * it is formatted such that it fits nicely in a table
+     * @return String string representation of crew's consumables
      */
     public String consumablesToString() {
         String template = "";

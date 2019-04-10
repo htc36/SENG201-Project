@@ -3,8 +3,10 @@ package unit;
 public class Hungus extends CrewMember{
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
+     * constructor for hungus type crew member
+     * hungus type units gets hungry less easily
+     * and benefit more from food
+     * @param memberName name of the hungus unit
      */
     public Hungus(String memberName) {
         super(memberName, 10);
@@ -12,8 +14,9 @@ public class Hungus extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * increases the hunger of hungus unit
+     * hungus units gets hungry less easily
+     * @param amount amount of hunger level increased
      */
     @Override
     public void increaseHunger(int amount) {
@@ -22,8 +25,8 @@ public class Hungus extends CrewMember{
 
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * decreases the hunger of hungus unit
+     * @param amount amount of hunger level decreased
      */
     @Override
     public void decreaseHunger(int amount) {
@@ -32,8 +35,9 @@ public class Hungus extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of hungus units
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a hungus unit
      */
     @Override
     public String toString() {

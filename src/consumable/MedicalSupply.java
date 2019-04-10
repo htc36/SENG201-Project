@@ -2,12 +2,13 @@ package consumable;
 public class MedicalSupply extends Consumable {
 
     private boolean healsSpacePlague;
+
     /**
-     * <<auto generated javadoc comment>>
-     * @param name <<Param Desc>>
-     * @param healingAmount <<Param Desc>>
-     * @param price <<Param Desc>>
-     * @param healsPlague <<Param Desc>>
+     * Constructor for a MedicalSupply
+     * @param name name of the item
+     * @param healingAmount health it increases when consumed
+     * @param price price of the item
+     * @param healsPlague can the item heal space plague when consumed
      */
     public MedicalSupply(String name, int healingAmount, int price, boolean healsPlague) {
         super(name, healingAmount, price);
@@ -15,16 +16,17 @@ public class MedicalSupply extends Consumable {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return boolean <<Return Desc>>
+     * @return boolean true if it can heal space plague, 
+     * false otherwise
      */
     public boolean canHealSpacePlague() {
         return healsSpacePlague;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * string representation of a MedicalSupply
+     * it is formatted such that it fits nicely in a table
+     * @return String string representation of a MedicalSupply
      */
     public String toString() {
         String effect = "F";

@@ -3,16 +3,18 @@ package unit;
 public class Sleeper extends CrewMember{
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
+     * constructor for sleeper type crew member
+     * sleeper type units benefit more from sleeping
+     * @param memberName name of the sleeper unit
      */
     public Sleeper(String memberName) {
         super(memberName, 10);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * sleeper sleeps zZzzZzzZZ
+     * sleeper type units benefit more from sleeping
+     * @param amount amount of fatique level reduced
      */
     @Override
     public void sleep(int amount) {
@@ -20,8 +22,9 @@ public class Sleeper extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of sleeper
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a sleeper
      */
     @Override
     public String toString() {
