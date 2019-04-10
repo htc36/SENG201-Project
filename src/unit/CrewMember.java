@@ -245,6 +245,7 @@ public abstract class CrewMember extends Unit {
     }
 
     public void useItem(Consumable item) {
+        reduceAction();
         if (item instanceof Food) {
             feed((Food) item);
         } else if (item instanceof MedicalSupply) {
