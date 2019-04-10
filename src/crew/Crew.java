@@ -30,6 +30,10 @@ public class Crew {
         ship = newShip;
     }
 
+    public TreeMap<Consumable, Integer> getConsumables() {
+        return consumables;
+    }
+
     /**
      * <<auto generated javadoc comment>>
      * @return Spaceship <<Return Desc>>
@@ -183,7 +187,6 @@ public class Crew {
         for (Consumable c : consumables.keySet()) {
             template += c + "\n";
         }
-
         return template;
     }
 
