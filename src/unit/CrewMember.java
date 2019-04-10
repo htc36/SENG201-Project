@@ -2,8 +2,6 @@ package unit;
 
 import java.util.Random;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import consumable.Consumable;
 import consumable.Food;
 import consumable.MedicalSupply;
