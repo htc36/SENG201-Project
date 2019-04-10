@@ -3,7 +3,7 @@ package consumable;
 public class TikkaMasala extends Food {
 
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for TikkaMasala Food
      */
     public TikkaMasala() {
         super("TikkaMasala", 10, 10, 10);

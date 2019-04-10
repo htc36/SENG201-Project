@@ -3,11 +3,10 @@ package consumable;
 public class Brownie extends Food {
 
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for Brownie Food
      */
     public Brownie() {
         super("Brownie", 10, 10, 10);
     }
-
 
 }

@@ -1,8 +1,9 @@
 package consumable;
 
 public class Hotbot extends Food {
+
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for Hotbot food
      */
     public Hotbot() {
         super("Hotbot", 10, 10, 10);

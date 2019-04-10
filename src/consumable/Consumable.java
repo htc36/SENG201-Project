@@ -9,7 +9,7 @@ public class Consumable implements Comparable<Consumable> {
     private String name;
 
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for a Consumable
      * @param itemName <<Param Desc>>
      * @param heal <<Param Desc>>
      * @param itemPrice <<Param Desc>>
@@ -29,43 +29,42 @@ public class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * return the name of the consumable
+     * @return String name of consumable
      */
     public String getName() {
         return name;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * return the price of the consumable
+     * @return int price of consumable
      */
     public int getPrice() {
         return price;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * get the healing the consumable provides when consumed
+     * @return int healing amount when consumed
      */
     public int getHealingAmount() {
         return healingAmount;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param other <<Param Desc>>
-     * @return boolean <<Return Desc>>
+     * checks if two consumables are similar
+     * @param other the other consumable object 
+     * @return boolean true if similar, false otherwise
      */
     public boolean equals(Consumable other) {
-        System.out.println("calloing this funcoitn");
         return other.getName() == getName();
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param c <<Param Desc>>
-     * @return int <<Return Desc>>
+     * compares two consumable, useful when ordering
+     * @param c the other consumable
+     * @return int ordering
      */
     @Override
     public int compareTo(Consumable c) {
