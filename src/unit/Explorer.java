@@ -3,16 +3,18 @@ package unit;
 public class Explorer extends CrewMember {
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
+     * constructor for explorer type crew member
+     * explorer unit has higher luck than other type members
+     * @param memberName name of the explorer unit
      */
     public Explorer(String memberName) {
         super(memberName, 25);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of explorer
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a explorer
      */
     @Override
     public String toString() {
