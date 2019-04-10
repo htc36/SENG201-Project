@@ -15,6 +15,7 @@ import outpost.Outpost;
 import planet.Planet;
 import random_events.AlienPirates;
 import random_events.SpacePlague;
+import static game.Utils.typePrint;
 
 public class GameEngine {
 
@@ -74,9 +75,9 @@ public class GameEngine {
         planets.add(new Planet("Walterland"));
 
         currentPlanetIndex = 0;
-        
+
         foundShipPieces = 0;
-        
+
     }
 
     /**
@@ -298,11 +299,8 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void viewCrewMemberStatus() {
-        typePrint();
-        typePrint("*** Crew Members Status ***", 50);
-        typePrint();
-        typePrint("        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
-        typePrint("------------------------------------------------------------------------------");
+        Utils.printCrewASCII();
+        Utils.printCrewStatusHeader();
         String crewStatus = crew.getCrewMemberStatus();
         typePrint(crewStatus);
     }
@@ -311,11 +309,8 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void viewSpaceshipStatus() {
-        typePrint();
-        typePrint("*** Spaceship Status ***", 50);
-        typePrint();
-        typePrint("        Name  Health");
-        typePrint("--------------------");
+        Utils.printSpaceshipASCII();
+        Utils.printSpaceshipHeader();
         typePrint(ship.toString());
     }
 
@@ -323,15 +318,7 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void visitOutpost() {
-        moneySpentInCurrSession = 0;
-        typePrint();
-        typePrint("*** Welcome to the outpost ***", 50);
-        typePrint();
-        typePrint("Clerk: Don't forget to place your items in the bagging area", 30);
-        typePrint("Clerk: Here are the things on sale today :}");
-        typePrint();
-        typePrint("    Type           Name Price Heal Fill Cures_Plague");
-        typePrint("    ------------------------------------------------");
+        Utils.printOutpostHeader();
         for (String s : outpost.saleProductsToString().split("\n")) {
             typePrint("    " + s);
         }
@@ -365,8 +352,8 @@ public class GameEngine {
             System.out.print("> ");
             query = reader.next();
             if (isValidQuery(query)) {
-            	addItemToShoppingBag(query, reader);
-            	}
+                addItemToShoppingBag(query, reader);
+            }
             else {
                 if (query.equals("done")) {
                     break;
@@ -411,27 +398,27 @@ public class GameEngine {
         amount = Integer.valueOf(query.split("x")[0]);
         itemName = query.split("x")[1];
         for (int i = 0; i < amount; i ++ ) {
-        	outpost.addItemToShoppingBag(itemName);
+            outpost.addItemToShoppingBag(itemName);
         }
         while (outpost.getTotalPrice() > crew.getMoney()) {
-        
-        	System.out.println("You do not have enough money to purchase all the items");
-        	System.out.println("Your shopping list");
-        	viewShoppingBag();
-        	System.out.println("Pick item to remove");
-        	String removedItem = reader.next();
-        	while (outpost.hasItemInShoppingBag(removedItem)) {
-        		outpost.removeItemFromShoppingBag(removedItem);
-        	}
-        	
+
+            System.out.println("You do not have enough money to purchase all the items");
+            System.out.println("Your shopping list");
+            viewShoppingBag();
+            System.out.println("Pick item to remove");
+            String removedItem = reader.next();
+            while (outpost.hasItemInShoppingBag(removedItem)) {
+                outpost.removeItemFromShoppingBag(removedItem);
+            }
+
         }
         System.out.println("Good to go your shooping list is now:");
         viewShoppingBag();
-        }
-        	
-        
-    
-    
+    }
+
+
+
+
 
     /**
      * <<auto generated javadoc comment>>
@@ -443,95 +430,34 @@ public class GameEngine {
     }
 
     /**
-     * Prints out String message as if it was typed
-     * the delay between each char can be set with param
-     * delay (in miliseconds)
-     * @param message the message it prints
-     * @param delay delay between each chars
-     */
-    public void typePrint(String message, int delay) {
-        int msgLength = message.length();
-        if (msgLength == 0) {
-            System.out.println();
-            return;
-        }
-
-        int i;
-        for (i = 0; i < msgLength; i++) {
-            System.out.print(message.charAt(i));
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {};
-        }
-
-        if (message.charAt(--i) != '\n') {
-            System.out.println();
-        }
-    }
-
-    /**
-     * Prints out String message as if it was typed
-     * the delay is set to 10 by default
-     * @param message the message it prints
-     */
-    public void typePrint(String message) {
-        int msgLength = message.length();
-        if (msgLength == 0) {
-            System.out.println();
-            return;
-        }
-        int i;
-
-        for (i = 0; i < msgLength; i++) {
-            System.out.print(message.charAt(i));
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException e) {};
-        }
-
-        if (message.charAt(--i) != '\n') {
-            System.out.println();
-        }
-    }
-
-    /**
-     * Wrapper around System.out.println() for consistencies
-     */
-    public void typePrint() {
-        System.out.println();
-    }
-
-    /**
      * <<auto generated javadoc comment>>
      * @param reader <<Param Desc>>
      */
     public void enterToContinue(Scanner reader) {
-    	
-    	System.out.println("\nPress Enter to exit to homepage");
+
+        System.out.println("\nPress Enter to exit to homepage");
         try {
-			System.in.read();
-		} catch (IOException e) {
-			
-		}
+            System.in.read();
+        } catch (IOException e) {
+
+        }
     }
     /**
      * <<auto generated javadoc comment>>
      * @param reader <<Param Desc>>
      */
     public void commitActionPage(Scanner reader) {
-        //int index = 0;
-    	System.out.println("Welcome to the action center");
-    	System.out.println("Select crew member to complete action with \n");
-        typePrint("Index        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
-        typePrint("-----------------------------------------------------------------------------------");
+        System.out.println("Welcome to the action center");
+        System.out.println("Select crew member to complete action with \n");
+        Utils.printActionCenterHeader();
         for (int i = 0; i < crewMembers.size(); i++) {
             if (crewMembers.get(i).stillHasActions()) {
                 System.out.print(i + "    ");
                 System.out.println(crewMembers.get(i));
             }
         }
-        System.out.println("\nPlease enter index of Crewmember you want to apply action to");
-            
+        System.out.println("\nPlease enter index of crew member you want to apply action to");
+
         int index; 
         CrewMember selectedCrew;
         do {
@@ -542,15 +468,11 @@ public class GameEngine {
             }
         } while(selectedCrew.getActions() == 0);
 
-
-
         typePrint("Selected crew member: " + selectedCrew.getName() + " at index " + index);
         typePrint("Select action to apply to " + selectedCrew.getName());
-        typePrint("\nPress 1 to comsume food/medical supplys");
-        typePrint("Press 2 to sleep");
-        typePrint("Press 3 to repair ship");
-        typePrint("Press 4 to search planet");
-        typePrint("Press 5 to pilot ship to new planet");    
+
+        Utils.printActionCenterChoices();
+
         int selection = reader.nextInt();
         switch(selection) {
             case 1:
@@ -573,9 +495,9 @@ public class GameEngine {
                 int chosenItem = reader.nextInt();
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
-                
-                
-                    
+
+
+
             case 4:
                 boolean planetHasPieces = planets.get(currentPlanetIndex).stillHasShipPieces();
                 boolean foundPieces = selectedCrew.searchPlanet();
@@ -593,6 +515,15 @@ public class GameEngine {
                 break;
             case 5:
                 int copilotIndex = 0;
+                Utils.printActionCenterHeader();
+                for (int i = 0; i < crewMembers.size(); i++) {
+                    if (crewMembers.get(i).stillHasActions() && i != index) {
+                        System.out.print(i + "    ");
+                        System.out.println(crewMembers.get(i));
+                    }
+                }
+                System.out.println();
+                System.out.print("Choose the copilot > ");
                 copilotIndex = reader.nextInt();
                 CrewMember copilot = crewMembers.get(copilotIndex); 
                 selectedCrew.pilotShip(copilot);
@@ -603,8 +534,8 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
                 Planet currentPlanet = planets.get(currentPlanetIndex);
-                typePrint("You have arrived at " + currentPlanet.getName());
-                String shipPiecePresence = "Our radar has detected ";
+                typePrint("Narrator: You have arrived at " + currentPlanet.getName());
+                String shipPiecePresence = "Spaceship Operator: Our radar has detected ";
                 if (currentPlanet.stillHasShipPieces()) {
                     shipPiecePresence += "presence of a ship piece ";
                 } else {
@@ -612,6 +543,7 @@ public class GameEngine {
                 }
                 shipPiecePresence += "here\n";
                 typePrint(shipPiecePresence);
+                typePrint();
                 break;
             default:
                 typePrint("~> Your selection was not in one of the choices");
