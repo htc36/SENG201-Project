@@ -2,7 +2,7 @@ package unit;
 
 public class Spaceship extends Unit {
 
-    /* 
+    /**
      * Constructor for Spaceship
      * @param shipName name of the new ship
      */
@@ -10,7 +10,7 @@ public class Spaceship extends Unit {
         super(shipName);
     }
 
-    /* 
+    /**
      * Adds shield health to Spaceship
      * @param amount amount of health added
      */
@@ -18,7 +18,7 @@ public class Spaceship extends Unit {
         super.addHealth(amount);
     }
 
-    /* 
+    /**
      * Reduces shield health to Spaceship
      * @param amount amount of health reduced
      */
@@ -27,8 +27,9 @@ public class Spaceship extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * string representation of a spaceship Object
+     * it is formatted such that it fits nicely in a table
+     * @return String string representation of a spaceship object
      */
     public String toString() {
         String template = "%12.12s"; // name
