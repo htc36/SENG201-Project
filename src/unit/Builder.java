@@ -3,17 +3,19 @@ package unit;
 public class Builder extends CrewMember{
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param memberName <<Param Desc>>
+     * constructor for builder type crew member
+     * builder unit can repair shield better than other units
+     * @param memberName name of the builder unit
      */
     public Builder(String memberName) {
         super(memberName, 10);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param s <<Param Desc>>
-     * @param amount <<Param Desc>>
+     * repairs the shield of the spaceship by some amount
+     * builder unit gets extra bonus when repairing spaceship
+     * @param s the spaceship being repaired
+     * @param amount amount of shield repaired
      */
     @Override
     public void repairShield(Spaceship s, int amount) {
@@ -21,8 +23,9 @@ public class Builder extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * toString() method of builder
+     * it is formatted such that it fits nicely in a table
+     * @return String String representation of a builder
      */
     @Override
     public String toString() {
