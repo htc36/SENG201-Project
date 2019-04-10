@@ -8,7 +8,7 @@ public class HardWorker extends CrewMember{
      * @param memberName name of the hardworker unit
      */
     public HardWorker(String memberName) {
-        super(memberName, 10, 3);
+        super(memberName, 30, 3);
     }
 
     /**

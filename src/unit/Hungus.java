@@ -9,7 +9,7 @@ public class Hungus extends CrewMember{
      * @param memberName name of the hungus unit
      */
     public Hungus(String memberName) {
-        super(memberName, 10);
+        super(memberName, 30);
 
     }
 

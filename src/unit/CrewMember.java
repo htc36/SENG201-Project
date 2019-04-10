@@ -5,6 +5,7 @@ import java.util.Random;
 import consumable.Consumable;
 import consumable.Food;
 import consumable.MedicalSupply;
+import planet.Planet;
 
 public abstract class CrewMember extends Unit {
 
@@ -45,6 +46,10 @@ public abstract class CrewMember extends Unit {
         hungerLevel = 0;
         fatiqueLevel = 0;
         hasPlague = false;
+    }
+
+    public boolean stillHasActions() {
+        return actions > 0;
     }
 
     /**
@@ -184,7 +189,7 @@ public abstract class CrewMember extends Unit {
      */
     public void reduceAction() throws InsufficientActionException {
         if (actions > 0) {
-            actions -= 1;
+            actions--;
         } else {
             throw new InsufficientActionException();
         }

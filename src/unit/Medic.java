@@ -8,7 +8,7 @@ public class Medic extends CrewMember {
      * @param memberName name of the medic unit
      */
     public Medic(String memberName) {
-        super(memberName, 10);
+        super(memberName, 20);
     }
 
     /**
