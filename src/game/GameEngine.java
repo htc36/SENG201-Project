@@ -509,8 +509,19 @@ public class GameEngine {
         	System.out.println(crewMembers.get(i));
         }
         System.out.println("\nPlease enter index of Crewmember you want to apply action to");
-        int index = reader.nextInt();
-        CrewMember selectedCrew = crewMembers.get(index); 
+            
+        int index; 
+        CrewMember selectedCrew;
+        do {
+            index = reader.nextInt();
+            selectedCrew = crewMembers.get(index); 
+            if (selectedCrew.getActions() == 0){
+                typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
+            }
+        } while(selectedCrew.getActions() == 0);
+
+
+
         typePrint("Selected crew member: " + selectedCrew.getName() + " at index " + index);
         typePrint("Select action to apply to " + selectedCrew.getName());
         typePrint("\nPress 1 to comsume food/medical supplys");
@@ -540,6 +551,10 @@ public class GameEngine {
                 int chosenItem = reader.nextInt();
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
+            case 2:
+                
+                
+                    
         }
 
         
