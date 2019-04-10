@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -498,17 +499,52 @@ public class GameEngine {
      * @param reader <<Param Desc>>
      */
     public void commitActionPage(Scanner reader) {
+        //int index = 0;
     	System.out.println("Welcome to the action center");
-    	System.out.println("Select crew member to complete action with");
-    	System.out.println(crew.getCrewMemberStatus());
+    	System.out.println("Select crew member to complete action with \n");
         typePrint("Index        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions");
         typePrint("-----------------------------------------------------------------------------------");
         for (int i = 0; i < crewMembers.size(); i++) {
         	System.out.print(i +"    ");
         	System.out.println(crewMembers.get(i));
         }
+        System.out.println("\nPlease enter index of Crewmember you want to apply action to");
+        int index = reader.nextInt();
+        CrewMember selectedCrew = crewMembers.get(index); 
+        typePrint("Selected crew member: " + selectedCrew.getName() + " at index " + index);
+        typePrint("Select action to apply to " + selectedCrew.getName());
+        typePrint("\nPress 1 to comsume food/medical supplys");
+        typePrint("Press 2 to sleep");
+        typePrint("Press 3 to repair ship");
+        typePrint("Press 4 to search planet");
+        typePrint("Press 5 to pilot ship to new planet");    
+        int selection = reader.nextInt();
+        switch(selection) {
+            case 1:
+                typePrint("Select food to consume:");
+                TreeMap<Consumable, Integer> consumableWithCounts = crew.getConsumables();
+                int counter = 0;
+                String template = "";
+                ArrayList<String> ConsumablesList = new ArrayList<>();
+                typePrint("Index   Quantity   Type           Name Price Heal Fill Cures_Plague");
+                typePrint("-------------------------------------------------------------------");
+                for (Consumable c: consumableWithCounts.keySet()){
+                    template += String.format("%5d   ", counter);
+                    template += String.format("%8d   ", consumableWithCounts.get(c));
+                    template += c;
+                    System.out.println(template);
+                    counter += 1;
+                    template = "";
+                    ConsumablesList.add(c.getName());
+                }
+                int chosenItem = reader.nextInt();
+                selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
+                break;
+        }
+
+        
     }
-        	
+        
 
 
     /**
