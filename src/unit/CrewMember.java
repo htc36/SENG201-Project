@@ -2,6 +2,9 @@ package unit;
 
 import java.util.Random;
 
+import org.hamcrest.core.IsInstanceOf;
+
+import consumable.Consumable;
 import consumable.Food;
 import consumable.MedicalSupply;
 
@@ -241,6 +244,14 @@ public abstract class CrewMember extends Unit {
     public void feed(Food item) {
         addHealth(item.getHealingAmount());
         decreaseHunger(item.getFillStomach());
+    }
+
+    public void useItem(Consumable item) {
+        if (item instanceof Food) {
+            feed((Food) item);
+        } else if (item instanceof MedicalSupply) {
+            useMedicalSupply((MedicalSupply) item);
+        }
     }
 
 }
