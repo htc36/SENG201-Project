@@ -466,6 +466,7 @@ public class GameEngine {
             typePrint("N: All your crews are out of actions");
             typePrint("N: Give them some rest and they'll be back in action tomorrow");
             typePrint("N: Back in action, get it? Heh heh heh");
+            typePrint();
             return;
         }
 
@@ -481,6 +482,9 @@ public class GameEngine {
             }
         } while(selectedCrew.getActions() == 0);
 
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         typePrint("Selected crew member: " + selectedCrew.getName() + " at index " + index);
         typePrint("Select action to apply to " + selectedCrew.getName());
 
@@ -489,8 +493,16 @@ public class GameEngine {
         int selection = reader.nextInt();
         switch(selection) {
             case 1:
-                typePrint("Select food to consume:");
                 TreeMap<Consumable, Integer> consumableWithCounts = crew.getConsumables();
+                if (consumableWithCounts.size() == 0) {
+                    typePrint();
+                    typePrint("N: The player looks at his empty inventory and thinks");
+                    typePrint("N: \"My crew could wait for another day\"");
+                    typePrint();
+                    return;
+                }
+
+                typePrint("Select food to consume:");
                 int counter = 0;
                 String template = "";
                 Utils.printActionCommitFoodSelectionHeader();
@@ -536,8 +548,8 @@ public class GameEngine {
                     System.out.print("Choose the copilot > ");
                     copilotIndex = reader.nextInt();
                     if (copilotIndex == index) {
-                        typePrint("Narrator: I also wish I could clone myself somedays");
-                        typePrint("Narrator: Choose anyone but yourself");
+                        typePrint("N: I also wish I could clone myself somedays");
+                        typePrint("N: Choose anyone but yourself");
                     }
                 } while (copilotIndex == index);
                 CrewMember copilot = crewMembers.get(copilotIndex); 
@@ -549,19 +561,19 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
                 Planet currentPlanet = planets.get(currentPlanetIndex);
-                typePrint("Narrator: You have arrived at " + currentPlanet.getName());
+                typePrint("N: You have arrived at " + currentPlanet.getName());
                 String shipPiecePresence = "Spaceship Operator: Our radar has detected ";
-                if (currentPlanet.stillHasShipPieces()) {
-                    shipPiecePresence += "presence of a ship piece ";
-                } else {
-                    shipPiecePresence += "no presence of ship piece ";
+                if (!currentPlanet.stillHasShipPieces()) {
+                    shipPiecePresence += "no ";
                 }
-                shipPiecePresence += "here\n";
+                shipPiecePresence += "presence of ship piece here\n";
                 typePrint(shipPiecePresence);
                 typePrint();
                 break;
             default:
-                typePrint("~> Your selection was not in one of the choices");
+                typePrint();
+                typePrint("[Error] Your selection was not in one of the choices");
+                typePrint();
                 break;
         }
     }
@@ -573,7 +585,10 @@ public class GameEngine {
     public void homePage(Scanner reader) {
         do {
             Utils.printHomepageHeader();
-            typePrint("Ship pieces in possession: " + foundShipPieces);
+            typePrint("[Ship pieces] : " + foundShipPieces);
+            typePrint();
+
+            System.out.print("> ");
             String name = reader.next();
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -592,7 +607,7 @@ public class GameEngine {
                     break;
                 case "4":
                     visitOutpost();
-                    String queries = getInputShoppingList(reader);
+                    getInputShoppingList(reader);
                     viewShoppingBag();
 
                     outpost.purchaseItems(crew);
