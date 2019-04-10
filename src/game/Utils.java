@@ -97,7 +97,8 @@ public class Utils {
     }
 
     public static void printActionCenterChoices() {
-        typePrint("\nPress 1 to comsume food/medical supplys");
+        typePrint();
+        typePrint("Press 1 to comsume food/medical supplys");
         typePrint("Press 2 to sleep");
         typePrint("Press 3 to repair ship");
         typePrint("Press 4 to search planet");

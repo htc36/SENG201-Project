@@ -454,12 +454,21 @@ public class GameEngine {
         System.out.println("Welcome to the action center");
         System.out.println("Select crew member to complete action with \n");
         Utils.printActionCenterHeader();
+        int numOfCrewsWithActions = 0;
         for (int i = 0; i < crewMembers.size(); i++) {
             if (crewMembers.get(i).stillHasActions()) {
                 System.out.print(i + "    ");
                 System.out.println(crewMembers.get(i));
+                numOfCrewsWithActions++;
             }
         }
+        if (numOfCrewsWithActions == 0) {
+            typePrint("N: All your crews are out of actions");
+            typePrint("N: Give them some rest and they'll be back in action tomorrow");
+            typePrint("N: Back in action, get it? Heh heh heh");
+            return;
+        }
+
         System.out.println("\nPlease enter index of crew member you want to apply action to");
 
         int index; 
@@ -523,8 +532,14 @@ public class GameEngine {
                     }
                 }
                 System.out.println();
-                System.out.print("Choose the copilot > ");
-                copilotIndex = reader.nextInt();
+                do {
+                    System.out.print("Choose the copilot > ");
+                    copilotIndex = reader.nextInt();
+                    if (copilotIndex == index) {
+                        typePrint("Narrator: I also wish I could clone myself somedays");
+                        typePrint("Narrator: Choose anyone but yourself");
+                    }
+                } while (copilotIndex == index);
                 CrewMember copilot = crewMembers.get(copilotIndex); 
                 selectedCrew.pilotShip(copilot);
                 Random rand = new Random();
@@ -558,6 +573,7 @@ public class GameEngine {
     public void homePage(Scanner reader) {
         do {
             Utils.printHomepageHeader();
+            typePrint("Ship pieces in possession: " + foundShipPieces);
             String name = reader.next();
             System.out.print("\033[H\033[2J");
             System.out.flush();
