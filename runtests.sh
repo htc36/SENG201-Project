@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Compiling .java files"
-javac -d bin -cp . src/unit/*.java src/consumable/*.java src/crew/*.java src/game/*.java src/outpost/*.java src/random_events/*.java src/planet/*.java
+javac -d bin -cp . src/unit/*.java src/consumable/*.java src/crew/*.java src/game/*.java src/outpost/*.java src/random_events/*.java src/planet/*.java 
 
 echo "done"
 

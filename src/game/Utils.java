@@ -50,6 +50,11 @@ public class Utils {
         System.out.println(crew);
     }
 
+    public static void printActionCommitFoodSelectionHeader() {
+        typePrint("Index   Quantity   Type           Name Price Heal Fill Cures_Plague");
+        typePrint("-------------------------------------------------------------------");
+    }
+
     public static void printCrewStatusHeader() {
         String template = "";
         template += "\n";
@@ -99,6 +104,16 @@ public class Utils {
         typePrint("Press 5 to pilot ship to new planet");    
         typePrint();
         System.out.print("Choice (1-5) > ");
+    }
+
+    public static void printHomepageHeader() {
+        typePrint("Welcome to the homepage");
+        typePrint("Press 1 to view crew status");
+        typePrint("Press 2 to view ship status");
+        typePrint("Press 3 commit action");
+        typePrint("Press 4 to visit Outpost");
+        typePrint("Press 5 to move to next day");
+        typePrint("Press 6 to end game");
     }
 
     /**

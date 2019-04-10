@@ -5,9 +5,9 @@ public class Planet {
     private String name;
     private boolean hasShipPieces;
 
-    public Planet(String name) {
+    public Planet(String name, boolean hasShipPieces) {
         this.name = name;
-        hasShipPieces = true;
+        this.hasShipPieces = hasShipPieces;
     }
 
     public boolean stillHasShipPieces() {
@@ -20,6 +20,12 @@ public class Planet {
 
     public void extractShipPieces() {
         hasShipPieces = false;
+    }
+
+    public String toString() {
+        String template = "";
+        template += name + " " + hasShipPieces;
+        return template;
     }
 
 }

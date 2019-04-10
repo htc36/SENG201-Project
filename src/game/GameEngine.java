@@ -63,21 +63,29 @@ public class GameEngine {
 
         hasEnded = false;
 
-        String[] firstName;
-        String[] lastName;
-
-        planets = new ArrayList<>();
-        planets.add(new Planet("CX1332"));
-        planets.add(new Planet("Aiur"));
-        planets.add(new Planet("Earth0x02"));
-        planets.add(new Planet("RuhRoh"));
-        planets.add(new Planet("BobbyBobBob"));
-        planets.add(new Planet("Walterland"));
-
         currentPlanetIndex = 0;
-
+        setupPlanets();
         foundShipPieces = 0;
 
+    }
+
+    public void setupPlanets() {
+        planets = new ArrayList<>();
+        // Make 15 planets, only 6 of them have ship pieces
+        String[] planetsWithShipPieces = {"CX1337", 
+            "Aiur", "Earth0x02", "RuhRoh", "BobbyBobBob", "Amber"};
+
+        for (int i = 0; i < planetsWithShipPieces.length; i++) {
+            planets.add(new Planet(planetsWithShipPieces[i], true));
+        }
+
+        String[] firstName = {"Auspicious", "Green", "Dumpster"};
+        String[] lastName = {"Pie", "Crane", "Bonsai", "Ilama"};
+        for (int i = 0; i < firstName.length; i++) {
+            for(int j = 0; j < lastName.length; j++) {
+                planets.add(new Planet(firstName[i] + lastName[j], false));
+            }
+        }
     }
 
     /**
@@ -416,10 +424,6 @@ public class GameEngine {
         viewShoppingBag();
     }
 
-
-
-
-
     /**
      * <<auto generated javadoc comment>>
      */
@@ -480,9 +484,8 @@ public class GameEngine {
                 TreeMap<Consumable, Integer> consumableWithCounts = crew.getConsumables();
                 int counter = 0;
                 String template = "";
+                Utils.printActionCommitFoodSelectionHeader();
                 ArrayList<String> ConsumablesList = new ArrayList<>();
-                typePrint("Index   Quantity   Type           Name Price Heal Fill Cures_Plague");
-                typePrint("-------------------------------------------------------------------");
                 for (Consumable c: consumableWithCounts.keySet()){
                     template += String.format("%5d   ", counter);
                     template += String.format("%8d   ", consumableWithCounts.get(c));
@@ -495,9 +498,6 @@ public class GameEngine {
                 int chosenItem = reader.nextInt();
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
-
-
-
             case 4:
                 boolean planetHasPieces = planets.get(currentPlanetIndex).stillHasShipPieces();
                 boolean foundPieces = selectedCrew.searchPlanet();
@@ -549,11 +549,7 @@ public class GameEngine {
                 typePrint("~> Your selection was not in one of the choices");
                 break;
         }
-
-
     }
-
-
 
     /**
      * <<auto generated javadoc comment>>
@@ -561,15 +557,7 @@ public class GameEngine {
      */
     public void homePage(Scanner reader) {
         do {
-
-            System.out.println("Welcome to the homepage");
-            System.out.println("Press 1 to view crew status");
-            System.out.println("Press 2 to view ship status");
-            System.out.println("Press 3 commit action");
-            System.out.println("Press 4 to visit Outpost");
-            System.out.println("Press 5 to move to next day");
-            System.out.println("Press 6 to end game");
-
+            Utils.printHomepageHeader();
             String name = reader.next();
             System.out.print("\033[H\033[2J");
             System.out.flush();
