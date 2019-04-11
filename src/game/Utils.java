@@ -3,6 +3,9 @@ package game;
 import java.util.Random;
 
 public class Utils {
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printSpaceshipASCII() {
         String spaceship = ""  +
                 "      /\\                               \n" +
@@ -15,6 +18,10 @@ public class Utils {
         System.out.println(spaceship);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param unlucky <<Param Desc>>
+     */
     public static void printSpaceshipTravelling(boolean unlucky) {
         for (int i = 5; i > 0; i--) {
             System.out.print(i + ".. ");
@@ -46,6 +53,9 @@ public class Utils {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printCrewASCII() {
         String[] flavourText = {"heyy boss", 
             "suup boss",
@@ -81,11 +91,17 @@ public class Utils {
         System.out.println(crew);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printActionCommitFoodSelectionHeader() {
         typePrint("Index   Quantity   Type           Name Price Heal Fill Cures_Plague");
         typePrint("-------------------------------------------------------------------");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printCrewStatusHeader() {
         String template = "";
         template += "\n";
@@ -96,6 +112,9 @@ public class Utils {
         typePrint(template);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printSpaceshipHeader() {
         String template = "";
         template += "\n";
@@ -106,6 +125,9 @@ public class Utils {
         typePrint(template);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printOutpostHeader() {
         typePrint();
         typePrint("*** Welcome to the outpost ***", 50);
@@ -117,6 +139,9 @@ public class Utils {
         typePrint("    ------------------------------------------------");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printActionCenterHeader() {
         printCrewASCII();
         String topRows = "";
@@ -127,6 +152,9 @@ public class Utils {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printActionCenterChoices() {
         typePrint();
         typePrint("Press 1 to comsume food/medical supplys");
@@ -138,6 +166,9 @@ public class Utils {
         System.out.print("Choice (1-5) ");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void printHomepageHeader() {
         typePrint("Welcome to the homepage");
         typePrint("Press 1 to view crew status");
@@ -206,6 +237,10 @@ public class Utils {
         System.out.println();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param args <<Param Desc>>
+     */
     public static void main(String[] args) {
         Utils.printSpaceshipTravelling(true);
     }

@@ -3,7 +3,7 @@
 import os
 import re
 
-FUNC_REGEX = "^\s+public\s(\w+\s)?(\w+)\((.*)\).*"
+FUNC_REGEX = "^\s+public(\sstatic)?\s([\w<>]+\s)?(\w+)\((.*)\).*"
 
 def get_java_files():
     java_files = []
@@ -27,10 +27,10 @@ def get_functions(java_file):
         matches = re.match(FUNC_REGEX, line) 
         if matches:
             # whole line, return type, arguments
-            if matches.group(1):
-                functions[matches.group(0)] = (matches.group(1).rstrip(), matches.group(3))
+            if matches.group(2):
+                functions[matches.group(0)] = (matches.group(2).rstrip(), matches.group(4))
             else:
-                functions[matches.group(0)] = ("" , matches.group(3))
+                functions[matches.group(0)] = ("" , matches.group(4))
 
         prev_line = line
 

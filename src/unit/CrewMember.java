@@ -48,6 +48,10 @@ public abstract class CrewMember extends Unit {
         hasPlague = false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean stillHasActions() {
         return actions > 0;
     }
@@ -249,6 +253,10 @@ public abstract class CrewMember extends Unit {
         decreaseHunger(item.getFillStomach());
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Desc>>
+     */
     public void useItem(Consumable item) {
         reduceAction();
         if (item instanceof Food) {
