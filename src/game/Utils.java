@@ -114,7 +114,6 @@ public class Utils {
         typePrint("Press 3 commit action");
         typePrint("Press 4 to visit Outpost");
         typePrint("Press 5 to move to next day");
-        typePrint("Press 6 to end game");
     }
 
     /**
