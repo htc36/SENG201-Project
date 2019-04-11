@@ -475,7 +475,7 @@ public class GameEngine {
                 TreeMap<Consumable, Integer> consumableWithCounts = crew.getConsumables();
                 if (consumableWithCounts.size() == 0) {
                     typePrint();
-                    typePrint("N: The player looks at his empty inventory and thinks");
+                    typePrint("N: The captain looks at his empty inventory and thinks");
                     typePrint("N: \"My crew could wait for another day\"");
                     typePrint();
                     break;
@@ -559,14 +559,19 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
 
-                if (unlucky()) 
+                boolean unlucky = unlucky();
+                if (unlucky) {
+                    Utils.printSpaceshipTravelling(unlucky);
                     AsteroidBelt.causeDamage(crew);
+                } else {
+                    Utils.printSpaceshipTravelling(false);
+                }
 
                 Planet currentPlanet = planets.get(currentPlanetIndex);
                 typePrint("N: You have arrived at " + currentPlanet.getName());
                 String shipPiecePresence = "Spaceship Operator: Our radar has detected ";
                 if (!currentPlanet.stillHasShipPieces()) {
-                    shipPiecePresence += "no ";
+                    shipPiecePresence += "NO ";
                 }
                 shipPiecePresence += "presence of ship piece here\n";
                 typePrint(shipPiecePresence);

@@ -15,6 +15,37 @@ public class Utils {
         System.out.println(spaceship);
     }
 
+    public static void printSpaceshipTravelling(boolean unlucky) {
+        for (int i = 5; i > 0; i--) {
+            System.out.print(i + ".. ");
+            try { Thread.sleep(1000); } catch (InterruptedException e) {};
+        }
+        System.out.println();
+        System.out.println("and lift off!");
+        try { Thread.sleep(1000); } catch (InterruptedException e) {};
+        printSpaceshipASCII();
+        for (int i = 0; i < 30; i++) {
+            System.out.println("     ###   ");
+            if (i % 2 == 0) {
+                System.out.println("    #####  ");
+            }
+            if (i % 5 == 0) {
+                System.out.println("o---#####---o");
+            }
+            try { Thread.sleep(50); } catch (InterruptedException e) {};
+        }
+
+        System.out.println("     ##   ");
+        System.out.println("     #   ");
+
+        if (unlucky) {
+            System.out.println();
+            System.out.println();
+            System.out.println("***BONK!!!*** ");
+        }
+
+    }
+
     public static void printCrewASCII() {
         String[] flavourText = {"heyy boss", 
             "suup boss",
@@ -173,6 +204,10 @@ public class Utils {
      */
     public static void typePrint() {
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Utils.printSpaceshipTravelling(true);
     }
 
 }
