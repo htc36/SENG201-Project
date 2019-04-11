@@ -104,7 +104,7 @@ public class Utils {
         typePrint("Press 4 to search planet");
         typePrint("Press 5 to pilot ship to new planet");    
         typePrint();
-        System.out.print("Choice (1-5) > ");
+        System.out.print("Choice (1-5) ");
     }
 
     public static void printHomepageHeader() {

@@ -2,6 +2,7 @@ package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -64,7 +65,6 @@ public class GameEngine {
         hasEnded = false;
 
         currentPlanetIndex = 0;
-        setupPlanets();
         foundShipPieces = 0;
 
     }
@@ -75,7 +75,7 @@ public class GameEngine {
         String[] planetsWithShipPieces = {"CX1337", 
             "Aiur", "Earth0x02", "RuhRoh", "BobbyBobBob", "Amber"};
 
-        for (int i = 0; i < planetsWithShipPieces.length; i++) {
+        for (int i = 0; i < shipPieces; i++) {
             planets.add(new Planet(planetsWithShipPieces[i], true));
         }
 
@@ -84,6 +84,9 @@ public class GameEngine {
         for (int i = 0; i < firstName.length; i++) {
             for(int j = 0; j < lastName.length; j++) {
                 planets.add(new Planet(firstName[i] + lastName[j], false));
+                if (planets.size() >= shipPieces * 3) {
+                    return;
+                }
             }
         }
     }
@@ -102,15 +105,15 @@ public class GameEngine {
      * @return int <<Return Desc>>
      */
     public int getInputNumDays(Scanner reader) {
-        String numOfDays = "";
+        int numOfDays;
         do {
-            numOfDays = reader.next();
+            numOfDays = getIntegerInput(reader);
             if (!isValidNumOfDays(numOfDays)) {
                 System.out.println("[Error] Please enter a value between 3 and 10");
             }
         } while (!isValidNumOfDays(numOfDays));
 
-        return Integer.valueOf(numOfDays);
+        return numOfDays;
     }
 
     /**
@@ -118,15 +121,8 @@ public class GameEngine {
      * @param numOfDays <<Param Desc>>
      * @return boolean <<Return Desc>>
      */
-    public boolean isValidNumOfDays(String numOfDays) {
-        Pattern p = Pattern.compile("^\\d+$");
-        Matcher m = p.matcher(numOfDays);
-        if (m.find()) {
-            int days = Integer.valueOf(numOfDays);
-            return days <= 10 && days >= 3;
-        }
-
-        return false;
+    public boolean isValidNumOfDays(int numOfDays) {
+        return numOfDays <= 10 && numOfDays >= 3;
     }
 
     /**
@@ -148,10 +144,8 @@ public class GameEngine {
         int amount = 0;
         do {
             System.out.println("Crew amount must be between 2 and 4");
-            System.out.print("> ");
-            amount = reader.nextInt();
-        }
-        while (amount < 2 || amount > 4);
+            amount = getIntegerInput(reader);
+        } while (amount < 2 || amount > 4);
 
         return amount;
     }
@@ -184,13 +178,6 @@ public class GameEngine {
      */
     public void setShipPieces() {
         shipPieces = calculateShipPieces(gameLength);
-    }
-
-    /**
-     * <<auto generated javadoc comment>>
-     */
-    public void getInputName() {
-
     }
 
     /**
@@ -373,7 +360,6 @@ public class GameEngine {
         return allQueries;
     }
 
-
     /**
      * <<auto generated javadoc comment>>
      * @param query <<Param Desc>>
@@ -394,7 +380,6 @@ public class GameEngine {
 
         return false;
     }
-
 
     /**
      * <<auto generated javadoc comment>>
@@ -446,6 +431,30 @@ public class GameEngine {
 
         }
     }
+
+    public boolean isValidCopilot(int currIndex, int copilotIndex, int actions) {
+        if (currIndex != copilotIndex) {
+            return actions > 0;
+        }
+
+        return false;
+    }
+
+    public int getIntegerInput(Scanner reader) {
+        while (true) {
+            System.out.print("> ");
+            String input = reader.next();
+            try {
+                int inputInt = Integer.valueOf(input);
+                return inputInt;
+            } catch (NumberFormatException e) {
+                typePrint("N: Your input is not an integer");
+                typePrint("N: Naughty naughty");
+                typePrint();
+            }
+        }
+    }
+
     /**
      * <<auto generated javadoc comment>>
      * @param reader <<Param Desc>>
@@ -475,7 +484,7 @@ public class GameEngine {
         int index; 
         CrewMember selectedCrew;
         do {
-            index = reader.nextInt();
+            index = getIntegerInput(reader);
             selectedCrew = crewMembers.get(index); 
             if (selectedCrew.getActions() == 0){
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
@@ -490,7 +499,7 @@ public class GameEngine {
 
         Utils.printActionCenterChoices();
 
-        int selection = reader.nextInt();
+        int selection = getIntegerInput(reader);
         switch(selection) {
             case 1:
                 TreeMap<Consumable, Integer> consumableWithCounts = crew.getConsumables();
@@ -516,7 +525,7 @@ public class GameEngine {
                     template = "";
                     ConsumablesList.add(c.getName());
                 }
-                int chosenItem = reader.nextInt();
+                int chosenItem = getIntegerInput(reader);
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
             case 4:
@@ -535,7 +544,6 @@ public class GameEngine {
                 crew.addConsumable(outpost.getRandomItem());
                 break;
             case 5:
-                int copilotIndex = 0;
                 Utils.printActionCenterHeader();
                 for (int i = 0; i < crewMembers.size(); i++) {
                     if (crewMembers.get(i).stillHasActions() && i != index) {
@@ -544,15 +552,20 @@ public class GameEngine {
                     }
                 }
                 System.out.println();
+                int actions = 0;
+                int copilotIndex = 0;
                 do {
-                    System.out.print("Choose the copilot > ");
-                    copilotIndex = reader.nextInt();
-                    if (copilotIndex == index) {
-                        typePrint("N: I also wish I could clone myself somedays");
-                        typePrint("N: Choose anyone but yourself");
+                    System.out.println("Choose the copilot:");
+                    copilotIndex = getIntegerInput(reader);
+                    actions  = crewMembers.get(copilotIndex).getActions(); 
+                    if (!isValidCopilot(index, copilotIndex, actions)) {
+                        typePrint("N: Nuh, uh. Can't choose that one");
                     }
-                } while (copilotIndex == index);
-                CrewMember copilot = crewMembers.get(copilotIndex); 
+                    if (copilotIndex == index) {
+                        typePrint("N: I also wish I could clone myself sometimes");
+                    }
+                } while (!isValidCopilot(index, copilotIndex, actions));
+                CrewMember copilot = crewMembers.get(copilotIndex);
                 selectedCrew.pilotShip(copilot);
                 Random rand = new Random();
                 int nextPlanetIndex;
@@ -578,12 +591,22 @@ public class GameEngine {
         }
     }
 
+    public boolean hasFoundEnoughPieces() {
+        return foundShipPieces == shipPieces;
+    }
+
     /**
      * <<auto generated javadoc comment>>
      * @param reader <<Param Desc>>
      */
     public void homePage(Scanner reader) {
         do {
+            if (hasFoundEnoughPieces()) {
+                typePrint("N: You have won this computer game");
+                typePrint("N: Congratulations");
+                return;
+            }
+
             Utils.printHomepageHeader();
             typePrint("[Ship pieces] : " + foundShipPieces);
             typePrint();
@@ -632,7 +655,6 @@ public class GameEngine {
             }
         } while (!hasEnded);  
 
-
     }
 
     public static void main(String[] args) {
@@ -645,6 +667,7 @@ public class GameEngine {
         System.out.print("Number of days: ");
         g.setGameLength(5);
         g.setShipPieces();
+        g.setupPlanets();
         System.out.println("Number of crew members (2-4)?");
         g.setCrewMembers(g.getCrewAmount(reader), reader);
         g.setupCrew();
@@ -657,10 +680,7 @@ public class GameEngine {
         //String queries = g.getInputShoppingList(reader);
         //g.addItemToShoppingBag(queries);
         //g.viewShoppingBag();
-
-
         reader.close();
     }
-
 
 }
