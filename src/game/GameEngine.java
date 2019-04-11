@@ -462,7 +462,11 @@ public class GameEngine {
         int index; 
         CrewMember selectedCrew;
         do {
-            index = getIntegerInput();
+            do{
+               index = getIntegerInput();
+                if (index >= crewMembers.size())
+                    typePrint("Oh my that crew member dosent exist try again");
+            } while (index >= crewMembers.size());    
             selectedCrew = crewMembers.get(index); 
             if (selectedCrew.getActions() == 0)
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
@@ -504,6 +508,23 @@ public class GameEngine {
                 }
                 int chosenItem = getIntegerInput();
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
+                break;
+            case 2:
+                if (selectedCrew.getFatique() == 0){
+                    typePrint("What a nice captain, " + selectedCrew.getName() + " has no fatigue, yet you've granted rest");
+                }else{
+                    typePrint("As we speak ol mate " + selectedCrew.getName() + " is having a well deserved kip");
+                }
+                selectedCrew.sleep(10);
+                break;
+            case 3:
+                if (ship.getHealth() == 100){
+                    typePrint("We don't have any damage cap, but Jerry let one rip in the dunny so we'll deal to that");
+                }else{
+                    typePrint("Nice job, you know what they say healthy ship happy crew");
+                } 
+                
+                selectedCrew.repairShield(ship, 10);
                 break;
             case 4:
                 boolean planetHasPieces = planets.get(currentPlanetIndex).stillHasShipPieces();
