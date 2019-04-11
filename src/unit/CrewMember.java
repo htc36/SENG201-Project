@@ -158,6 +158,9 @@ public abstract class CrewMember extends Unit {
     public void sleep(int amount) {
         reduceAction();
         fatiqueLevel -= amount;
+        if (fatiqueLevel < 0){
+            fatiqueLevel = 0;
+        }   
     }
 
     /**
