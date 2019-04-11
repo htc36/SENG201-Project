@@ -464,9 +464,9 @@ public class GameEngine {
         do {
             do{
                index = getIntegerInput();
-                if (index >= crewMembers.size())
+                if (index >= crewMembers.size() | index < 0)
                     typePrint("Oh my that crew member dosent exist try again");
-            } while (index >= crewMembers.size());    
+            } while (index >= crewMembers.size() | index < 0);    
             selectedCrew = crewMembers.get(index); 
             if (selectedCrew.getActions() == 0)
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
