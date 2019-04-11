@@ -10,10 +10,18 @@ public class AsteroidBelt implements RandomEvents{
      * Crew's spaceship receives some damage
      * @param c the crew
      */
-    public void causeDamage(Crew c) {
+    public static void causeDamage(Crew c) {
         Spaceship spaceShip = c.getSpaceship();
-        spaceShip.receiveDamage(20);
+        int spaceShipHealth = spaceShip.getHealth();
+        if (spaceShipHealth > 70) {
+            spaceShip.receiveDamage(15);
+        } else {
+            spaceShip.receiveDamage(20);
+        }
 
+        System.out.println("WARNING");
+        System.out.println("Spaceship has received damage from asteroid belt");
+        System.out.println();
     }
 
 }

@@ -1,8 +1,9 @@
 package game;
 
+import static game.Utils.typePrint;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -10,13 +11,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import consumable.*;
-import unit.*;
 import crew.Crew;
 import outpost.Outpost;
 import planet.Planet;
-import random_events.AlienPirates;
-import random_events.SpacePlague;
-import static game.Utils.typePrint;
+import random_events.*;
+import unit.*;
 
 public class GameEngine {
 
@@ -486,9 +485,8 @@ public class GameEngine {
         do {
             index = getIntegerInput(reader);
             selectedCrew = crewMembers.get(index); 
-            if (selectedCrew.getActions() == 0){
+            if (selectedCrew.getActions() == 0)
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
-            }
         } while(selectedCrew.getActions() == 0);
 
         System.out.print("\033[H\033[2J");
@@ -508,7 +506,7 @@ public class GameEngine {
                     typePrint("N: The player looks at his empty inventory and thinks");
                     typePrint("N: \"My crew could wait for another day\"");
                     typePrint();
-                    return;
+                    break;
                 }
 
                 typePrint("Select food to consume:");
@@ -545,12 +543,21 @@ public class GameEngine {
                 break;
             case 5:
                 Utils.printActionCenterHeader();
+                int copilotCanditates = 0;
                 for (int i = 0; i < crewMembers.size(); i++) {
                     if (crewMembers.get(i).stillHasActions() && i != index) {
                         System.out.print(i + "    ");
                         System.out.println(crewMembers.get(i));
+                        copilotCanditates++;
                     }
                 }
+
+                if (copilotCanditates == 0) {
+                    typePrint("N: Everyone looks tired");
+                    typePrint("N: Looks like you don't have someone who can copilot");
+                    break;
+                }
+
                 System.out.println();
                 int actions = 0;
                 int copilotIndex = 0;
@@ -573,6 +580,10 @@ public class GameEngine {
                     nextPlanetIndex = rand.nextInt(planets.size());
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
+
+                if (unlucky()) 
+                    AsteroidBelt.causeDamage(crew);
+
                 Planet currentPlanet = planets.get(currentPlanetIndex);
                 typePrint("N: You have arrived at " + currentPlanet.getName());
                 String shipPiecePresence = "Spaceship Operator: Our radar has detected ";
@@ -591,6 +602,14 @@ public class GameEngine {
         }
     }
 
+    private boolean unlucky() {
+        Random rand = new Random();
+        int chance = rand.nextInt(101);
+        int happeningChance = 40;
+
+        return chance < happeningChance;
+    }
+
     public boolean hasFoundEnoughPieces() {
         return foundShipPieces == shipPieces;
     }
@@ -605,6 +624,16 @@ public class GameEngine {
                 typePrint("N: You have won this computer game");
                 typePrint("N: Congratulations");
                 return;
+            }
+
+            // need to refactor this random events later
+            if (unlucky()) {
+                Random rand = new Random();
+                int event = rand.nextInt(2); // roll from 0 to 1
+                if (event == 1) 
+                    SpacePlague.causeDamage(crew);
+                else
+                    AlienPirates.causeDamage(crew);
             }
 
             Utils.printHomepageHeader();
