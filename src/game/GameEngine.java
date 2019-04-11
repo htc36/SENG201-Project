@@ -285,7 +285,6 @@ public class GameEngine {
         for (String s : outpost.saleProductsToString().split("\n")) {
             typePrint("    " + s);
         }
-        //typePrint(outpost.saleProductsToString());
         typePrint();
         typePrint("    Your inventory:");
         String currInventory = crew.consumablesToString();
@@ -298,7 +297,13 @@ public class GameEngine {
             typePrint("Clerk: Tight on money, eh? What do you want today?");
         }
         typePrint("Clerk: You know the drill, say the amount and the item");
-        typePrint("Clerk: Like 2xBanana");
+        typePrint("Clerk: Don't forget to say done when you're finished");
+        typePrint("Clerk: Let me refresh your memory just in case");
+        typePrint();
+        typePrint("Clerk: > 2xBrownie");
+        typePrint("Clerk: > 1xSpaceCake");
+        typePrint("Clerk: > done");
+        typePrint();
     }
 
     /**
@@ -363,17 +368,17 @@ public class GameEngine {
         }
         while (outpost.getTotalPrice() > crew.getMoney()) {
 
-            System.out.println("You do not have enough money to purchase all the items");
-            System.out.println("Your shopping list");
+            typePrint("Clerk: You do not have enough money to purchase all the items");
+            typePrint("Clerk: Your shopping list");
             viewShoppingBag();
-            System.out.println("Pick item to remove");
+            typePrint("Pick item to remove");
             String removedItem = reader.next();
             while (outpost.hasItemInShoppingBag(removedItem)) {
                 outpost.removeItemFromShoppingBag(removedItem);
             }
 
         }
-        System.out.println("Good to go your shooping list is now:");
+        System.out.println("Good to go, your shooping list is now:");
         viewShoppingBag();
     }
 
@@ -501,12 +506,17 @@ public class GameEngine {
                         typePrint(selectedCrew.getName() + " has found a ship piece!");
                         foundShipPieces++;
                         typePrint("The crew now has " + foundShipPieces + " ship pieces");
+                        typePrint();
                         planets.get(currentPlanetIndex).extractShipPieces();
                         break;
                     } 
                 } 
 
-                crew.addConsumable(outpost.getRandomItem());
+                typePrint("N: " + selectedCrew.getName() + " searches long and hard");
+                Consumable randomItem = outpost.getRandomItem();
+                typePrint("N: and found " + randomItem.getName());
+                crew.addConsumable(randomItem);
+                typePrint("N: Not a ship piece, but still something");
                 break;
             case 5:
                 Utils.printActionCenterHeader();
@@ -522,6 +532,7 @@ public class GameEngine {
                 if (copilotCanditates == 0) {
                     typePrint("N: Everyone looks tired");
                     typePrint("N: Looks like you don't have someone who can copilot");
+                    typePrint();
                     break;
                 }
 
@@ -616,7 +627,7 @@ public class GameEngine {
             case "5":
                 return false;
             default:
-                typePrint("N: I can't understand what you're saying cap'n");
+                typePrint("Spaceship Operator: I can't understand what you're saying cap'n");
                 break;
         }
 
