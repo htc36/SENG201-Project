@@ -131,6 +131,10 @@ public class Outpost {
         return template;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return Consumable <<Return Desc>>
+     */
     public Consumable getRandomItem() {
         Random rand = new Random();
         int randomItemIndex = rand.nextInt(consumables.length);

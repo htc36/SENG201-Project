@@ -71,6 +71,9 @@ public class GameEngine {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void setupPlanets() {
         planets = new ArrayList<>();
         // Make 15 planets, only 6 of them have ship pieces
@@ -103,7 +106,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      * @return int <<Return Desc>>
      */
     public int getInputNumDays() {
@@ -129,7 +131,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      * @return String <<Return Desc>>
      */
     public String getInputSpaceshipName() {
@@ -139,7 +140,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      * @return int <<Return Desc>>
      */
     public int getCrewAmount() {
@@ -196,7 +196,6 @@ public class GameEngine {
     /**
      * <<auto generated javadoc comment>>
      * @param crewNumbers <<Param Desc>>
-     * @param reader <<Param Desc>>
      */
     public void setCrewMembers(int crewNumbers) {
         crewMembers = new ArrayList<>();
@@ -308,7 +307,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      * @return String <<Return Desc>>
      */
     public String getInputShoppingList() {
@@ -356,7 +354,7 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param queries <<Param Desc>>
+     * @param query <<Param Desc>>
      */
     public void addItemToShoppingBag(String query) {
         int amount = 0;
@@ -393,7 +391,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      */
     public void enterToContinue() {
 
@@ -403,6 +400,13 @@ public class GameEngine {
         } catch (IOException e) {};
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param currIndex <<Param Desc>>
+     * @param copilotIndex <<Param Desc>>
+     * @param actions <<Param Desc>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean isValidCopilot(int currIndex, int copilotIndex, int actions) {
         if (currIndex != copilotIndex) {
             return actions > 0;
@@ -411,6 +415,10 @@ public class GameEngine {
         return false;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getIntegerInput() {
         while (true) {
             System.out.print("> ");
@@ -428,7 +436,6 @@ public class GameEngine {
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
      */
     public void commitActionPage() {
         System.out.println("Welcome to the action center");
@@ -593,13 +600,17 @@ public class GameEngine {
         return chance < happeningChance;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean hasFoundEnoughPieces() {
         return foundShipPieces == shipPieces;
     }
 
     /**
      * <<auto generated javadoc comment>>
-     * @param reader <<Param Desc>>
+     * @return boolean <<Return Desc>>
      */
     public boolean printHomePage() {
         Utils.printHomepageHeader();
@@ -690,10 +701,18 @@ public class GameEngine {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return boolean <<Return Desc>>
+     */
     public boolean hasGameEnded() {
         return hasFoundEnoughPieces() || gameLength - currDay == -1;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param args <<Param Desc>>
+     */
     public static void main(String[] args) {
         GameEngine g = new GameEngine();
         System.out.print("Spaceship name: ");
