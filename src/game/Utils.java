@@ -91,6 +91,10 @@ public class Utils {
         System.out.println(crew);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public static String getDeathMessage() {
         String[] templates = { "Beloved", 
             "Dearly beloved", 
@@ -286,6 +290,9 @@ public class Utils {
         System.out.println();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
