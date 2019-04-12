@@ -8,12 +8,12 @@ public class Utils {
      */
     public static void printSpaceshipASCII() {
         String spaceship = ""  +
-                "      /\\                               \n" +
-                "     (  )   vrr                         \n" +
-                "     /  \\     rRr                       \n"  +
-                "    /|/\\|\\     oOoo                   \n" +
-                "   /_||||_\\       oOOmMM               \n" +
-                "   ||||||||                               ";
+            "      /\\                               \n" +
+            "     (  )   vrr                         \n" +
+            "     /  \\     rRr                       \n"  +
+            "    /|/\\|\\     oOoo                   \n" +
+            "   /_||||_\\       oOOmMM               \n" +
+            "   ||||||||                               ";
 
         System.out.println(spaceship);
     }
@@ -89,6 +89,55 @@ public class Utils {
             "/\\  " +
             " /\\  \n";
         System.out.println(crew);
+    }
+
+    public static String getDeathMessage() {
+        String[] templates = { "Beloved", 
+            "Dearly beloved", 
+            "Adored", 
+            "So loved", 
+            "Into the sunshine", 
+            "Dearly loved", 
+            "Once met, never forgotten.", 
+            "Uncompromisingly unique", 
+            "Remembered with love", 
+            "Love you always", 
+            "With a greater thing to do", 
+            "Love is enough", 
+            "Peace perfect peace", 
+            "Deep peace of the quiet earth to you", 
+            "Generous of heart, constant of faith", 
+            "Love you miss you", 
+            "So loved", 
+            "In everloving memory of", 
+            "Love is enough", 
+            "May his memory be eternal", 
+            "Always together", 
+            "Devoted in love", 
+            "Dance on..", 
+            "Always loving, always loved", 
+            "Your love will light my way", 
+            "Asleep in Jesus", 
+            "Forever in our hearts", 
+            "Until we meet again", 
+            "Rest in Peace", 
+            "Here lies", 
+            "Ever loved", 
+            "Adored", 
+            "So loved", 
+            "An inspiration", 
+            "Loved and remembered", 
+            "In God's care", 
+            "An inspiration to all", 
+            "She walked in beauty", 
+            "Together again", 
+            "Love is waiting", 
+            "Once met, never forgotten", 
+            "A long life well lived", 
+            "Remembered with love", 
+            "Great love lives on"};
+        Random rand = new Random();
+        return templates[rand.nextInt(templates.length)];
     }
 
     /**
@@ -242,7 +291,7 @@ public class Utils {
      * @param args <<Param Desc>>
      */
     public static void main(String[] args) {
-        Utils.printSpaceshipTravelling(true);
+        System.out.println(Utils.getDeathMessage());
     }
 
 }
