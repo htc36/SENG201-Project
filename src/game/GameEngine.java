@@ -537,10 +537,19 @@ public class GameEngine {
                 } 
 
                 typePrint("N: " + selectedCrew.getName() + " searches long and hard");
-                Consumable randomItem = outpost.getRandomItem();
-                typePrint("N: and found " + randomItem.getName());
-                crew.addConsumable(randomItem);
-                typePrint("N: Not a ship piece, but still something");
+                if (unlucky(20)) {
+                    typePrint("N: and found nothing");
+                } else if (unlucky(50)) {
+                    Consumable randomItem = outpost.getRandomItem();
+                    typePrint("N: and found " + randomItem.getName());
+                    crew.addConsumable(randomItem);
+                    typePrint("N: Not a ship piece, but still something");
+                } else {
+                    crew.addMoney(50);
+                    typePrint("N: and found money");
+                    typePrint("N: Luckily the currency is used all around the universe");
+                }
+                typePrint();
                 break;
             case 5:
                 Utils.printActionCenterHeader();
@@ -583,7 +592,8 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
 
-                boolean unlucky = unlucky();
+                // percentage chance of 40% happening
+                boolean unlucky = unlucky(40);
                 if (unlucky) {
                     Utils.printSpaceshipTravelling(unlucky);
                     AsteroidBelt.causeDamage(crew);
@@ -609,10 +619,9 @@ public class GameEngine {
         }
     }
 
-    private boolean unlucky() {
+    private boolean unlucky(int happeningChance) {
         Random rand = new Random();
         int chance = rand.nextInt(101);
-        int happeningChance = 40;
 
         return chance < happeningChance;
     }
