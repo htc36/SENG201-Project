@@ -183,7 +183,7 @@ public class Utils {
      */
     public static void printOutpostHeader() {
         typePrint();
-        typePrint("*** Welcome to the outpost ***", 50);
+        typePrint("*** Welcome to the outpost ***", 30);
         typePrint();
         typePrint("Clerk: Don't forget to place your items in the bagging area", 30);
         typePrint("Clerk: Here are the things on sale today :}");
@@ -210,11 +210,11 @@ public class Utils {
      */
     public static void printActionCenterChoices() {
         typePrint();
-        typePrint("Press 1 to comsume food/medical supplys");
-        typePrint("Press 2 to sleep");
-        typePrint("Press 3 to repair ship");
-        typePrint("Press 4 to search planet");
-        typePrint("Press 5 to pilot ship to new planet");    
+        typePrint("[1] Consume food/medical supplys");
+        typePrint("[2] Sleep");
+        typePrint("[3] Repair ship");
+        typePrint("[4] Search planet for ship pieces");
+        typePrint("[5] Pilot ship to new planet");    
         typePrint();
         System.out.print("Choice (1-5) ");
     }
@@ -223,12 +223,16 @@ public class Utils {
      * <<auto generated javadoc comment>>
      */
     public static void printHomepageHeader() {
-        typePrint("Welcome to the homepage");
-        typePrint("Press 1 to view crew status");
-        typePrint("Press 2 to view ship status");
-        typePrint("Press 3 commit action");
-        typePrint("Press 4 to visit Outpost");
-        typePrint("Press 5 to move to next day");
+        typePrint();
+        typePrint("******** COMMAND CENTER ********");
+        typePrint("    Welcome back, captain");
+        typePrint();
+        typePrint("    [1] View crew status");
+        typePrint("    [2] View ship status");
+        typePrint("    [3] Commit action");
+        typePrint("    [4] Visit Outpost");
+        typePrint("    [5] Move to next day");
+        typePrint();
     }
 
     /**

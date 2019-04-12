@@ -1,13 +1,13 @@
 package unit;
 
-public class HardWorker extends CrewMember{
+public class Actioneer extends CrewMember{
 
     /**
      * constructor for builder type hardworker
      * hardworker type units have more actions than other units
      * @param memberName name of the hardworker unit
      */
-    public HardWorker(String memberName) {
+    public Actioneer(String memberName) {
         super(memberName, 30, 3);
     }
 
@@ -28,7 +28,7 @@ public class HardWorker extends CrewMember{
      */
     @Override
     public String toString() {
-        return String.format(super.toString(), "HardWorker");
+        return String.format(super.toString(), "Actioneer");
     }
 
 }

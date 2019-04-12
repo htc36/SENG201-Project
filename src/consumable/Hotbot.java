@@ -6,6 +6,6 @@ public class Hotbot extends Food {
      * Constructor for Hotbot food
      */
     public Hotbot() {
-        super("Hotbot", 10, 10, 10);
+        super("Hotbot", 20, 40, 20);
     }
 }

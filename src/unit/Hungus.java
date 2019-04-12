@@ -30,7 +30,6 @@ public class Hungus extends CrewMember{
      */
     @Override
     public void decreaseHunger(int amount) {
-
         super.decreaseHunger(amount * 2);
     }
 

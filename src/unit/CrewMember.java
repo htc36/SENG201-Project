@@ -89,6 +89,8 @@ public abstract class CrewMember extends Unit {
      */
     public void increaseFatique(int amount) {
         fatiqueLevel += amount;
+        if (fatiqueLevel > 100) 
+            fatiqueLevel = 100;
     }
 
     /**
@@ -116,6 +118,8 @@ public abstract class CrewMember extends Unit {
      */
     public void increaseHunger(int amount) {
         hungerLevel += amount;
+        if (hungerLevel > 100)
+            hungerLevel = 100;
     }
 
     /** 
@@ -233,7 +237,7 @@ public abstract class CrewMember extends Unit {
 
         return template;
     }   
-    
+
     /**
      * use a medical item on a crew member, increasing their health
      * and possibly curing them from space plague

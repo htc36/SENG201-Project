@@ -6,7 +6,7 @@ public class SpaceCake extends Food {
      * Constructor for SpaceCake Food
      */
     public SpaceCake() {
-        super("SpaceCake", 10, 10, 10);
+        super("SpaceCake", 5, 35, 70);
     }
 
 }

@@ -52,10 +52,10 @@ public class Crew {
     public ArrayList<CrewMember> updateCrewStatus() {
         ArrayList<CrewMember> deadCrew = new ArrayList<>();
         for(CrewMember c : crewMembers) {
-            c.increaseFatique(30);
-            c.increaseHunger(30);
+            c.increaseFatique(25);
+            c.increaseHunger(25);
             if(c.isSick())
-                c.reduceHealth(100);
+                c.reduceHealth(5);
             if (c.getHealth() == 0) {
                 deadCrew.add(c);
             }
@@ -215,6 +215,7 @@ public class Crew {
         }
         return;
     }
+
     /**
      * <<auto generated javadoc comment>>
      * @return String <<Return Desc>>

@@ -45,18 +45,18 @@ public class GameEngine {
         crewMemberTypes.add("explorer");
         crewMemberTypes.add("hungus");
         crewMemberTypes.add("sleeper");
-        crewMemberTypes.add("hardWorker");
+        crewMemberTypes.add("actioneer");
         crewMemberTypes.add("builder");
 
         Food f1 = new Brownie();
         Food f2 = new FriedRice();
-        Food f3 = new CockroachPowder();
+        Food f3 = new Dumplings();
         Food f4 = new SpaceCake();
         Food f5 = new TikkaMasala();
         Food f6 = new Hotbot();
 
         MedicalSupply m1 = new PolyJuice();
-        MedicalSupply m2 = new AlienSpinalFluid();
+        MedicalSupply m2 = new PickledPlum();
         MedicalSupply m3 = new Vaccine();
 
         Consumable[] c = new Consumable[]{f1, f2, f3, f4, f5, f6, m1, m2, m3};
@@ -85,7 +85,7 @@ public class GameEngine {
         for (int i = 0; i < firstName.length; i++) {
             for(int j = 0; j < lastName.length; j++) {
                 planets.add(new Planet(firstName[i] + " " + lastName[j], false));
-                if (planets.size() >= shipPieces * 3) {
+                if (planets.size() >= shipPieces * 2) {
                     return;
                 }
             }
@@ -109,7 +109,7 @@ public class GameEngine {
         do {
             numOfDays = getIntegerInput();
             if (!isValidNumOfDays(numOfDays)) {
-                System.out.println("[Error] Please enter a value between 3 and 10");
+                System.out.println("Please enter a value between 3 and 10");
             }
         } while (!isValidNumOfDays(numOfDays));
 
@@ -130,12 +130,8 @@ public class GameEngine {
      * @return String <<Return Desc>>
      */
     public String getInputSpaceshipName() {
+        System.out.print("> ");
         String name = reader.next();
-        if (name.isEmpty()) {
-            typePrint("N: Alright leave the ship naming to me");
-            typePrint("N: I shall call this ship SHIP");
-            return "SHIP";
-        }
         return name.replaceAll("\\s","");
     }
 
@@ -146,8 +142,9 @@ public class GameEngine {
     public int getCrewAmount() {
         int amount = 0;
         do {
-            System.out.println("Crew amount must be between 2 and 4");
             amount = getIntegerInput();
+            if (amount < 2 || amount > 4)
+                System.out.println("Crew amount must be between 2 and 4");
         } while (amount < 2 || amount > 4);
 
         return amount;
@@ -166,7 +163,7 @@ public class GameEngine {
      * @param name <<Param Desc>>
      */
     public void setupSpaceship(String name) {
-        ship = new Spaceship(name);
+        ship = new Spaceship(name.toUpperCase());
     }
 
     /**
@@ -207,18 +204,20 @@ public class GameEngine {
             String memberName = "";
             String crewInfo = "";
             do {
-                System.out.print("Input crew name followed by their type");
+                System.out.print("Input crew name followed by their type without spaces");
                 System.out.println(" (" + (crewNumbers - i) + " to go)");
-                System.out.println("For example: dora-explorer");
-                do {
-                    System.out.print("> ");
-                    crewInfo = reader.next();
-                    if (!isCrewInfoValid(crewInfo)){
-                        System.out.println("Invalid input");
-                    }
-                } while(!isCrewInfoValid(crewInfo));
+                System.out.println("For example:");
+                System.out.println("> dora-explorer");
+                System.out.println("> ralph-builder");
+                System.out.println();
+                System.out.print("> ");
+                while(true) {
+                    crewInfo = reader.nextLine();
+                    if (isCrewInfoValid(crewInfo))
+                        break;
+                }
                 String[] splitter = crewInfo.split("-");
-                memberName = splitter[0];
+                memberName = splitter[0].toUpperCase();
                 crewType = splitter[1].toLowerCase();
                 if (!crewMemberTypes.contains(crewType)){
                     System.out.println("Invalid Crew Type");
@@ -239,8 +238,8 @@ public class GameEngine {
                 case "sleeper":
                     crewMembers.add(new Sleeper(memberName));
                     break;
-                case "hardworker":
-                    crewMembers.add(new HardWorker(memberName));
+                case "actioneer":
+                    crewMembers.add(new Actioneer(memberName));
                     break;
                 case "hungus":
                     crewMembers.add(new Hungus(memberName));
@@ -394,11 +393,11 @@ public class GameEngine {
      * <<auto generated javadoc comment>>
      */
     public void enterToContinue() {
-
-        System.out.println("\nPress Enter to exit to homepage");
+        System.out.println("\n<Enter> to go back to command center");
         try {
             System.in.read();
         } catch (IOException e) {};
+        Utils.clearScreen();
     }
 
     /**
@@ -473,10 +472,8 @@ public class GameEngine {
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
         } while(selectedCrew.getActions() == 0);
 
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        Utils.clearScreen();
 
-        typePrint("Selected crew member: " + selectedCrew.getName() + " at index " + index);
         typePrint("Select action to apply to " + selectedCrew.getName());
 
         Utils.printActionCenterChoices();
@@ -523,7 +520,7 @@ public class GameEngine {
                 }else{
                     typePrint("As we speak ol mate " + selectedCrew.getName() + " is having a well deserved kip");
                 }
-                selectedCrew.sleep(10);
+                selectedCrew.sleep(30);
                 break;
             case 3:
                 if (ship.getHealth() == 100){
@@ -532,7 +529,7 @@ public class GameEngine {
                     typePrint("Nice job, you know what they say healthy ship happy crew");
                 } 
 
-                selectedCrew.repairShield(ship, 10);
+                selectedCrew.repairShield(ship, 15);
                 break;
             case 4:
                 boolean planetHasPieces = planets.get(currentPlanetIndex).stillHasShipPieces();
@@ -548,7 +545,7 @@ public class GameEngine {
                     } 
                 } 
 
-                typePrint("N: " + selectedCrew.getName() + " searches long and hard");
+                typePrint("N: " + selectedCrew.getName() + " searches long and hard", 50);
                 if (unlucky(20)) {
                     typePrint("N: and found nothing");
                 } else if (unlucky(50)) {
@@ -557,13 +554,18 @@ public class GameEngine {
                     crew.addConsumable(randomItem);
                     typePrint("N: Not a ship piece, but still something");
                 } else {
-                    crew.addMoney(50);
+                    crew.addMoney(45);
                     typePrint("N: and found money");
                     typePrint("N: Luckily the currency is used all around the universe");
                 }
                 typePrint();
                 break;
             case 5:
+                if (ship.getHealth() <= 50) {
+                    typePrint("Spaceship Operator: Our ship is too damaged to take off sir");
+                    typePrint();
+                    break;
+                }
                 Utils.printActionCenterHeader();
                 int copilotCanditates = 0;
                 for (int i = 0; i < crewMembers.size(); i++) {
@@ -585,7 +587,7 @@ public class GameEngine {
                 int actions = 0;
                 int copilotIndex = 0;
                 do {
-                    System.out.println("Choose the copilot:");
+                    System.out.println("Choose the copilot index:");
                     copilotIndex = getIntegerInput();
                     actions  = crewMembers.get(copilotIndex).getActions(); 
                     if (!isValidCopilot(index, copilotIndex, actions)) {
@@ -625,7 +627,7 @@ public class GameEngine {
                 break;
             default:
                 typePrint();
-                typePrint("[Error] Your selection was not in one of the choices");
+                typePrint("Your selection was not in one of the choices");
                 typePrint();
                 break;
         }
@@ -652,7 +654,7 @@ public class GameEngine {
      */
     public boolean printHomePage() {
         Utils.printHomepageHeader();
-        typePrint("[Ship pieces] : " + foundShipPieces);
+        typePrint("Found ship pieces: " + foundShipPieces);
         typePrint();
 
         System.out.print("> ");
@@ -702,35 +704,37 @@ public class GameEngine {
                 AlienPirates.causeDamage(crew); 
                 typePrint("Oh no those pesky alien pirates invaded the ship and raided our invenory");
                 if (crew.getLostItem() == "")
-                    typePrint("Little did they know we did'nt have any muhahah, that'l teach em");
+                    typePrint("Little did they know we didn't have any muhahah, that'll teach em");
                 else 
                     typePrint("Sadly a " + crew.getLostItem() + " was taken, it will be dearly missed");
                 enterToContinue();
                 break;
             case 0:
-
                 typePrint("Houston we have a problem");
-                typePrint("The followning crew member(s) have been infected with Space Plague, 10 health point have been deducted from each.. Ouch");
+                typePrint("Some crew member(s) have been infected with Space Plague");
+                typePrint("Some health points have been deducted from each.. Ouch");
                 SpacePlague.causeDamage(crew);
-                typePrint("Health will continue to be deducted from all crew members who are infected, until they have taken the vacciene from the outpost");
+                typePrint("Health will continue to be deducted from all crew members who are infected");
+                typePrint("Use the vaccine from the outpost to heal yourself");
                 enterToContinue();
                 break;
         }
 
         ArrayList<CrewMember> deadCrew = crew.updateCrewStatus();
+        String template = "WARNING\n";
+        template += "Crew members below are hungry or tired\n";
+        template += "They will receive more damage when injured\n";
         for (CrewMember c : crewMembers) {
-            if (c.getHunger() > 50) 
-                typePrint("Warning " + c.getName() + " is very hungry, which will cause increased health damge when injured");
-            if (c.getFatique() > 50) 
-                typePrint("Warning " + c.getName() + " is very tired, which will cause increased health damge when injured");
+            template += "-> " + c.getName() + "\n";
         }
+        typePrint(template);
         enterToContinue();
         Utils.clearScreen();
 
         if (deadCrew.size() != 0){
             typePrint("Sady there has been a death(s), the following have died");
             for (CrewMember f : deadCrew) {
-                typePrint(Utils.getDeathMessage() + ": " +  f.getName() + ", Day " + currDay + " 2019");
+                typePrint(Utils.getDeathMessage() + ": " +  f.getName() + ", Day " + currDay + " of 10, 2019");
                 crew.removeCrewMember(f);
             }
             typePrint("Press F to pay respects");
@@ -764,19 +768,22 @@ public class GameEngine {
     public void run() {
         while (true) {
             if (hasGameEnded()) {
-                typePrint("N: You have won this computer game");
-                typePrint("N: Congratulations");
-                reader.close();
+                typePrint("N: The game has ended");
                 return;
             }
             if(currDay != 1)
                 startDay();
             if (hasGameEnded()) {
-                typePrint("N: Cap, theres no easy way to put this, everyone is Dead");
+                typePrint("N: Cap, theres no easy way to put this, everyone is DEAD");
                 typePrint("Better luck next time");
                 return;
             }
-            typePrint("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
+            typePrint("Day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
+            String template = "INFO :: Detected ";
+            if (!planets.get(currentPlanetIndex).stillHasShipPieces())
+                template += "NO ";
+            template += "presence of a ship piece in this planet";
+            typePrint(template);
             boolean shouldRepeat = false;
             do {
                 shouldRepeat = printHomePage();
@@ -794,22 +801,18 @@ public class GameEngine {
         return hasFoundEnoughPieces() || gameLength - currDay == -1 || crewMembers.size() == 0;
     }
 
-    /**
-     * <<auto generated javadoc comment>>
-     * @param args <<Param Desc>>
-     */
-    public static void main(String[] args) {
-        GameEngine g = new GameEngine();
-        System.out.print("Spaceship name: ");
-        g.setupSpaceship("ghfgh");
-        System.out.print("Number of days: ");
-        g.setGameLength(10);
-        g.setShipPieces();
-        g.setupPlanets();
-        System.out.println("Number of crew members (2-4)?");
-        g.setCrewMembers(g.getCrewAmount());
-        g.setupCrew();
-        g.run();
+    public void closeReader() {
+        reader.close();
+    }
+
+    public void printFinalScore() {
+        int shipPiecesScore = foundShipPieces * 1000;
+        int daysScore = currDay * - 100;
+        int finalScore = shipPiecesScore - daysScore;
+        typePrint(String.format("Found ship pieces %1d * 1000 = %4d", foundShipPieces, shipPiecesScore));
+        typePrint(String.format("Days spent        %1d * -100 = %4d", currDay, daysScore));
+        typePrint("                  ------------------ + ");
+        typePrint(String.format("Final score                  %4d", finalScore));
     }
 
 }

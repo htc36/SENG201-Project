@@ -7,10 +7,7 @@ public class Vaccine extends MedicalSupply {
      * Vaccines heals SpacePlague
      */
     public Vaccine() {
-        super("Vaccine", 0, 10, true);
+        super("Vaccine", 0, 20, true);
     }
-
-
-
 
 }
