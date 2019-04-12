@@ -195,7 +195,7 @@ public class Crew {
     public String consumablesToString() {
         String template = "";
         for (Consumable c : consumables.keySet()) {
-            template += c + "\n";
+            template += String.format("%2dx ", getConsumableCount(c.getName())) + c + "\n";
         }
         return template;
     }
