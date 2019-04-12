@@ -11,6 +11,7 @@ import unit.Spaceship;
 public class Crew {
     private TreeMap<Consumable, Integer> consumables;
     private ArrayList<String> consumablesList;
+    private String lostItem;
 
     private int money;
     private ArrayList<CrewMember> crewMembers;
@@ -38,6 +39,15 @@ public class Crew {
 
     public TreeMap<Consumable, Integer> getConsumables() {
         return consumables;
+    }
+
+    public void updateCrewStatus() {
+        for(CrewMember c : crewMembers) {
+             c.increaseFatique(30);
+             c.increaseHunger(30);
+             if(c.isSick())
+                 c.reduceHealth(10);
+        }
     }
 
     /**
@@ -171,6 +181,7 @@ public class Crew {
      * pops a random consumable from crew's inventory
      */
     public void popRandomItem() {
+        lostItem = "";
         Random rand = new Random();
         int totalItems = consumablesList.size();
         if (totalItems == 0) {
@@ -183,11 +194,16 @@ public class Crew {
         for (Consumable c : consumables.keySet()) {
             String consumableName = c.getName();
             if (randomConsumable == consumableName) {
+                lostItem = consumableName; 
                 popConsumable(consumableName);
+            
                 return;
             }
         }
         return;
+    }
+    public String getLostItem(){
+        return lostItem;
     }
 
     /**

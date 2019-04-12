@@ -658,6 +658,7 @@ public class GameEngine {
                 break;
             case "3":
                 commitActionPage();
+                enterToContinue();
                 break;
             case "4":
                 visitOutpost();
@@ -683,12 +684,26 @@ public class GameEngine {
     public void startDay() {
         // We start the day with random events occuring, what fun!
         Random rand = new Random();
-        int randomEvent = rand.nextInt(2);
+        int randomEvent = rand.nextInt(3);
+        crew.updateCrewStatus();
         switch (randomEvent) {
             case 1:
-                AlienPirates.causeDamage(crew); break;
+                AlienPirates.causeDamage(crew); 
+                typePrint("Oh no those pesky alien pirates invaded the ship and raided our invenory");
+                if (crew.getLostItem() == "")
+                    typePrint("Little did they know we did'nt have any muhahah, that'l teach em");
+                else 
+                    typePrint("Sadly a " + crew.getLostItem() + " was taken, it will be dearly missed");
+                enterToContinue();
+                break;
             case 0:
-                SpacePlague.causeDamage(crew); break;
+
+                typePrint("Houston we have a problem");
+                typePrint("The followning crew member(s) have been infected with Space Plague, 10 health point have been deducted from each.. Ouch");
+                SpacePlague.causeDamage(crew);
+                typePrint("Health will continue to be deducted from all crew members who are infected, until they have taken the vacciene from the outpost");
+                enterToContinue();
+                break;
         }
     }
 
@@ -715,8 +730,8 @@ public class GameEngine {
                 reader.close();
                 return;
             }
-
-            startDay();
+            if(currDay != 1)
+                startDay();
             typePrint("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
             boolean shouldRepeat = false;
             do {
