@@ -464,7 +464,7 @@ public class GameEngine {
         CrewMember selectedCrew;
         do {
             do{
-               index = getIntegerInput();
+                index = getIntegerInput();
                 if (index >= crewMembers.size() || index < 0)
                     typePrint("Oh my that crew member dosent exist try again");
             } while (index >= crewMembers.size() || index < 0);    
@@ -524,7 +524,7 @@ public class GameEngine {
                 }else{
                     typePrint("Nice job, you know what they say healthy ship happy crew");
                 } 
-                
+
                 selectedCrew.repairShield(ship, 10);
                 break;
             case 4:
@@ -542,10 +542,19 @@ public class GameEngine {
                 } 
 
                 typePrint("N: " + selectedCrew.getName() + " searches long and hard");
-                Consumable randomItem = outpost.getRandomItem();
-                typePrint("N: and found " + randomItem.getName());
-                crew.addConsumable(randomItem);
-                typePrint("N: Not a ship piece, but still something");
+                if (unlucky(20)) {
+                    typePrint("N: and found nothing");
+                } else if (unlucky(50)) {
+                    Consumable randomItem = outpost.getRandomItem();
+                    typePrint("N: and found " + randomItem.getName());
+                    crew.addConsumable(randomItem);
+                    typePrint("N: Not a ship piece, but still something");
+                } else {
+                    crew.addMoney(50);
+                    typePrint("N: and found money");
+                    typePrint("N: Luckily the currency is used all around the universe");
+                }
+                typePrint();
                 break;
             case 5:
                 Utils.printActionCenterHeader();
@@ -588,7 +597,8 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
 
-                boolean unlucky = unlucky();
+                // percentage chance of 40% happening
+                boolean unlucky = unlucky(40);
                 if (unlucky) {
                     Utils.printSpaceshipTravelling(unlucky);
                     AsteroidBelt.causeDamage(crew);
@@ -614,10 +624,9 @@ public class GameEngine {
         }
     }
 
-    private boolean unlucky() {
+    private boolean unlucky(int happeningChance) {
         Random rand = new Random();
         int chance = rand.nextInt(101);
-        int happeningChance = 40;
 
         return chance < happeningChance;
     }
@@ -654,6 +663,7 @@ public class GameEngine {
                 break;
             case "3":
                 commitActionPage();
+                enterToContinue();
                 break;
             case "4":
                 visitOutpost();
@@ -679,12 +689,53 @@ public class GameEngine {
     public void startDay() {
         // We start the day with random events occuring, what fun!
         Random rand = new Random();
-        int randomEvent = rand.nextInt(2);
+        int randomEvent = rand.nextInt(3);
         switch (randomEvent) {
             case 1:
-                AlienPirates.causeDamage(crew); break;
+                AlienPirates.causeDamage(crew); 
+                typePrint("Oh no those pesky alien pirates invaded the ship and raided our invenory");
+                if (crew.getLostItem() == "")
+                    typePrint("Little did they know we did'nt have any muhahah, that'l teach em");
+                else 
+                    typePrint("Sadly a " + crew.getLostItem() + " was taken, it will be dearly missed");
+                enterToContinue();
+                break;
             case 0:
-                SpacePlague.causeDamage(crew); break;
+
+                typePrint("Houston we have a problem");
+                typePrint("The followning crew member(s) have been infected with Space Plague, 10 health point have been deducted from each.. Ouch");
+                SpacePlague.causeDamage(crew);
+                typePrint("Health will continue to be deducted from all crew members who are infected, until they have taken the vacciene from the outpost");
+                enterToContinue();
+                break;
+        }
+
+        ArrayList<CrewMember> deadCrew = crew.updateCrewStatus();
+        for (CrewMember c : crewMembers) {
+            if (c.getHunger() > 50) 
+                typePrint("Warning " + c.getName() + " is very hungry, which will cause increased health damge when injured");
+            if (c.getFatique() > 50) 
+                typePrint("Warning " + c.getName() + " is very tired, which will cause increased health damge when injured");
+        }
+        enterToContinue();
+        Utils.clearScreen();
+
+        if (deadCrew.size() != 0){
+            typePrint("Sady there has been a death(s), the following have died");
+            for (CrewMember f : deadCrew) {
+                typePrint(Utils.getDeathMessage() + ": " +  f.getName() + ", Day " + currDay + " 2019");
+                crew.removeCrewMember(f);
+            }
+            typePrint("Press F to pay respects");
+            String respects;
+            do {
+                respects = reader.next();
+                if (!respects.equals("F")){
+                    typePrint("Please only F");
+                }
+            }while (!respects.equals("F"));
+            Utils.clearScreen();
+
         }
     }
 
@@ -711,8 +762,13 @@ public class GameEngine {
                 reader.close();
                 return;
             }
-
-            startDay();
+            if(currDay != 1)
+                startDay();
+            if (hasGameEnded()) {
+                typePrint("N: Cap, theres no easy way to put this, everyone is Dead");
+                typePrint("Better luck next time");
+                return;
+            }
             typePrint("You are now on day " + currDay + " (" + (gameLength - currDay) + " day(s) till end of game)");
             boolean shouldRepeat = false;
             do {
@@ -728,7 +784,7 @@ public class GameEngine {
      * @return boolean <<Return Desc>>
      */
     public boolean hasGameEnded() {
-        return hasFoundEnoughPieces() || gameLength - currDay == -1;
+        return hasFoundEnoughPieces() || gameLength - currDay == -1 || crewMembers.size() == 0;
     }
 
     /**
@@ -740,7 +796,7 @@ public class GameEngine {
         System.out.print("Spaceship name: ");
         g.setupSpaceship("ghfgh");
         System.out.print("Number of days: ");
-        g.setGameLength(5);
+        g.setGameLength(10);
         g.setShipPieces();
         g.setupPlanets();
         System.out.println("Number of crew members (2-4)?");

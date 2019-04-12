@@ -268,5 +268,25 @@ public abstract class CrewMember extends Unit {
             useMedicalSupply((MedicalSupply) item);
         }
     }
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
+    @Override
+    public void reduceHealth(int amount){
+        if (hungerLevel > 50)
+            super.reduceHealth(amount * 2);
+        else if (hungerLevel > 80)
+            super.reduceHealth(amount * 3);
+        if (fatiqueLevel > 50)
+            super.reduceHealth(amount * 2);
+        else if (fatiqueLevel > 80)
+            super.reduceHealth(amount * 3);
+    }
+
+
+
+
+
 
 }

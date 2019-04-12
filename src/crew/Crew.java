@@ -11,6 +11,7 @@ import unit.Spaceship;
 public class Crew {
     private TreeMap<Consumable, Integer> consumables;
     private ArrayList<String> consumablesList;
+    private String lostItem;
 
     private int money;
     private ArrayList<CrewMember> crewMembers;
@@ -32,8 +33,34 @@ public class Crew {
         ship = newShip;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param c <<Param Desc>>
+     */
+    public void removeCrewMember(CrewMember c) {
+        crewMembers.remove(c);
+    }
+
     public TreeMap<Consumable, Integer> getConsumables() {
         return consumables;
+    }
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<CrewMember> <<Return Desc>>
+     */
+    public ArrayList<CrewMember> updateCrewStatus() {
+        ArrayList<CrewMember> deadCrew = new ArrayList<>();
+        for(CrewMember c : crewMembers) {
+            c.increaseFatique(30);
+            c.increaseHunger(30);
+            if(c.isSick())
+                c.reduceHealth(100);
+            if (c.getHealth() == 0) {
+                deadCrew.add(c);
+            }
+        }
+        return deadCrew;
     }
 
     /**
@@ -167,6 +194,7 @@ public class Crew {
      * pops a random consumable from crew's inventory
      */
     public void popRandomItem() {
+        lostItem = "";
         Random rand = new Random();
         int totalItems = consumablesList.size();
         if (totalItems == 0) {
@@ -179,11 +207,20 @@ public class Crew {
         for (Consumable c : consumables.keySet()) {
             String consumableName = c.getName();
             if (randomConsumable == consumableName) {
+                lostItem = consumableName; 
                 popConsumable(consumableName);
+
                 return;
             }
         }
         return;
+    }
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
+    public String getLostItem(){
+        return lostItem;
     }
 
     /**
@@ -195,7 +232,7 @@ public class Crew {
     public String consumablesToString() {
         String template = "";
         for (Consumable c : consumables.keySet()) {
-            template += c + "\n";
+            template += String.format("%2dx ", getConsumableCount(c.getName())) + c + "\n";
         }
         return template;
     }
