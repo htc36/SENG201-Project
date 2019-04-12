@@ -33,6 +33,10 @@ public class Crew {
         ship = newShip;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param c <<Param Desc>>
+     */
     public void removeCrewMember(CrewMember c) {
         crewMembers.remove(c);
     }
@@ -41,13 +45,22 @@ public class Crew {
         return consumables;
     }
 
-    public void updateCrewStatus() {
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<CrewMember> <<Return Desc>>
+     */
+    public ArrayList<CrewMember> updateCrewStatus() {
+        ArrayList<CrewMember> deadCrew = new ArrayList<>();
         for(CrewMember c : crewMembers) {
-             c.increaseFatique(30);
-             c.increaseHunger(30);
-             if(c.isSick())
-                 c.reduceHealth(10);
+            c.increaseFatique(30);
+            c.increaseHunger(30);
+            if(c.isSick())
+                c.reduceHealth(100);
+            if (c.getHealth() == 0) {
+                deadCrew.add(c);
+            }
         }
+        return deadCrew;
     }
 
     /**
@@ -196,12 +209,16 @@ public class Crew {
             if (randomConsumable == consumableName) {
                 lostItem = consumableName; 
                 popConsumable(consumableName);
-            
+
                 return;
             }
         }
         return;
     }
+    /**
+     * <<auto generated javadoc comment>>
+     * @return String <<Return Desc>>
+     */
     public String getLostItem(){
         return lostItem;
     }
