@@ -131,6 +131,11 @@ public class GameEngine {
      */
     public String getInputSpaceshipName() {
         String name = reader.next();
+        if (name.isEmpty()) {
+            typePrint("N: Alright leave the ship naming to me");
+            typePrint("N: I shall call this ship SHIP");
+            return "SHIP";
+        }
         return name.replaceAll("\\s","");
     }
 
