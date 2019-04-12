@@ -32,6 +32,10 @@ public class Crew {
         ship = newShip;
     }
 
+    public void removeCrewMember(CrewMember c) {
+        crewMembers.remove(c);
+    }
+
     public TreeMap<Consumable, Integer> getConsumables() {
         return consumables;
     }
