@@ -507,7 +507,14 @@ public class GameEngine {
                     template = "";
                     ConsumablesList.add(c.getName());
                 }
-                int chosenItem = getIntegerInput();
+
+                int chosenItem;
+                do {
+                    chosenItem = getIntegerInput();
+                    if (chosenItem < 0 || chosenItem >= ConsumablesList.size())
+                        typePrint("You can only choose items that are in the list");
+                } while (chosenItem < 0 || chosenItem >= ConsumablesList.size());
+
                 selectedCrew.useItem(crew.popConsumable(ConsumablesList.get(chosenItem)));
                 break;
             case 2:
