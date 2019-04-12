@@ -27,8 +27,6 @@ public class GameEngine {
     private Crew crew;
     private Outpost outpost;
     private int currDay;
-    private int moneySpentInCurrSession;
-    private boolean hasEnded;
     private ArrayList<Planet> planets;
     private int currentPlanetIndex;
     private int foundShipPieces;
@@ -64,8 +62,6 @@ public class GameEngine {
         Consumable[] c = new Consumable[]{f1, f2, f3, f4, f5, f6, m1, m2, m3};
         outpost = new Outpost(c);
 
-        hasEnded = false;
-
         currentPlanetIndex = 0;
         foundShipPieces = 0;
 
@@ -88,7 +84,7 @@ public class GameEngine {
         String[] lastName = {"Pie", "Crane", "Bonsai", "Ilama"};
         for (int i = 0; i < firstName.length; i++) {
             for(int j = 0; j < lastName.length; j++) {
-                planets.add(new Planet(firstName[i] + lastName[j], false));
+                planets.add(new Planet(firstName[i] + " " + lastName[j], false));
                 if (planets.size() >= shipPieces * 3) {
                     return;
                 }
@@ -464,9 +460,9 @@ public class GameEngine {
         do {
             do{
                index = getIntegerInput();
-                if (index >= crewMembers.size() | index < 0)
+                if (index >= crewMembers.size() || index < 0)
                     typePrint("Oh my that crew member dosent exist try again");
-            } while (index >= crewMembers.size() | index < 0);    
+            } while (index >= crewMembers.size() || index < 0);    
             selectedCrew = crewMembers.get(index); 
             if (selectedCrew.getActions() == 0)
                 typePrint("Sorry " + selectedCrew.getName() + " does not have any actions");
@@ -541,10 +537,19 @@ public class GameEngine {
                 } 
 
                 typePrint("N: " + selectedCrew.getName() + " searches long and hard");
-                Consumable randomItem = outpost.getRandomItem();
-                typePrint("N: and found " + randomItem.getName());
-                crew.addConsumable(randomItem);
-                typePrint("N: Not a ship piece, but still something");
+                if (unlucky(20)) {
+                    typePrint("N: and found nothing");
+                } else if (unlucky(50)) {
+                    Consumable randomItem = outpost.getRandomItem();
+                    typePrint("N: and found " + randomItem.getName());
+                    crew.addConsumable(randomItem);
+                    typePrint("N: Not a ship piece, but still something");
+                } else {
+                    crew.addMoney(50);
+                    typePrint("N: and found money");
+                    typePrint("N: Luckily the currency is used all around the universe");
+                }
+                typePrint();
                 break;
             case 5:
                 Utils.printActionCenterHeader();
@@ -587,7 +592,8 @@ public class GameEngine {
                 } while (nextPlanetIndex == currentPlanetIndex);
                 currentPlanetIndex = nextPlanetIndex;
 
-                boolean unlucky = unlucky();
+                // percentage chance of 40% happening
+                boolean unlucky = unlucky(40);
                 if (unlucky) {
                     Utils.printSpaceshipTravelling(unlucky);
                     AsteroidBelt.causeDamage(crew);
@@ -596,7 +602,7 @@ public class GameEngine {
                 }
 
                 Planet currentPlanet = planets.get(currentPlanetIndex);
-                typePrint("N: You have arrived at " + currentPlanet.getName());
+                typePrint("N: You have arrived at planet " + currentPlanet.getName());
                 String shipPiecePresence = "Spaceship Operator: Our radar has detected ";
                 if (!currentPlanet.stillHasShipPieces()) {
                     shipPiecePresence += "NO ";
@@ -613,10 +619,9 @@ public class GameEngine {
         }
     }
 
-    private boolean unlucky() {
+    private boolean unlucky(int happeningChance) {
         Random rand = new Random();
         int chance = rand.nextInt(101);
-        int happeningChance = 40;
 
         return chance < happeningChance;
     }
@@ -761,14 +766,6 @@ public class GameEngine {
         g.setCrewMembers(g.getCrewAmount());
         g.setupCrew();
         g.run();
-        //g.addCrewConsumable(new Food("Spaghetti", 10, 10, 10));
-        //g.addCrewConsumable(new Food("Banana", 10, 10, 10));
-        //g.addCrewConsumable(new MedicalSupply("Vape", 10, 10, false));
-        //g.addCrewConsumable(new MedicalSupply("Eyeballs", 10, 10, true));
-        //g.visitOutpost();
-        //String queries = g.getInputShoppingList(reader);
-        //g.addItemToShoppingBag(queries);
-        //g.viewShoppingBag();
     }
 
 }
