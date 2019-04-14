@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Found any bugs? Email kta79@uclive.ac.nz
+
 import os
 import re
 
@@ -7,7 +9,7 @@ FUNC_REGEX = "^\s+public(\sstatic)?\s([\w<>]+\s)?(\w+)\((.*)\).*"
 
 def get_java_files():
     java_files = []
-    for root, dirs, files in os.walk("./src/"):
+    for root, _, files in os.walk("./src/"):
         if "/test" in root:
             continue
         for f in files:
@@ -22,7 +24,6 @@ def get_functions(java_file):
         lines = f.readlines()
 
     functions = dict()
-    prev_line = ""
     for line in lines:
         matches = re.match(FUNC_REGEX, line) 
         if matches:
@@ -32,15 +33,12 @@ def get_functions(java_file):
             else:
                 functions[matches.group(0)] = ("" , matches.group(4))
 
-        prev_line = line
-
     return functions
 
 def add_comments(java_file, funcs):
     temp_file = java_file + ".tmp"
     record = False
     override = False
-    rewrite = False
     comments = []
     with open(java_file, 'r') as f:
         with open(temp_file, 'w') as t:
