@@ -7,7 +7,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import consumable.Consumable;
-import crew.Crew;
 
 public class Outpost {
     private Consumable[] consumables;

@@ -1,12 +1,9 @@
 package game;
 
-import static game.Utils.typePrint;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import consumable.*;
 import crew.Crew;
@@ -181,17 +178,6 @@ public class GameEngine {
         return names;
     }
 
-    public ArrayList<ArrayList<String>> getPossibleCopilots() {
-        ArrayList<ArrayList<String>> possibleCopilots = new ArrayList<>();
-        for (CrewMember c : crewMembers) {
-            if (c != selectedCrew) {
-                possibleCopilots.add(c.getCrewString());
-            }
-        }
-
-        return possibleCopilots;
-    }
-
     public void selectedCrewUseItem(int itemIndex) {
         String itemName = getCrewConsumables().get(itemIndex).get(0);
         selectedCrew.useItem(crew.popConsumable(itemName));
@@ -298,6 +284,10 @@ public class GameEngine {
 
     public boolean hasOutpostStock(String itemName) {
         return outpost.hasItemInStock(itemName);
+    }
+
+    public void clearShoppingBag() {
+        outpost.clearShoppingBag();
     }
 
     /**

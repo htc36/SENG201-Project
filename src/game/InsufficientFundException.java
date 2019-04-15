@@ -1,4 +1,4 @@
-package crew;
+package game;
 public class InsufficientFundException extends RuntimeException {
     /**
      * <<auto generated javadoc comment>>

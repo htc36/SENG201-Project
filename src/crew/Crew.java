@@ -4,6 +4,7 @@ import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Random;
 
+import game.InsufficientFundException;
 import consumable.Consumable;
 import unit.CrewMember;
 import unit.Spaceship;

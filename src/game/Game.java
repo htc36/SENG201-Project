@@ -9,6 +9,8 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import game.InsufficientFundException;
+
 public class Game {
     private Scanner reader;
     private GameEngine g;
@@ -130,10 +132,15 @@ public class Game {
                 break;
             case "4":
                 visitOutpost();
+                g.clearShoppingBag();
                 getInputShoppingList();
                 TreeMap<String, Integer> shoppingBag = g.getShoppingBag();
                 printShoppingBag(shoppingBag);
-                g.purchaseItems(shoppingBag);
+                try {
+                    g.purchaseItems(shoppingBag);
+                } catch (InsufficientFundException err) {
+                    typePrint("You do not have enough funds");
+                }
                 enterToContinue();
                 break;
             case "5":
@@ -229,7 +236,7 @@ public class Game {
     public void printCrewConsumables(ArrayList<ArrayList<String>> consumables) {
         for (ArrayList<String> itemStats : consumables) {
             String template = "";
-            template += String.format("%4d", itemStats.get(5));
+            template += String.format("%4s", itemStats.get(5));
             template += String.format("%12.12s", itemStats.get(0)); //name
             template += String.format("%6s", itemStats.get(1)); //price
             template += String.format("%5s", itemStats.get(2)); //heal
