@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Sleeper extends CrewMember{
 
     /**
@@ -21,14 +23,11 @@ public class Sleeper extends CrewMember{
         super.sleep(amount * 2);
     }
 
-    /**
-     * toString() method of sleeper
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a sleeper
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Sleeper");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Sleeper");
+        return result;
     }
 
 }

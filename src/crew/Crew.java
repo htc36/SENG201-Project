@@ -49,18 +49,34 @@ public class Crew {
      * <<auto generated javadoc comment>>
      * @return ArrayList<CrewMember> <<Return Desc>>
      */
-    public ArrayList<CrewMember> updateCrewStatus() {
-        ArrayList<CrewMember> deadCrew = new ArrayList<>();
+    public void updateCrewStatus() {
         for(CrewMember c : crewMembers) {
             c.increaseFatique(25);
             c.increaseHunger(25);
             if(c.isSick())
                 c.reduceHealth(5);
             if (c.getHealth() == 0) {
-                deadCrew.add(c);
             }
         }
-        return deadCrew;
+    }
+
+    public ArrayList<CrewMember> getUnhealthyCrewMembers() {
+        ArrayList<CrewMember> unhealthyMembers = new ArrayList<>();
+        for (CrewMember c : crewMembers) {
+            if (c.getHunger() > 50 || c.getFatique() > 50)
+                unhealthyMembers.add(c);
+        }
+        return unhealthyMembers;
+    }
+
+
+    public ArrayList<CrewMember> getDeadCrewMembers() {
+        ArrayList<CrewMember> deadMembers = new ArrayList<>();
+        for (CrewMember c : crewMembers) {
+            if (c.getHealth() == 0)
+                deadMembers.add(c);
+        }
+        return deadMembers;
     }
 
     /**
@@ -173,12 +189,12 @@ public class Crew {
      * it is formatted such that it fits nicely in a table
      * @return String string representation of crew members
      */
-    public String getCrewMemberStatus() {
-        String template = "";
+    public ArrayList<ArrayList<String>> getCrewMemberStatus() {
+        ArrayList<ArrayList<String>> result = new ArrayList<>();
         for (CrewMember c : crewMembers) {
-            template += c + "\n";
+            result.add(c.getCrewString());
         }
-        return template;
+        return result;
     }
 
     /**
@@ -222,20 +238,6 @@ public class Crew {
      */
     public String getLostItem(){
         return lostItem;
-    }
-
-    /**
-     * 
-     * get a string representation of crew's consumables
-     * it is formatted such that it fits nicely in a table
-     * @return String string representation of crew's consumables
-     */
-    public String consumablesToString() {
-        String template = "";
-        for (Consumable c : consumables.keySet()) {
-            template += String.format("%2dx ", getConsumableCount(c.getName())) + c + "\n";
-        }
-        return template;
     }
 
 }

@@ -1,11 +1,11 @@
 package unit;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import consumable.Consumable;
 import consumable.Food;
 import consumable.MedicalSupply;
-import planet.Planet;
 
 public abstract class CrewMember extends Unit {
 
@@ -216,29 +216,6 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * toString() method of crew member
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a crew member
-     */
-    public String toString() {
-        String status = "F";
-        if (hasPlague) {
-            status = "T";
-        }
-
-        String template = String.format("%12.12s", super.getName()); // name
-        template += "%11.11s"; //type
-        template += String.format("%9d", super.getHealth()); // health stat
-        template += String.format("%7d", luck); // luck stat
-        template += String.format("%10.1s", status); // has plague
-        template += String.format("%9d", hungerLevel); // hunger level
-        template += String.format("%10d", fatiqueLevel); // fatique level
-        template += String.format("%10d", actions); // actions
-
-        return template;
-    }   
-
-    /**
      * use a medical item on a crew member, increasing their health
      * and possibly curing them from space plague
      * @param item the medicalsupply object item
@@ -288,9 +265,22 @@ public abstract class CrewMember extends Unit {
             super.reduceHealth(amount * 3);
     }
 
+    public ArrayList<String> getCrewString() {
+        String status = "F";
+        if (hasPlague) {
+            status = "T";
+        }
 
+        ArrayList<String> result = new ArrayList<>();
+        result.add(super.getName());
+        result.add(String.format("%d", super.getHealth()));
+        result.add(String.format("%d", luck));
+        result.add(status);
+        result.add(String.format("%d", hungerLevel));
+        result.add(String.format("%d", fatiqueLevel));
+        result.add(String.format("%d", actions));
 
-
-
+        return result;
+    }
 
 }

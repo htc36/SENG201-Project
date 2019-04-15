@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Builder extends CrewMember{
 
     /**
@@ -22,14 +24,11 @@ public class Builder extends CrewMember{
         super.repairShield(s, amount * 2);
     }
 
-    /**
-     * toString() method of builder
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a builder
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Builder");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Builder");
+        return result;
     }
 
 }

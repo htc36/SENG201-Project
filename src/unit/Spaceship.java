@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Spaceship extends Unit {
 
     /**
@@ -26,16 +28,12 @@ public class Spaceship extends Unit {
         super.reduceHealth(amount);
     }
 
-    /**
-     * string representation of a spaceship Object
-     * it is formatted such that it fits nicely in a table
-     * @return String string representation of a spaceship object
-     */
-    public String toString() {
-        String template = "%12.12s"; // name
-        template += "%8d"; // shield level
+    public ArrayList<String> getShipStatus() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(super.getName());
+        result.add(String.format("%d", super.getHealth()));
 
-        return String.format(template, super.getName(), super.getHealth());
+        return result;
     }
 
 }

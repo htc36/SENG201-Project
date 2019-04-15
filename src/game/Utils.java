@@ -196,7 +196,6 @@ public class Utils {
      * <<auto generated javadoc comment>>
      */
     public static void printActionCenterHeader() {
-        printCrewASCII();
         String topRows = "";
         topRows += "Index        Name       Type   Health   Luck   Plagued   Hunger   Fatique   Actions";
         topRows += "\n";
@@ -298,8 +297,8 @@ public class Utils {
      * <<auto generated javadoc comment>>
      */
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        //System.out.print("\033[H\033[2J");
+        //System.out.flush();
     }
 
     /**

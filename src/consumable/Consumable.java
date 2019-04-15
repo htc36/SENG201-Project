@@ -1,6 +1,7 @@
 package consumable;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 
 public class Consumable implements Comparable<Consumable> {
 
@@ -70,6 +71,13 @@ public class Consumable implements Comparable<Consumable> {
     public int compareTo(Consumable c) {
         String itemName = getName();
         return itemName.compareTo(c.getName());
+    }
 
+    public ArrayList<String> getConsumableStats() {
+        ArrayList<String> template = new ArrayList<>();
+        template.add(String.format("%s", name)); // name
+        template.add(String.format("%d", price)); // price
+        template.add(String.format("%d", healingAmount)); // heal
+        return template;
     }
 }

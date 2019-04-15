@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Actioneer extends CrewMember{
 
     /**
@@ -21,14 +23,11 @@ public class Actioneer extends CrewMember{
 
     }
 
-    /**
-     * toString() method of hardworker
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a hardworker
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Actioneer");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Actioneer");
+        return result;
     }
 
 }

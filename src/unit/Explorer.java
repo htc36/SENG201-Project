@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Explorer extends CrewMember {
 
     /**
@@ -11,14 +13,12 @@ public class Explorer extends CrewMember {
         super(memberName, 75);
     }
 
-    /**
-     * toString() method of explorer
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a explorer
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Explorer");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Explorer");
+        return result;
     }
+
 
 }

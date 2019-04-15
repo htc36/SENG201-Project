@@ -70,29 +70,23 @@ public class Outpost {
         return shoppingBag.contains(itemName);
     }
 
-    /**
-     * the player purchases 
-     * @param c the crew
-     */
-    public void purchaseItems(Crew c) {
-        c.shellOutMoney(totalPrice);
-        for (String itemName : shoppingBag) {
-            Consumable purchasedItem = conMap.get(itemName);
-            c.addConsumable(purchasedItem);
-        }
+    public TreeMap<String, Consumable> getConsumableMap() {
+        return conMap;
+    }
 
-        totalPrice = 0;
+    public void clearShoppingBag() {
         shoppingBag.clear();
+        totalPrice = 0;
     }
 
     /**
      * string representation of items on sale
      * @return String string of items on sale
      */
-    public String saleProductsToString() {
-        String template = "";
+    public ArrayList<ArrayList<String>> getSaleProducts() {
+        ArrayList<ArrayList<String>> template = new ArrayList<>();
         for (Consumable c : consumables) {
-            template += c + "\n";
+            template.add(c.getConsumableStats());
         }
         return template;
     }
@@ -112,20 +106,15 @@ public class Outpost {
         return false;
     }
 
-    /**
-     * string representation of the player's shopping bag
-     * it is formatted such that if fits nicely in a table
-     * @return String string representation of the player's shopping bag
-     */
-    public String shoppingBagToString() {
-        String template = "";
+    public TreeMap<String, Integer> getShoppingBagStatus() {
+        TreeMap<String, Integer> template = new TreeMap<>();
         TreeSet<String> itemsInBag = new TreeSet<String>();
         for (String s : shoppingBag) {
             itemsInBag.add(s);
         }
 
         for (String s : itemsInBag) {
-            template += Collections.frequency(shoppingBag, s) + "x" + s + "\n";
+            template.put(s, Collections.frequency(shoppingBag, s));
         }
 
         return template;

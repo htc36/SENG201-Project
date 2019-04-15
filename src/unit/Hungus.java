@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Hungus extends CrewMember{
 
     /**
@@ -33,14 +35,12 @@ public class Hungus extends CrewMember{
         super.decreaseHunger(amount * 2);
     }
 
-    /**
-     * toString() method of hungus units
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a hungus unit
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Hungus");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Hungus");
+        return result;
     }
+
 
 }

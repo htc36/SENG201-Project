@@ -1,4 +1,7 @@
 package consumable;
+
+import java.util.ArrayList;
+
 public class MedicalSupply extends Consumable {
 
     private boolean healsSpacePlague;
@@ -23,24 +26,14 @@ public class MedicalSupply extends Consumable {
         return healsSpacePlague;
     }
 
-    /**
-     * string representation of a MedicalSupply
-     * it is formatted such that it fits nicely in a table
-     * @return String string representation of a MedicalSupply
-     */
-    public String toString() {
-        String effect = "F";
-        if (healsSpacePlague) {
-            effect = "T";
-        }
-
-        String template = "[Meds] %12.12s"; // name
-        template += "%6d"; // price
-        template += "%5d"; // heal
-        template += "%18s"; // cures plague
-
-        return String.format(template, super.getName(), super.getPrice(),
-                super.getHealingAmount(), effect);
+    public ArrayList<String> getConsumableStats() {
+        ArrayList<String> template = super.getConsumableStats();
+        template.add("[Meds]");
+        if (healsSpacePlague) 
+            template.add("T");
+        else
+            template.add("F");
+        return template;
     }
 
 }

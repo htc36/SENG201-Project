@@ -1,4 +1,7 @@
 package consumable;
+
+import java.util.ArrayList;
+
 public class Food extends Consumable {
 
     private int fillStomach;
@@ -22,19 +25,11 @@ public class Food extends Consumable {
         return fillStomach;
     }
 
-    /**
-     * string representation of a Food 
-     * it is formatted such that it fits nicely in a table
-     * @return String string representation of a Food
-     */
-    public String toString() {
-        String template = "[Food] %12.12s"; // name
-        template += "%6d"; // price
-        template += "%5d"; // heal
-        template += "%5d"; // fill
-
-        return String.format(template, super.getName(), super.getPrice(),
-                super.getHealingAmount(), fillStomach);
+    public ArrayList<String> getConsumableStats() {
+        ArrayList<String> template = super.getConsumableStats();
+        template.add("[Food]");
+        template.add(String.format("%s", fillStomach));
+        return template;
     }
 
 }

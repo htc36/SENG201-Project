@@ -1,5 +1,7 @@
 package unit;
 
+import java.util.ArrayList;
+
 public class Medic extends CrewMember {
 
     /**
@@ -21,14 +23,12 @@ public class Medic extends CrewMember {
         super.reduceHealth(amount / 2);
     }
 
-    /**
-     * toString() method of medic type unit
-     * it is formatted such that it fits nicely in a table
-     * @return String String representation of a medic unit
-     */
     @Override
-    public String toString() {
-        return String.format(super.toString(), "Medic");
+    public ArrayList<String> getCrewString() {
+        ArrayList<String> result = super.getCrewString();
+        result.add("Medic");
+        return result;
     }
+
 
 }
