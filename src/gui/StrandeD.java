@@ -11,6 +11,8 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StrandeD {
 
@@ -37,7 +39,9 @@ public class StrandeD {
 	 */
 	public StrandeD() {
 		initialize();
+		frmWelcomeScreen.setVisible(true);
 	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -59,12 +63,22 @@ public class StrandeD {
 		frmWelcomeScreen.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SetupScreen ss = new SetupScreen();
+				frmWelcomeScreen.dispose();
+			}
+		});
 		btnNewButton.setBorder(null);
 		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setBounds(336, 300, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnNewButton);
 		
 		JButton btnLoad = new JButton("Load");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnLoad.setBorder(null);
 		btnLoad.setBackground(Color.WHITE);
 		btnLoad.setBounds(336, 362, 110, 42);
