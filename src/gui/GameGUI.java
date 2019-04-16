@@ -1,6 +1,10 @@
 package gui;
 
+import game.GameEngine;
+
 public class GameGUI {
+	
+	private GameEngine engine;
 
 	public void launchMainScreen() {
 		StrandeD mainPage = new StrandeD();

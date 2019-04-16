@@ -118,9 +118,9 @@ public class GameEngine {
     public void setupCrew() {
         crew = new Crew(crewMembers, ship);
     }
-    
+
     public boolean isCrewNumberValid(int amount) {
-    	return amount >= 2 && amount <= 4;
+        return amount >= 2 && amount <= 4;
     }
 
     public void addCrewMember(String crewType, String memberName) {

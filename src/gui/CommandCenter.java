@@ -8,6 +8,9 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
+
+import game.GameEngine;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,28 +24,14 @@ public class CommandCenter {
 
 	private JFrame frmCommandCenter;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CommandCenter window = new CommandCenter();
-					window.frmCommandCenter.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEngine engine;
 
 	/**
 	 * Create the application.
 	 */
-	public CommandCenter() {
+	public CommandCenter(GameEngine engine) {
 		initialize();
+		this.engine = engine;
 	}
 
 	/**

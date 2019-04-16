@@ -25,7 +25,7 @@ import javax.swing.event.ChangeEvent;
 public class SetupScreen {
 
 	private JFrame frmCrewSetup;
-	private JTextField textField;
+	private JTextField spaceshipName;
 	private JTextField crewMemberName;
 	private GameEngine engine;
 	private ArrayList<String> crewList;
@@ -109,8 +109,6 @@ public class SetupScreen {
 		if (crewList.size() > 3) {
 			crewList.remove(3);
 		}
-		System.out.println(crewList);
-
 		
 		if (name.length() == 0) {
 			updateCrewMemberDescriptions(type);
@@ -156,13 +154,13 @@ public class SetupScreen {
 		lblDescription.setBounds(387, 136, 158, 36);
 		frmCrewSetup.getContentPane().add(lblDescription);
 		
-		JLabel crewTypeLabel = new JLabel("Explorer");
+		JLabel crewTypeLabel = new JLabel("");
 		crewTypeLabel.setBounds(557, 88, 158, 36);
 		frmCrewSetup.getContentPane().add(crewTypeLabel);
 		
 		typeLabel = crewTypeLabel;
 		
-		JLabel crewDescLabel = new JLabel("Extra Luck Stat");
+		JLabel crewDescLabel = new JLabel("");
 		crewDescLabel.setVerticalAlignment(SwingConstants.TOP);
 		crewDescLabel.setBounds(557, 143, 158, 77);
 		frmCrewSetup.getContentPane().add(crewDescLabel);
@@ -181,11 +179,11 @@ public class SetupScreen {
 		lblSpaceshipName.setBounds(387, 459, 158, 36);
 		frmCrewSetup.getContentPane().add(lblSpaceshipName);
 		
-		textField = new JTextField();
-		textField.setBounds(557, 468, 198, 19);
-		textField.setText("Andromeda");
-		frmCrewSetup.getContentPane().add(textField);
-		textField.setColumns(10);
+		spaceshipName = new JTextField();
+		spaceshipName.setBounds(557, 468, 198, 19);
+		spaceshipName.setText("Andromeda");
+		frmCrewSetup.getContentPane().add(spaceshipName);
+		spaceshipName.setColumns(10);
 		
 		crewMemberName = new JTextField();
 		crewMemberName.setBounds(557, 50, 198, 19);
@@ -275,7 +273,7 @@ public class SetupScreen {
 		frmCrewSetup.getContentPane().add(builderBtn);
 
 		JLabel lblNumShipPieces = new JLabel("6");
-		lblNumShipPieces.setBounds(557, 395, 158, 36);
+		lblNumShipPieces.setBounds(557, 395, 71, 36);
 		frmCrewSetup.getContentPane().add(lblNumShipPieces);
 		
 		numShipPieces = lblNumShipPieces;
@@ -302,10 +300,10 @@ public class SetupScreen {
 		lblNumberOfShip.setBounds(387, 395, 158, 36);
 		frmCrewSetup.getContentPane().add(lblNumberOfShip);
 		
-		JButton btnProceed = new JButton("Proceed");
-		btnProceed.addActionListener(new ActionListener() {
+		JButton proceedBtn = new JButton("Proceed");
+		proceedBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				engine.setupSpaceship(textField.getText());
+				engine.setupSpaceship(spaceshipName.getText());
 				engine.setGameLength(slider.getValue());
 				if (!engine.isCrewNumberValid(crewList.size())) {
 					JOptionPane.showMessageDialog(
@@ -318,10 +316,11 @@ public class SetupScreen {
 				}
 				
 				engine.setCrewMembers(crewList);
+				
 			}
 		});
-		btnProceed.setBounds(659, 507, 114, 25);
-		frmCrewSetup.getContentPane().add(btnProceed);
+		proceedBtn.setBounds(659, 507, 114, 25);
+		frmCrewSetup.getContentPane().add(proceedBtn);
 		
 	}
 }
