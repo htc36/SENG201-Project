@@ -17,31 +17,24 @@ import java.awt.event.ActionEvent;
 public class StrandeD {
 
 	private JFrame frmWelcomeScreen;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StrandeD window = new StrandeD();
-					window.frmWelcomeScreen.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameGUI game;
 
 	/**
 	 * Create the application.
 	 */
-	public StrandeD() {
+	public StrandeD(GameGUI game) {
+		this.game = game;
 		initialize();
 		frmWelcomeScreen.setVisible(true);
 	}
 	
+	public void closeWindow() {
+		frmWelcomeScreen.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeMainScreen(this);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -65,8 +58,7 @@ public class StrandeD {
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SetupScreen ss = new SetupScreen();
-				frmWelcomeScreen.dispose();
+				finishedWindow();
 			}
 		});
 		btnNewButton.setBorder(null);
@@ -75,8 +67,9 @@ public class StrandeD {
 		frmWelcomeScreen.getContentPane().add(btnNewButton);
 		
 		JButton btnLoad = new JButton("Load");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				finishedWindow();
 			}
 		});
 		btnLoad.setBorder(null);

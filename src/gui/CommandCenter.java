@@ -25,13 +25,24 @@ public class CommandCenter {
 	private JFrame frmCommandCenter;
 	private JTable table;
 	private GameEngine engine;
+	private GameGUI game;
 
 	/**
 	 * Create the application.
 	 */
-	public CommandCenter(GameEngine engine) {
-		initialize();
+	public CommandCenter(GameEngine engine, GameGUI game) {
 		this.engine = engine;
+		this.game = game;
+		initialize();
+		frmCommandCenter.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frmCommandCenter.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeCommandCenter(this);
 	}
 
 	/**
@@ -51,28 +62,6 @@ public class CommandCenter {
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Crew Status", null, panel, null);
 		panel.setLayout(null);
-		
-		String[] columnNames = {"First Name",
-                "Last Name",
-                "Sport",
-                "# of Years",
-                "Vegetarian"};
-		Object[][] data = {
-			    {"Kathy", "Smith",
-			     "Snowboarding", new Integer(5), new Boolean(false)},
-			    {"John", "Doe",
-			     "Rowing", new Integer(3), new Boolean(true)},
-			    {"Sue", "Black",
-			     "Knitting", new Integer(2), new Boolean(false)},
-			    {"Jane", "White",
-			     "Speed reading", new Integer(20), new Boolean(true)},
-			    {"Joe", "Brown",
-			     "Pool", new Integer(10), new Boolean(false)}
-			};
-
-		table = new JTable(data, columnNames);
-		table.setBounds(12, 12, 759, 457);
-		panel.add(table);
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Commit Actions", null, panel_2, null);

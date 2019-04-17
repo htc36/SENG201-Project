@@ -33,33 +33,26 @@ public class SetupScreen {
 	private JLabel typeLabel;
 	private JLabel descLabel;
 	private JLabel numShipPieces;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SetupScreen window = new SetupScreen();
-					window.frmCrewSetup.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameGUI game;
 
 	/**
 	 * Create the application.
 	 */
-	public SetupScreen() {
-		engine = new GameEngine();
+	public SetupScreen(GameEngine engine, GameGUI game) {
+		this.engine = engine;
+		this.game = game;
 		crewList = new ArrayList<>();
 		iconsList = new ArrayList<>();
 		initialize();
-
 		frmCrewSetup.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frmCrewSetup.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 	
 	private void updateCrewMemberIcons() {		
@@ -316,7 +309,7 @@ public class SetupScreen {
 				}
 				
 				engine.setCrewMembers(crewList);
-				
+				finishedWindow();
 			}
 		});
 		proceedBtn.setBounds(659, 507, 114, 25);
