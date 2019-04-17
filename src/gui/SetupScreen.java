@@ -309,6 +309,7 @@ public class SetupScreen {
 				}
 				
 				engine.setCrewMembers(crewList);
+				engine.setupCrew();
 				finishedWindow();
 			}
 		});
