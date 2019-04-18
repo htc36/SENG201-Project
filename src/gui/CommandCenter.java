@@ -1,17 +1,12 @@
 package gui;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.border.MatteBorder;
 
 import game.GameEngine;
 
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -20,7 +15,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
-import javax.swing.JTable;
+import java.awt.Component;
+import javax.swing.JMenuBar;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class CommandCenter {
 
@@ -57,7 +56,7 @@ public class CommandCenter {
 		frmCommandCenter.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(12, 0, 1000, 682);
+		tabbedPane.setBounds(12, 0, 1000, 648);
 		frmCommandCenter.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
@@ -172,43 +171,43 @@ public class CommandCenter {
 		JLabel label_1 = new JLabel("Type");
 		label_1.setHorizontalAlignment(SwingConstants.LEFT);
 		label_1.setText(crewTypes);
-		label_1.setBounds(285, 114, 82, 471);
+		label_1.setBounds(285, 112, 82, 471);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("Type");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setText(crewHealth);
-		label_2.setBounds(389, 114, 82, 471);
+		label_2.setBounds(389, 112, 82, 471);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("Type");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setText(crewLuck);
-		label_3.setBounds(483, 103, 82, 471);
+		label_3.setBounds(483, 112, 82, 471);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("Type");
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		label_4.setText(crewPlagued);
-		label_4.setBounds(577, 103, 82, 471);
+		label_4.setBounds(577, 112, 82, 471);
 		panel.add(label_4);
 		
 		JLabel label_5 = new JLabel("Type");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		label_5.setText(crewHunger);
-		label_5.setBounds(676, 114, 82, 471);
+		label_5.setBounds(676, 112, 82, 471);
 		panel.add(label_5);
 		
 		JLabel label_6 = new JLabel("Type");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		label_6.setText(crewFatigue);
-		label_6.setBounds(780, 103, 82, 471);
+		label_6.setBounds(780, 112, 82, 471);
 		panel.add(label_6);
 		
 		JLabel label_7 = new JLabel("Type");
 		label_7.setHorizontalAlignment(SwingConstants.CENTER);
 		label_7.setText(crewActions);
-		label_7.setBounds(886, 114, 82, 471);
+		label_7.setBounds(886, 112, 82, 471);
 		panel.add(label_7);
 		
 		JPanel panel_2 = new JPanel();
@@ -220,7 +219,7 @@ public class CommandCenter {
 		panel_1.setLayout(null);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(30, 303, 714, 14);
+		progressBar.setBounds(30, 303, 923, 45);
 		progressBar.setValue(engine.getSpaceshipHealth());
 		progressBar.setStringPainted(true);
 		panel_1.add(progressBar);
@@ -234,39 +233,71 @@ public class CommandCenter {
 		panel_3.setLayout(null);
 		
 		JButton btnNewButton = new JButton("End day");
-		btnNewButton.setBounds(898, 694, 114, 25);
+		btnNewButton.setBounds(898, 673, 114, 25);
 		frmCommandCenter.getContentPane().add(btnNewButton);
 		
 		JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found");
-		lblShipPiecesFound.setBounds(12, 694, 136, 25);
+		lblShipPiecesFound.setBounds(12, 673, 136, 25);
 		frmCommandCenter.getContentPane().add(lblShipPiecesFound);
 		
 		JLabel lblCurrentDay = new JLabel("Current Day");
-		lblCurrentDay.setBounds(368, 694, 99, 25);
+		lblCurrentDay.setBounds(359, 673, 99, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentDay);
 		
 		JLabel lblX = new JLabel("x");
-		lblX.setBounds(160, 694, 55, 25);
+		lblX.setBounds(160, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(lblX);
 		
 		JLabel lblOutOf = new JLabel("out of");
-		lblOutOf.setBounds(186, 694, 55, 25);
+		lblOutOf.setBounds(186, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(lblOutOf);
 		
 		JLabel lblY = new JLabel("y");
-		lblY.setBounds(241, 694, 55, 25);
+		lblY.setBounds(241, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(lblY);
 		
 		JLabel label_8 = new JLabel("x");
-		label_8.setBounds(465, 694, 55, 25);
+		label_8.setBounds(456, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(label_8);
 		
 		JLabel label_9 = new JLabel("out of");
-		label_9.setBounds(491, 694, 55, 25);
+		label_9.setBounds(482, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(label_9);
 		
 		JLabel label_10 = new JLabel("y");
-		label_10.setBounds(546, 694, 55, 25);
+		label_10.setBounds(537, 673, 55, 25);
 		frmCommandCenter.getContentPane().add(label_10);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmCommandCenter.setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("New menu");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmSave = new JMenuItem("Save");
+		mnNewMenu.add(mntmSave);
+		
+		JMenuItem mntmLoad = new JMenuItem("Load");
+		mnNewMenu.add(mntmLoad);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnNewMenu.add(mntmExit);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

@@ -481,6 +481,10 @@ public class GameEngine {
     public void asteroidCausingDamage() {
         AsteroidBelt.causeDamage(crew);
     }
+    
+    public void saveGame() {
+    	
+    }
 
     // GAME RELATED FUNCTIONS END
 
