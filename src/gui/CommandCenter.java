@@ -61,6 +61,7 @@ public class CommandCenter {
     
     private JLabel selectedItem;
     private ShoppingCart cart;
+    private JLabel cartPrice;
     
     /**
      * Create the application.
@@ -502,10 +503,12 @@ public class CommandCenter {
         VisitOutpost.add(lblTotalPrice);
         
         JLabel lblPrice_1 = new JLabel("price");
+        lblPrice_1.setText("$0");
         lblPrice_1.setBounds(715, purchase_y, 106, 25);
         VisitOutpost.add(lblPrice_1);
+        cartPrice = lblPrice_1;
 
-        cart = new ShoppingCart(VisitOutpost, shopping_x, 126);
+        cart = new ShoppingCart(VisitOutpost, shopping_x, 126, engine, cartPrice);
         
         /// SHOPPING CART END
         /// SHOPPING CART END

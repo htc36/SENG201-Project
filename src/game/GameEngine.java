@@ -347,6 +347,10 @@ public class GameEngine {
     public void removeItemFromShoppingBag(String item) {
         outpost.removeItemFromShoppingBag(item);
     }
+    
+    public int getShoppingBagTotalPrice() {
+    	return outpost.getTotalPrice();
+    }
     //
     // OUTPOST RELATED FUNCTIONS END
 
