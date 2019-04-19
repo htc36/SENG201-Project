@@ -5,10 +5,13 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import game.GameEngine;
+import game.InsufficientFundException;
 
 public class ShoppingCart {
 	
@@ -84,8 +87,25 @@ public class ShoppingCart {
 		}
 	}
 	
+	public void purchaseItems() {
+		try {
+		engine.purchaseItems(engine.getShoppingBag());
+		} catch (InsufficientFundException e) {
+			// TODO: open a small error box
+			JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+			return;
+		}
+		for (JCheckBox c : checkboxes) {
+			panel.remove(c);
+		}
+		checkboxes.clear();
+		priceLabel.setText(String.valueOf(engine.getShoppingBagTotalPrice()));
+        panel.revalidate(); // refresh the panel
+        panel.repaint();    // refresh the panel
+	}
+	
 	public int getTotalPrice() {
 		return engine.getShoppingBagTotalPrice();
 	}
-
+	
 }

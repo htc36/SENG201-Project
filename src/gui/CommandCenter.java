@@ -495,6 +495,11 @@ public class CommandCenter {
         int purchase_y = 540;
 
         JButton btnPurchase = new JButton("Purchase");
+        btnPurchase.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		cart.purchaseItems();
+        	}
+        });
         btnPurchase.setBounds(852, purchase_y, 131, 25);
         VisitOutpost.add(btnPurchase);
         
@@ -635,6 +640,8 @@ public class CommandCenter {
         btnAddToCart.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		String itemQuery = itemNames.getText();
+        		if (itemQuery.equals(""))
+        			return;
         		int amount = (Integer) spinner.getValue();
         		cart.addItemToShoppingCart(amount + "x" + itemQuery);
         	}
@@ -652,10 +659,6 @@ public class CommandCenter {
         separator.setOrientation(SwingConstants.VERTICAL);
         separator.setBounds(564, 26, 18, 554);
         VisitOutpost.add(separator);
-        
-        JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-        chckbxNewCheckBox.setBounds(610, 58, 126, 23);
-        VisitOutpost.add(chckbxNewCheckBox);
         
         
         JButton btnNewButton = new JButton("End day");
