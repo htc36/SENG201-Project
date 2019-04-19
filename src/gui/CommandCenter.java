@@ -7,29 +7,26 @@ import javax.swing.SwingConstants;
 
 import game.GameEngine;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
-import java.awt.Component;
 import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JSeparator;
 
 public class CommandCenter {
 
@@ -95,8 +92,6 @@ public class CommandCenter {
         String itemCures = "<html>";
         String itemFills = "<html>";
 
-        int numNewlines = 2;
-        
         ArrayList<String> item = null;
         for (ArrayList<String> i : engine.getOutpostSaleProducts()) {
         	if (i.get(0).equals(itemName)) {
@@ -144,7 +139,7 @@ public class CommandCenter {
         this.itemFills.setText(itemFills);
     }
 
-    public void showItemDetails(String item) {
+    private void showItemDetails(String item) {
     	selectedItem.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/medic.png")));
     	getItemDescription(item);
     }
@@ -274,6 +269,9 @@ public class CommandCenter {
                 }
             }
         });
+
+
+        int x = 20;
 
         JLabel lblName = new JLabel("Name");
         lblName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -417,12 +415,16 @@ public class CommandCenter {
         VisitOutpost.setLayout(null);
 
         JLabel lblItemsOnSale = new JLabel("Items on sale:");
-        lblItemsOnSale.setBounds(12, 12, 223, 34);
+        lblItemsOnSale.setBounds(20, 12, 121, 34);
         VisitOutpost.add(lblItemsOnSale);
 
         JLabel lblName_1 = new JLabel("Name");
-        lblName_1.setBounds(12, 62, 66, 15);
+        lblName_1.setBounds(x, 62, 66, 15);
         VisitOutpost.add(lblName_1);
+
+        JLabel lblType_1 = new JLabel("Type");
+        lblType_1.setBounds(132, 62, 66, 15);
+        VisitOutpost.add(lblType_1);
 
         JLabel lblPrice = new JLabel("Price");
         lblPrice.setBounds(215, 62, 66, 15);
@@ -439,160 +441,199 @@ public class CommandCenter {
         JLabel lblCuresPlague = new JLabel("Cures Plague");
         lblCuresPlague.setBounds(449, 62, 106, 15);
         VisitOutpost.add(lblCuresPlague);
-
-        JLabel label_11 = new JLabel("");
-        itemNames = label_11;
-        label_11.setBounds(12, 91, 106, 97);
-        VisitOutpost.add(label_11);
-
-        JLabel label_12 = new JLabel("");
-        itemPrices = label_12;
-        label_12.setBounds(215, 89, 66, 97);
-        VisitOutpost.add(label_12);
-
-        JLabel label_13 = new JLabel("");
-        itemHealings = label_13;
-        label_13.setBounds(293, 89, 66, 97);
-        VisitOutpost.add(label_13);
-
-        JLabel label_14 = new JLabel("");
-        itemFills = label_14;
-        label_14.setBounds(371, 89, 66, 97);
-        VisitOutpost.add(label_14);
-
-        JLabel label_15 = new JLabel("");
-        itemCures = label_15;
-        label_15.setBounds(449, 89, 80, 97);
-        VisitOutpost.add(label_15);
-
-        JLabel label_16 = new JLabel("Types");
-        label_16.setBounds(132, 62, 106, 15);
-        VisitOutpost.add(label_16);
-
-        JLabel label_17 = new JLabel("");
-        label_17.setBounds(132, 91, 66, 97);
-        VisitOutpost.add(label_17);
-        itemTypes= label_17;
         
+        /// ITEM DESCRIPTIONS START
+        /// ITEM DESCRIPTIONS START
+        /// ITEM DESCRIPTIONS START
+
+        int itemDescription_y = 90;
+
+        JLabel itemName = new JLabel("");
+        itemNames = itemName;
+        itemName.setBounds(x, itemDescription_y, 106, 97);
+        VisitOutpost.add(itemName);
+
+        JLabel itemPrice = new JLabel("");
+        itemPrices = itemPrice;
+        itemPrice.setBounds(215, itemDescription_y, 66, 97);
+        VisitOutpost.add(itemPrice);
+
+        JLabel itemHeal = new JLabel("");
+        itemHealings = itemHeal;
+        itemHeal.setBounds(293, itemDescription_y, 66, 97);
+        VisitOutpost.add(itemHeal);
+
+        JLabel itemFill = new JLabel("");
+        itemFills = itemFill;
+        itemFill.setBounds(371, itemDescription_y, 66, 97);
+        VisitOutpost.add(itemFill);
+
+        JLabel itemCure = new JLabel("");
+        itemCures = itemCure;
+        itemCure.setBounds(449, itemDescription_y, 80, 97);
+        VisitOutpost.add(itemCure);
+
+        JLabel itemType = new JLabel("");
+        itemType.setBounds(137, itemDescription_y, 66, 97);
+        VisitOutpost.add(itemType);
+        itemTypes= itemType;
+
+        /// ITEM DESCRIPTIONS END
+        /// ITEM DESCRIPTIONS END
+        /// ITEM DESCRIPTIONS END
+        
+        /// SHOPPING CART START
+        /// SHOPPING CART START
+        /// SHOPPING CART START
+
+        int shopping_x = 600;
+
         JLabel lblShoppingBag = new JLabel("Your shopping cart:");
-        lblShoppingBag.setBounds(598, 12, 223, 34);
+        lblShoppingBag.setBounds(shopping_x, 12, 223, 34);
         VisitOutpost.add(lblShoppingBag);
         
         JLabel label_18 = new JLabel("</html>");
-        label_18.setBounds(598, 91, 223, 338);
+        label_18.setBounds(shopping_x, 91, 223, 338);
         VisitOutpost.add(label_18);
         
-        JLabel lblYouSelected = new JLabel("You selected:");
-        lblYouSelected.setBounds(12, 174, 106, 34);
-        VisitOutpost.add(lblYouSelected);
-        
-        JSpinner spinner = new JSpinner();
-        spinner.setBounds(12, 200, 66, 45);
-        VisitOutpost.add(spinner);
-        
-        JLabel lblSelecteditem = new JLabel("selectedItem");
-        lblSelecteditem.setBounds(132, 154, 106, 106);
-        VisitOutpost.add(lblSelecteditem);
-        selectedItem = lblSelecteditem;
-        
+        int purchase_y = 540;
+
         JButton btnPurchase = new JButton("Purchase");
-        btnPurchase.setBounds(852, 538, 131, 25);
+        btnPurchase.setBounds(852, purchase_y, 131, 25);
         VisitOutpost.add(btnPurchase);
         
         JLabel lblTotalPrice = new JLabel("Total price:");
-        lblTotalPrice.setBounds(600, 538, 106, 25);
+        lblTotalPrice.setBounds(shopping_x, purchase_y, 106, 25);
         VisitOutpost.add(lblTotalPrice);
         
         JLabel lblPrice_1 = new JLabel("price");
-        lblPrice_1.setBounds(715, 538, 106, 25);
+        lblPrice_1.setBounds(715, purchase_y, 106, 25);
         VisitOutpost.add(lblPrice_1);
         
+        /// SHOPPING CART END
+        /// SHOPPING CART END
+        /// SHOPPING CART END
+        
+        // ITEM ICONS START
+        // ITEM ICONS START
         // ITEM ICONS START
 
-        int consumablesIconSize = 80;
+        int consumablesIconSize = 100;
+        int y = 250;
+        int spacing = 20;
         
-        JButton btnNewButton_1 = new JButton("f1");
+        JButton btnNewButton_1 = new JButton("f1"); // Brownie
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("Brownie");
         	}
         });
-        btnNewButton_1.setBounds(18, 274, 100, 100);
+        btnNewButton_1.setBounds(x, y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnNewButton_1);
         
-        JButton btnF = new JButton("f2");
+        JButton btnF = new JButton("f2"); // FriedRice
         btnF.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnF.setBounds(138, 272, 100, 100);
+        btnF.setBounds(x + spacing + consumablesIconSize, y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF);
         
-        JButton btnF_1 = new JButton("f3");
+        JButton btnF_1 = new JButton("f3"); // Dumplings
         btnF_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnF_1.setBounds(253, 274, 100, 100);
+        btnF_1.setBounds(x + 2 * (spacing + consumablesIconSize), y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_1);
         
-        JButton btnF_2 = new JButton("f4");
+        JButton btnF_2 = new JButton("f4"); // Space cake
         btnF_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnF_2.setBounds(18, 386, 100, 100);
+        btnF_2.setBounds(x, y + consumablesIconSize + spacing, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_2);
         
-        JButton btnF_3 = new JButton("f5");
+        JButton btnF_3 = new JButton("f5"); // Tikka Masala
         btnF_3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnF_3.setBounds(135, 386, 100, 100);
+        btnF_3.setBounds(x + spacing + consumablesIconSize, y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_3);
         
-        JButton btnF_4 = new JButton("f6");
+        JButton btnF_4 = new JButton("f6"); // Hotbot
         btnF_4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnF_4.setBounds(253, 386, 100, 100);
+        btnF_4.setBounds(x + 2 * (spacing + consumablesIconSize), y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_4);
-        
-        JButton btnM_2 = new JButton("m3");
-        btnM_2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
-        	}
-        });
-        btnM_2.setBounds(253, 509, 100, 100);
-        VisitOutpost.add(btnM_2);
-        
-        JButton btnM = new JButton("m1");
+
+        JButton btnM = new JButton("m1"); // Poly Juice
         btnM.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnM.setBounds(12, 509, 100, 100);
+        btnM.setBounds(x, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnM);
         
-        JButton btnM_1 = new JButton("m2");
+        JButton btnM_1 = new JButton("m2"); // Pickled Plum
         btnM_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("f1");
         	}
         });
-        btnM_1.setBounds(129, 509, 100, 100);
+        btnM_1.setBounds(x + spacing + consumablesIconSize, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnM_1);
 
+        JButton btnM_2 = new JButton("m3"); // Vaccine
+        btnM_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		showItemDetails("f1");
+        	}
+        });
+        btnM_2.setBounds(x + 2 * (spacing + consumablesIconSize), y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+        VisitOutpost.add(btnM_2);
+        
         // ITEM ICONS END
+        // ITEM ICONS END
+        // ITEM ICONS END
+        
+        /// SELECTED ITEM START
+        /// SELECTED ITEM START
+        /// SELECTED ITEM START
+        
+        int selected_x = 380;
+
+        JLabel lblYouSelected = new JLabel("You selected:");
+        lblYouSelected.setBounds(selected_x, y, 106, 34);
+        VisitOutpost.add(lblYouSelected);
+        
+        JSpinner spinner = new JSpinner();
+        spinner.setBounds(selected_x, 413, 66, 45);
+        VisitOutpost.add(spinner);
+        
+        JLabel lblSelecteditem = new JLabel("selectedItem");
+        lblSelecteditem.setBounds(selected_x, 282, 106, 106);
+        VisitOutpost.add(lblSelecteditem);
+        selectedItem = lblSelecteditem;
+        
+        JSeparator separator = new JSeparator();
+        separator.setOrientation(SwingConstants.VERTICAL);
+        separator.setBounds(564, 26, 18, 554);
+        VisitOutpost.add(separator);
+        
+        /// SELECTED ITEM END
+        /// SELECTED ITEM END
+        /// SELECTED ITEM END
         
         JButton btnNewButton = new JButton("End day");
         btnNewButton.addActionListener(new ActionListener() {
