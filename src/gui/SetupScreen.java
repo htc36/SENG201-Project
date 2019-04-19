@@ -125,6 +125,9 @@ public class SetupScreen {
     }
 
     private void deleteCrewMember(int index) {
+    	if (crewList.size() == 0)
+    		return;
+
         crewList.remove(index);
         iconsList.get(index).setIcon(null);
         updateCrewMemberIcons();
