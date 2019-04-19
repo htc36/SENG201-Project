@@ -10,6 +10,8 @@ import game.GameEngine;
 import java.util.ArrayList;
 
 import javax.swing.JTabbedPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
@@ -27,6 +29,9 @@ import javax.swing.JSpinner;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JSeparator;
+import javax.swing.JCheckBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class CommandCenter {
 
@@ -55,6 +60,7 @@ public class CommandCenter {
     private JLabel itemFills;
     
     private JLabel selectedItem;
+    private ShoppingCart cart;
     
     /**
      * Create the application.
@@ -85,12 +91,12 @@ public class CommandCenter {
     }
 
     private void getItemDescription(String itemName) {
-        String itemNames = "<html>";
-        String itemTypes = "<html>";
-        String itemHealings = "<html>";
-        String itemPrices = "<html>";
-        String itemCures = "<html>";
-        String itemFills = "<html>";
+        String itemNames = "";
+        String itemTypes = "";
+        String itemHealings = "";
+        String itemPrices = "";
+        String itemCures = "";
+        String itemFills = "";
 
         ArrayList<String> item = null;
         for (ArrayList<String> i : engine.getOutpostSaleProducts()) {
@@ -123,13 +129,6 @@ public class CommandCenter {
 			itemCures += cures;
 			itemFills += "F";
 		}
-           
-        itemNames += "</html>";
-        itemTypes += "</html>";
-        itemHealings += "</html>";
-        itemPrices += "</html>";
-        itemCures += "</html>";
-        itemFills += "</html>";
 
         this.itemNames.setText(itemNames);
         this.itemTypes.setText(itemTypes);
@@ -492,10 +491,6 @@ public class CommandCenter {
         lblShoppingBag.setBounds(shopping_x, 12, 223, 34);
         VisitOutpost.add(lblShoppingBag);
         
-        JLabel label_18 = new JLabel("</html>");
-        label_18.setBounds(shopping_x, 91, 223, 338);
-        VisitOutpost.add(label_18);
-        
         int purchase_y = 540;
 
         JButton btnPurchase = new JButton("Purchase");
@@ -509,6 +504,8 @@ public class CommandCenter {
         JLabel lblPrice_1 = new JLabel("price");
         lblPrice_1.setBounds(715, purchase_y, 106, 25);
         VisitOutpost.add(lblPrice_1);
+
+        cart = new ShoppingCart(VisitOutpost, shopping_x, 126);
         
         /// SHOPPING CART END
         /// SHOPPING CART END
@@ -617,7 +614,12 @@ public class CommandCenter {
         lblYouSelected.setBounds(selected_x, y, 106, 34);
         VisitOutpost.add(lblYouSelected);
         
-        JSpinner spinner = new JSpinner();
+        int spinnerMin = 0;
+        int spinnerMax = 50;
+        int spinnerStep = 1;
+        int spinnerInitValue = 0;
+        SpinnerModel model = new SpinnerNumberModel(spinnerInitValue, spinnerMin, spinnerMax, spinnerStep);
+        JSpinner spinner = new JSpinner(model);
         spinner.setBounds(selected_x, 413, 66, 45);
         VisitOutpost.add(spinner);
         
@@ -626,14 +628,32 @@ public class CommandCenter {
         VisitOutpost.add(lblSelecteditem);
         selectedItem = lblSelecteditem;
         
+        JButton btnAddToCart = new JButton("Add to cart");
+        btnAddToCart.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		String itemQuery = itemNames.getText();
+        		int amount = (Integer) spinner.getValue();
+        		cart.addItemToShoppingCart(amount + "x" + itemQuery);
+        	}
+        });
+        btnAddToCart.setBounds(380, 472, 114, 25);
+        VisitOutpost.add(btnAddToCart);
+        
+        /// SELECTED ITEM END
+        /// SELECTED ITEM END
+        /// SELECTED ITEM END
+
+
+        // SEPARATOR IN THE MIDDLE
         JSeparator separator = new JSeparator();
         separator.setOrientation(SwingConstants.VERTICAL);
         separator.setBounds(564, 26, 18, 554);
         VisitOutpost.add(separator);
         
-        /// SELECTED ITEM END
-        /// SELECTED ITEM END
-        /// SELECTED ITEM END
+        JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+        chckbxNewCheckBox.setBounds(610, 58, 126, 23);
+        VisitOutpost.add(chckbxNewCheckBox);
+        
         
         JButton btnNewButton = new JButton("End day");
         btnNewButton.addActionListener(new ActionListener() {
