@@ -202,7 +202,7 @@ public abstract class CrewMember extends Unit {
         if (actions > 0) {
             actions--;
         } else {
-            throw new InsufficientActionException();
+            throw new InsufficientActionException("Selected unit does not have enough actions");
         }
     }
 

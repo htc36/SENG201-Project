@@ -213,6 +213,10 @@ public class GameEngine {
     public boolean selectedCrewSearchPlanet() {
         return selectedCrew.searchPlanet();
     }
+    
+    public void selectedCrewCancel() {
+    	selectedCrew = null;
+    }
 
     public String crewGetRandomItem() {
         Consumable item = outpost.getRandomItem();
