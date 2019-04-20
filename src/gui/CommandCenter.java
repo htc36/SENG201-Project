@@ -140,7 +140,8 @@ public class CommandCenter {
     }
 
     private void showItemDetails(String item) {
-    	selectedItem.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/medic.png")));
+    	String imageName = "/img/" + item.toLowerCase() + ".png";
+		selectedItem.setIcon(new ImageIcon(CommandCenter.class.getResource(imageName)));
     	getItemDescription(item);
     }
 
@@ -384,7 +385,7 @@ public class CommandCenter {
 
         JPanel spaceshipStatus = new JPanel();
 
-        spaceshipStatus.setBackground(Color.WHITE);
+        spaceshipStatus.setBackground(Color.LIGHT_GRAY);
         tabbedPane.addTab("Spaceship Status", null, spaceshipStatus, null);
         spaceshipStatus.setLayout(null);
 
@@ -404,11 +405,6 @@ public class CommandCenter {
         spaceshipIcon.setBounds(12, 12, 971, 396);
         spaceshipStatus.add(spaceshipIcon);
         this.spaceshipIcon = spaceshipIcon;
-        
-        JLabel lblBg = new JLabel("bg");
-        lblBg.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/black16.jpg")));
-        lblBg.setBounds(0, 0, 995, 621);
-        spaceshipStatus.add(lblBg);
 
         JPanel VisitOutpost = new JPanel();
         tabbedPane.addTab("Visit Outpost", null, VisitOutpost, null);
@@ -492,7 +488,7 @@ public class CommandCenter {
         lblShoppingBag.setBounds(shopping_x, 12, 223, 34);
         VisitOutpost.add(lblShoppingBag);
         
-        int purchase_y = 540;
+        int purchase_y = 250;
 
         JButton btnPurchase = new JButton("Purchase");
         btnPurchase.addActionListener(new ActionListener() {
@@ -513,7 +509,7 @@ public class CommandCenter {
         VisitOutpost.add(lblPrice_1);
         cartPrice = lblPrice_1;
 
-        cart = new ShoppingCart(VisitOutpost, shopping_x, 126, engine, cartPrice);
+        cart = new ShoppingCart(VisitOutpost, shopping_x, 50, engine, cartPrice);
         
         /// SHOPPING CART END
         /// SHOPPING CART END
@@ -527,7 +523,9 @@ public class CommandCenter {
         int y = 250;
         int spacing = 20;
         
-        JButton btnNewButton_1 = new JButton("f1"); // Brownie
+        JButton btnNewButton_1 = new JButton(""); // Brownie
+        btnNewButton_1.setBackground(Color.DARK_GRAY);
+        btnNewButton_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
         		showItemDetails("Brownie");
@@ -536,73 +534,89 @@ public class CommandCenter {
         btnNewButton_1.setBounds(x, y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnNewButton_1);
         
-        JButton btnF = new JButton("f2"); // FriedRice
+        JButton btnF = new JButton(""); // FriedRice
+        btnF.setBackground(Color.DARK_GRAY);
+        btnF.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
         btnF.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("FriedRice");
         	}
         });
         btnF.setBounds(x + spacing + consumablesIconSize, y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF);
         
-        JButton btnF_1 = new JButton("f3"); // Dumplings
+        JButton btnF_1 = new JButton(""); // Dumplings
+        btnF_1.setBackground(Color.DARK_GRAY);
+        btnF_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
         btnF_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("Dumplings");
         	}
         });
         btnF_1.setBounds(x + 2 * (spacing + consumablesIconSize), y, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_1);
         
-        JButton btnF_2 = new JButton("f4"); // Space cake
+        JButton btnF_2 = new JButton(""); // Space cake
+        btnF_2.setBackground(Color.DARK_GRAY);
+        btnF_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
         btnF_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("SpaceCake");
         	}
         });
         btnF_2.setBounds(x, y + consumablesIconSize + spacing, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_2);
         
-        JButton btnF_3 = new JButton("f5"); // Tikka Masala
+        JButton btnF_3 = new JButton(""); // Tikka Masala
+        btnF_3.setBackground(Color.DARK_GRAY);
+        btnF_3.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
         btnF_3.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("TikkaMasala");
         	}
         });
         btnF_3.setBounds(x + spacing + consumablesIconSize, y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_3);
         
-        JButton btnF_4 = new JButton("f6"); // Hotbot
+        JButton btnF_4 = new JButton(""); // Hotbot
+        btnF_4.setBackground(Color.DARK_GRAY);
+        btnF_4.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
         btnF_4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("Hotbot");
         	}
         });
         btnF_4.setBounds(x + 2 * (spacing + consumablesIconSize), y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnF_4);
 
-        JButton btnM = new JButton("m1"); // Poly Juice
+        JButton btnM = new JButton(""); // Poly Juice
+        btnM.setBackground(Color.DARK_GRAY);
+        btnM.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
         btnM.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("PolyJuice");
         	}
         });
         btnM.setBounds(x, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnM);
         
-        JButton btnM_1 = new JButton("m2"); // Pickled Plum
+        JButton btnM_1 = new JButton(""); // Pickled Plum
+        btnM_1.setBackground(Color.DARK_GRAY);
+        btnM_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
         btnM_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("PickledPlum");
         	}
         });
         btnM_1.setBounds(x + spacing + consumablesIconSize, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(btnM_1);
 
-        JButton btnM_2 = new JButton("m3"); // Vaccine
+        JButton btnM_2 = new JButton(""); // Vaccine
+        btnM_2.setBackground(Color.DARK_GRAY);
+        btnM_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
         btnM_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		showItemDetails("f1");
+        		showItemDetails("Vaccine");
         	}
         });
         btnM_2.setBounds(x + 2 * (spacing + consumablesIconSize), y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
