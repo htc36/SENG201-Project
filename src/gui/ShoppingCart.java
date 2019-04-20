@@ -50,7 +50,16 @@ public class ShoppingCart {
 				removeItemFromShoppingCart(newItem);
 			}
         });
-        newItem.setBounds(x, y + checkboxes.size() * (checkboxHeight + checkboxSpacing), checkboxWidth, checkboxHeight);
+        // supports 2 columns of shopping items
+        if (checkboxes.size() <= 7) {
+		newItem.setBounds(
+				x, y + (checkboxes.size() % 8) * (checkboxHeight + checkboxSpacing), 
+				checkboxWidth, checkboxHeight);
+        } else {
+		newItem.setBounds(
+				x + checkboxWidth + checkboxSpacing, y + (checkboxes.size() % 8) * (checkboxHeight + checkboxSpacing), 
+				checkboxWidth, checkboxHeight);
+		}
 
         panel.add(newItem); // show it to the user on the panel
         panel.revalidate(); // refresh the panel
@@ -82,7 +91,16 @@ public class ShoppingCart {
 	public void redrawShoppingCart() {
 		int counter = 0;
 		for (JCheckBox item : checkboxes) {
-			item.setBounds(x, y + counter * (checkboxHeight + checkboxSpacing), checkboxWidth, checkboxHeight);
+			if (counter <= 7) {
+				item.setBounds(
+						x, y + (counter % 8) * (checkboxHeight + checkboxSpacing), 
+						checkboxWidth, checkboxHeight);
+			} else {
+				item.setBounds(
+						x + checkboxWidth + checkboxSpacing, 
+						y + (counter % 8) * (checkboxHeight + checkboxSpacing), 
+						checkboxWidth, checkboxHeight);
+			}
 			counter++;
 		}
 	}
