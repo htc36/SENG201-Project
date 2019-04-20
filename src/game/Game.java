@@ -283,9 +283,9 @@ public class Game {
         int amount = 0;
         do {
             amount = getIntegerInput();
-            if (g.isCrewNumberValid(amount))
+            if (!g.isCrewNumberValid(amount))
                 System.out.println("Crew amount must be between 2 and 4");
-        } while (g.isCrewNumberValid(amount));
+        } while (!g.isCrewNumberValid(amount));
 
         return amount;
     }
