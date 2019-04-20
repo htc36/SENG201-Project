@@ -91,7 +91,6 @@ public class ShoppingCart {
 		try {
 		engine.purchaseItems(engine.getShoppingBag());
 		} catch (InsufficientFundException e) {
-			// TODO: open a small error box
 			JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
 			return;
 		}
