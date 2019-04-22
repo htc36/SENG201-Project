@@ -123,15 +123,15 @@ public class GameEngine {
     public boolean isCrewNumberValid(int amount) {
         return amount >= 2 && amount <= 4;
     }
-    
+
     public boolean isCrewNameValid(ArrayList<String> crewList, String name) {
-    	// to avoid 2 crew members having the same name
-    	for (String c : crewList) {
-    		if (c.startsWith(name))
-    			return false;
-    	}
-    	
-    	return true;
+        // to avoid 2 crew members having the same name
+        for (String c : crewList) {
+            if (c.startsWith(name))
+                return false;
+        }
+
+        return true;
     }
 
     public void addCrewMember(String crewType, String memberName) {
@@ -213,9 +213,9 @@ public class GameEngine {
     public boolean selectedCrewSearchPlanet() {
         return selectedCrew.searchPlanet();
     }
-    
+
     public void selectedCrewCancel() {
-    	selectedCrew = null;
+        selectedCrew = null;
     }
 
     public String crewGetRandomItem() {
@@ -351,9 +351,9 @@ public class GameEngine {
     public void removeItemFromShoppingBag(String item) {
         outpost.removeItemFromShoppingBag(item);
     }
-    
+
     public int getShoppingBagTotalPrice() {
-    	return outpost.getTotalPrice();
+        return outpost.getTotalPrice();
     }
     //
     // OUTPOST RELATED FUNCTIONS END
@@ -424,9 +424,9 @@ public class GameEngine {
     public void setShipPieces() {
         shipPieces = calculateShipPieces(gameLength);
     }
-    
+
     public int getShipPieces() {
-    	return shipPieces;
+        return shipPieces;
     }
 
     /**
@@ -504,9 +504,9 @@ public class GameEngine {
     public void asteroidCausingDamage() {
         AsteroidBelt.causeDamage(crew);
     }
-    
+
     public void saveGame() {
-    	
+
     }
 
     // GAME RELATED FUNCTIONS END

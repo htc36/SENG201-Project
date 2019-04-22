@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,8 @@ import game.GameEngine;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.Font;
+import javax.swing.border.MatteBorder;
 
 public class SetupScreen {
 
@@ -143,37 +146,49 @@ public class SetupScreen {
      */
     private void initialize() {
         frmCrewSetup = new JFrame();
-        frmCrewSetup.getContentPane().setBackground(Color.LIGHT_GRAY);
+        frmCrewSetup.setBackground(Color.BLACK);
+        frmCrewSetup.getContentPane().setBackground(Color.BLACK);
         frmCrewSetup.setTitle("Crew Setup");
         frmCrewSetup.setResizable(false);
         frmCrewSetup.setBounds(100, 100, 800, 600);
+        frmCrewSetup.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 
         frmCrewSetup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCrewSetup.getContentPane().setLayout(null);
 
         JLabel lblCrewMembers = new JLabel("Crew Members");
+        lblCrewMembers.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblCrewMembers.setForeground(Color.GREEN);
         lblCrewMembers.setBounds(10, 257, 114, 36);
         frmCrewSetup.getContentPane().add(lblCrewMembers);
 
         JLabel lblMemberName = new JLabel("Member Name");
+        lblMemberName.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblMemberName.setForeground(Color.GREEN);
         lblMemberName.setBounds(387, 41, 158, 36);
         frmCrewSetup.getContentPane().add(lblMemberName);
 
         JLabel lblType = new JLabel("Type");
+        lblType.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblType.setForeground(Color.GREEN);
         lblType.setBounds(387, 88, 158, 36);
         frmCrewSetup.getContentPane().add(lblType);
 
         JLabel lblDescription = new JLabel("Description");
+        lblDescription.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblDescription.setForeground(Color.GREEN);
         lblDescription.setBounds(387, 136, 158, 36);
         frmCrewSetup.getContentPane().add(lblDescription);
 
         JLabel crewTypeLabel = new JLabel("");
+        crewTypeLabel.setForeground(Color.GREEN);
         crewTypeLabel.setBounds(557, 88, 158, 36);
         frmCrewSetup.getContentPane().add(crewTypeLabel);
 
         typeLabel = crewTypeLabel;
 
         JLabel crewDescLabel = new JLabel("");
+        crewDescLabel.setForeground(Color.GREEN);
         crewDescLabel.setVerticalAlignment(SwingConstants.TOP);
         crewDescLabel.setBounds(557, 143, 158, 77);
         frmCrewSetup.getContentPane().add(crewDescLabel);
@@ -181,24 +196,39 @@ public class SetupScreen {
         descLabel = crewDescLabel;
 
         JSeparator separator = new JSeparator();
+        separator.setBackground(Color.GREEN);
         separator.setBounds(385, 232, 388, 24);
         frmCrewSetup.getContentPane().add(separator);
 
         JLabel lblGameLength = new JLabel("Game Length (days)");
+        lblGameLength.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblGameLength.setForeground(Color.GREEN);
         lblGameLength.setBounds(387, 252, 158, 36);
         frmCrewSetup.getContentPane().add(lblGameLength);
 
         JLabel lblSpaceshipName = new JLabel("Spaceship name");
+        lblSpaceshipName.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblSpaceshipName.setForeground(Color.GREEN);
         lblSpaceshipName.setBounds(387, 459, 158, 36);
         frmCrewSetup.getContentPane().add(lblSpaceshipName);
 
         spaceshipName = new JTextField();
-        spaceshipName.setBounds(557, 468, 198, 19);
+        spaceshipName.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        spaceshipName.setCaretColor(Color.GREEN);
+        spaceshipName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GREEN));
+        spaceshipName.setForeground(Color.GREEN);
+        spaceshipName.setBackground(Color.BLACK);
+        spaceshipName.setBounds(588, 468, 167, 19);
         spaceshipName.setText("Andromeda");
         frmCrewSetup.getContentPane().add(spaceshipName);
         spaceshipName.setColumns(10);
 
         crewMemberName = new JTextField();
+        crewMemberName.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+        crewMemberName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GREEN));
+        crewMemberName.setCaretColor(Color.GREEN);
+        crewMemberName.setForeground(Color.GREEN);
+        crewMemberName.setBackground(Color.BLACK);
         crewMemberName.setBounds(557, 50, 198, 19);
         frmCrewSetup.getContentPane().add(crewMemberName);
         crewMemberName.setColumns(10);
@@ -215,6 +245,10 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(firstCrewMemberIcon);
 
         JButton explorerBtn = new JButton("Explorer");
+        explorerBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        explorerBtn.setBorderPainted(false);
+        explorerBtn.setBackground(Color.DARK_GRAY);
+        explorerBtn.setForeground(Color.GREEN);
         explorerBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 addCrewMember("explorer", crewMemberName.getText());
@@ -259,6 +293,10 @@ public class SetupScreen {
         iconsList.add(fourthCrewMemberIcon);
 
         JButton medicBtn = new JButton("Medic");
+        medicBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        medicBtn.setForeground(Color.GREEN);
+        medicBtn.setBackground(Color.DARK_GRAY);
+        medicBtn.setBorderPainted(false);
         medicBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("medic", crewMemberName.getText());
@@ -268,6 +306,10 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(medicBtn);
 
         JButton sleeperBtn = new JButton("Sleeper");
+        sleeperBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        sleeperBtn.setBackground(Color.DARK_GRAY);
+        sleeperBtn.setForeground(Color.GREEN);
+        sleeperBtn.setBorderPainted(false);
         sleeperBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("sleeper", crewMemberName.getText());
@@ -277,6 +319,10 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(sleeperBtn);
 
         JButton hungusBtn = new JButton("Hungus");
+        hungusBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        hungusBtn.setForeground(Color.GREEN);
+        hungusBtn.setBackground(Color.DARK_GRAY);
+        hungusBtn.setBorderPainted(false);
         hungusBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("hungus", crewMemberName.getText());
@@ -286,6 +332,10 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(hungusBtn);
 
         JButton actioneerBtn = new JButton("Actioneer");
+        actioneerBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        actioneerBtn.setForeground(Color.GREEN);
+        actioneerBtn.setBackground(Color.DARK_GRAY);
+        actioneerBtn.setBorderPainted(false);
         actioneerBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("actioneer", crewMemberName.getText());
@@ -295,6 +345,10 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(actioneerBtn);
 
         JButton builderBtn = new JButton("Builder");
+        builderBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        builderBtn.setBackground(Color.DARK_GRAY);
+        builderBtn.setForeground(Color.GREEN);
+        builderBtn.setBorderPainted(false);
         builderBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("builder", crewMemberName.getText());
@@ -304,12 +358,16 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(builderBtn);
 
         JLabel lblNumShipPieces = new JLabel("6");
-        lblNumShipPieces.setBounds(557, 395, 71, 36);
+        lblNumShipPieces.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        lblNumShipPieces.setForeground(Color.GREEN);
+        lblNumShipPieces.setBounds(588, 395, 71, 36);
         frmCrewSetup.getContentPane().add(lblNumShipPieces);
 
         numShipPieces = lblNumShipPieces;
 
         JSlider slider = new JSlider();
+        slider.setForeground(Color.GREEN);
+        slider.setBackground(Color.BLACK);
         slider.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent arg0) {
                 updateShipPieces(slider.getValue());
@@ -324,14 +382,22 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(slider);
 
         JLabel lblSelextYourCrew = new JLabel("Select your crew members");
+        lblSelextYourCrew.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblSelextYourCrew.setForeground(Color.GREEN);
         lblSelextYourCrew.setBounds(12, 16, 210, 36);
         frmCrewSetup.getContentPane().add(lblSelextYourCrew);
 
         JLabel lblNumberOfShip = new JLabel("Number of ship pieces");
-        lblNumberOfShip.setBounds(387, 395, 158, 36);
+        lblNumberOfShip.setFont(new Font("Ubuntu", Font.BOLD, 15));
+        lblNumberOfShip.setForeground(Color.GREEN);
+        lblNumberOfShip.setBounds(387, 395, 175, 36);
         frmCrewSetup.getContentPane().add(lblNumberOfShip);
 
         JButton proceedBtn = new JButton("Proceed");
+        proceedBtn.setForeground(Color.GREEN);
+        proceedBtn.setFont(new Font("Ubuntu", Font.BOLD, 16));
+        proceedBtn.setBorderPainted(false);
+        proceedBtn.setBackground(Color.DARK_GRAY);
         proceedBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 engine.setupSpaceship(spaceshipName.getText());

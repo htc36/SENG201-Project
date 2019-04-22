@@ -50,30 +50,34 @@ public class StrandeD {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setForeground(Color.GREEN);
 		lblNewLabel.setBounds(12, 158, 776, 137);
 		lblNewLabel.setFont(new Font("Ubuntu", Font.PLAIN, 99));
 		frmWelcomeScreen.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Start");
+		btnNewButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
+		btnNewButton.setForeground(Color.GREEN);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				finishedWindow();
 			}
 		});
 		btnNewButton.setBorder(null);
-		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(336, 300, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnNewButton);
 		
 		JButton btnLoad = new JButton("Load");
+		btnLoad.setFont(new Font("Ubuntu", Font.BOLD, 16));
+		btnLoad.setForeground(Color.GREEN);
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				finishedWindow();
 			}
 		});
 		btnLoad.setBorder(null);
-		btnLoad.setBackground(Color.WHITE);
+		btnLoad.setBackground(Color.DARK_GRAY);
 		btnLoad.setBounds(336, 362, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnLoad);
 		

@@ -69,6 +69,7 @@ public class CommandCenter {
 	private JToggleButton memberTwo;
 	private JToggleButton memberThree;
 	private JToggleButton memberFour;
+	private JLabel infoBox;
 
 	private int totalCrewMembers;
 
@@ -295,6 +296,13 @@ public class CommandCenter {
 			engine.selectCrewMember(selectedCrews.get(0));
 		}
 		refreshSelectedCrews();
+	}
+	
+	private void selectedCrewUseConsumable() {
+		if (engine.getCrewConsumablesCount() == 0) {
+			JOptionPane.showMessageDialog(new JFrame(), "No items in the inventory :(");
+			return;
+		}
 	}
 
 	public void closeWindow() {
@@ -538,6 +546,7 @@ public class CommandCenter {
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBounds(522, 24, 461, 574);
 		commitActions.add(lblNewLabel_2);
+		infoBox = lblNewLabel_2;
 
 		JToggleButton memberOne = new JToggleButton("New toggle button");
 		memberOne.addActionListener(new ActionListener() {
