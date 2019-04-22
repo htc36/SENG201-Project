@@ -1,13 +1,13 @@
 package crew;
 public class InsufficientItemInStock extends RuntimeException {
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for InsufficientItemInStock
      */
     public InsufficientItemInStock() {}
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param message <<Param Desc>>
+     * Constructor for InsufficientItemInStock
+     * @param message the error message
      */
     public InsufficientItemInStock(String message) {
         super(message);

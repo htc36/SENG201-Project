@@ -305,17 +305,20 @@ public class CommandCenter {
 		}
 	}
 
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void closeWindow() {
 		frmCommandCenter.dispose();
 	}
 
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void finishedWindow() {
 		game.closeCommandCenter(this);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmCommandCenter = new JFrame();
 		frmCommandCenter.setResizable(false);
@@ -334,7 +337,10 @@ public class CommandCenter {
 
 		tabbedPane.addChangeListener(new ChangeListener() {
 
-			@Override
+	/**
+	 * Initialize the contents of the frame.
+	 */
+   @Override
 			public void stateChanged(ChangeEvent arg0) {
 				switch (tabbedPane.getSelectedIndex()) {
 				case 0:
@@ -469,6 +475,10 @@ public class CommandCenter {
 
 		JButton memberUseConsumable = new JButton("Use consumables");
 		memberUseConsumable.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
@@ -477,6 +487,10 @@ public class CommandCenter {
 
 		JButton memberSleep = new JButton("Sleep");
 		memberSleep.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
@@ -494,6 +508,10 @@ public class CommandCenter {
 
 		JButton memberRepair = new JButton("Repair shield");
 		memberRepair.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
@@ -511,6 +529,10 @@ public class CommandCenter {
 
 		JButton memberSearch = new JButton("Search the planet");
 		memberSearch.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
@@ -528,6 +550,10 @@ public class CommandCenter {
 
 		JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
 		memberPilot.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 2) {
 					JOptionPane.showMessageDialog(new JFrame(), "You need 2 crew members for this action");
@@ -550,6 +576,10 @@ public class CommandCenter {
 
 		JToggleButton memberOne = new JToggleButton("New toggle button");
 		memberOne.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				addCrewToSelection(0);
 			}
@@ -560,6 +590,10 @@ public class CommandCenter {
 
 		JToggleButton memberTwo = new JToggleButton("New toggle button");
 		memberTwo.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent e) {
 				addCrewToSelection(1);
 			}
@@ -571,6 +605,10 @@ public class CommandCenter {
 		if (totalCrewMembers > 2) {
 			JToggleButton memberThree = new JToggleButton("New toggle button");
 			memberThree.addActionListener(new ActionListener() {
+    /**
+     * <<auto generated javadoc comment>>
+     * @param e <<Param Desc>>
+     */
 				public void actionPerformed(ActionEvent e) {
 					addCrewToSelection(2);
 				}
@@ -582,6 +620,10 @@ public class CommandCenter {
 			if (totalCrewMembers > 3) {
 				JToggleButton memberFour = new JToggleButton("New toggle button");
 				memberFour.addActionListener(new ActionListener() {
+     /**
+      * <<auto generated javadoc comment>>
+      * @param e <<Param Desc>>
+      */
 					public void actionPerformed(ActionEvent e) {
 						addCrewToSelection(3);
 
@@ -706,6 +748,10 @@ public class CommandCenter {
 
 		JButton btnPurchase = new JButton("Purchase");
 		btnPurchase.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				cart.purchaseItems();
 				currMoney.setText(String.valueOf(engine.getCrewMoney()));
@@ -743,6 +789,10 @@ public class CommandCenter {
 		btnNewButton_1.setBackground(Color.DARK_GRAY);
 		btnNewButton_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Brownie");
 			}
@@ -754,6 +804,10 @@ public class CommandCenter {
 		btnF.setBackground(Color.DARK_GRAY);
 		btnF.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
 		btnF.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("FriedRice");
 			}
@@ -765,6 +819,10 @@ public class CommandCenter {
 		btnF_1.setBackground(Color.DARK_GRAY);
 		btnF_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
 		btnF_1.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Dumplings");
 			}
@@ -776,6 +834,10 @@ public class CommandCenter {
 		btnF_2.setBackground(Color.DARK_GRAY);
 		btnF_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
 		btnF_2.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("SpaceCake");
 			}
@@ -787,6 +849,10 @@ public class CommandCenter {
 		btnF_3.setBackground(Color.DARK_GRAY);
 		btnF_3.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
 		btnF_3.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("TikkaMasala");
 			}
@@ -798,6 +864,10 @@ public class CommandCenter {
 		btnF_4.setBackground(Color.DARK_GRAY);
 		btnF_4.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
 		btnF_4.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Hotbot");
 			}
@@ -809,6 +879,10 @@ public class CommandCenter {
 		btnM.setBackground(Color.DARK_GRAY);
 		btnM.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
 		btnM.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("PolyJuice");
 			}
@@ -820,6 +894,10 @@ public class CommandCenter {
 		btnM_1.setBackground(Color.DARK_GRAY);
 		btnM_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
 		btnM_1.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("PickledPlum");
 			}
@@ -831,6 +909,10 @@ public class CommandCenter {
 		btnM_2.setBackground(Color.DARK_GRAY);
 		btnM_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
 		btnM_2.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Vaccine");
 			}
@@ -868,6 +950,10 @@ public class CommandCenter {
 
 		JButton btnAddToCart = new JButton("Add to cart");
 		btnAddToCart.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				String itemQuery = itemNames.getText();
 				if (itemQuery.equals(""))
@@ -913,6 +999,10 @@ public class CommandCenter {
 
 		JButton btnNewButton = new JButton("End day");
 		btnNewButton.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				engine.endDay();
 				if (engine.hasGameEnded()) {

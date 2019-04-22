@@ -25,6 +25,10 @@ public class Food extends Consumable {
         return fillStomach;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     public ArrayList<String> getConsumableStats() {
         ArrayList<String> template = super.getConsumableStats();
         template.add("[Food]");

@@ -35,8 +35,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param c <<Param Desc>>
+     * removes a crew member from the crew members list
+     * @param c the crew member that is going to be removed
      */
     public void removeCrewMember(CrewMember c) {
         crewMembers.remove(c);
@@ -47,8 +47,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<CrewMember> <<Return Desc>>
+     * Increases the fatigue and hunger level for every crew members
+     * this function should be called when the day starts
      */
     public void updateCrewStatus() {
         for(CrewMember c : crewMembers) {
@@ -56,11 +56,13 @@ public class Crew {
             c.increaseHunger(25);
             if(c.isSick())
                 c.reduceHealth(5);
-            if (c.getHealth() == 0) {
-            }
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<CrewMember> <<Return Desc>>
+     */
     public ArrayList<CrewMember> getUnhealthyCrewMembers() {
         ArrayList<CrewMember> unhealthyMembers = new ArrayList<>();
         for (CrewMember c : crewMembers) {
@@ -71,6 +73,10 @@ public class Crew {
     }
 
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<CrewMember> <<Return Desc>>
+     */
     public ArrayList<CrewMember> getDeadCrewMembers() {
         ArrayList<CrewMember> deadMembers = new ArrayList<>();
         for (CrewMember c : crewMembers) {
@@ -234,8 +240,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * returns the name of the lost item, useful when alien pirates attacks the crew
+     * @return String the name of the lost item
      */
     public String getLostItem(){
         return lostItem;

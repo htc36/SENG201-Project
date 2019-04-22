@@ -28,17 +28,20 @@ public class StrandeD {
 		frmWelcomeScreen.setVisible(true);
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void closeWindow() {
 		frmWelcomeScreen.dispose();
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void finishedWindow() {
 		game.closeMainScreen(this);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmWelcomeScreen = new JFrame();
 		frmWelcomeScreen.setResizable(false);
@@ -59,6 +62,9 @@ public class StrandeD {
 		btnNewButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
 		btnNewButton.setForeground(Color.GREEN);
 		btnNewButton.addActionListener(new ActionListener() {
+	/**
+	 * Initialize the contents of the frame.
+	 */
 			public void actionPerformed(ActionEvent arg0) {
 				finishedWindow();
 			}
@@ -72,6 +78,10 @@ public class StrandeD {
 		btnLoad.setFont(new Font("Ubuntu", Font.BOLD, 16));
 		btnLoad.setForeground(Color.GREEN);
 		btnLoad.addActionListener(new ActionListener() {
+   /**
+    * <<auto generated javadoc comment>>
+    * @param arg0 <<Param Desc>>
+    */
 			public void actionPerformed(ActionEvent arg0) {
 				finishedWindow();
 			}

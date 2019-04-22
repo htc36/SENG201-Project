@@ -11,9 +11,9 @@ public class Consumable implements Comparable<Consumable> {
 
     /**
      * Constructor for a Consumable
-     * @param itemName <<Param Desc>>
-     * @param heal <<Param Desc>>
-     * @param itemPrice <<Param Desc>>
+     * @param itemName the name of the item
+     * @param heal healing amount
+     * @param itemPrice price of the item
      */
     public Consumable(String itemName, int heal, int itemPrice) {
         name = itemName;
@@ -73,6 +73,10 @@ public class Consumable implements Comparable<Consumable> {
         return itemName.compareTo(c.getName());
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     public ArrayList<String> getConsumableStats() {
         ArrayList<String> template = new ArrayList<>();
         template.add(String.format("%s", name)); // name
