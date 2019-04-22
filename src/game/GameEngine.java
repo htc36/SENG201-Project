@@ -151,17 +151,13 @@ public class GameEngine {
     public boolean isCrewNumberValid(int amount) {
         return amount >= 2 && amount <= 4;
     }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * Returns if the crew member name is a duplicate of an existing one (not valid)
      * @param crewList list of existing crews
      * @param name the name of the new crew member
      * @return boolean true if not a duplicate, false otherwise
      */
->>>>>>> b87661e49e7126403bfed0ea5a8a8047434dca8b
     public boolean isCrewNameValid(ArrayList<String> crewList, String name) {
         // to avoid 2 crew members having the same name
         for (String c : crewList) {
@@ -298,14 +294,10 @@ public class GameEngine {
     public boolean selectedCrewSearchPlanet() {
         return selectedCrew.searchPlanet();
     }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * Cancel the current selected crew selection
      */
->>>>>>> b87661e49e7126403bfed0ea5a8a8047434dca8b
     public void selectedCrewCancel() {
         selectedCrew = null;
     }
@@ -503,15 +495,11 @@ public class GameEngine {
     public void removeItemFromShoppingBag(String item) {
         outpost.removeItemFromShoppingBag(item);
     }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * Returns the total price of items in the shopping bag
      * @return int Total price of items
      */
->>>>>>> b87661e49e7126403bfed0ea5a8a8047434dca8b
     public int getShoppingBagTotalPrice() {
         return outpost.getTotalPrice();
     }
@@ -595,15 +583,11 @@ public class GameEngine {
     public void setShipPieces() {
         shipPieces = calculateShipPieces(gameLength);
     }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * Returns the number of ship pieces a player has to find
      * @return int Number of ship pieces
      */
->>>>>>> b87661e49e7126403bfed0ea5a8a8047434dca8b
     public int getShipPieces() {
         return shipPieces;
     }
@@ -718,14 +702,10 @@ public class GameEngine {
     public void asteroidCausingDamage() {
         AsteroidBelt.causeDamage(crew);
     }
-<<<<<<< HEAD
 
-=======
-    
     /**
      * <<auto generated javadoc comment>>
      */
->>>>>>> b87661e49e7126403bfed0ea5a8a8047434dca8b
     public void saveGame() {
 
     }
