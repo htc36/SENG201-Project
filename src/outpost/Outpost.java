@@ -73,6 +73,9 @@ public class Outpost {
         return conMap;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void clearShoppingBag() {
         shoppingBag.clear();
         totalPrice = 0;

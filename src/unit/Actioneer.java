@@ -23,6 +23,10 @@ public class Actioneer extends CrewMember{
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     @Override
     public ArrayList<String> getCrewString() {
         ArrayList<String> result = super.getCrewString();

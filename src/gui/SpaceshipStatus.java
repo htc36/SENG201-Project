@@ -17,6 +17,9 @@ public class SpaceshipStatus {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+   /**
+    * <<auto generated javadoc comment>>
+    */
 			public void run() {
 				try {
 					SpaceshipStatus window = new SpaceshipStatus();
@@ -35,9 +38,6 @@ public class SpaceshipStatus {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);

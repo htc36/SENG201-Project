@@ -28,6 +28,10 @@ public class Spaceship extends Unit {
         super.reduceHealth(amount);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     public ArrayList<String> getShipStatus() {
         ArrayList<String> result = new ArrayList<>();
         result.add(super.getName());

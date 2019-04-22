@@ -15,6 +15,9 @@ public class Game {
     private Scanner reader;
     private GameEngine g;
 
+    /**
+     * Prints the list of selectable crew members
+     */
     public static void printCrewMemberList() {
         System.out.println("Here are the possible crew member choices");
         System.out.println("--> Actioneer - has 3 actions instead of the usual 2");
@@ -26,7 +29,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * prints the spaceship status using ASCII characters
      */
     public void viewSpaceshipStatus() {
         Utils.printSpaceshipASCII();
@@ -40,7 +43,9 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the crew members in a pretty table
+     * @param crewStatus ArrayList of crewStats
+     * @param withIndex set to true if index is needed in front
      */
     public void printCrewMembers(ArrayList<ArrayList<String>> crewStatus, boolean withIndex) {
         Utils.printCrewASCII();
@@ -79,8 +84,8 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * Get the player input for spaceship's name
+     * @return String the name of the spaceship
      */
     public String getInputSpaceshipName() {
         System.out.print("> ");
@@ -89,8 +94,8 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * Get the player input for the number of days (length of the game)
+     * @return int the number of days
      */
     public int getInputNumDays() {
         int numOfDays;
@@ -105,8 +110,8 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return boolean <<Return Desc>>
+     * Prints the main menu for all player's possible actions
+     * @return boolean false if the game should end, true if the game should continue
      */
     public boolean printHomePage() {
         Utils.printHomepageHeader();
@@ -152,10 +157,19 @@ public class Game {
         return true;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param shoppingBag <<Param Desc>>
+     */
     public void printShoppingBag(TreeMap<String, Integer> shoppingBag) {
         return;
     }
 
+    /**
+     * Get the crew member details input from the player
+     * @param crewNumbers the number of crew members to be inputted
+     * @return ArrayList<String> list of produced crew members
+     */
     public ArrayList<String> getInputCrewMembers(int crewNumbers) {
         ArrayList<String> crewString = new ArrayList<>();
         ArrayList<String> crewMemberTypes = g.getCrewMemberTypes();
@@ -188,7 +202,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the outpost menu
      */
     public void visitOutpost() {
         Utils.printOutpostHeader();
@@ -233,6 +247,10 @@ public class Game {
         typePrint();
     }
 
+    /**
+     * Prints the list of items in a pretty table
+     * @param consumables list of items
+     */
     public void printCrewConsumables(ArrayList<ArrayList<String>> consumables) {
         for (ArrayList<String> itemStats : consumables) {
             String template = "";
@@ -250,10 +268,9 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * Get the player input for the items they are going to buy
      */
-    public String getInputShoppingList() {
+    public void getInputShoppingList() {
         String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
         String allQueries = "";
         String query = "";
@@ -271,13 +288,11 @@ public class Game {
                 System.out.println(errMsg);
             }
         }
-
-        return allQueries;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * Get the player input for the number of crew members
+     * @return int number of crew members
      */
     public int getCrewAmount() {
         int amount = 0;
@@ -291,7 +306,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Start the day inside the game
      */
     public void startDay() {
         enterToContinue();
@@ -335,8 +350,9 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * Gets an integer input from the player
+     * This function will keep on trying until it gets an integer
+     * @return int integer from the player
      */
     public int getIntegerInput() {
         while (true) {
@@ -354,7 +370,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the list of actions a crew member could do
      */
     public void commitActionPage() {
         System.out.println("Welcome to the action center");
@@ -538,7 +554,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Get input from the player to press enter to continue
      */
     public void enterToContinue() {
         System.out.println("\n<Enter> to go back to command center");
@@ -549,9 +565,9 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param query <<Param Desc>>
-     * @return boolean <<Return Desc>>
+     * Checks if the item query from the player for the outpost is valid
+     * @param query query from the player
+     * @return boolean true if valid, false otherwise
      */
     public boolean isValidQuery(String query) {
         Pattern p = Pattern.compile("^\\d+x\\w+$");
@@ -570,7 +586,7 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Runs the game
      */
     public void run() {
         int gameLength = g.getGameLength();
@@ -602,9 +618,9 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param crewInfo <<Param Desc>>
-     * @return boolean <<Return Desc>>
+     * Checks if the crew info from the player input is valid
+     * @param crewInfo crew info from the player
+     * @return boolean true if valid, false otherwise
      */
     public boolean isCrewInfoValid(String crewInfo){
         Pattern p = Pattern.compile("\\w+-\\w+");
@@ -612,36 +628,64 @@ public class Game {
         return m.find();
     }
 
+    /**
+     * Sets the spaceship with the name specified
+     * @param input name of the spaceship
+     */
     public void setupSpaceship(String input) {
         g.setupSpaceship(input);
     }
 
+    /**
+     * Sets the game length with the days specified
+     * @param numOfDays number of days
+     */
     public void setGameLength(int numOfDays) {
         g.setGameLength(numOfDays);
         g.setShipPieces();
     }
 
+    /**
+     * Close the Scanner object
+     */
     public void closeReader() {
         reader.close();
     }
 
+    /**
+     * Set the crew members
+     * @param crewString string describing the crew members
+     */
     public void setCrewMembers(ArrayList<String> crewString) {
         g.setCrewMembers(crewString);
     }
 
+    /**
+     * Setup the planets
+     */
     public void setupPlanets() {
         g.setupPlanets();
     }
 
+    /**
+     * Setup the crew
+     */
     public void setupCrew() {
         g.setupCrew();
     }
 
+    /**
+     * Constructor for command line application
+     */
     public Game() {
         reader = new Scanner(System.in);
         g = new GameEngine();
     }
 
+    /**
+     * Main method
+     * @param args arguments
+     */
     public static void main(String[] args) {
         Utils.clearScreen();
         Game game = new Game();

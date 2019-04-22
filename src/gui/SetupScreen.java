@@ -48,10 +48,16 @@ public class SetupScreen {
         frmCrewSetup.setVisible(true);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void closeWindow() {
         frmCrewSetup.dispose();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void finishedWindow() {
         game.closeSetupScreen(this);
     }
@@ -138,9 +144,6 @@ public class SetupScreen {
         numShipPieces.setText(String.valueOf(numPieces));
     }
 
-    /**
-     * Initialize the contents of the frame.
-     */
     private void initialize() {
         frmCrewSetup = new JFrame();
         frmCrewSetup.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -206,6 +209,9 @@ public class SetupScreen {
 
         JLabel firstCrewMemberIcon = new JLabel("");
         firstCrewMemberIcon.addMouseListener(new MouseAdapter() {
+    /**
+     * Initialize the contents of the frame.
+     */
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(0);
@@ -216,6 +222,10 @@ public class SetupScreen {
 
         JButton explorerBtn = new JButton("Explorer");
         explorerBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param e <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent e) {
                 addCrewMember("explorer", crewMemberName.getText());
             }
@@ -225,6 +235,10 @@ public class SetupScreen {
 
         JLabel fourthCrewMemberIcon = new JLabel("");
         fourthCrewMemberIcon.addMouseListener(new MouseAdapter() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param e <<Param Desc>>
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(3);
@@ -235,6 +249,10 @@ public class SetupScreen {
 
         JLabel secondCrewMemberIcon = new JLabel("");
         secondCrewMemberIcon.addMouseListener(new MouseAdapter() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param e <<Param Desc>>
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(1);
@@ -245,6 +263,10 @@ public class SetupScreen {
 
         JLabel thirdCrewMemberIcon = new JLabel("");
         thirdCrewMemberIcon.addMouseListener(new MouseAdapter() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param e <<Param Desc>>
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(2);
@@ -260,6 +282,10 @@ public class SetupScreen {
 
         JButton medicBtn = new JButton("Medic");
         medicBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("medic", crewMemberName.getText());
             }
@@ -269,6 +295,10 @@ public class SetupScreen {
 
         JButton sleeperBtn = new JButton("Sleeper");
         sleeperBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("sleeper", crewMemberName.getText());
             }
@@ -278,6 +308,10 @@ public class SetupScreen {
 
         JButton hungusBtn = new JButton("Hungus");
         hungusBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("hungus", crewMemberName.getText());
             }
@@ -287,6 +321,10 @@ public class SetupScreen {
 
         JButton actioneerBtn = new JButton("Actioneer");
         actioneerBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("actioneer", crewMemberName.getText());
             }
@@ -296,6 +334,10 @@ public class SetupScreen {
 
         JButton builderBtn = new JButton("Builder");
         builderBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("builder", crewMemberName.getText());
             }
@@ -311,6 +353,10 @@ public class SetupScreen {
 
         JSlider slider = new JSlider();
         slider.addChangeListener(new ChangeListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param arg0 <<Param Desc>>
+             */
             public void stateChanged(ChangeEvent arg0) {
                 updateShipPieces(slider.getValue());
             }
@@ -333,6 +379,10 @@ public class SetupScreen {
 
         JButton proceedBtn = new JButton("Proceed");
         proceedBtn.addActionListener(new ActionListener() {
+            /**
+             * <<auto generated javadoc comment>>
+             * @param e <<Param Desc>>
+             */
             public void actionPerformed(ActionEvent e) {
                 engine.setupSpaceship(spaceshipName.getText());
                 engine.setGameLength(slider.getValue());

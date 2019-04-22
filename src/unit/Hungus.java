@@ -35,6 +35,10 @@ public class Hungus extends CrewMember{
         super.decreaseHunger(amount * 2);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     @Override
     public ArrayList<String> getCrewString() {
         ArrayList<String> result = super.getCrewString();

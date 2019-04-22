@@ -79,11 +79,15 @@ def add_comments(java_file, funcs):
                     else:
                         t.write(" " * num_spaces + "/**\n")
                         t.write(" " * num_spaces + " * <<auto generated javadoc comment>>\n")
+                        print(line)
                         if args:
                             for arg in args.split(','):
                                 param = arg.lstrip()
-                                _, arg_var = param.split(' ')
-                                t.write(" " * num_spaces + " * @param " + arg_var + " <<Param Desc>>\n")
+                                try:
+                                    _, arg_var = param.split(' ')
+                                    t.write(" " * num_spaces + " * @param " + arg_var + " <<Param Desc>>\n")
+                                except ValueError as e:
+                                    print(e)
                         if return_type and return_type != "void":
                             t.write(" " * num_spaces + " * @return " + return_type + " <<Return Desc>>\n")
                         t.write(" " * num_spaces + " */\n")

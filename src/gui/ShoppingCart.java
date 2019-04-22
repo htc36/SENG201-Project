@@ -25,6 +25,14 @@ public class ShoppingCart {
 	private int checkboxWidth = 120;
 	private GameEngine engine;
 
+ /**
+  * <<auto generated javadoc comment>>
+  * @param panel <<Param Desc>>
+  * @param x <<Param Desc>>
+  * @param y <<Param Desc>>
+  * @param engine <<Param Desc>>
+  * @param priceLabel <<Param Desc>>
+  */
 	public ShoppingCart(JPanel panel, int x, int y, GameEngine engine, JLabel priceLabel) {
 		this.panel = panel;
 		this.x = x;
@@ -34,6 +42,10 @@ public class ShoppingCart {
 		checkboxes = new ArrayList<>();
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  * @param itemQuery <<Param Desc>>
+  */
 	public void addItemToShoppingCart(String itemQuery) {
 		int amount = Integer.valueOf(itemQuery.split("x")[0]);
 		if (amount == 0)
@@ -45,7 +57,11 @@ public class ShoppingCart {
 		newItem.setVisible(true);
 		newItem.setSelected(true);
         newItem.addItemListener(new ItemListener() {
-			@Override
+   /**
+    * <<auto generated javadoc comment>>
+    * @param e <<Param Desc>>
+    */
+   @Override
 			public void itemStateChanged(ItemEvent e) {
 				removeItemFromShoppingCart(newItem);
 			}
@@ -70,6 +86,10 @@ public class ShoppingCart {
 		priceLabel.setText(String.valueOf(engine.getShoppingBagTotalPrice()));
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  * @param item <<Param Desc>>
+  */
 	public void removeItemFromShoppingCart(JCheckBox item) {
 		String itemQuery = item.getText();
 		int amount = Integer.valueOf(itemQuery.split("x")[0]);
@@ -88,6 +108,9 @@ public class ShoppingCart {
         panel.repaint();    // refresh the panel
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void redrawShoppingCart() {
 		int counter = 0;
 		for (JCheckBox item : checkboxes) {
@@ -105,6 +128,9 @@ public class ShoppingCart {
 		}
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  */
 	public void purchaseItems() {
 		try {
 		engine.purchaseItems(engine.getShoppingBag());
@@ -121,6 +147,10 @@ public class ShoppingCart {
         panel.repaint();    // refresh the panel
 	}
 	
+ /**
+  * <<auto generated javadoc comment>>
+  * @return int <<Return Desc>>
+  */
 	public int getTotalPrice() {
 		return engine.getShoppingBagTotalPrice();
 	}

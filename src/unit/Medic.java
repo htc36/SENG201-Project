@@ -23,6 +23,10 @@ public class Medic extends CrewMember {
         super.reduceHealth(amount / 2);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     @Override
     public ArrayList<String> getCrewString() {
         ArrayList<String> result = super.getCrewString();

@@ -265,6 +265,10 @@ public abstract class CrewMember extends Unit {
             super.reduceHealth(amount * 3);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return ArrayList<String> <<Return Desc>>
+     */
     public ArrayList<String> getCrewString() {
         String status = "F";
         if (hasPlague) {
