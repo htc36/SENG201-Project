@@ -714,6 +714,13 @@ public class GameEngine {
     public void saveGame() {
 
     }
+    
+    public int getFinalScore() {
+    	int finalScore = 0;
+    	finalScore = (gameLength - currDay) * 10000 + foundShipPieces * 5000;
+    	
+    	return finalScore;
+    }
 
     // GAME RELATED FUNCTIONS END
 

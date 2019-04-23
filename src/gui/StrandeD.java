@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 
 public class StrandeD {
 
@@ -53,14 +54,14 @@ public class StrandeD {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.WHITE);
-		lblNewLabel.setForeground(Color.GREEN);
-		lblNewLabel.setBounds(12, 158, 776, 137);
-		lblNewLabel.setFont(new Font("Ubuntu", Font.PLAIN, 99));
+		lblNewLabel.setForeground(UIManager.getColor("CheckBoxMenuItem.disabledForeground"));
+		lblNewLabel.setBounds(250, 181, 286, 107);
+		lblNewLabel.setFont(new Font("Karumbi", Font.PLAIN, 99));
 		frmWelcomeScreen.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
-		btnNewButton.setForeground(Color.GREEN);
+		btnNewButton.setForeground(UIManager.getColor("Panel.background"));
 		btnNewButton.addActionListener(new ActionListener() {
 	/**
 	 * Initialize the contents of the frame.
@@ -76,7 +77,7 @@ public class StrandeD {
 		
 		JButton btnLoad = new JButton("Load");
 		btnLoad.setFont(new Font("Ubuntu", Font.BOLD, 16));
-		btnLoad.setForeground(Color.GREEN);
+		btnLoad.setForeground(UIManager.getColor("RadioButton.highlight"));
 		btnLoad.addActionListener(new ActionListener() {
    /**
     * <<auto generated javadoc comment>>
@@ -91,8 +92,17 @@ public class StrandeD {
 		btnLoad.setBounds(336, 362, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnLoad);
 		
+		JLabel label = new JLabel("StrandeD");
+		label.setHorizontalTextPosition(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(UIManager.getColor("PasswordField.selectionForeground"));
+		label.setFont(new Font("Karumbi", Font.PLAIN, 90));
+		label.setBackground(Color.WHITE);
+		label.setBounds(263, 196, 258, 77);
+		frmWelcomeScreen.getContentPane().add(label);
+		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(StrandeD.class.getResource("/img/star.png")));
+		lblNewLabel_1.setIcon(new ImageIcon(StrandeD.class.getResource("/img/setupbg.jpg")));
 		lblNewLabel_1.setBounds(0, 0, 800, 563);
 		frmWelcomeScreen.getContentPane().add(lblNewLabel_1);
 		frmWelcomeScreen.setBackground(Color.WHITE);

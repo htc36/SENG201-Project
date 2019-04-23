@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 import game.GameEngine;
 import unit.InsufficientActionException;
@@ -22,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 
@@ -34,6 +36,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
 import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class CommandCenter {
 
@@ -377,17 +381,27 @@ public class CommandCenter {
 
 	private void initialize() {
 		frmCommandCenter = new JFrame();
+		frmCommandCenter.getContentPane().setBackground(Color.BLACK);
 		frmCommandCenter.setResizable(false);
 		frmCommandCenter.setTitle("Command Center");
 		frmCommandCenter.setBounds(100, 100, 1024, 768);
 		frmCommandCenter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCommandCenter.getContentPane().setLayout(null);
 
+		UIManager.put("TabbedPane.background", new Color(10, 10, 10));
+		UIManager.put("TabbedPane.foreground", new Color(10, 10, 10));
+		UIManager.put("TabbedPane.opaque", true); 
+		UIManager.put("TabbedPane.selected", new Color(10, 10, 10));
+		UIManager.put("TabbedPane.border", BorderFactory.createLineBorder(new Color(10, 10, 10)));
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBorder(null);
+		tabbedPane.setBackground(new Color(51, 51, 51));
 		tabbedPane.setBounds(12, 0, 1000, 648);
 		frmCommandCenter.getContentPane().add(tabbedPane);
 
 		JPanel crewStatus = new JPanel();
+		crewStatus.setForeground(new Color(204, 204, 204));
+		crewStatus.setBackground(new Color(0, 0, 0));
 		tabbedPane.addTab("Crew Status", null, crewStatus, null);
 		crewStatus.setLayout(null);
 
@@ -417,111 +431,129 @@ public class CommandCenter {
 		int x = 20;
 
 		JLabel lblName = new JLabel("Name");
+		lblName.setForeground(new Color(102, 102, 102));
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblName.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblName.setBounds(86, 29, 82, 62);
 		crewStatus.add(lblName);
 
 		JLabel lblType = new JLabel("Type");
+		lblType.setForeground(new Color(102, 102, 102));
 		lblType.setHorizontalAlignment(SwingConstants.CENTER);
 		lblType.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblType.setBounds(275, 29, 82, 62);
 		crewStatus.add(lblType);
 
 		JLabel lblHealth = new JLabel("Health");
+		lblHealth.setForeground(new Color(102, 102, 102));
 		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHealth.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblHealth.setBounds(379, 29, 82, 62);
 		crewStatus.add(lblHealth);
 
 		JLabel lblLuck = new JLabel("Luck");
+		lblLuck.setForeground(new Color(102, 102, 102));
 		lblLuck.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLuck.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblLuck.setBounds(473, 29, 82, 62);
 		crewStatus.add(lblLuck);
 
 		JLabel lblPlagued = new JLabel("Plagued");
+		lblPlagued.setForeground(new Color(102, 102, 102));
 		lblPlagued.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlagued.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblPlagued.setBounds(567, 29, 109, 62);
 		crewStatus.add(lblPlagued);
 
 		JLabel lblHunger = new JLabel("Hunger");
+		lblHunger.setForeground(new Color(102, 102, 102));
 		lblHunger.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHunger.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblHunger.setBounds(676, 29, 82, 62);
 		crewStatus.add(lblHunger);
 
 		JLabel lblFatigue = new JLabel("Fatigue");
+		lblFatigue.setForeground(new Color(102, 102, 102));
 		lblFatigue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFatigue.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblFatigue.setBounds(780, 29, 94, 62);
 		crewStatus.add(lblFatigue);
 
 		JLabel lblActions = new JLabel("Actions");
+		lblActions.setForeground(new Color(102, 102, 102));
 		lblActions.setHorizontalAlignment(SwingConstants.CENTER);
 		lblActions.setFont(new Font("Ubuntu", Font.PLAIN, 24));
 		lblActions.setBounds(886, 29, 82, 62);
 		crewStatus.add(lblActions);
 
 		JLabel label = new JLabel("Name");
+		label.setForeground(new Color(204, 204, 204));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 
 		crewNames = label;
 		label.setBounds(12, 112, 238, 471);
 		crewStatus.add(label);
 
 		JLabel label_1 = new JLabel("Type");
-		label_1.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_1.setForeground(new Color(204, 204, 204));
+		label_1.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		crewTypes = label_1;
 		label_1.setBounds(258, 112, 109, 471);
 		crewStatus.add(label_1);
 
 		JLabel label_2 = new JLabel("Type");
-		label_2.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_2.setForeground(new Color(204, 204, 204));
+		label_2.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		crewHealths = label_2;
 		label_2.setBounds(389, 112, 82, 471);
 		crewStatus.add(label_2);
 
 		JLabel label_3 = new JLabel("Type");
-		label_3.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_3.setForeground(new Color(204, 204, 204));
+		label_3.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		crewLucks = label_3;
 		label_3.setBounds(483, 112, 82, 471);
 		crewStatus.add(label_3);
 
 		JLabel label_4 = new JLabel("Type");
-		label_4.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_4.setForeground(new Color(204, 204, 204));
+		label_4.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		crewPlagues = label_4;
 		label_4.setBounds(577, 112, 82, 471);
 		crewStatus.add(label_4);
 
 		JLabel label_5 = new JLabel("Type");
-		label_5.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_5.setForeground(new Color(204, 204, 204));
+		label_5.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		crewHungers = label_5;
 		label_5.setBounds(676, 112, 82, 471);
 		crewStatus.add(label_5);
 
 		JLabel label_6 = new JLabel("Type");
-		label_6.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_6.setForeground(new Color(204, 204, 204));
+		label_6.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		crewFatigues = label_6;
 		label_6.setBounds(780, 112, 82, 471);
 		crewStatus.add(label_6);
 
 		JLabel label_7 = new JLabel("Type");
-		label_7.setFont(new Font("Ubuntu", Font.BOLD, 20));
+		label_7.setForeground(new Color(204, 204, 204));
+		label_7.setFont(new Font("Ubuntu", Font.PLAIN, 20));
 		label_7.setHorizontalAlignment(SwingConstants.CENTER);
 		crewActions = label_7;
 		label_7.setBounds(886, 112, 82, 471);
 		crewStatus.add(label_7);
 
 		JPanel commitActions = new JPanel();
+		commitActions.setBorder(null);
+		commitActions.setBackground(Color.BLACK);
 		tabbedPane.addTab("Commit Actions", null, commitActions, null);
 		commitActions.setLayout(null);
 
@@ -530,6 +562,16 @@ public class CommandCenter {
 		/// COMMIT ACTIONS START
 
 		JButton memberUseConsumable = new JButton("Use consumables");
+		memberUseConsumable.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+		memberUseConsumable.setForeground(Color.WHITE);
+		memberUseConsumable.setBorderPainted(false);
+		memberUseConsumable.setBackground(new Color(20, 20, 20));
+		memberUseConsumable.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				infoBox.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/creweat.jpg")));
+			}
+		});
 		memberUseConsumable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
@@ -540,10 +582,20 @@ public class CommandCenter {
 					getInputCrewConsume(userItems);
 			}
 		});
-		memberUseConsumable.setBounds(12, 124, 192, 179);
+		memberUseConsumable.setBounds(12, 134, 210, 179);
 		commitActions.add(memberUseConsumable);
 
 		JButton memberSleep = new JButton("Sleep");
+		memberSleep.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+		memberSleep.setForeground(Color.WHITE);
+		memberSleep.setBackground(new Color(20, 20, 20));
+		memberSleep.setBorderPainted(false);
+		memberSleep.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				infoBox.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewsleep.jpg")));
+			}
+		});
 		memberSleep.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -561,10 +613,20 @@ public class CommandCenter {
 				}
 			}
 		});
-		memberSleep.setBounds(211, 124, 192, 179);
+		memberSleep.setBounds(232, 134, 210, 179);
 		commitActions.add(memberSleep);
 
 		JButton memberRepair = new JButton("Repair shield");
+		memberRepair.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+		memberRepair.setForeground(Color.WHITE);
+		memberRepair.setBackground(new Color(20, 20, 20));
+		memberRepair.setBorderPainted(false);
+		memberRepair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				infoBox.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/repairship.png")));
+			}
+		});
 		memberRepair.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -582,10 +644,20 @@ public class CommandCenter {
 				}
 			}
 		});
-		memberRepair.setBounds(12, 315, 192, 179);
+		memberRepair.setBounds(12, 320, 210, 179);
 		commitActions.add(memberRepair);
 
 		JButton memberSearch = new JButton("Search the planet");
+		memberSearch.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+		memberSearch.setForeground(Color.WHITE);
+		memberSearch.setBackground(new Color(20, 20, 20));
+		memberSearch.setBorderPainted(false);
+		memberSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				infoBox.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewexplore.jpg")));
+			}
+		});
 		memberSearch.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -607,6 +679,9 @@ public class CommandCenter {
 				if (foundShipPiece) {
 					engine.incrementFoundShipPieces();
 					engine.planetExtractShipPieces();
+					if (engine.hasGameEnded()) {
+					// TODO: close command center, show final screen window	
+					}
 				} else {
 					if (engine.unlucky(20)) {
 						// found nothing
@@ -620,10 +695,14 @@ public class CommandCenter {
 				refreshPage();
 			}
 		});
-		memberSearch.setBounds(211, 315, 192, 179);
+		memberSearch.setBounds(232, 320, 210, 179);
 		commitActions.add(memberSearch);
 
 		JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
+		memberPilot.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
+		memberPilot.setForeground(Color.WHITE);
+		memberPilot.setBackground(new Color(20, 20, 20));
+		memberPilot.setBorderPainted(false);
 		memberPilot.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -645,14 +724,15 @@ public class CommandCenter {
 				}
 			}
 		});
-		memberPilot.setBounds(12, 506, 390, 103);
+		memberPilot.setBounds(12, 506, 430, 103);
 		commitActions.add(memberPilot);
 
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(522, 24, 461, 574);
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(460, 21, 523, 588);
 		commitActions.add(lblNewLabel_2);
 		infoBox = lblNewLabel_2;
 
+		int memberButtonsSize = 100;
 		JToggleButton memberOne = new JToggleButton("New toggle button");
 		memberOne.addActionListener(new ActionListener() {
 			/**
@@ -663,7 +743,7 @@ public class CommandCenter {
 				addCrewToSelection(0);
 			}
 		});
-		memberOne.setBounds(12, 21, 109, 91);
+		memberOne.setBounds(12, 21, memberButtonsSize, memberButtonsSize);
 		commitActions.add(memberOne);
 		this.memberOne = memberOne;
 
@@ -677,7 +757,7 @@ public class CommandCenter {
 				addCrewToSelection(1);
 			}
 		});
-		memberTwo.setBounds(135, 21, 109, 91);
+		memberTwo.setBounds(122, 21, memberButtonsSize, memberButtonsSize);
 		commitActions.add(memberTwo);
 		this.memberTwo = memberTwo;
 
@@ -692,7 +772,7 @@ public class CommandCenter {
 					addCrewToSelection(2);
 				}
 			});
-			memberThree.setBounds(256, 21, 109, 91);
+			memberThree.setBounds(232, 21, memberButtonsSize, memberButtonsSize);
 			commitActions.add(memberThree);
 			this.memberThree = memberThree;
 
@@ -708,7 +788,7 @@ public class CommandCenter {
 
 					}
 				});
-				memberFour.setBounds(377, 21, 109, 91);
+				memberFour.setBounds(342, 21, memberButtonsSize, memberButtonsSize);
 				commitActions.add(memberFour);
 				this.memberFour = memberFour;
 			}
@@ -742,34 +822,49 @@ public class CommandCenter {
 		this.spaceshipIcon = spaceshipIcon;
 
 		JPanel VisitOutpost = new JPanel();
+		VisitOutpost.setBackground(new Color(0, 0, 0));
 		tabbedPane.addTab("Visit Outpost", null, VisitOutpost, null);
 		VisitOutpost.setLayout(null);
 
 		JLabel lblItemsOnSale = new JLabel("Items on sale:");
+		lblItemsOnSale.setForeground(Color.GRAY);
+		lblItemsOnSale.setBackground(Color.GRAY);
 		lblItemsOnSale.setBounds(20, 12, 121, 34);
 		VisitOutpost.add(lblItemsOnSale);
 
 		JLabel lblName_1 = new JLabel("Name");
+		lblName_1.setForeground(Color.GRAY);
+		lblName_1.setBackground(Color.GRAY);
 		lblName_1.setBounds(x, 62, 66, 15);
 		VisitOutpost.add(lblName_1);
 
 		JLabel lblType_1 = new JLabel("Type");
+		lblType_1.setForeground(Color.GRAY);
+		lblType_1.setBackground(Color.GRAY);
 		lblType_1.setBounds(132, 62, 66, 15);
 		VisitOutpost.add(lblType_1);
 
 		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setForeground(Color.GRAY);
+		lblPrice.setBackground(Color.GRAY);
 		lblPrice.setBounds(215, 62, 66, 15);
 		VisitOutpost.add(lblPrice);
 
 		JLabel lblHeals = new JLabel("Heals");
+		lblHeals.setForeground(Color.GRAY);
+		lblHeals.setBackground(Color.GRAY);
 		lblHeals.setBounds(293, 62, 66, 15);
 		VisitOutpost.add(lblHeals);
 
 		JLabel lblFills = new JLabel("Fills");
+		lblFills.setForeground(Color.GRAY);
+		lblFills.setBackground(Color.GRAY);
 		lblFills.setBounds(371, 62, 66, 15);
 		VisitOutpost.add(lblFills);
 
 		JLabel lblCuresPlague = new JLabel("Cures Plague");
+		lblCuresPlague.setForeground(Color.GRAY);
+		lblCuresPlague.setBackground(Color.GRAY);
 		lblCuresPlague.setBounds(449, 62, 106, 15);
 		VisitOutpost.add(lblCuresPlague);
 
@@ -780,31 +875,37 @@ public class CommandCenter {
 		int itemDescription_y = 90;
 
 		JLabel itemName = new JLabel("");
+		itemName.setForeground(Color.WHITE);
 		itemNames = itemName;
 		itemName.setBounds(x, itemDescription_y, 106, 97);
 		VisitOutpost.add(itemName);
 
 		JLabel itemPrice = new JLabel("");
+		itemPrice.setForeground(Color.WHITE);
 		itemPrices = itemPrice;
 		itemPrice.setBounds(215, itemDescription_y, 66, 97);
 		VisitOutpost.add(itemPrice);
 
 		JLabel itemHeal = new JLabel("");
+		itemHeal.setForeground(Color.WHITE);
 		itemHealings = itemHeal;
 		itemHeal.setBounds(293, itemDescription_y, 66, 97);
 		VisitOutpost.add(itemHeal);
 
 		JLabel itemFill = new JLabel("");
+		itemFill.setForeground(Color.WHITE);
 		itemFills = itemFill;
 		itemFill.setBounds(371, itemDescription_y, 66, 97);
 		VisitOutpost.add(itemFill);
 
 		JLabel itemCure = new JLabel("");
+		itemCure.setForeground(Color.WHITE);
 		itemCures = itemCure;
 		itemCure.setBounds(449, itemDescription_y, 80, 97);
 		VisitOutpost.add(itemCure);
 
 		JLabel itemType = new JLabel("");
+		itemType.setForeground(Color.WHITE);
 		itemType.setBounds(137, itemDescription_y, 66, 97);
 		VisitOutpost.add(itemType);
 		itemTypes= itemType;
@@ -820,12 +921,17 @@ public class CommandCenter {
 		int shopping_x = 600;
 
 		JLabel lblShoppingBag = new JLabel("Your shopping cart:");
+		lblShoppingBag.setForeground(Color.GRAY);
+		lblShoppingBag.setBackground(Color.GRAY);
 		lblShoppingBag.setBounds(shopping_x, 12, 150, 34);
 		VisitOutpost.add(lblShoppingBag);
 
 		int purchase_y = 258;
 
 		JButton btnPurchase = new JButton("Purchase");
+		btnPurchase.setBorder(null);
+		btnPurchase.setForeground(Color.WHITE);
+		btnPurchase.setBackground(Color.DARK_GRAY);
 		btnPurchase.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -841,10 +947,13 @@ public class CommandCenter {
 		VisitOutpost.add(btnPurchase);
 
 		JLabel lblTotalPrice = new JLabel("Total price:");
+		lblTotalPrice.setForeground(Color.GRAY);
+		lblTotalPrice.setBackground(Color.GRAY);
 		lblTotalPrice.setBounds(shopping_x, 258, 88, 25);
 		VisitOutpost.add(lblTotalPrice);
 
 		JLabel lblPrice_1 = new JLabel("price");
+		lblPrice_1.setForeground(Color.WHITE);
 		lblPrice_1.setText("$0");
 		lblPrice_1.setBounds(715, purchase_y, 106, 25);
 		VisitOutpost.add(lblPrice_1);
@@ -864,10 +973,11 @@ public class CommandCenter {
 		int y = 250;
 		int spacing = 20;
 
-		JButton btnNewButton_1 = new JButton(""); // Brownie
-		btnNewButton_1.setBackground(Color.DARK_GRAY);
-		btnNewButton_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
-		btnNewButton_1.addActionListener(new ActionListener() {
+		Color defaultBGColor = new Color(20, 20, 20);
+		JButton brownieBtn = new JButton(""); // Brownie
+		brownieBtn.setBackground(defaultBGColor);
+		brownieBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
+		brownieBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -876,13 +986,13 @@ public class CommandCenter {
 				showItemDetails("Brownie");
 			}
 		});
-		btnNewButton_1.setBounds(x, y, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnNewButton_1);
+		brownieBtn.setBounds(x, y, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(brownieBtn);
 
-		JButton btnF = new JButton(""); // FriedRice
-		btnF.setBackground(Color.DARK_GRAY);
-		btnF.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
-		btnF.addActionListener(new ActionListener() {
+		JButton friedRiceBtn = new JButton(""); // FriedRice
+		friedRiceBtn.setBackground(defaultBGColor);
+		friedRiceBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
+		friedRiceBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -891,13 +1001,13 @@ public class CommandCenter {
 				showItemDetails("FriedRice");
 			}
 		});
-		btnF.setBounds(x + spacing + consumablesIconSize, y, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnF);
+		friedRiceBtn.setBounds(x + spacing + consumablesIconSize, y, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(friedRiceBtn);
 
-		JButton btnF_1 = new JButton(""); // Dumplings
-		btnF_1.setBackground(Color.DARK_GRAY);
-		btnF_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
-		btnF_1.addActionListener(new ActionListener() {
+		JButton dumplingsBtn = new JButton(""); // Dumplings
+		dumplingsBtn.setBackground(defaultBGColor);
+		dumplingsBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
+		dumplingsBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -906,13 +1016,13 @@ public class CommandCenter {
 				showItemDetails("Dumplings");
 			}
 		});
-		btnF_1.setBounds(x + 2 * (spacing + consumablesIconSize), y, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnF_1);
+		dumplingsBtn.setBounds(x + 2 * (spacing + consumablesIconSize), y, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(dumplingsBtn);
 
-		JButton btnF_2 = new JButton(""); // Space cake
-		btnF_2.setBackground(Color.DARK_GRAY);
-		btnF_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
-		btnF_2.addActionListener(new ActionListener() {
+		JButton spacecakeBtn = new JButton(""); // Space cake
+		spacecakeBtn.setBackground(defaultBGColor);
+		spacecakeBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
+		spacecakeBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -921,13 +1031,13 @@ public class CommandCenter {
 				showItemDetails("SpaceCake");
 			}
 		});
-		btnF_2.setBounds(x, y + consumablesIconSize + spacing, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnF_2);
+		spacecakeBtn.setBounds(x, y + consumablesIconSize + spacing, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(spacecakeBtn);
 
-		JButton btnF_3 = new JButton(""); // Tikka Masala
-		btnF_3.setBackground(Color.DARK_GRAY);
-		btnF_3.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
-		btnF_3.addActionListener(new ActionListener() {
+		JButton tikkaMasalaBtn = new JButton(""); // Tikka Masala
+		tikkaMasalaBtn.setBackground(defaultBGColor);
+		tikkaMasalaBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
+		tikkaMasalaBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -936,13 +1046,13 @@ public class CommandCenter {
 				showItemDetails("TikkaMasala");
 			}
 		});
-		btnF_3.setBounds(x + spacing + consumablesIconSize, y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnF_3);
+		tikkaMasalaBtn.setBounds(x + spacing + consumablesIconSize, y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(tikkaMasalaBtn);
 
-		JButton btnF_4 = new JButton(""); // Hotbot
-		btnF_4.setBackground(Color.DARK_GRAY);
-		btnF_4.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
-		btnF_4.addActionListener(new ActionListener() {
+		JButton hotbotBtn = new JButton(""); // Hotbot
+		hotbotBtn.setBackground(defaultBGColor);
+		hotbotBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
+		hotbotBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -951,13 +1061,13 @@ public class CommandCenter {
 				showItemDetails("Hotbot");
 			}
 		});
-		btnF_4.setBounds(x + 2 * (spacing + consumablesIconSize), y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnF_4);
+		hotbotBtn.setBounds(x + 2 * (spacing + consumablesIconSize), y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(hotbotBtn);
 
-		JButton btnM = new JButton(""); // Poly Juice
-		btnM.setBackground(Color.DARK_GRAY);
-		btnM.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
-		btnM.addActionListener(new ActionListener() {
+		JButton polyjuiceBtn = new JButton(""); // Poly Juice
+		polyjuiceBtn.setBackground(defaultBGColor);
+		polyjuiceBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
+		polyjuiceBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -966,13 +1076,13 @@ public class CommandCenter {
 				showItemDetails("PolyJuice");
 			}
 		});
-		btnM.setBounds(x, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnM);
+		polyjuiceBtn.setBounds(x, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(polyjuiceBtn);
 
-		JButton btnM_1 = new JButton(""); // Pickled Plum
-		btnM_1.setBackground(Color.DARK_GRAY);
-		btnM_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
-		btnM_1.addActionListener(new ActionListener() {
+		JButton pickledPlumBtn = new JButton(""); // Pickled Plum
+		pickledPlumBtn.setBackground(defaultBGColor);
+		pickledPlumBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
+		pickledPlumBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -981,13 +1091,13 @@ public class CommandCenter {
 				showItemDetails("PickledPlum");
 			}
 		});
-		btnM_1.setBounds(x + spacing + consumablesIconSize, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnM_1);
+		pickledPlumBtn.setBounds(x + spacing + consumablesIconSize, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(pickledPlumBtn);
 
-		JButton btnM_2 = new JButton(""); // Vaccine
-		btnM_2.setBackground(Color.DARK_GRAY);
-		btnM_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
-		btnM_2.addActionListener(new ActionListener() {
+		JButton vaccineBtn = new JButton(""); // Vaccine
+		vaccineBtn.setBackground(defaultBGColor);
+		vaccineBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
+		vaccineBtn.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -996,8 +1106,8 @@ public class CommandCenter {
 				showItemDetails("Vaccine");
 			}
 		});
-		btnM_2.setBounds(x + 2 * (spacing + consumablesIconSize), y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
-		VisitOutpost.add(btnM_2);
+		vaccineBtn.setBounds(x + 2 * (spacing + consumablesIconSize), y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+		VisitOutpost.add(vaccineBtn);
 
 		// ITEM ICONS END
 		// ITEM ICONS END
@@ -1010,6 +1120,8 @@ public class CommandCenter {
 		int selected_x = 380;
 
 		JLabel lblYouSelected = new JLabel("You selected:");
+		lblYouSelected.setForeground(Color.GRAY);
+		lblYouSelected.setBackground(Color.GRAY);
 		lblYouSelected.setBounds(selected_x, y, 106, 34);
 		VisitOutpost.add(lblYouSelected);
 
@@ -1023,6 +1135,8 @@ public class CommandCenter {
 		VisitOutpost.add(spinner);
 
 		JLabel lblSelecteditem = new JLabel("selectedItem");
+		lblSelecteditem.setForeground(Color.GRAY);
+		lblSelecteditem.setBackground(Color.GRAY);
 		lblSelecteditem.setBounds(selected_x, 282, 106, 106);
 		VisitOutpost.add(lblSelecteditem);
 		selectedItem = lblSelecteditem;
@@ -1048,14 +1162,15 @@ public class CommandCenter {
 		/// SELECTED ITEM END
 		/// SELECTED ITEM END
 
-
 		// SEPARATOR IN THE MIDDLE
 		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.DARK_GRAY);
 		separator.setOrientation(SwingConstants.VERTICAL);
 		separator.setBounds(564, 26, 18, 554);
 		VisitOutpost.add(separator);
 
 		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(Color.DARK_GRAY);
 		separator_1.setBounds(shopping_x, 310, 383, 2);
 		VisitOutpost.add(separator_1);
 
@@ -1064,10 +1179,14 @@ public class CommandCenter {
 		// INVENTORY ITEM START
 
 		JLabel lblYourInventory = new JLabel("Your inventory:");
+		lblYourInventory.setForeground(Color.GRAY);
+		lblYourInventory.setBackground(Color.GRAY);
 		lblYourInventory.setBounds(shopping_x, 310, 121, 34);
 		VisitOutpost.add(lblYourInventory);
 
 		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBackground(Color.GRAY);
 		lblNewLabel.setBounds(shopping_x, 356, 383, 229);
 		VisitOutpost.add(lblNewLabel);
 		currInventory = lblNewLabel;
@@ -1077,6 +1196,9 @@ public class CommandCenter {
 		// INVENTORY ITEM END
 
 		JButton btnNewButton = new JButton("End day");
+		btnNewButton.setBorder(null);
+		btnNewButton.setBackground(Color.DARK_GRAY);
+		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -1100,48 +1222,58 @@ public class CommandCenter {
 		frmCommandCenter.getContentPane().add(btnNewButton);
 
 		JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found");
+		lblShipPiecesFound.setForeground(Color.LIGHT_GRAY);
 		lblShipPiecesFound.setBounds(12, bottomPanel_y, 136, 25);
 		frmCommandCenter.getContentPane().add(lblShipPiecesFound);
 
 		JLabel lblCurrentDay = new JLabel("Current Day");
+		lblCurrentDay.setForeground(Color.LIGHT_GRAY);
 		lblCurrentDay.setBounds(359, bottomPanel_y, 99, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentDay);
 
 		JLabel lblX = new JLabel("x");
+		lblX.setForeground(Color.LIGHT_GRAY);
 		lblX.setText("0");
 		lblX.setBounds(160, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblX);
 		currShipPieces = lblX;
 
 		JLabel lblOutOf = new JLabel("out of");
+		lblOutOf.setForeground(Color.LIGHT_GRAY);
 		lblOutOf.setBounds(186, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblOutOf);
 
 		JLabel lblY = new JLabel("y");
+		lblY.setForeground(Color.LIGHT_GRAY);
 		lblY.setBounds(241, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblY);
 		lblY.setText(String.valueOf(engine.getShipPieces()));
 
 		JLabel label_8 = new JLabel("x");
+		label_8.setForeground(Color.LIGHT_GRAY);
 		label_8.setText("1");
 		label_8.setBounds(456, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(label_8);
 		currDay = label_8;
 
 		JLabel label_9 = new JLabel("out of");
+		label_9.setForeground(Color.LIGHT_GRAY);
 		label_9.setBounds(482, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(label_9);
 
 		JLabel label_10 = new JLabel("y");
+		label_10.setForeground(Color.LIGHT_GRAY);
 		label_10.setBounds(537, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(label_10);
 		label_10.setText(String.valueOf(engine.getGameLength()));
 
 		JLabel lblMoney = new JLabel("Money");
+		lblMoney.setForeground(Color.LIGHT_GRAY);
 		lblMoney.setBounds(598, bottomPanel_y, 64, 25);
 		frmCommandCenter.getContentPane().add(lblMoney);
 
 		JLabel label_11 = new JLabel("$0");
+		label_11.setForeground(Color.LIGHT_GRAY);
 		label_11.setBounds(674, bottomPanel_y, 64, 25);
 		frmCommandCenter.getContentPane().add(label_11);
 		currMoney = label_11;
