@@ -24,7 +24,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 
-import static game.Utils.typePrint;
 
 import java.awt.Color;
 import javax.swing.event.ChangeEvent;
@@ -74,9 +73,9 @@ public class CommandCenter {
 	private JToggleButton memberTwo;
 	private JToggleButton memberThree;
 	private JToggleButton memberFour;
-	private JLabel infoBox;
 
 	private int totalCrewMembers;
+    private JLabel infoBox;
 	
 
 	/**
@@ -89,6 +88,22 @@ public class CommandCenter {
 		totalCrewMembers = engine.getCrewMemberStatus().size();
 		initialize();
 		frmCommandCenter.setVisible(true);
+	}
+	
+	public void startDay() {
+        int randomEvent = engine.getRandomEvent();
+        switch (randomEvent) {
+            case 1:
+                System.out.println("Oh no those pesky alien pirates invaded the ship and raided our inventory");
+                break;
+            case 2:
+                System.out.println("Houston we have a problem");
+                System.out.println("Some crew member(s) have been infected with Space Plague");
+                break;
+        }
+
+        engine.updateCrewMemberStatus();
+        engine.getDeadCrewMembers();
 	}
 
 	private void refreshPage() {
@@ -304,13 +319,6 @@ public class CommandCenter {
 		refreshSelectedCrews();
 	}
 	
-	private void selectedCrewUseConsumable() {
-		if (engine.getCrewConsumablesCount() == 0) {
-			JOptionPane.showMessageDialog(new JFrame(), "No items in the inventory :(");
-			return;
-		}
-	}
-	
 	private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
 		JDialog consWindow = new JDialog();
 		consWindow.setResizable(false);
@@ -524,8 +532,6 @@ public class CommandCenter {
 		JButton memberUseConsumable = new JButton("Use consumables");
 		memberUseConsumable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO: create a popup that asks for user input
-				//      user inputs the index of item they want to use
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
 					return;
@@ -630,6 +636,9 @@ public class CommandCenter {
 				}
 				try {
 					engine.selectedCrewPilotSpaceship();
+					if (engine.isHitAsteroid()) {
+					    engine.asteroidCausingDamage();
+					}
 					System.out.println(engine.planetHasShipPieces());
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
@@ -1081,6 +1090,8 @@ public class CommandCenter {
 				refreshPage();
 				refreshSpaceshipPage();
 				refreshCrewStatusPage();
+				
+				startDay();
 			}
 		});
 
