@@ -29,7 +29,7 @@ public class Crew {
         consumables = new TreeMap<>();
         consumablesList = new ArrayList<>();
 
-        money = 100;
+        money = 1000000;
         crewMembers = crews;
         ship = newShip;
     }
@@ -157,7 +157,7 @@ public class Crew {
         int itemCount = 0;
         for (Consumable c : consumables.keySet()) {
             String consumableName = c.getName();
-            if (consumableName == itemName) {
+            if (consumableName.equals(itemName)) {
                 itemCount = consumables.get(c);
                 if (itemCount > 0) {
                     itemCount--;

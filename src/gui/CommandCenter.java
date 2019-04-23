@@ -2,6 +2,8 @@ package gui;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -21,6 +23,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
+
+import static game.Utils.typePrint;
+
 import java.awt.Color;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -72,6 +77,7 @@ public class CommandCenter {
 	private JLabel infoBox;
 
 	private int totalCrewMembers;
+	
 
 	/**
 	 * Create the application.
@@ -304,17 +310,59 @@ public class CommandCenter {
 			return;
 		}
 	}
+	
+	private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
+		JDialog consWindow = new JDialog();
+		consWindow.setResizable(false);
+		consWindow.setTitle("Select Consumables");
+		consWindow.setBounds(100, 100, 340, 380);
+		consWindow.getContentPane().setLayout(null);
+		consWindow.setVisible(true);
 
- /**
-  * <<auto generated javadoc comment>>
-  */
+		int itemsSpacing = 10;
+		int buttonSize = 100;
+		int items_x = 10;
+		int items_y = 10;
+		
+		for (ArrayList<String> item : consumables) {
+			String itemName = item.get(0).toLowerCase();
+			System.out.println(itemName);
+			JButton itemButton = new JButton(itemName);
+			itemButton.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/" + itemName + ".png")));
+			itemButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+						engine.selectedCrewUseItem(consumables.indexOf(item));
+					} catch (InsufficientActionException err) {
+						JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
+						return;
+					}
+					consWindow.setVisible(false);
+					consWindow.dispose();
+				}
+			});
+
+			int itemRow = consumables.indexOf(item) / 3;
+			int itemCol = consumables.indexOf(item) % 3;
+			itemButton.setBounds(items_x + itemCol * (buttonSize + itemsSpacing), 
+					items_y + itemRow * (buttonSize + itemsSpacing), 
+					buttonSize, buttonSize);
+			itemButton.setText("");
+
+			consWindow.getContentPane().add(itemButton);
+		}
+	}
+
+	/**
+	 * <<auto generated javadoc comment>>
+	 */
 	public void closeWindow() {
 		frmCommandCenter.dispose();
 	}
 
- /**
-  * <<auto generated javadoc comment>>
-  */
+	/**
+	 * <<auto generated javadoc comment>>
+	 */
 	public void finishedWindow() {
 		game.closeCommandCenter(this);
 	}
@@ -337,10 +385,10 @@ public class CommandCenter {
 
 		tabbedPane.addChangeListener(new ChangeListener() {
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-   @Override
+			/**
+			 * Initialize the contents of the frame.
+			 */
+			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				switch (tabbedPane.getSelectedIndex()) {
 				case 0:
@@ -352,11 +400,11 @@ public class CommandCenter {
 					refreshSpaceshipPage();
 					break;
 				case 3:
+					refreshInventory();
 					break;
 				}
 			}
 		});
-
 
 		int x = 20;
 
@@ -475,11 +523,15 @@ public class CommandCenter {
 
 		JButton memberUseConsumable = new JButton("Use consumables");
 		memberUseConsumable.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
 			public void actionPerformed(ActionEvent e) {
+				//TODO: create a popup that asks for user input
+				//      user inputs the index of item they want to use
+				if (selectedCrews.size() != 1) {
+					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
+					return;
+				}
+					ArrayList<ArrayList<String>> userItems = engine.getCrewConsumables();
+					getInputCrewConsume(userItems);
 			}
 		});
 		memberUseConsumable.setBounds(12, 124, 192, 179);
@@ -487,10 +539,10 @@ public class CommandCenter {
 
 		JButton memberSleep = new JButton("Sleep");
 		memberSleep.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
@@ -508,10 +560,10 @@ public class CommandCenter {
 
 		JButton memberRepair = new JButton("Repair shield");
 		memberRepair.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
@@ -529,20 +581,37 @@ public class CommandCenter {
 
 		JButton memberSearch = new JButton("Search the planet");
 		memberSearch.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
+				boolean foundShipPiece = false;
 				if (selectedCrews.size() != 1) {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
 					return;
 				}
 				try {
-					engine.selectedCrewSearchPlanet();
+					foundShipPiece = engine.selectedCrewSearchPlanet();
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
+					return;
 				}
+				
+				if (foundShipPiece) {
+					engine.incrementFoundShipPieces();
+					engine.planetExtractShipPieces();
+				} else {
+					if (engine.unlucky(20)) {
+						// found nothing
+	                } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
+	                    engine.crewGetRandomItem();
+	                } else { // 50% chance it's money
+	                    engine.crewAddMoney();
+					}
+				}
+				
+				refreshPage();
 			}
 		});
 		memberSearch.setBounds(211, 315, 192, 179);
@@ -550,10 +619,10 @@ public class CommandCenter {
 
 		JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
 		memberPilot.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
 				if (selectedCrews.size() != 2) {
 					JOptionPane.showMessageDialog(new JFrame(), "You need 2 crew members for this action");
@@ -561,6 +630,7 @@ public class CommandCenter {
 				}
 				try {
 					engine.selectedCrewPilotSpaceship();
+					System.out.println(engine.planetHasShipPieces());
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 				}
@@ -576,10 +646,10 @@ public class CommandCenter {
 
 		JToggleButton memberOne = new JToggleButton("New toggle button");
 		memberOne.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
 				addCrewToSelection(0);
 			}
@@ -590,10 +660,10 @@ public class CommandCenter {
 
 		JToggleButton memberTwo = new JToggleButton("New toggle button");
 		memberTwo.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param e <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param e <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent e) {
 				addCrewToSelection(1);
 			}
@@ -605,10 +675,10 @@ public class CommandCenter {
 		if (totalCrewMembers > 2) {
 			JToggleButton memberThree = new JToggleButton("New toggle button");
 			memberThree.addActionListener(new ActionListener() {
-    /**
-     * <<auto generated javadoc comment>>
-     * @param e <<Param Desc>>
-     */
+				/**
+				 * <<auto generated javadoc comment>>
+				 * @param e <<Param Desc>>
+				 */
 				public void actionPerformed(ActionEvent e) {
 					addCrewToSelection(2);
 				}
@@ -620,10 +690,10 @@ public class CommandCenter {
 			if (totalCrewMembers > 3) {
 				JToggleButton memberFour = new JToggleButton("New toggle button");
 				memberFour.addActionListener(new ActionListener() {
-     /**
-      * <<auto generated javadoc comment>>
-      * @param e <<Param Desc>>
-      */
+					/**
+					 * <<auto generated javadoc comment>>
+					 * @param e <<Param Desc>>
+					 */
 					public void actionPerformed(ActionEvent e) {
 						addCrewToSelection(3);
 
@@ -748,10 +818,10 @@ public class CommandCenter {
 
 		JButton btnPurchase = new JButton("Purchase");
 		btnPurchase.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				cart.purchaseItems();
 				currMoney.setText(String.valueOf(engine.getCrewMoney()));
@@ -789,10 +859,10 @@ public class CommandCenter {
 		btnNewButton_1.setBackground(Color.DARK_GRAY);
 		btnNewButton_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
 		btnNewButton_1.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Brownie");
 			}
@@ -804,10 +874,10 @@ public class CommandCenter {
 		btnF.setBackground(Color.DARK_GRAY);
 		btnF.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
 		btnF.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("FriedRice");
 			}
@@ -819,10 +889,10 @@ public class CommandCenter {
 		btnF_1.setBackground(Color.DARK_GRAY);
 		btnF_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
 		btnF_1.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Dumplings");
 			}
@@ -834,10 +904,10 @@ public class CommandCenter {
 		btnF_2.setBackground(Color.DARK_GRAY);
 		btnF_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
 		btnF_2.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("SpaceCake");
 			}
@@ -849,10 +919,10 @@ public class CommandCenter {
 		btnF_3.setBackground(Color.DARK_GRAY);
 		btnF_3.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
 		btnF_3.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("TikkaMasala");
 			}
@@ -864,10 +934,10 @@ public class CommandCenter {
 		btnF_4.setBackground(Color.DARK_GRAY);
 		btnF_4.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
 		btnF_4.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Hotbot");
 			}
@@ -879,10 +949,10 @@ public class CommandCenter {
 		btnM.setBackground(Color.DARK_GRAY);
 		btnM.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
 		btnM.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("PolyJuice");
 			}
@@ -894,10 +964,10 @@ public class CommandCenter {
 		btnM_1.setBackground(Color.DARK_GRAY);
 		btnM_1.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
 		btnM_1.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("PickledPlum");
 			}
@@ -909,10 +979,10 @@ public class CommandCenter {
 		btnM_2.setBackground(Color.DARK_GRAY);
 		btnM_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
 		btnM_2.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				showItemDetails("Vaccine");
 			}
@@ -950,10 +1020,10 @@ public class CommandCenter {
 
 		JButton btnAddToCart = new JButton("Add to cart");
 		btnAddToCart.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				String itemQuery = itemNames.getText();
 				if (itemQuery.equals(""))
@@ -999,10 +1069,10 @@ public class CommandCenter {
 
 		JButton btnNewButton = new JButton("End day");
 		btnNewButton.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
+			/**
+			 * <<auto generated javadoc comment>>
+			 * @param arg0 <<Param Desc>>
+			 */
 			public void actionPerformed(ActionEvent arg0) {
 				engine.endDay();
 				if (engine.hasGameEnded()) {

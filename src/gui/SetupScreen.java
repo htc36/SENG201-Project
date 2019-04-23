@@ -216,7 +216,7 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(lblSpaceshipName);
 
         spaceshipName = new JTextField();
-        spaceshipName.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        spaceshipName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
         spaceshipName.setCaretColor(Color.GREEN);
         spaceshipName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GREEN));
         spaceshipName.setForeground(Color.GREEN);
@@ -227,6 +227,7 @@ public class SetupScreen {
         spaceshipName.setColumns(10);
 
         crewMemberName = new JTextField();
+        crewMemberName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
         crewMemberName.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         crewMemberName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GREEN));
         crewMemberName.setCaretColor(Color.GREEN);
@@ -400,7 +401,7 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(builderBtn);
 
         JLabel lblNumShipPieces = new JLabel("6");
-        lblNumShipPieces.setFont(new Font("Ubuntu", Font.PLAIN, 12));
+        lblNumShipPieces.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
         lblNumShipPieces.setForeground(Color.GREEN);
         lblNumShipPieces.setBounds(588, 395, 71, 36);
         frmCrewSetup.getContentPane().add(lblNumShipPieces);

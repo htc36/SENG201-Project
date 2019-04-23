@@ -161,7 +161,7 @@ public class GameEngine {
     public boolean isCrewNameValid(ArrayList<String> crewList, String name) {
         // to avoid 2 crew members having the same name
         for (String c : crewList) {
-            if (c.startsWith(name))
+            if (c.equals(name))
                 return false;
         }
 
@@ -292,7 +292,12 @@ public class GameEngine {
      * @return boolean true if found a ship piece, false otherwise
      */
     public boolean selectedCrewSearchPlanet() {
-        return selectedCrew.searchPlanet();
+        boolean found = selectedCrew.searchPlanet();
+    	if (!planets.get(currentPlanetIndex).stillHasShipPieces()) {
+    		return false;
+    	}
+    	
+    	return found;
     }
 
     /**
