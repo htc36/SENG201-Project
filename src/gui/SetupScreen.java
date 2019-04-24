@@ -127,8 +127,8 @@ public class SetupScreen {
             updateCrewMemberDescriptions(type);
             return;
         }
-
-        if (!engine.isCrewNameValid(crewList, name)) {
+        
+        if (!engine.isCrewNameValid(crewList, name + "-" + type)) {
             errorLabel.setText("<html>There is a crew member with that name!</html>");
             return;
         }

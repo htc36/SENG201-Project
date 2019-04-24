@@ -1,17 +1,36 @@
 package gui;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+
 import game.GameEngine;
 
 public class GameGUI {
 
 	private GameEngine engine;
+	private GraphicsEnvironment gameEnv;
 
 	/**
 	 * <<auto generated javadoc comment>>
 	 */
 	public GameGUI() {
 		engine = new GameEngine();
+		gameEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		try {
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Quantico-Regular.ttf")));
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
+	
 
 	/**
 	 * <<auto generated javadoc comment>>
@@ -74,6 +93,7 @@ public class GameGUI {
 	 * @param args <<Param Desc>>
 	 */
 	public static void main(String[] args) {
+		// Load the custom font we use for the game
 		GameGUI game = new GameGUI();
 		game.launchMainScreen();
 		//game.launchFinalScreen();

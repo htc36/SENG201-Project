@@ -7,6 +7,7 @@ import java.util.Random;
 import game.InsufficientFundException;
 import consumable.Consumable;
 import unit.CrewMember;
+import unit.CrewMemberNotFoundException;
 import unit.Spaceship;
 
 public class Crew {
@@ -39,7 +40,9 @@ public class Crew {
      * @param c the crew member that is going to be removed
      */
     public void removeCrewMember(CrewMember c) {
-        crewMembers.remove(c);
+        if (!crewMembers.remove(c)) {
+        	throw new CrewMemberNotFoundException("No such crew member");
+        }
     }
 
     public TreeMap<Consumable, Integer> getConsumables() {

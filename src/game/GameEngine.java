@@ -200,8 +200,15 @@ public class GameEngine {
      * Remove a crew member from the crew members list
      * @param c The crew member to be removed
      */
-    public void removeCrewMember(CrewMember c) {
-        crew.removeCrewMember(c);
+    public void removeCrewMember(String name) throws CrewMemberNotFoundException {
+    	CrewMember toBeRemoved = null;
+    	for (CrewMember c : crew.getCrewMembers()) {
+    		if (c.getName().equals(name) && c.getHealth() == 0) {
+    			toBeRemoved = c;
+    			break;
+    		}
+    	}
+        crew.removeCrewMember(toBeRemoved);
     }
 
     /**
