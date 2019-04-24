@@ -186,8 +186,6 @@ public class CommandCenter {
 
 
 	private void refreshCrewStatusPage() {
-		engine.updateCrewMemberStatus();
-
 		String crewNames = "<html>";
 		String crewTypes = "<html>";
 		String crewHealth = "<html>";
@@ -201,10 +199,10 @@ public class CommandCenter {
 		int counter = 0;
 		for (ArrayList<String> member : engine.getCrewMemberStatus()) {
 			String health = member.get(1);
+			// TODO: Set crew members to be unselectable in commit action page after they are dead
 			if (Integer.valueOf(health) == 0) {
 				switch(counter) {
 				case 0:
-					System.out.println("Setting memberOne to invisible");
 					memberOne.setVisible(false);
 					break;
 				case 1:
@@ -1328,6 +1326,7 @@ public class CommandCenter {
 					finishedWindow();
 				}
 				startDay();
+                engine.updateCrewMemberStatus();
 				refreshPage();
 				refreshSpaceshipPage();
 				refreshCrewStatusPage();
