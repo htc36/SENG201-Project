@@ -345,6 +345,11 @@ public class CommandCenter {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						engine.selectedCrewUseItem(consumables.indexOf(item));
+						String selectedCrewName = engine.selectedCrewName();
+						String template = "";
+						template += selectedCrewName + " consumed a " + itemName + ". ";
+						template += "Their health has been increased by " + item.get(2) + ". ";
+						JOptionPane.showMessageDialog(new JFrame(), template);
 					} catch (InsufficientActionException err) {
 						JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 						return;
@@ -699,6 +704,12 @@ public class CommandCenter {
 		commitActions.add(memberSearch);
 
 		JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
+		memberPilot.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				infoBox.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewlaunch.png")));
+			}
+		});
 		memberPilot.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
 		memberPilot.setForeground(Color.WHITE);
 		memberPilot.setBackground(new Color(20, 20, 20));
