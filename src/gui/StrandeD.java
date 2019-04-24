@@ -75,23 +75,6 @@ public class StrandeD {
 		btnNewButton.setBounds(336, 300, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnNewButton);
 		
-		JButton btnLoad = new JButton("Load");
-		btnLoad.setFont(new Font("Ubuntu", Font.BOLD, 16));
-		btnLoad.setForeground(UIManager.getColor("RadioButton.highlight"));
-		btnLoad.addActionListener(new ActionListener() {
-   /**
-    * <<auto generated javadoc comment>>
-    * @param arg0 <<Param Desc>>
-    */
-			public void actionPerformed(ActionEvent arg0) {
-				finishedWindow();
-			}
-		});
-		btnLoad.setBorder(null);
-		btnLoad.setBackground(Color.DARK_GRAY);
-		btnLoad.setBounds(336, 362, 110, 42);
-		frmWelcomeScreen.getContentPane().add(btnLoad);
-		
 		JLabel label = new JLabel("StrandeD");
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
 		label.setHorizontalAlignment(SwingConstants.CENTER);

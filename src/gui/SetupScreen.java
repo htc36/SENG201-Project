@@ -81,6 +81,10 @@ public class SetupScreen {
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/builder.png")));
             else if (crewList.get(i).endsWith("hungus"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/hungus.png")));
+            else if (crewList.get(i).endsWith("actioneer"))
+                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/actioneer.png")));
+            else if (crewList.get(i).endsWith("sleeper"))
+                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/sleeper.png")));
         }
     }
 

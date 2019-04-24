@@ -47,7 +47,6 @@ public class CommandCenter {
 	private JLabel currShipPieces;
 	private JLabel currDay;
 	private JProgressBar spaceshipHealth;
-	private JLabel spaceshipIcon;
 
 	private JLabel crewNames;
 	private JLabel crewTypes;
@@ -79,8 +78,8 @@ public class CommandCenter {
 	private JToggleButton memberFour;
 
 	private int totalCrewMembers;
-    private JLabel infoBox;
-	
+	private JLabel infoBox;
+
 
 	/**
 	 * Create the application.
@@ -93,21 +92,21 @@ public class CommandCenter {
 		initialize();
 		frmCommandCenter.setVisible(true);
 	}
-	
-	public void startDay() {
-        int randomEvent = engine.getRandomEvent();
-        switch (randomEvent) {
-            case 1:
-                System.out.println("Oh no those pesky alien pirates invaded the ship and raided our inventory");
-                break;
-            case 2:
-                System.out.println("Houston we have a problem");
-                System.out.println("Some crew member(s) have been infected with Space Plague");
-                break;
-        }
 
-        engine.updateCrewMemberStatus();
-        engine.getDeadCrewMembers();
+	public void startDay() {
+		int randomEvent = engine.getRandomEvent();
+		switch (randomEvent) {
+		case 1:
+			System.out.println("Oh no those pesky alien pirates invaded the ship and raided our inventory");
+			break;
+		case 2:
+			System.out.println("Houston we have a problem");
+			System.out.println("Some crew member(s) have been infected with Space Plague");
+			break;
+		}
+
+		engine.updateCrewMemberStatus();
+		engine.getDeadCrewMembers();
 	}
 
 	private void refreshPage() {
@@ -118,14 +117,6 @@ public class CommandCenter {
 	private void refreshSpaceshipPage() {
 		int shipHealth = engine.getSpaceshipHealth();
 		spaceshipHealth.setValue(shipHealth);
-
-		if (shipHealth < 30) {
-			spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship-dmg2.png")));
-		} else if (shipHealth < 60) {
-			spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship-dmg1.png")));
-		} else {
-			spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship.png")));
-		}
 	}
 
 	private void refreshInventory() {
@@ -322,10 +313,11 @@ public class CommandCenter {
 		}
 		refreshSelectedCrews();
 	}
-	
+
 	private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
 		JDialog consWindow = new JDialog();
 		consWindow.setResizable(false);
+		consWindow.getContentPane().setBackground(Color.BLACK);
 		consWindow.setTitle("Select Consumables");
 		consWindow.setBounds(100, 100, 340, 380);
 		consWindow.getContentPane().setLayout(null);
@@ -335,12 +327,13 @@ public class CommandCenter {
 		int buttonSize = 100;
 		int items_x = 10;
 		int items_y = 10;
-		
+
 		for (ArrayList<String> item : consumables) {
 			String itemName = item.get(0).toLowerCase();
 			System.out.println(itemName);
 			JButton itemButton = new JButton(itemName);
 			itemButton.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/" + itemName + ".png")));
+			itemButton.setBackground(Color.DARK_GRAY);
 			itemButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
@@ -365,6 +358,7 @@ public class CommandCenter {
 					items_y + itemRow * (buttonSize + itemsSpacing), 
 					buttonSize, buttonSize);
 			itemButton.setText("");
+			itemButton.setBorder(null);
 
 			consWindow.getContentPane().add(itemButton);
 		}
@@ -385,6 +379,8 @@ public class CommandCenter {
 	}
 
 	private void initialize() {
+		UIManager.put("TabbedPane.unselectedForeground", Color.RED);
+		UIManager.put("TabbedPane.selectedBackground", new Color(100, 0, 0));
 		frmCommandCenter = new JFrame();
 		frmCommandCenter.getContentPane().setBackground(Color.BLACK);
 		frmCommandCenter.setResizable(false);
@@ -393,14 +389,10 @@ public class CommandCenter {
 		frmCommandCenter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCommandCenter.getContentPane().setLayout(null);
 
-		UIManager.put("TabbedPane.background", new Color(10, 10, 10));
-		UIManager.put("TabbedPane.foreground", new Color(10, 10, 10));
-		UIManager.put("TabbedPane.opaque", true); 
-		UIManager.put("TabbedPane.selected", new Color(10, 10, 10));
-		UIManager.put("TabbedPane.border", BorderFactory.createLineBorder(new Color(10, 10, 10)));
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(null);
-		tabbedPane.setBackground(new Color(51, 51, 51));
+//		tabbedPane.setBackground(new Color(51, 51, 51));
+//		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBounds(12, 0, 1000, 648);
 		frmCommandCenter.getContentPane().add(tabbedPane);
 
@@ -494,7 +486,7 @@ public class CommandCenter {
 		JLabel label = new JLabel("Name");
 		label.setForeground(new Color(204, 204, 204));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Ubuntu", Font.PLAIN, 20));
+		label.setFont(new Font("Samanata", Font.PLAIN, 20));
 
 		crewNames = label;
 		label.setBounds(12, 112, 238, 471);
@@ -583,8 +575,8 @@ public class CommandCenter {
 					JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
 					return;
 				}
-					ArrayList<ArrayList<String>> userItems = engine.getCrewConsumables();
-					getInputCrewConsume(userItems);
+				ArrayList<ArrayList<String>> userItems = engine.getCrewConsumables();
+				getInputCrewConsume(userItems);
 			}
 		});
 		memberUseConsumable.setBounds(12, 134, 210, 179);
@@ -613,6 +605,7 @@ public class CommandCenter {
 				}
 				try {
 					engine.selectedCrewSleep();
+					JOptionPane.showMessageDialog(new JFrame(), "Slept");
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 				}
@@ -644,6 +637,7 @@ public class CommandCenter {
 				}
 				try {
 					engine.selectedCrewRepairShield();
+					JOptionPane.showMessageDialog(new JFrame(), "Repaired");
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 				}
@@ -680,23 +674,27 @@ public class CommandCenter {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 					return;
 				}
-				
+
 				if (foundShipPiece) {
+					JOptionPane.showMessageDialog(new JFrame(), "Found ship piece");
 					engine.incrementFoundShipPieces();
 					engine.planetExtractShipPieces();
 					if (engine.hasGameEnded()) {
-					// TODO: close command center, show final screen window	
+						// TODO: close command center, show final screen window	
 					}
 				} else {
 					if (engine.unlucky(20)) {
+					JOptionPane.showMessageDialog(new JFrame(), "Found nothing");
 						// found nothing
-	                } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
-	                    engine.crewGetRandomItem();
-	                } else { // 50% chance it's money
-	                    engine.crewAddMoney();
+					} else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
+					JOptionPane.showMessageDialog(new JFrame(), "Found random item");
+						engine.crewGetRandomItem();
+					} else { // 50% chance it's money
+					JOptionPane.showMessageDialog(new JFrame(), "Found money");
+						engine.crewAddMoney();
 					}
 				}
-				
+
 				refreshPage();
 			}
 		});
@@ -727,9 +725,12 @@ public class CommandCenter {
 				try {
 					engine.selectedCrewPilotSpaceship();
 					if (engine.isHitAsteroid()) {
-					    engine.asteroidCausingDamage();
-					}
-					System.out.println(engine.planetHasShipPieces());
+						engine.asteroidCausingDamage();
+						JOptionPane.showMessageDialog(new JFrame(), "Crashed asteroid");
+					} else 
+						JOptionPane.showMessageDialog(new JFrame(), "Arrived safely");
+					if (engine.planetHasShipPieces())
+						JOptionPane.showMessageDialog(new JFrame(), "Planet has ship piece");
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 				}
@@ -744,7 +745,14 @@ public class CommandCenter {
 		infoBox = lblNewLabel_2;
 
 		int memberButtonsSize = 100;
-		JToggleButton memberOne = new JToggleButton("New toggle button");
+		JToggleButton memberOne = new JToggleButton("");
+		memberOne.setBorder(null);
+		String crewType = engine.getCrewMemberStatus().get(0).get(7);
+		String crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
+		String crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
+		System.out.println(crewIcon);
+		memberOne.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
+		memberOne.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
 		memberOne.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -758,7 +766,13 @@ public class CommandCenter {
 		commitActions.add(memberOne);
 		this.memberOne = memberOne;
 
-		JToggleButton memberTwo = new JToggleButton("New toggle button");
+		JToggleButton memberTwo = new JToggleButton("");
+		memberTwo.setBorder(null);
+		crewType = engine.getCrewMemberStatus().get(1).get(7);
+		crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
+		crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
+		memberTwo.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
+		memberTwo.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
 		memberTwo.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
@@ -773,7 +787,13 @@ public class CommandCenter {
 		this.memberTwo = memberTwo;
 
 		if (totalCrewMembers > 2) {
-			JToggleButton memberThree = new JToggleButton("New toggle button");
+			JToggleButton memberThree = new JToggleButton("");
+			memberThree.setBorder(null);
+			crewType = engine.getCrewMemberStatus().get(2).get(7);
+			crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
+			crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
+			memberThree.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
+			memberThree.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
 			memberThree.addActionListener(new ActionListener() {
 				/**
 				 * <<auto generated javadoc comment>>
@@ -788,7 +808,13 @@ public class CommandCenter {
 			this.memberThree = memberThree;
 
 			if (totalCrewMembers > 3) {
-				JToggleButton memberFour = new JToggleButton("New toggle button");
+				JToggleButton memberFour = new JToggleButton("");
+				memberFour.setBorder(null);
+				crewType = engine.getCrewMemberStatus().get(3).get(7);
+				crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
+				crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
+				memberFour.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
+				memberFour.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
 				memberFour.addActionListener(new ActionListener() {
 					/**
 					 * <<auto generated javadoc comment>>
@@ -811,26 +837,30 @@ public class CommandCenter {
 
 		JPanel spaceshipStatus = new JPanel();
 
-		spaceshipStatus.setBackground(Color.LIGHT_GRAY);
+		spaceshipStatus.setBackground(Color.BLACK);
 		tabbedPane.addTab("Spaceship Status", null, spaceshipStatus, null);
 		spaceshipStatus.setLayout(null);
 
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(30, 476, 923, 45);
+		progressBar.setBackground(Color.DARK_GRAY);
+		progressBar.setForeground(Color.GREEN);
+		progressBar.setFont(new Font("Ubuntu", Font.PLAIN, 14));
+		progressBar.setBounds(30, 476, 923, 20);
 		progressBar.setValue(engine.getSpaceshipHealth());
 		progressBar.setStringPainted(true);
 		spaceshipStatus.add(progressBar);
 		spaceshipHealth = progressBar;
 
-		JLabel lblShieldLevel = new JLabel("Shield Level");
-		lblShieldLevel.setBounds(30, 420, 107, 15);
+		JLabel lblShieldLevel = new JLabel("Shield Level ");
+		lblShieldLevel.setFont(new Font("Ubuntu", Font.BOLD, 21));
+		lblShieldLevel.setForeground(Color.GRAY);
+		lblShieldLevel.setBounds(30, 437, 165, 30);
 		spaceshipStatus.add(lblShieldLevel);
 
 		JLabel spaceshipIcon = new JLabel("");
-		spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship-dmg2.png")));
 		spaceshipIcon.setBounds(12, 12, 971, 396);
+		spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship.png")));
 		spaceshipStatus.add(spaceshipIcon);
-		this.spaceshipIcon = spaceshipIcon;
 
 		JPanel VisitOutpost = new JPanel();
 		VisitOutpost.setBackground(new Color(0, 0, 0));
@@ -1223,7 +1253,7 @@ public class CommandCenter {
 				refreshPage();
 				refreshSpaceshipPage();
 				refreshCrewStatusPage();
-				
+
 				startDay();
 			}
 		});
@@ -1288,21 +1318,6 @@ public class CommandCenter {
 		label_11.setBounds(674, bottomPanel_y, 64, 25);
 		frmCommandCenter.getContentPane().add(label_11);
 		currMoney = label_11;
-
-		JMenuBar menuBar = new JMenuBar();
-		frmCommandCenter.setJMenuBar(menuBar);
-
-		JMenu mnNewMenu = new JMenu("New menu");
-		menuBar.add(mnNewMenu);
-
-		JMenuItem mntmSave = new JMenuItem("Save");
-		mnNewMenu.add(mntmSave);
-
-		JMenuItem mntmLoad = new JMenuItem("Load");
-		mnNewMenu.add(mntmLoad);
-
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mnNewMenu.add(mntmExit);
 
 		refreshCrewStatusPage();
 		currMoney.setText(String.valueOf(engine.getCrewMoney()));
