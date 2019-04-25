@@ -677,7 +677,8 @@ public class CommandCenter {
 					engine.incrementFoundShipPieces();
 					engine.planetExtractShipPieces();
 					if (engine.hasGameEnded()) {
-						// TODO: close command center, show final screen window	
+						finishedWindow();
+						return;
 					}
 				} else {
 					if (engine.unlucky(20)) {
@@ -1203,14 +1204,15 @@ public class CommandCenter {
 				engine.endDay();
 				if (engine.hasGameEnded()) {
 					finishedWindow();
+					return;
 				}
-				if (engine.getCurrDay() != engine.getGameLength()) {
-				startDay();
-                engine.updateCrewMemberStatus();
-				refreshPage();
-				refreshSpaceshipPage();
-				refreshCrewStatusPage();
-				refreshCrewButtons(commitActions);
+				if (engine.getCurrDay() <= engine.getGameLength()) {
+					startDay();
+					engine.updateCrewMemberStatus();
+					refreshPage();
+					refreshSpaceshipPage();
+					refreshCrewStatusPage();
+					refreshCrewButtons(commitActions);
 				}
 			}
 		});

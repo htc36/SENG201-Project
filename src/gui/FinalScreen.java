@@ -50,9 +50,10 @@ public class FinalScreen {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblFinalScoreText = new JLabel("Your final score is");
+		lblFinalScoreText.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFinalScoreText.setForeground(Color.WHITE);
-		lblFinalScoreText.setFont(new Font("Tibetan Machine Uni", Font.BOLD, 14));
-		lblFinalScoreText.setBounds(139, 15, 158, 54);
+		lblFinalScoreText.setFont(new Font("Tibetan Machine Uni", Font.BOLD, 18));
+		lblFinalScoreText.setBounds(90, 15, 249, 54);
 		frame.getContentPane().add(lblFinalScoreText);
 
 		JLabel lblFinalScoreCount = new JLabel("finalscore");

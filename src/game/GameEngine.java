@@ -714,13 +714,6 @@ public class GameEngine {
         AsteroidBelt.causeDamage(crew);
     }
 
-    /**
-     * <<auto generated javadoc comment>>
-     */
-    public void saveGame() {
-
-    }
-    
     public int getFinalScore() {
     	int finalScore = 0;
     	finalScore = (gameLength - currDay) * 10000 * foundShipPieces;
