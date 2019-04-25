@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import game.GameEngine;
@@ -20,6 +18,8 @@ public class FinalScreen {
 	 * Create the application.
 	 */
 	public FinalScreen(GameEngine engine, GameGUI game) {
+		this.game = game;
+		this.engine = engine;
 		initialize();
 	}
 	/**
@@ -49,20 +49,18 @@ public class FinalScreen {
 		frame.setTitle("Final Score");
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("finalscore");
-		lblNewLabel.setFont(new Font("Bitstream Vera Sans Mono", Font.BOLD, 49));
-		lblNewLabel.setForeground(Color.GREEN);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(62, 180, 324, 80);
-		frame.getContentPane().add(lblNewLabel);
-		
-		//lblNewLabel.setText(String.valueOf(engine.getFinalScore()));
-		lblNewLabel.setText("1999");
-		
-		JLabel lblNewLabel_1 = new JLabel("Your final score is");
-		lblNewLabel_1.setForeground(Color.GREEN);
-		lblNewLabel_1.setFont(new Font("Tibetan Machine Uni", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(139, 15, 158, 54);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel lblFinalScoreText = new JLabel("Your final score is");
+		lblFinalScoreText.setForeground(Color.WHITE);
+		lblFinalScoreText.setFont(new Font("Tibetan Machine Uni", Font.BOLD, 14));
+		lblFinalScoreText.setBounds(139, 15, 158, 54);
+		frame.getContentPane().add(lblFinalScoreText);
+
+		JLabel lblFinalScoreCount = new JLabel("finalscore");
+		lblFinalScoreCount.setFont(new Font("Bitstream Vera Sans Mono", Font.BOLD, 49));
+		lblFinalScoreCount.setForeground(Color.WHITE);
+		lblFinalScoreCount.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFinalScoreCount.setBounds(62, 180, 324, 80);
+		frame.getContentPane().add(lblFinalScoreCount);
+		lblFinalScoreCount.setText(String.valueOf(engine.getFinalScore()));
 	}
 }

@@ -2,7 +2,6 @@ package game;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -724,8 +723,12 @@ public class GameEngine {
     
     public int getFinalScore() {
     	int finalScore = 0;
-    	finalScore = (gameLength - currDay) * 10000 + foundShipPieces * 5000;
+    	finalScore = (gameLength - currDay) * 10000 * foundShipPieces;
     	
+    	if (finalScore < 0) {
+    		finalScore = 0;
+    	}
+
     	return finalScore;
     }
 

@@ -411,8 +411,6 @@ public class CommandCenter {
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBorder(null);
-//		tabbedPane.setBackground(new Color(51, 51, 51));
-//		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBounds(12, 0, 1000, 648);
 		frmCommandCenter.getContentPane().add(tabbedPane);
 
@@ -1206,12 +1204,14 @@ public class CommandCenter {
 				if (engine.hasGameEnded()) {
 					finishedWindow();
 				}
+				if (engine.getCurrDay() != engine.getGameLength()) {
 				startDay();
                 engine.updateCrewMemberStatus();
 				refreshPage();
 				refreshSpaceshipPage();
 				refreshCrewStatusPage();
 				refreshCrewButtons(commitActions);
+				}
 			}
 		});
 

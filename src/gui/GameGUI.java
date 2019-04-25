@@ -78,6 +78,7 @@ public class GameGUI {
 	 */
 	public void closeCommandCenter(CommandCenter commandCenter) {
 		commandCenter.closeWindow();
+		launchFinalScreen();
 	}
 
 	public void launchFinalScreen() {
