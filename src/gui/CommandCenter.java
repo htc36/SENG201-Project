@@ -7,7 +7,6 @@ import javax.swing.JDialog;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-
 import game.GameEngine;
 import unit.InsufficientActionException;
 
@@ -26,6 +25,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.InsetsUIResource;
 
 import crew.InsufficientItemInStock;
 
@@ -195,7 +195,6 @@ public class CommandCenter {
 
 		for (ArrayList<String> member : engine.getCrewMemberStatus()) {
 			String health = member.get(1);
-			// TODO: Set crew members to be unselectable in commit action page after they are dead
 			if (Integer.valueOf(health) == 0) {
 				continue;
 			}
@@ -409,6 +408,7 @@ public class CommandCenter {
 	private void initialize() {
 		UIManager.put("TabbedPane.unselectedForeground", Color.RED);
 		UIManager.put("TabbedPane.selectedBackground", new Color(100, 0, 0));
+		UIManager.put("TabbedPane.contentBorderInsets", new InsetsUIResource(0, 0, 0, 0));
 		frmCommandCenter = new JFrame();
 		frmCommandCenter.getContentPane().setBackground(Color.BLACK);
 		frmCommandCenter.setResizable(false);
