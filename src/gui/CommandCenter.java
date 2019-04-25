@@ -27,6 +27,8 @@ import java.awt.Color;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import crew.InsufficientItemInStock;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSpinner;
@@ -251,10 +253,6 @@ public class CommandCenter {
 
 		engine.getDeadCrewMembers();
 		
-//		String template = "DEAD: ";
-//		if (removedMembers.size() > 0) 
-//			JOptionPane.showMessageDialog(new JFrame(), template + String.join(", ", removedMembers));
-
 		this.crewNames.setText(crewNames);
 		this.crewTypes.setText(crewTypes);
 		this.crewHealths.setText(crewHealth);
@@ -367,7 +365,11 @@ public class CommandCenter {
 					} catch (InsufficientActionException err) {
 						JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 						return;
+					} catch (InsufficientItemInStock err) {
+						JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
+						return;
 					}
+
 					consWindow.setVisible(false);
 					consWindow.dispose();
 				}
