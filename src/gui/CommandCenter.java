@@ -483,69 +483,69 @@ public class CommandCenter {
 
 		Font crewStatusFont = new Font("Quantico", Font.PLAIN, 18);
 
-		JLabel label = new JLabel("Name");
-		label.setForeground(new Color(204, 204, 204));
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(crewStatusFont);
-		crewNames = label;
-		label.setBounds(12, 112, 238, 471);
-		crewStatus.add(label);
+		JLabel lblCrewNames = new JLabel("Name");
+		lblCrewNames.setForeground(new Color(204, 204, 204));
+		lblCrewNames.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewNames.setFont(crewStatusFont);
+		crewNames = lblCrewNames;
+		lblCrewNames.setBounds(12, 112, 238, 471);
+		crewStatus.add(lblCrewNames);
 		
-		JLabel label_1 = new JLabel("Type");
-		label_1.setForeground(new Color(204, 204, 204));
-		label_1.setFont(crewStatusFont);
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		crewTypes = label_1;
-		label_1.setBounds(258, 112, 109, 471);
-		crewStatus.add(label_1);
+		JLabel lblCrewTypes = new JLabel("Type");
+		lblCrewTypes.setForeground(new Color(204, 204, 204));
+		lblCrewTypes.setFont(crewStatusFont);
+		lblCrewTypes.setHorizontalAlignment(SwingConstants.CENTER);
+		crewTypes = lblCrewTypes;
+		lblCrewTypes.setBounds(258, 112, 109, 471);
+		crewStatus.add(lblCrewTypes);
 
-		JLabel label_2 = new JLabel("Type");
-		label_2.setForeground(new Color(204, 204, 204));
-		label_2.setFont(crewStatusFont);
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		crewHealths = label_2;
-		label_2.setBounds(389, 112, 82, 471);
-		crewStatus.add(label_2);
+		JLabel lblCrewHealths = new JLabel("Type");
+		lblCrewHealths.setForeground(new Color(204, 204, 204));
+		lblCrewHealths.setFont(crewStatusFont);
+		lblCrewHealths.setHorizontalAlignment(SwingConstants.CENTER);
+		crewHealths = lblCrewHealths;
+		lblCrewHealths.setBounds(389, 112, 82, 471);
+		crewStatus.add(lblCrewHealths);
 
-		JLabel label_3 = new JLabel("Type");
-		label_3.setForeground(new Color(204, 204, 204));
-		label_3.setFont(crewStatusFont);
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		crewLucks = label_3;
-		label_3.setBounds(483, 112, 82, 471);
-		crewStatus.add(label_3);
+		JLabel lblCrewLucks = new JLabel("Type");
+		lblCrewLucks.setForeground(new Color(204, 204, 204));
+		lblCrewLucks.setFont(crewStatusFont);
+		lblCrewLucks.setHorizontalAlignment(SwingConstants.CENTER);
+		crewLucks = lblCrewLucks;
+		lblCrewLucks.setBounds(483, 112, 82, 471);
+		crewStatus.add(lblCrewLucks);
 
-		JLabel label_4 = new JLabel("Type");
-		label_4.setForeground(new Color(204, 204, 204));
-		label_4.setFont(crewStatusFont);
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		crewPlagues = label_4;
-		label_4.setBounds(577, 112, 82, 471);
-		crewStatus.add(label_4);
+		JLabel lblCrewPlagues = new JLabel("Type");
+		lblCrewPlagues.setForeground(new Color(204, 204, 204));
+		lblCrewPlagues.setFont(crewStatusFont);
+		lblCrewPlagues.setHorizontalAlignment(SwingConstants.CENTER);
+		crewPlagues = lblCrewPlagues;
+		lblCrewPlagues.setBounds(577, 112, 82, 471);
+		crewStatus.add(lblCrewPlagues);
 
-		JLabel label_5 = new JLabel("Type");
-		label_5.setForeground(new Color(204, 204, 204));
-		label_5.setFont(crewStatusFont);
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		crewHungers = label_5;
-		label_5.setBounds(676, 112, 82, 471);
-		crewStatus.add(label_5);
+		JLabel lblCrewHungers = new JLabel("Type");
+		lblCrewHungers.setForeground(new Color(204, 204, 204));
+		lblCrewHungers.setFont(crewStatusFont);
+		lblCrewHungers.setHorizontalAlignment(SwingConstants.CENTER);
+		crewHungers = lblCrewHungers;
+		lblCrewHungers.setBounds(676, 112, 82, 471);
+		crewStatus.add(lblCrewHungers);
 
-		JLabel label_6 = new JLabel("Type");
-		label_6.setForeground(new Color(204, 204, 204));
-		label_6.setFont(crewStatusFont);
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		crewFatigues = label_6;
-		label_6.setBounds(780, 112, 82, 471);
-		crewStatus.add(label_6);
+		JLabel lblCrewFatigues = new JLabel("Type");
+		lblCrewFatigues.setForeground(new Color(204, 204, 204));
+		lblCrewFatigues.setFont(crewStatusFont);
+		lblCrewFatigues.setHorizontalAlignment(SwingConstants.CENTER);
+		crewFatigues = lblCrewFatigues;
+		lblCrewFatigues.setBounds(780, 112, 82, 471);
+		crewStatus.add(lblCrewFatigues);
 
-		JLabel label_7 = new JLabel("Type");
-		label_7.setForeground(new Color(204, 204, 204));
-		label_7.setFont(crewStatusFont);
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		crewActions = label_7;
-		label_7.setBounds(886, 112, 82, 471);
-		crewStatus.add(label_7);
+		JLabel lblCrewActions = new JLabel("Type");
+		lblCrewActions.setForeground(new Color(204, 204, 204));
+		lblCrewActions.setFont(crewStatusFont);
+		lblCrewActions.setHorizontalAlignment(SwingConstants.CENTER);
+		crewActions = lblCrewActions;
+		lblCrewActions.setBounds(886, 112, 82, 471);
+		crewStatus.add(lblCrewActions);
 
 		/// COMMIT ACTIONS START
 		/// COMMIT ACTIONS START
@@ -738,10 +738,10 @@ public class CommandCenter {
 		memberPilot.setBounds(12, 506, 430, 103);
 		commitActions.add(memberPilot);
 
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(460, 21, 523, 588);
-		commitActions.add(lblNewLabel_2);
-		infoBox = lblNewLabel_2;
+		JLabel lblCurrentInventory_2 = new JLabel("");
+		lblCurrentInventory_2.setBounds(460, 21, 523, 588);
+		commitActions.add(lblCurrentInventory_2);
+		infoBox = lblCurrentInventory_2;
 
 		refreshCrewButtons(commitActions);
 
@@ -802,47 +802,47 @@ public class CommandCenter {
 		lblItemsOnSale.setBounds(20, 12, 121, 34);
 		VisitOutpost.add(lblItemsOnSale);
 
-		JLabel lblName_1 = new JLabel("Name");
-		lblName_1.setForeground(Color.GRAY);
-		lblName_1.setBackground(Color.GRAY);
-		lblName_1.setBounds(x, 62, 66, 15);
-		lblName_1.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblName_1);
+		JLabel lblItemSaleName = new JLabel("Name");
+		lblItemSaleName.setForeground(Color.GRAY);
+		lblItemSaleName.setBackground(Color.GRAY);
+		lblItemSaleName.setBounds(x, 62, 66, 15);
+		lblItemSaleName.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSaleName);
 
-		JLabel lblType_1 = new JLabel("Type");
-		lblType_1.setForeground(Color.GRAY);
-		lblType_1.setBackground(Color.GRAY);
-		lblType_1.setBounds(132, 62, 66, 15);
-		lblType_1.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblType_1);
+		JLabel lblItemSaleType = new JLabel("Type");
+		lblItemSaleType.setForeground(Color.GRAY);
+		lblItemSaleType.setBackground(Color.GRAY);
+		lblItemSaleType.setBounds(132, 62, 66, 15);
+		lblItemSaleType.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSaleType);
 
-		JLabel lblPrice = new JLabel("Price");
-		lblPrice.setForeground(Color.GRAY);
-		lblPrice.setBackground(Color.GRAY);
-		lblPrice.setBounds(215, 62, 66, 15);
-		lblPrice.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblPrice);
+		JLabel lblItemSalePrice = new JLabel("Price");
+		lblItemSalePrice.setForeground(Color.GRAY);
+		lblItemSalePrice.setBackground(Color.GRAY);
+		lblItemSalePrice.setBounds(215, 62, 66, 15);
+		lblItemSalePrice.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSalePrice);
 
-		JLabel lblHeals = new JLabel("Heals");
-		lblHeals.setForeground(Color.GRAY);
-		lblHeals.setBackground(Color.GRAY);
-		lblHeals.setBounds(293, 62, 66, 15);
-		lblHeals.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblHeals);
+		JLabel lblItemSaleHeals = new JLabel("Heals");
+		lblItemSaleHeals.setForeground(Color.GRAY);
+		lblItemSaleHeals.setBackground(Color.GRAY);
+		lblItemSaleHeals.setBounds(293, 62, 66, 15);
+		lblItemSaleHeals.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSaleHeals);
 
-		JLabel lblFills = new JLabel("Fills");
-		lblFills.setForeground(Color.GRAY);
-		lblFills.setBackground(Color.GRAY);
-		lblFills.setBounds(371, 62, 66, 15);
-		lblFills.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblFills);
+		JLabel lblItemSaleFills = new JLabel("Fills");
+		lblItemSaleFills.setForeground(Color.GRAY);
+		lblItemSaleFills.setBackground(Color.GRAY);
+		lblItemSaleFills.setBounds(371, 62, 66, 15);
+		lblItemSaleFills.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSaleFills);
 
-		JLabel lblCuresPlague = new JLabel("Cures Plague");
-		lblCuresPlague.setForeground(Color.GRAY);
-		lblCuresPlague.setBackground(Color.GRAY);
-		lblCuresPlague.setBounds(449, 62, 106, 15);
-		lblCuresPlague.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblCuresPlague);
+		JLabel lblItemSaleCuresPlague = new JLabel("Cures Plague");
+		lblItemSaleCuresPlague.setForeground(Color.GRAY);
+		lblItemSaleCuresPlague.setBackground(Color.GRAY);
+		lblItemSaleCuresPlague.setBounds(449, 62, 106, 15);
+		lblItemSaleCuresPlague.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblItemSaleCuresPlague);
 
 		/// OUTPOST PAGE END
 		/// OUTPOST PAGE END
@@ -941,13 +941,13 @@ public class CommandCenter {
 		lblTotalPrice.setFont(outpostHeaderFont);
 		VisitOutpost.add(lblTotalPrice);
 
-		JLabel lblPrice_1 = new JLabel("price");
-		lblPrice_1.setForeground(Color.WHITE);
-		lblPrice_1.setText("$0");
-		lblPrice_1.setBounds(715, purchase_y, 106, 25);
-		lblPrice_1.setFont(outpostHeaderFont);
-		VisitOutpost.add(lblPrice_1);
-		cartPrice = lblPrice_1;
+		JLabel lblShoppingBagPrice = new JLabel("price");
+		lblShoppingBagPrice.setForeground(Color.WHITE);
+		lblShoppingBagPrice.setText("$0");
+		lblShoppingBagPrice.setBounds(715, purchase_y, 106, 25);
+		lblShoppingBagPrice.setFont(outpostHeaderFont);
+		VisitOutpost.add(lblShoppingBagPrice);
+		cartPrice = lblShoppingBagPrice;
 
 		cart = new ShoppingCart(VisitOutpost, shopping_x, 50, engine, cartPrice);
 
@@ -1109,11 +1109,11 @@ public class CommandCenter {
 
 		int selected_x = 380;
 
-		JLabel lblYouSelected = new JLabel("You selected:");
-		lblYouSelected.setForeground(Color.GRAY);
-		lblYouSelected.setBackground(Color.GRAY);
-		lblYouSelected.setBounds(selected_x, y, 106, 34);
-		VisitOutpost.add(lblYouSelected);
+		JLabel lblTotalShipPiecesouSelected = new JLabel("You selected:");
+		lblTotalShipPiecesouSelected.setForeground(Color.GRAY);
+		lblTotalShipPiecesouSelected.setBackground(Color.GRAY);
+		lblTotalShipPiecesouSelected.setBounds(selected_x, y, 106, 34);
+		VisitOutpost.add(lblTotalShipPiecesouSelected);
 
 		int spinnerMin = 0;
 		int spinnerMax = 50;
@@ -1172,31 +1172,31 @@ public class CommandCenter {
 		// INVENTORY ITEM START
 		// INVENTORY ITEM START
 
-		JLabel lblYourInventory = new JLabel("Your inventory:");
-		lblYourInventory.setForeground(Color.GRAY);
-		lblYourInventory.setBackground(Color.GRAY);
-		lblYourInventory.setFont(outpostHeaderFont);
-		lblYourInventory.setBounds(shopping_x, 310, 121, 34);
-		VisitOutpost.add(lblYourInventory);
+		JLabel lblTotalShipPiecesourInventory = new JLabel("Your inventory:");
+		lblTotalShipPiecesourInventory.setForeground(Color.GRAY);
+		lblTotalShipPiecesourInventory.setBackground(Color.GRAY);
+		lblTotalShipPiecesourInventory.setFont(outpostHeaderFont);
+		lblTotalShipPiecesourInventory.setBounds(shopping_x, 310, 121, 34);
+		VisitOutpost.add(lblTotalShipPiecesourInventory);
 
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBackground(Color.GRAY);
-		lblNewLabel.setFont(outpostItemDescFont);
-		lblNewLabel.setBounds(shopping_x, 356, 383, 229);
-		VisitOutpost.add(lblNewLabel);
-		currInventory = lblNewLabel;
+		JLabel lblCurrentInventory = new JLabel("");
+		lblCurrentInventory.setForeground(Color.WHITE);
+		lblCurrentInventory.setBackground(Color.GRAY);
+		lblCurrentInventory.setFont(outpostItemDescFont);
+		lblCurrentInventory.setBounds(shopping_x, 356, 383, 229);
+		VisitOutpost.add(lblCurrentInventory);
+		currInventory = lblCurrentInventory;
 
 		// INVENTORY ITEM END
 		// INVENTORY ITEM END
 		// INVENTORY ITEM END
 
-		JButton btnNewButton = new JButton("End day");
-		btnNewButton.setFont(new Font("Quantico", Font.PLAIN, 20));
-		btnNewButton.setBorder(null);
-		btnNewButton.setBackground(Color.DARK_GRAY);
-		btnNewButton.setForeground(Color.WHITE);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton endDayButton = new JButton("End day");
+		endDayButton.setFont(new Font("Quantico", Font.PLAIN, 20));
+		endDayButton.setBorder(null);
+		endDayButton.setBackground(Color.DARK_GRAY);
+		endDayButton.setForeground(Color.WHITE);
+		endDayButton.addActionListener(new ActionListener() {
 			/**
 			 * <<auto generated javadoc comment>>
 			 * @param arg0 <<Param Desc>>
@@ -1217,8 +1217,8 @@ public class CommandCenter {
 
 		Font footerGameStateFont = new Font("Quantico", Font.PLAIN, 16);
 		int bottomPanel_y = 673;
-		btnNewButton.setBounds(898, bottomPanel_y, 114, 25);
-		frmCommandCenter.getContentPane().add(btnNewButton);
+		endDayButton.setBounds(898, bottomPanel_y, 114, 25);
+		frmCommandCenter.getContentPane().add(endDayButton);
 
 		JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found");
 		lblShipPiecesFound.setForeground(Color.LIGHT_GRAY);
@@ -1246,20 +1246,20 @@ public class CommandCenter {
 		lblOutOf.setBounds(186, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblOutOf);
 
-		JLabel lblY = new JLabel("y");
-		lblY.setForeground(Color.LIGHT_GRAY);
-		lblY.setFont(footerGameStateFont);
-		lblY.setBounds(241, bottomPanel_y, 55, 25);
-		frmCommandCenter.getContentPane().add(lblY);
-		lblY.setText(String.valueOf(engine.getShipPieces()));
+		JLabel lblTotalShipPieces = new JLabel("y");
+		lblTotalShipPieces.setForeground(Color.LIGHT_GRAY);
+		lblTotalShipPieces.setFont(footerGameStateFont);
+		lblTotalShipPieces.setBounds(241, bottomPanel_y, 55, 25);
+		frmCommandCenter.getContentPane().add(lblTotalShipPieces);
+		lblTotalShipPieces.setText(String.valueOf(engine.getShipPieces()));
 
-		JLabel label_8 = new JLabel("x");
-		label_8.setForeground(Color.LIGHT_GRAY);
-		label_8.setFont(footerGameStateFont);
-		label_8.setText("1");
-		label_8.setBounds(456, bottomPanel_y, 55, 25);
-		frmCommandCenter.getContentPane().add(label_8);
-		currDay = label_8;
+		JLabel lblCurrentDayCount = new JLabel("x");
+		lblCurrentDayCount.setForeground(Color.LIGHT_GRAY);
+		lblCurrentDayCount.setFont(footerGameStateFont);
+		lblCurrentDayCount.setText("1");
+		lblCurrentDayCount.setBounds(456, bottomPanel_y, 55, 25);
+		frmCommandCenter.getContentPane().add(lblCurrentDayCount);
+		currDay = lblCurrentDayCount;
 
 		JLabel label_9 = new JLabel("out of");
 		label_9.setForeground(Color.LIGHT_GRAY);
@@ -1267,12 +1267,12 @@ public class CommandCenter {
 		label_9.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(label_9);
 
-		JLabel label_10 = new JLabel("y");
-		label_10.setForeground(Color.LIGHT_GRAY);
-		label_10.setBounds(537, bottomPanel_y, 55, 25);
-		label_10.setFont(footerGameStateFont);
-		frmCommandCenter.getContentPane().add(label_10);
-		label_10.setText(String.valueOf(engine.getGameLength()));
+		JLabel lblGameLengthTotal = new JLabel("y");
+		lblGameLengthTotal.setForeground(Color.LIGHT_GRAY);
+		lblGameLengthTotal.setBounds(537, bottomPanel_y, 55, 25);
+		lblGameLengthTotal.setFont(footerGameStateFont);
+		frmCommandCenter.getContentPane().add(lblGameLengthTotal);
+		lblGameLengthTotal.setText(String.valueOf(engine.getGameLength()));
 
 		JLabel lblMoney = new JLabel("Money");
 		lblMoney.setForeground(Color.LIGHT_GRAY);
@@ -1280,12 +1280,12 @@ public class CommandCenter {
 		lblMoney.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblMoney);
 
-		JLabel label_11 = new JLabel("$0");
-		label_11.setForeground(Color.LIGHT_GRAY);
-		label_11.setFont(footerGameStateFont);
-		label_11.setBounds(674, bottomPanel_y, 64, 25);
-		frmCommandCenter.getContentPane().add(label_11);
-		currMoney = label_11;
+		JLabel lblCurrentMoney = new JLabel("$0");
+		lblCurrentMoney.setForeground(Color.LIGHT_GRAY);
+		lblCurrentMoney.setFont(footerGameStateFont);
+		lblCurrentMoney.setBounds(674, bottomPanel_y, 64, 25);
+		frmCommandCenter.getContentPane().add(lblCurrentMoney);
+		currMoney = lblCurrentMoney;
 
 		refreshCrewStatusPage();
 		currMoney.setText(String.valueOf(engine.getCrewMoney()));
