@@ -30,7 +30,7 @@ public class Crew {
         consumables = new TreeMap<>();
         consumablesList = new ArrayList<>();
 
-        money = 1000000;
+        money = 100;
         crewMembers = crews;
         ship = newShip;
     }

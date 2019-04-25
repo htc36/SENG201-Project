@@ -99,6 +99,7 @@ public class CommandCenter {
 	private void refreshPage() {
 		currShipPieces.setText(String.valueOf(engine.getFoundShipPieces()));
 		currDay.setText(String.valueOf(engine.getCurrDay()));
+		currMoney.setText(String.valueOf(engine.getCrewMoney()));
 	}
 
 	private void refreshSpaceshipPage() {
@@ -694,6 +695,8 @@ public class CommandCenter {
 				}
 
 				refreshPage();
+				refreshInventory();
+
 			}
 		});
 		memberSearch.setBounds(232, 320, 210, 179);
