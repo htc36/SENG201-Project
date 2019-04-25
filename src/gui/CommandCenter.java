@@ -5,8 +5,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
@@ -21,11 +19,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 
@@ -74,14 +68,9 @@ public class CommandCenter {
 	private JLabel currInventory;
 
 	private ArrayList<Integer> selectedCrews;
-	private JToggleButton memberOne;
-	private JToggleButton memberTwo;
-	private JToggleButton memberThree;
-	private JToggleButton memberFour;
+	private ArrayList<JToggleButton> crewButtons;
 
-	private int totalCrewMembers;
 	private JLabel infoBox;
-
 
 	/**
 	 * Create the application.
@@ -90,7 +79,7 @@ public class CommandCenter {
 		this.engine = engine;
 		this.game = game;
 		selectedCrews = new ArrayList<>();
-		totalCrewMembers = engine.getCrewMemberStatus().size();
+		crewButtons = new ArrayList<>();
 		initialize();
 		frmCommandCenter.setVisible(true);
 	}
@@ -196,26 +185,10 @@ public class CommandCenter {
 		String crewActions = "<html>";
 		int numNewlines = 4;
 
-		int counter = 0;
 		for (ArrayList<String> member : engine.getCrewMemberStatus()) {
 			String health = member.get(1);
 			// TODO: Set crew members to be unselectable in commit action page after they are dead
 			if (Integer.valueOf(health) == 0) {
-				switch(counter) {
-				case 0:
-					memberOne.setVisible(false);
-					break;
-				case 1:
-					memberTwo.setVisible(false);
-					break;
-				case 2:
-					memberThree.setVisible(false);
-					break;
-				case 3:
-					memberFour.setVisible(false);
-					break;
-				}
-				counter++;
 				continue;
 			}
 			crewHealth += health;
@@ -265,7 +238,6 @@ public class CommandCenter {
 				crewActions += "<br>";
 			}
 
-			counter++;
 		}
 		crewNames += "</html>";
 		crewTypes += "</html>";
@@ -276,16 +248,11 @@ public class CommandCenter {
 		crewFatigue += "</html>";
 		crewActions += "</html>";
 
-		ArrayList<String> removedMembers = new ArrayList<>();
-		ArrayList<String> deadMembers = engine.getDeadCrewMembers();
-		for (String dead : deadMembers) {
-			engine.removeCrewMember(dead);
-			removedMembers.add(dead);
-		}
+		engine.getDeadCrewMembers();
 		
-		String template = "DEAD: ";
-		if (removedMembers.size() > 0) 
-			JOptionPane.showMessageDialog(new JFrame(), template + String.join(", ", removedMembers));
+//		String template = "DEAD: ";
+//		if (removedMembers.size() > 0) 
+//			JOptionPane.showMessageDialog(new JFrame(), template + String.join(", ", removedMembers));
 
 		this.crewNames.setText(crewNames);
 		this.crewTypes.setText(crewTypes);
@@ -296,26 +263,50 @@ public class CommandCenter {
 		this.crewFatigues.setText(crewFatigue);
 		this.crewActions.setText(crewActions);
 	}
+	
+	private void refreshCrewButtons(JPanel commitActions) {
+		int memberButtonsSize = 100;
+		int memberButtonsSpacing = 10;
+		int counter = 0;
+		
+		ArrayList<ArrayList<String>> crewMembers = engine.getCrewMemberStatus();
+		if (crewButtons.size() != 0) {
+			for (int i = 0; i < crewMembers.size(); i++) {
+				int health = Integer.valueOf(crewMembers.get(i).get(1));
+				if (health == 0) {
+					crewButtons.get(i).setVisible(false);
+				}
+			}
+			return;
+		}
+		
+		for (ArrayList<String> member : crewMembers) {
+			JToggleButton cMember = new JToggleButton("");
+			crewButtons.add(cMember);
+			cMember.setBorder(null);
+			String crewType = engine.getCrewMemberStatus().get(counter).get(7);
+			String crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
+			String crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
+			cMember.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
+			cMember.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
+			cMember.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					addCrewToSelection(crewMembers.indexOf(member));
+				}
+			});
+			cMember.setBounds(12 + counter * (memberButtonsSize + memberButtonsSpacing), 21, memberButtonsSize, memberButtonsSize);
+			commitActions.add(cMember);
+			counter++;
+		}
+
+	}
 
 	private void refreshSelectedCrews() {
-		for (int i = 0; i < totalCrewMembers; i++) {
-			boolean selected = false;
-			if (selectedCrews.contains(i))
-				selected = true;
-			switch(i) {
-			case 0:
-				memberOne.setSelected(selected);
-				break;
-			case 1:
-				memberTwo.setSelected(selected);
-				break;
-			case 2:
-				memberThree.setSelected(selected);
-				break;
-			case 3:
-				memberFour.setSelected(selected);
-				break;
-			}
+		for (int i = 0; i < crewButtons.size(); i++) {
+			if (selectedCrews.contains(i)) {
+				crewButtons.get(i).setSelected(true);
+			} else
+				crewButtons.get(i).setSelected(false);
 		}
 	}
 
@@ -360,7 +351,6 @@ public class CommandCenter {
 
 		for (ArrayList<String> item : consumables) {
 			String itemName = item.get(0).toLowerCase();
-			System.out.println(itemName);
 			JButton itemButton = new JButton(itemName);
 			itemButton.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/" + itemName + ".png")));
 			itemButton.setBackground(Color.DARK_GRAY);
@@ -431,29 +421,6 @@ public class CommandCenter {
 		crewStatus.setBackground(new Color(0, 0, 0));
 		tabbedPane.addTab("Crew Status", null, crewStatus, null);
 		crewStatus.setLayout(null);
-
-		tabbedPane.addChangeListener(new ChangeListener() {
-
-			/**
-			 * Initialize the contents of the frame.
-			 */
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				switch (tabbedPane.getSelectedIndex()) {
-				case 0:
-					refreshCrewStatusPage();
-					break;
-				case 1:
-					break;
-				case 2:
-					refreshSpaceshipPage();
-					break;
-				case 3:
-					refreshInventory();
-					break;
-				}
-			}
-		});
 
 		int x = 20;
 		Font defaultHeaderFont = new Font("Quantico", Font.PLAIN, 20);
@@ -776,93 +743,7 @@ public class CommandCenter {
 		commitActions.add(lblNewLabel_2);
 		infoBox = lblNewLabel_2;
 
-		int memberButtonsSize = 100;
-		JToggleButton memberOne = new JToggleButton("");
-		System.out.println(Integer.valueOf(engine.getCrewMemberStatus().get(0).get(1)));
-		memberOne.setBorder(null);
-		String crewType = engine.getCrewMemberStatus().get(0).get(7);
-		String crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
-		String crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
-		System.out.println(crewIcon);
-		memberOne.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
-		memberOne.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
-		memberOne.addActionListener(new ActionListener() {
-			/**
-			 * <<auto generated javadoc comment>>
-			 * @param e <<Param Desc>>
-			 */
-			public void actionPerformed(ActionEvent e) {
-				addCrewToSelection(0);
-			}
-		});
-		memberOne.setBounds(12, 21, memberButtonsSize, memberButtonsSize);
-		commitActions.add(memberOne);
-		this.memberOne = memberOne;
-
-		JToggleButton memberTwo = new JToggleButton("");
-		memberTwo.setBorder(null);
-		crewType = engine.getCrewMemberStatus().get(1).get(7);
-		crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
-		crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
-		memberTwo.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
-		memberTwo.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
-		memberTwo.addActionListener(new ActionListener() {
-			/**
-			 * <<auto generated javadoc comment>>
-			 * @param e <<Param Desc>>
-			 */
-			public void actionPerformed(ActionEvent e) {
-				addCrewToSelection(1);
-			}
-		});
-		memberTwo.setBounds(122, 21, memberButtonsSize, memberButtonsSize);
-		commitActions.add(memberTwo);
-		this.memberTwo = memberTwo;
-
-		if (totalCrewMembers > 2) {
-			JToggleButton memberThree = new JToggleButton("");
-			memberThree.setBorder(null);
-			crewType = engine.getCrewMemberStatus().get(2).get(7);
-			crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
-			crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
-			memberThree.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
-			memberThree.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
-			memberThree.addActionListener(new ActionListener() {
-				/**
-				 * <<auto generated javadoc comment>>
-				 * @param e <<Param Desc>>
-				 */
-				public void actionPerformed(ActionEvent e) {
-					addCrewToSelection(2);
-				}
-			});
-			memberThree.setBounds(232, 21, memberButtonsSize, memberButtonsSize);
-			commitActions.add(memberThree);
-			this.memberThree = memberThree;
-
-			if (totalCrewMembers > 3) {
-				JToggleButton memberFour = new JToggleButton("");
-				memberFour.setBorder(null);
-				crewType = engine.getCrewMemberStatus().get(3).get(7);
-				crewIconSelected = "/img/" + crewType.toLowerCase() + ".png";
-				crewIcon = "/img/" + crewType.toLowerCase() + "-selected.png";
-				memberFour.setSelectedIcon(new ImageIcon(CommandCenter.class.getResource(crewIconSelected)));
-				memberFour.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
-				memberFour.addActionListener(new ActionListener() {
-					/**
-					 * <<auto generated javadoc comment>>
-					 * @param e <<Param Desc>>
-					 */
-					public void actionPerformed(ActionEvent e) {
-						addCrewToSelection(3);
-
-					}
-				});
-				memberFour.setBounds(342, 21, memberButtonsSize, memberButtonsSize);
-				commitActions.add(memberFour);
-				this.memberFour = memberFour;
-			}
-		}
+		refreshCrewButtons(commitActions);
 
 		/// COMMIT ACTIONS END
 		/// COMMIT ACTIONS END
@@ -1407,5 +1288,29 @@ public class CommandCenter {
 
 		refreshCrewStatusPage();
 		currMoney.setText(String.valueOf(engine.getCrewMoney()));
+
+		tabbedPane.addChangeListener(new ChangeListener() {
+			/**
+			 * Initialize the contents of the frame.
+			 */
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				switch (tabbedPane.getSelectedIndex()) {
+				case 0:
+					refreshCrewStatusPage();
+					break;
+				case 1:
+					refreshCrewButtons(commitActions);
+					break;
+				case 2:
+					refreshSpaceshipPage();
+					break;
+				case 3:
+					refreshInventory();
+					break;
+				}
+			}
+		});
+
 	}
 }
