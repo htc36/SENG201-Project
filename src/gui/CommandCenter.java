@@ -426,57 +426,57 @@ public class CommandCenter {
 		Font defaultHeaderFont = new Font("Quantico", Font.PLAIN, 20);
 
 		JLabel lblName = new JLabel("Name");
-		lblName.setForeground(new Color(102, 102, 102));
 		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setForeground(new Color(102, 102, 102));
 		lblName.setFont(defaultHeaderFont);
 		lblName.setBounds(86, 29, 82, 62);
 		crewStatus.add(lblName);
 
 		JLabel lblType = new JLabel("Type");
 		lblType.setForeground(new Color(102, 102, 102));
-		lblType.setHorizontalAlignment(SwingConstants.CENTER);
+		lblType.setHorizontalAlignment(SwingConstants.LEFT);
 		lblType.setFont(defaultHeaderFont);
-		lblType.setBounds(275, 29, 82, 62);
+		lblType.setBounds(258, 29, 70, 62);
 		crewStatus.add(lblType);
 
 		JLabel lblHealth = new JLabel("Health");
 		lblHealth.setForeground(new Color(102, 102, 102));
-		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHealth.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHealth.setFont(defaultHeaderFont);
 		lblHealth.setBounds(379, 29, 82, 62);
 		crewStatus.add(lblHealth);
 
 		JLabel lblLuck = new JLabel("Luck");
 		lblLuck.setForeground(new Color(102, 102, 102));
-		lblLuck.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLuck.setHorizontalAlignment(SwingConstants.LEFT);
 		lblLuck.setFont(defaultHeaderFont);
 		lblLuck.setBounds(473, 29, 82, 62);
 		crewStatus.add(lblLuck);
 
 		JLabel lblPlagued = new JLabel("Plagued");
 		lblPlagued.setForeground(new Color(102, 102, 102));
-		lblPlagued.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlagued.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPlagued.setFont(defaultHeaderFont);
 		lblPlagued.setBounds(567, 29, 109, 62);
 		crewStatus.add(lblPlagued);
 
 		JLabel lblHunger = new JLabel("Hunger");
 		lblHunger.setForeground(new Color(102, 102, 102));
-		lblHunger.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHunger.setHorizontalAlignment(SwingConstants.LEFT);
 		lblHunger.setFont(defaultHeaderFont);
 		lblHunger.setBounds(676, 29, 82, 62);
 		crewStatus.add(lblHunger);
 
 		JLabel lblFatigue = new JLabel("Fatigue");
 		lblFatigue.setForeground(new Color(102, 102, 102));
-		lblFatigue.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFatigue.setHorizontalAlignment(SwingConstants.LEFT);
 		lblFatigue.setFont(defaultHeaderFont);
 		lblFatigue.setBounds(780, 29, 94, 62);
 		crewStatus.add(lblFatigue);
 
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setForeground(new Color(102, 102, 102));
-		lblActions.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActions.setHorizontalAlignment(SwingConstants.LEFT);
 		lblActions.setFont(defaultHeaderFont);
 		lblActions.setBounds(886, 29, 82, 62);
 		crewStatus.add(lblActions);
@@ -494,7 +494,7 @@ public class CommandCenter {
 		JLabel lblCrewTypes = new JLabel("Type");
 		lblCrewTypes.setForeground(new Color(204, 204, 204));
 		lblCrewTypes.setFont(crewStatusFont);
-		lblCrewTypes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewTypes.setHorizontalAlignment(SwingConstants.LEFT);
 		crewTypes = lblCrewTypes;
 		lblCrewTypes.setBounds(258, 112, 109, 471);
 		crewStatus.add(lblCrewTypes);
@@ -502,31 +502,31 @@ public class CommandCenter {
 		JLabel lblCrewHealths = new JLabel("Type");
 		lblCrewHealths.setForeground(new Color(204, 204, 204));
 		lblCrewHealths.setFont(crewStatusFont);
-		lblCrewHealths.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewHealths.setHorizontalAlignment(SwingConstants.LEFT);
 		crewHealths = lblCrewHealths;
-		lblCrewHealths.setBounds(389, 112, 82, 471);
+		lblCrewHealths.setBounds(379, 112, 82, 471);
 		crewStatus.add(lblCrewHealths);
 
 		JLabel lblCrewLucks = new JLabel("Type");
 		lblCrewLucks.setForeground(new Color(204, 204, 204));
 		lblCrewLucks.setFont(crewStatusFont);
-		lblCrewLucks.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewLucks.setHorizontalAlignment(SwingConstants.LEFT);
 		crewLucks = lblCrewLucks;
-		lblCrewLucks.setBounds(483, 112, 82, 471);
+		lblCrewLucks.setBounds(473, 112, 82, 471);
 		crewStatus.add(lblCrewLucks);
 
 		JLabel lblCrewPlagues = new JLabel("Type");
 		lblCrewPlagues.setForeground(new Color(204, 204, 204));
 		lblCrewPlagues.setFont(crewStatusFont);
-		lblCrewPlagues.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewPlagues.setHorizontalAlignment(SwingConstants.LEFT);
 		crewPlagues = lblCrewPlagues;
-		lblCrewPlagues.setBounds(577, 112, 82, 471);
+		lblCrewPlagues.setBounds(567, 112, 82, 471);
 		crewStatus.add(lblCrewPlagues);
 
 		JLabel lblCrewHungers = new JLabel("Type");
 		lblCrewHungers.setForeground(new Color(204, 204, 204));
 		lblCrewHungers.setFont(crewStatusFont);
-		lblCrewHungers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewHungers.setHorizontalAlignment(SwingConstants.LEFT);
 		crewHungers = lblCrewHungers;
 		lblCrewHungers.setBounds(676, 112, 82, 471);
 		crewStatus.add(lblCrewHungers);
@@ -534,7 +534,7 @@ public class CommandCenter {
 		JLabel lblCrewFatigues = new JLabel("Type");
 		lblCrewFatigues.setForeground(new Color(204, 204, 204));
 		lblCrewFatigues.setFont(crewStatusFont);
-		lblCrewFatigues.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewFatigues.setHorizontalAlignment(SwingConstants.LEFT);
 		crewFatigues = lblCrewFatigues;
 		lblCrewFatigues.setBounds(780, 112, 82, 471);
 		crewStatus.add(lblCrewFatigues);
@@ -542,7 +542,7 @@ public class CommandCenter {
 		JLabel lblCrewActions = new JLabel("Type");
 		lblCrewActions.setForeground(new Color(204, 204, 204));
 		lblCrewActions.setFont(crewStatusFont);
-		lblCrewActions.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrewActions.setHorizontalAlignment(SwingConstants.LEFT);
 		crewActions = lblCrewActions;
 		lblCrewActions.setBounds(886, 112, 82, 471);
 		crewStatus.add(lblCrewActions);
@@ -1283,7 +1283,7 @@ public class CommandCenter {
 		JLabel lblCurrentMoney = new JLabel("$0");
 		lblCurrentMoney.setForeground(Color.LIGHT_GRAY);
 		lblCurrentMoney.setFont(footerGameStateFont);
-		lblCurrentMoney.setBounds(674, bottomPanel_y, 64, 25);
+		lblCurrentMoney.setBounds(674, 673, 99, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentMoney);
 		currMoney = lblCurrentMoney;
 
