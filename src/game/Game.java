@@ -9,6 +9,7 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import crew.InsufficientItemInStock;
 import game.InsufficientFundException;
 
 public class Game {
@@ -89,7 +90,7 @@ public class Game {
      */
     public String getInputSpaceshipName() {
         System.out.print("> ");
-        String name = reader.next();
+        String name = reader.nextLine();
         return name.replaceAll("\\s","");
     }
 
@@ -229,7 +230,7 @@ public class Game {
         typePrint();
         typePrint("    Your inventory:");
         ArrayList<ArrayList<String>> currInventory = g.getCrewConsumables();
-        printCrewConsumables(currInventory);
+        printCrewConsumables(currInventory, false);
         typePrint();
         int crewMoney = g.getCrewMoney();
         typePrint(String.format("    You have $%3d", crewMoney));
@@ -251,19 +252,26 @@ public class Game {
      * Prints the list of items in a pretty table
      * @param consumables list of items
      */
-    public void printCrewConsumables(ArrayList<ArrayList<String>> consumables) {
+    public void printCrewConsumables(ArrayList<ArrayList<String>> consumables,
+            boolean withIndex) {
+        int counter = 0;
         for (ArrayList<String> itemStats : consumables) {
             String template = "";
-            template += String.format("%4s", itemStats.get(5));
+            if (withIndex) {
+                template += String.format("%5s", String.valueOf(counter));
+            }
+            template += String.format("%3s", itemStats.get(5));
+            template += "x";
+            template += String.format("%6s", itemStats.get(3)); //type
             template += String.format("%12.12s", itemStats.get(0)); //name
             template += String.format("%6s", itemStats.get(1)); //price
             template += String.format("%5s", itemStats.get(2)); //heal
-            template += String.format("%5s", itemStats.get(3)); //type
             if (itemStats.get(4).equals("T") || itemStats.get(4).equals("F"))
                 template += String.format("%18s", itemStats.get(4)); //cures
             else
                 template += String.format("%5s", itemStats.get(4)); //cures
             typePrint(template);
+            counter++;
         }
     }
 
@@ -433,7 +441,7 @@ public class Game {
                 typePrint("Select food to consume:");
                 Utils.printActionCommitFoodSelectionHeader();
                 ArrayList<ArrayList<String>> crewInventory = g.getCrewConsumables();
-                printCrewConsumables(crewInventory);
+                printCrewConsumables(crewInventory, true);
 
                 int chosenItem;
                 do {
@@ -442,7 +450,11 @@ public class Game {
                         typePrint("You can only choose items that are in the list");
                 } while (chosenItem < 0 || chosenItem >= crewInventory.size());
 
-                g.selectedCrewUseItem(chosenItem);
+                try {
+                    g.selectedCrewUseItem(chosenItem);
+                } catch (InsufficientItemInStock err) {
+                    typePrint(err.getMessage());
+                }
                 break;
             case 2:
                 if (g.selectedCrewGetFatique() == 0){

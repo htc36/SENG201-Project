@@ -148,8 +148,8 @@ public class Utils {
      * <<auto generated javadoc comment>>
      */
     public static void printActionCommitFoodSelectionHeader() {
-        typePrint("Index   Quantity   Type           Name Price Heal Fill Cures_Plague");
-        typePrint("-------------------------------------------------------------------");
+        typePrint("Index      Type        Name Price Heal Fill Cures_Plague");
+        typePrint("--------------------------------------------------------");
     }
 
     /**
@@ -188,8 +188,8 @@ public class Utils {
         typePrint("Clerk: Don't forget to place your items in the bagging area", 30);
         typePrint("Clerk: Here are the things on sale today :}");
         typePrint();
-        typePrint("    Type           Name Price Heal Fill Cures_Plague");
-        typePrint("    ------------------------------------------------");
+        typePrint("    Type          Name Price Heal Fill Cures_Plague");
+        typePrint("    -----------------------------------------------");
     }
 
     /**
