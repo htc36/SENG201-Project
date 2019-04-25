@@ -730,6 +730,12 @@ public class CommandCenter {
 					JOptionPane.showMessageDialog(new JFrame(), "You need 2 crew members for this action");
 					return;
 				}
+
+				if (!engine.isSpaceshipAbleToFly()) {
+					JOptionPane.showMessageDialog(new JFrame(), "Spaceship is too damaged to take off");
+					return;
+				}
+
 				try {
 					engine.selectedCrewPilotSpaceship();
 					if (engine.isHitAsteroid()) {
@@ -739,6 +745,7 @@ public class CommandCenter {
 						JOptionPane.showMessageDialog(new JFrame(), "Arrived safely");
 					if (engine.planetHasShipPieces())
 						JOptionPane.showMessageDialog(new JFrame(), "Planet has ship piece");
+					refreshPage();
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
 				}
