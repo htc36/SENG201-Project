@@ -1228,86 +1228,90 @@ public class CommandCenter {
 		});
 
 		Font footerGameStateFont = new Font("Quantico", Font.PLAIN, 15);
-		int bottomPanel_y = 673;
-		endDayButton.setBounds(898, bottomPanel_y, 114, 25);
+		int bottomPanel_y = 660;
+		int bottomPanel_x = 20;
+		int bottomPanelCol2_x = 200;
+		int bottomPanelCol3_x = 350;
+
+		endDayButton.setBounds(898, bottomPanel_y + 30, 114, 25);
 		frmCommandCenter.getContentPane().add(endDayButton);
 
 		JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found:");
 		lblShipPiecesFound.setForeground(Color.LIGHT_GRAY);
 		lblShipPiecesFound.setFont(footerGameStateFont);
-		lblShipPiecesFound.setBounds(12, bottomPanel_y, 136, 25);
+		lblShipPiecesFound.setBounds(bottomPanel_x, bottomPanel_y, 136, 25);
 		frmCommandCenter.getContentPane().add(lblShipPiecesFound);
 
 		JLabel lblX = new JLabel("x");
 		lblX.setForeground(Color.LIGHT_GRAY);
 		lblX.setFont(footerGameStateFont);
 		lblX.setText("0");
-		lblX.setBounds(160, bottomPanel_y, 55, 25);
+		lblX.setBounds(bottomPanelCol2_x, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblX);
 		currShipPieces = lblX;
 
 		JLabel lblOutOf = new JLabel("out of");
 		lblOutOf.setForeground(Color.LIGHT_GRAY);
 		lblOutOf.setFont(footerGameStateFont);
-		lblOutOf.setBounds(175, bottomPanel_y, 55, 25);
+		lblOutOf.setBounds(bottomPanelCol2_x + 15, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblOutOf);
 
 		JLabel lblTotalShipPieces = new JLabel("y");
 		lblTotalShipPieces.setForeground(Color.LIGHT_GRAY);
 		lblTotalShipPieces.setFont(footerGameStateFont);
-		lblTotalShipPieces.setBounds(225, bottomPanel_y, 55, 25);
+		lblTotalShipPieces.setBounds(bottomPanelCol2_x + 65, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblTotalShipPieces);
 		lblTotalShipPieces.setText(String.valueOf(engine.getShipPieces()));
 
 		JLabel lblCurrentDay = new JLabel("Current Day:");
 		lblCurrentDay.setForeground(Color.LIGHT_GRAY);
 		lblCurrentDay.setFont(footerGameStateFont);
-		lblCurrentDay.setBounds(270, bottomPanel_y, 99, 25);
+		lblCurrentDay.setBounds(bottomPanel_x, bottomPanel_y + 30, 99, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentDay);
 
 		JLabel lblCurrentDayCount = new JLabel("x");
 		lblCurrentDayCount.setForeground(Color.LIGHT_GRAY);
 		lblCurrentDayCount.setFont(footerGameStateFont);
 		lblCurrentDayCount.setText("1");
-		lblCurrentDayCount.setBounds(368, bottomPanel_y, 55, 25);
+		lblCurrentDayCount.setBounds(bottomPanelCol2_x, bottomPanel_y + 30, 55, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentDayCount);
 		currDay = lblCurrentDayCount;
 
 		JLabel label_9 = new JLabel("out of");
 		label_9.setForeground(Color.LIGHT_GRAY);
-		label_9.setBounds(390, bottomPanel_y, 55, 25);
+		label_9.setBounds(bottomPanelCol2_x + 15, bottomPanel_y + 30, 55, 25);
 		label_9.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(label_9);
 
 		JLabel lblGameLengthTotal = new JLabel("y");
 		lblGameLengthTotal.setForeground(Color.LIGHT_GRAY);
-		lblGameLengthTotal.setBounds(437, bottomPanel_y, 55, 25);
+		lblGameLengthTotal.setBounds(bottomPanelCol2_x + 65, bottomPanel_y + 30, 55, 25);
 		lblGameLengthTotal.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblGameLengthTotal);
 		lblGameLengthTotal.setText(String.valueOf(engine.getGameLength()));
 
 		JLabel lblMoney = new JLabel("Money:");
 		lblMoney.setForeground(Color.LIGHT_GRAY);
-		lblMoney.setBounds(500, bottomPanel_y, 64, 25);
+		lblMoney.setBounds(bottomPanelCol3_x, bottomPanel_y, 64, 25);
 		lblMoney.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblMoney);
 
 		JLabel lblCurrentMoney = new JLabel("$0");
 		lblCurrentMoney.setForeground(Color.LIGHT_GRAY);
 		lblCurrentMoney.setFont(footerGameStateFont);
-		lblCurrentMoney.setBounds(562, 673, 99, 25);
+		lblCurrentMoney.setBounds(bottomPanelCol3_x + 80, bottomPanel_y, 99, 25);
 		frmCommandCenter.getContentPane().add(lblCurrentMoney);
 		currMoney = lblCurrentMoney;
 
 		JLabel lblRadar = new JLabel("Radar:");
 		lblRadar.setForeground(Color.LIGHT_GRAY);
-		lblRadar.setBounds(620, bottomPanel_y, 64, 25);
+		lblRadar.setBounds(bottomPanelCol3_x, bottomPanel_y + 30, 64, 25);
 		lblRadar.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblRadar);
 
 		JLabel lblRadarPlanetStatus = new JLabel("");
 		lblRadarPlanetStatus.setForeground(Color.LIGHT_GRAY);
-		lblRadarPlanetStatus.setBounds(675, 673, 220, 25);
+		lblRadarPlanetStatus.setBounds(bottomPanelCol3_x + 80, bottomPanel_y + 30, 220, 25);
 		lblRadarPlanetStatus.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblRadarPlanetStatus);
 		
