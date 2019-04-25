@@ -1211,6 +1211,7 @@ public class CommandCenter {
 				refreshPage();
 				refreshSpaceshipPage();
 				refreshCrewStatusPage();
+				refreshCrewButtons(commitActions);
 			}
 		});
 
