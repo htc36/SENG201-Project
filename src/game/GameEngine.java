@@ -117,8 +117,10 @@ public class GameEngine {
         switch (randomEvent) {
             case 1:
                 AlienPirates.causeDamage(crew); 
+                break;
             case 0:
                 SpacePlague.causeDamage(crew);
+                break;
         }
 
         // 2 Nothing happens
@@ -425,7 +427,7 @@ public class GameEngine {
      * @return boolean True if able, false otherwise
      */
     public boolean isSpaceshipAbleToFly() {
-        return ship.getHealth() > 50;
+        return ship.getHealth() > 25;
     }
 
     // SHIP RELATED FUNCTIONS END
@@ -702,9 +704,8 @@ public class GameEngine {
      * @return boolean True if hit, false otherwise
      */
     public boolean isHitAsteroid() {
-        // percentage chance of 40% happening
-        boolean unlucky = unlucky(40);
-        return unlucky;
+        // percentage chance of 50% happening
+        return unlucky(50);
     }
 
     /**
@@ -716,7 +717,7 @@ public class GameEngine {
 
     public int getFinalScore() {
         int finalScore = 0;
-        finalScore = (gameLength - currDay) * 10000 * foundShipPieces;
+        finalScore = (gameLength - currDay) * 10000 + foundShipPieces * 10000;
 
         if (finalScore < 0) {
             finalScore = 0;

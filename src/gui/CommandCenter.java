@@ -111,6 +111,12 @@ public class CommandCenter {
 
 	private void refreshSpaceshipPage() {
 		int shipHealth = engine.getSpaceshipHealth();
+		if (shipHealth <= 30) {
+		    spaceshipHealth.setForeground(new Color(201, 29, 18));
+		} else if (shipHealth <= 60) {
+		    spaceshipHealth.setForeground(new Color(240, 230, 140));
+		} else
+		    spaceshipHealth.setForeground(new Color(34, 139, 34));
 		spaceshipHealth.setValue(shipHealth);
 	}
 
@@ -742,11 +748,13 @@ public class CommandCenter {
 					engine.selectedCrewPilotSpaceship();
 					if (engine.isHitAsteroid()) {
 						engine.asteroidCausingDamage();
-						JOptionPane.showMessageDialog(new JFrame(), "Crashed asteroid");
+						JOptionPane.showMessageDialog(new JFrame(), "Crashed asteroid, arrived at " + engine.getPlanetName());
 					} else 
-						JOptionPane.showMessageDialog(new JFrame(), "Arrived safely");
+						JOptionPane.showMessageDialog(new JFrame(), "Arrived safely at " + engine.getPlanetName());
+
 					if (engine.planetHasShipPieces())
 						JOptionPane.showMessageDialog(new JFrame(), "Planet has ship piece");
+
 					refreshPage();
 				} catch (InsufficientActionException err) {
 					JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
@@ -779,7 +787,7 @@ public class CommandCenter {
 
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setBackground(Color.DARK_GRAY);
-		progressBar.setForeground(Color.GREEN);
+		progressBar.setForeground(new Color(34, 139, 34));
 		progressBar.setFont(new Font("Ubuntu", Font.PLAIN, 14));
 		progressBar.setBounds(30, 476, 923, 20);
 		progressBar.setValue(engine.getSpaceshipHealth());
@@ -1262,13 +1270,13 @@ public class CommandCenter {
 		JLabel lblOutOf = new JLabel("out of");
 		lblOutOf.setForeground(Color.LIGHT_GRAY);
 		lblOutOf.setFont(footerGameStateFont);
-		lblOutOf.setBounds(bottomPanelCol2_x + 15, bottomPanel_y, 55, 25);
+		lblOutOf.setBounds(bottomPanelCol2_x + 25, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblOutOf);
 
 		JLabel lblTotalShipPieces = new JLabel("y");
 		lblTotalShipPieces.setForeground(Color.LIGHT_GRAY);
 		lblTotalShipPieces.setFont(footerGameStateFont);
-		lblTotalShipPieces.setBounds(bottomPanelCol2_x + 65, bottomPanel_y, 55, 25);
+		lblTotalShipPieces.setBounds(bottomPanelCol2_x + 75, bottomPanel_y, 55, 25);
 		frmCommandCenter.getContentPane().add(lblTotalShipPieces);
 		lblTotalShipPieces.setText(String.valueOf(engine.getShipPieces()));
 
@@ -1288,13 +1296,13 @@ public class CommandCenter {
 
 		JLabel label_9 = new JLabel("out of");
 		label_9.setForeground(Color.LIGHT_GRAY);
-		label_9.setBounds(bottomPanelCol2_x + 15, bottomPanel_y + 30, 55, 25);
+		label_9.setBounds(bottomPanelCol2_x + 25, bottomPanel_y + 30, 55, 25);
 		label_9.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(label_9);
 
 		JLabel lblGameLengthTotal = new JLabel("y");
 		lblGameLengthTotal.setForeground(Color.LIGHT_GRAY);
-		lblGameLengthTotal.setBounds(bottomPanelCol2_x + 65, bottomPanel_y + 30, 55, 25);
+		lblGameLengthTotal.setBounds(bottomPanelCol2_x + 75, bottomPanel_y + 30, 55, 25);
 		lblGameLengthTotal.setFont(footerGameStateFont);
 		frmCommandCenter.getContentPane().add(lblGameLengthTotal);
 		lblGameLengthTotal.setText(String.valueOf(engine.getGameLength()));
