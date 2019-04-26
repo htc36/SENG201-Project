@@ -20,6 +20,7 @@ import javax.swing.JSlider;
 
 import game.GameEngine;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
@@ -418,6 +419,7 @@ public class SetupScreen {
         numShipPieces = lblNumShipPieces;
 
         JSlider slider = new JSlider();
+        slider.setUI(new DarkSlider(slider));
         slider.setOpaque(false);
         slider.setForeground(SystemColor.menu);
         slider.addChangeListener(new ChangeListener() {
