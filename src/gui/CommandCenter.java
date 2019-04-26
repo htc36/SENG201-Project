@@ -36,6 +36,9 @@ import javax.swing.JSeparator;
 import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class CommandCenter {
 
@@ -417,7 +420,7 @@ public class CommandCenter {
 		frmCommandCenter.getContentPane().setBackground(Color.BLACK);
 		frmCommandCenter.setResizable(false);
 		frmCommandCenter.setTitle("Command Center");
-		frmCommandCenter.setBounds(100, 100, 1024, 768);
+		frmCommandCenter.setBounds(100, 100, 1024, 800);
 		frmCommandCenter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCommandCenter.getContentPane().setLayout(null);
 
@@ -1250,7 +1253,7 @@ public class CommandCenter {
 		int bottomPanelCol2_x = 200;
 		int bottomPanelCol3_x = 350;
 
-		endDayButton.setBounds(898, bottomPanel_y + 30, 114, 25);
+		endDayButton.setBounds(860, bottomPanel_y + 30, 114, 25);
 		frmCommandCenter.getContentPane().add(endDayButton);
 
 		JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found:");
@@ -1333,6 +1336,32 @@ public class CommandCenter {
 		frmCommandCenter.getContentPane().add(lblRadarPlanetStatus);
 		
 		radarPlanetStatus = lblRadarPlanetStatus;
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmCommandCenter.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmSave = new JMenuItem("Save");
+		mntmSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				engine.saveGameState();
+			}
+		});
+		mnFile.add(mntmSave);
+		
+		JMenuItem mntmLoad = new JMenuItem("Load");
+		mnFile.add(mntmLoad);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.add(mntmExit);
+		
+		JMenu mnNewMenu = new JMenu("Help");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mnNewMenu.add(mntmAbout);
 
 		tabbedPane.addChangeListener(new ChangeListener() {
 			/**

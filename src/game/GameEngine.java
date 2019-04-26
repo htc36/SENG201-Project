@@ -71,6 +71,11 @@ public class GameEngine {
 
         crewMembers = new ArrayList<>();
     }
+    
+    // Constructor for GameEngine when loading from a save file
+    public GameEngine(String saveFilename) {
+    	// TODO: read from save file and load data into game engine
+    }
 
     // CREW RELATED FUNCTIONS START
 
@@ -733,7 +738,38 @@ public class GameEngine {
         return finalScore;
     }
     
-    public void saveGameState() {
+    @SuppressWarnings("unchecked")
+	public void saveGameState() {
+    	JSONObject gameState = new JSONObject();
+//    private int gameLength;
+//    private int shipPieces;
+//    private ArrayList<String> crewMemberTypes;
+//    private ArrayList<CrewMember> crewMembers;
+//    private Spaceship ship;
+//    private Crew crew;
+//    private Outpost outpost;
+//    private int currDay;
+//    private ArrayList<Planet> planets;
+//    private int currentPlanetIndex;
+//    private int foundShipPieces;
+//    private CrewMember selectedCrew;
+//    private CrewMember copilot;
+    	gameState.put("gameLength", gameLength);
+    	gameState.put("shipPieces", shipPieces);
+    	gameState.put("currDay", currDay);
+    	gameState.put("currPlanetIndex", currentPlanetIndex);
+    			
+    	gameState.put("shipName", ship.getName());
+    	gameState.put("shipHealth", ship.getHealth());
+    	
+    	try {
+    		FileWriter f = new FileWriter("./save.json");
+    		f.write(gameState.toJSONString());
+    		f.flush();
+    		f.close();
+    	} catch (IOException err) {
+    		err.printStackTrace();
+    	}
     	
     }
 
