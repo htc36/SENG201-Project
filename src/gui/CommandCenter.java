@@ -406,8 +406,6 @@ public class CommandCenter {
 	}
 
 	private void initialize() {
-		UIManager.put("TabbedPane.unselectedForeground", Color.RED);
-		UIManager.put("TabbedPane.selectedBackground", new Color(100, 0, 0));
 		UIManager.put("TabbedPane.contentBorderInsets", new InsetsUIResource(0, 0, 0, 0));
 		frmCommandCenter = new JFrame();
 		frmCommandCenter.getContentPane().setBackground(Color.BLACK);
@@ -418,6 +416,10 @@ public class CommandCenter {
 		frmCommandCenter.getContentPane().setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setUI(new ModernTab());
+		tabbedPane.setForeground(Color.WHITE);
+		
+		tabbedPane.setFont(new Font("Quantico", Font.BOLD, 16));
 		tabbedPane.setBorder(null);
 		tabbedPane.setBounds(12, 0, 1000, 648);
 		frmCommandCenter.getContentPane().add(tabbedPane);

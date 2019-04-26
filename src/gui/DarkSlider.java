@@ -44,7 +44,6 @@ public class DarkSlider extends BasicSliderUI {
 	public void paintThumb(Graphics g) {
 		int x1 = thumbRect.x;
 		int topY = thumbRect.y;
-		int width = thumbRect.width;
 		
 		Graphics2D g2d = (Graphics2D) g;
 		Stroke old = g2d.getStroke();
