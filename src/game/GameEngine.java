@@ -12,6 +12,13 @@ import planet.Planet;
 import random_events.*;
 import unit.*;
 
+// Use json simple to write save files
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class GameEngine {
 
     private int gameLength;
@@ -724,6 +731,10 @@ public class GameEngine {
         }
 
         return finalScore;
+    }
+    
+    public void saveGameState() {
+    	
     }
 
     // GAME RELATED FUNCTIONS END
