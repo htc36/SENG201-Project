@@ -20,7 +20,17 @@ public class GameGUI {
 		engine = new GameEngine();
 		gameEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		try {
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Karumbi.ttf")));
+
 			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Quantico-Regular.ttf")));
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Quantico-Bold.ttf")));
+
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/UbuntuMono-R.ttf")));
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/UbuntuMono-B.ttf")));
+
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Ubuntu-R.ttf")));
+			gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Ubuntu-B.ttf")));
+
 		} catch (FontFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,6 +39,9 @@ public class GameGUI {
 			e.printStackTrace();
 		}
 		
+//		for (int i = 0; i < gameEnv.getAvailableFontFamilyNames().length; i++) {
+//			System.out.println(gameEnv.getAvailableFontFamilyNames()[i]);
+//		}
 	}
 	
 
