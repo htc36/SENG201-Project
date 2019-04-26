@@ -200,13 +200,13 @@ public class GameEngine {
      * @param c The crew member to be removed
      */
     public void removeCrewMember(String name) throws CrewMemberNotFoundException {
-    	CrewMember toBeRemoved = null;
-    	for (CrewMember c : crew.getCrewMembers()) {
-    		if (c.getName().equals(name) && c.getHealth() == 0) {
-    			toBeRemoved = c;
-    			break;
-    		}
-    	}
+        CrewMember toBeRemoved = null;
+        for (CrewMember c : crew.getCrewMembers()) {
+            if (c.getName().equals(name) && c.getHealth() == 0) {
+                toBeRemoved = c;
+                break;
+            }
+        }
         crew.removeCrewMember(toBeRemoved);
     }
 
@@ -299,11 +299,11 @@ public class GameEngine {
      */
     public boolean selectedCrewSearchPlanet() {
         boolean found = selectedCrew.searchPlanet();
-    	if (!planets.get(currentPlanetIndex).stillHasShipPieces()) {
-    		return false;
-    	}
-    	
-    	return found;
+        if (!planets.get(currentPlanetIndex).stillHasShipPieces()) {
+            return false;
+        }
+
+        return found;
     }
 
     /**
@@ -715,14 +715,14 @@ public class GameEngine {
     }
 
     public int getFinalScore() {
-    	int finalScore = 0;
-    	finalScore = (gameLength - currDay) * 10000 * foundShipPieces;
-    	
-    	if (finalScore < 0) {
-    		finalScore = 0;
-    	}
+        int finalScore = 0;
+        finalScore = (gameLength - currDay) * 10000 * foundShipPieces;
 
-    	return finalScore;
+        if (finalScore < 0) {
+            finalScore = 0;
+        }
+
+        return finalScore;
     }
 
     // GAME RELATED FUNCTIONS END
