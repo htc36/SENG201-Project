@@ -35,6 +35,10 @@ public class StrandeD {
 	public void closeWindow() {
 		frmWelcomeScreen.dispose();
 	}
+
+	public void loadGame() {
+		game.loadGame(this);
+	}
 	
  /**
   * <<auto generated javadoc comment>>
@@ -74,6 +78,19 @@ public class StrandeD {
 		btnNewButton.setBackground(Color.DARK_GRAY);
 		btnNewButton.setBounds(336, 300, 110, 42);
 		frmWelcomeScreen.getContentPane().add(btnNewButton);
+		
+		JButton btnLoad = new JButton("Load");
+		btnLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				loadGame();
+			}
+		});
+		btnLoad.setForeground(UIManager.getColor("Button.background"));
+		btnLoad.setFont(new Font("Ubuntu", Font.BOLD, 16));
+		btnLoad.setBorder(null);
+		btnLoad.setBackground(Color.DARK_GRAY);
+		btnLoad.setBounds(336, 364, 110, 42);
+		frmWelcomeScreen.getContentPane().add(btnLoad);
 		
 		JLabel label = new JLabel("StrandeD");
 		label.setHorizontalTextPosition(SwingConstants.CENTER);
