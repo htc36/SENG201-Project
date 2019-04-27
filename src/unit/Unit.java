@@ -21,6 +21,10 @@ public class Unit {
         return health > 0;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     /**
      * Reduces health to unit by some amount
      * @param amount the amount of health reduced

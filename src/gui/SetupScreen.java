@@ -20,12 +20,10 @@ import javax.swing.JSlider;
 
 import game.GameEngine;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 import javax.swing.border.MatteBorder;
-import java.awt.Toolkit;
 import java.awt.SystemColor;
 
 public class SetupScreen {
@@ -53,7 +51,7 @@ public class SetupScreen {
         initialize();
         frmCrewSetup.setVisible(true);
     }
-
+    
     /**
      * <<auto generated javadoc comment>>
      */
@@ -162,7 +160,7 @@ public class SetupScreen {
         frmCrewSetup.setResizable(false);
         frmCrewSetup.setBounds(100, 100, 800, 600);
         frmCrewSetup.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-
+        
         frmCrewSetup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCrewSetup.getContentPane().setLayout(null);
 
