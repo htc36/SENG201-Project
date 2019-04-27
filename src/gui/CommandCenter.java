@@ -399,6 +399,10 @@ public class CommandCenter {
 			consWindow.getContentPane().add(itemButton);
 		}
 	}
+	
+	public void loadGameState() {
+		game.loadGame(this);
+	}
 
 	/**
 	 * <<auto generated javadoc comment>>
@@ -1352,6 +1356,11 @@ public class CommandCenter {
 		mnFile.add(mntmSave);
 		
 		JMenuItem mntmLoad = new JMenuItem("Load");
+		mntmLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				loadGameState();
+			}
+		});
 		mnFile.add(mntmLoad);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");

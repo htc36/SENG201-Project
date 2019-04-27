@@ -49,6 +49,12 @@ public class GameGUI {
 		engine = new GameEngine("./save.json");
 		launchCommandCenter();
 	}
+	
+	public void loadGame(CommandCenter commandCenter) {
+		commandCenter.closeWindow();
+		engine = new GameEngine("./save.json");
+		launchCommandCenter();
+	}
 
 	/**
 	 * <<auto generated javadoc comment>>
