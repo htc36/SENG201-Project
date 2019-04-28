@@ -53,19 +53,22 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Closes the window once setup is complete
      */
     public void closeWindow() {
         frmCrewSetup.dispose();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * 
      */
     public void finishedWindow() {
         game.closeSetupScreen(this);
     }
-
+    
+    /**
+     * Updates crew member images
+     */
     private void updateCrewMemberIcons() {		
         for (int i = 0; i < iconsList.size(); i++) {
             iconsList.get(i).setIcon(null);
@@ -88,8 +91,8 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param type <<Param Desc>>
+     * Updates crew member description based on crew type selection
+     * @param type What type of crew the user has selected
      */
     private void updateCrewMemberDescriptions(String type) {
         switch(type) {
@@ -121,9 +124,9 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param type <<Param Desc>>
-     * @param name <<Param Desc>>
+     * Adds crew member to crew
+     * @param type crew member type
+     * @param name name of crew member
      */
     private void addCrewMember(String type, String name) {
         errorLabel.setText("");
@@ -148,8 +151,8 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param index <<Param Desc>>
+     * Removes crew member from crew
+     * @param index location of crew member in crewList
      */
     private void deleteCrewMember(int index) {
         if (crewList.size() == 0)
@@ -161,8 +164,9 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param days <<Param Desc>>
+     * Sets the number of ship pieces depending on the amount of days
+     * @param days <<param desc>>
+     * f 
      */
     private void updateShipPieces(int days) {
         int numPieces = engine.calculateShipPieces(days);
