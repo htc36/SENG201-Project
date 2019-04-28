@@ -94,7 +94,7 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Start the day and gets random event to occur, 1/3 chance of no event, 1/3 chance of Alien Pirates, 1/3 chance of Space Plague
      */
     public void startDay() {
         int randomEvent = engine.getRandomEvent();
