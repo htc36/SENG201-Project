@@ -17,12 +17,11 @@ public class ModernTab extends BasicTabbedPaneUI {
     private final Color tabBackgroundColor = Color.DARK_GRAY;
     private final Color tabBorderColor = Color.GRAY;
 
-    @Override 
     protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
         int tabCount = tabPane.getTabCount();
 
         Rectangle iconRect = new Rectangle(),
-                textRect = new Rectangle();
+                  textRect = new Rectangle();
         Rectangle clipRect = g.getClipBounds();
 
         for (int i = runCount - 1; i >= 0; i--) {
@@ -41,7 +40,6 @@ public class ModernTab extends BasicTabbedPaneUI {
 
     }
 
-    @Override
     protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -67,10 +65,8 @@ public class ModernTab extends BasicTabbedPaneUI {
 
     }
 
-    @Override
     protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected) {}
 
-    @Override
     protected void paintFocusIndicator(Graphics g, int tabPlacement, Rectangle[] rects, int tabIndex, Rectangle iconRect, Rectangle textRect, boolean isSelected) {}
 
 

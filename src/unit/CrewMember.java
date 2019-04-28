@@ -47,17 +47,29 @@ public abstract class CrewMember extends Unit {
         fatiqueLevel = 0;
         hasPlague = false;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param actions <<Param Desc>>
+     */
     public void setActions(int actions) {
-    	this.actions = actions;
+        this.actions = actions;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param hunger <<Param Desc>>
+     */
     public void setHunger(int hunger) {
-    	hungerLevel = hunger;
+        hungerLevel = hunger;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param fatique <<Param Desc>>
+     */
     public void setFatique(int fatique) {
-    	fatiqueLevel = fatique;
+        fatiqueLevel = fatique;
     }
 
     /**

@@ -21,6 +21,10 @@ public class Unit {
         return health > 0;
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param health <<Param Desc>>
+     */
     public void setHealth(int health) {
         this.health = health;
     }

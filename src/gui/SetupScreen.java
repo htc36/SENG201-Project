@@ -51,7 +51,7 @@ public class SetupScreen {
         initialize();
         frmCrewSetup.setVisible(true);
     }
-    
+
     /**
      * <<auto generated javadoc comment>>
      */
@@ -126,7 +126,7 @@ public class SetupScreen {
             updateCrewMemberDescriptions(type);
             return;
         }
-        
+
         if (!engine.isCrewNameValid(crewList, name + "-" + type)) {
             errorLabel.setText("<html>There is a crew member with that name!</html>");
             return;
@@ -139,8 +139,8 @@ public class SetupScreen {
     }
 
     private void deleteCrewMember(int index) {
-    	if (crewList.size() == 0)
-    		return;
+        if (crewList.size() == 0)
+            return;
 
         crewList.remove(index);
         iconsList.get(index).setIcon(null);
@@ -160,7 +160,7 @@ public class SetupScreen {
         frmCrewSetup.setResizable(false);
         frmCrewSetup.setBounds(100, 100, 800, 600);
         frmCrewSetup.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        
+
         frmCrewSetup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCrewSetup.getContentPane().setLayout(null);
 
@@ -247,9 +247,9 @@ public class SetupScreen {
 
         JLabel firstCrewMemberIcon = new JLabel("");
         firstCrewMemberIcon.addMouseListener(new MouseAdapter() {
-    /**
-     * Initialize the contents of the frame.
-     */
+            /**
+             * Initialize the contents of the frame.
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(0);
@@ -340,7 +340,7 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(medicBtn);
 
         JButton sleeperBtn = new JButton("Sleeper");
-        
+
         sleeperBtn.setFont(new Font("Ubuntu", Font.PLAIN, 12));
         sleeperBtn.setBackground(Color.DARK_GRAY);
         sleeperBtn.setForeground(Color.WHITE);
@@ -486,7 +486,7 @@ public class SetupScreen {
         lblThereIsA.setBounds(20, 292, 286, 66);
         frmCrewSetup.getContentPane().add(lblThereIsA);
         errorLabel = lblThereIsA;
-        
+
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(SetupScreen.class.getResource("/img/setupscreen.jpg")));
         lblNewLabel.setBounds(0, 0, 800, 572);

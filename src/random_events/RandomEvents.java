@@ -4,9 +4,9 @@ import crew.Crew;
 
 public interface RandomEvents {
 
-/**
- * Interface that every random events has to implement
- * */
+    /**
+     * Interface that every random events has to implement
+     * */
     /**
      * Causes damage in one way or another to the player's crew
      * @param c the crew

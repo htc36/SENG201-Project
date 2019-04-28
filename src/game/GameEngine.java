@@ -67,76 +67,80 @@ public class GameEngine {
     }
 
     // Constructor for GameEngine when loading from a save file
+    /**
+     * <<auto generated javadoc comment>>
+     * @param saveFilename <<Param Desc>>
+     */
     public GameEngine(String saveFilename) {
         JSONParser parser = new JSONParser();
         try {
-        	Object obj = parser.parse(new FileReader(saveFilename));
-        	JSONObject gameState = (JSONObject) obj;
-        	System.out.println(gameState);
-        	
-        	setCurrDay((int) (long) gameState.get("currDay"));
-        	System.out.println(this.currDay);
-        	
-        	String shipName = (String) gameState.get("shipName");
-        	ship = new Spaceship(shipName);
-        	ship.setHealth((int ) (long) gameState.get("shipHealth"));
-        	
-        	setGameLength((int) (long) gameState.get("gameLength"));
-        	setShipPieces();
+            Object obj = parser.parse(new FileReader(saveFilename));
+            JSONObject gameState = (JSONObject) obj;
+            System.out.println(gameState);
 
-        	setFoundShipPieces((int) (long) gameState.get("foundShipPieces"));
+            setCurrDay((int) (long) gameState.get("currDay"));
+            System.out.println(this.currDay);
 
-        	setCurrentPlanetIndex((int) (long) gameState.get("currPlanetIndex"));
+            String shipName = (String) gameState.get("shipName");
+            ship = new Spaceship(shipName);
+            ship.setHealth((int ) (long) gameState.get("shipHealth"));
 
-        	setupOutpost();
-        	JSONArray crewMembersJSON = (JSONArray) gameState.get("crewMembers");
-        	ArrayList<ArrayList<String>> crewMemberArrayList = new ArrayList<>();
-			for (int i = 0; i < crewMembersJSON.size(); i++) {
-				JSONArray crewMemberDesc = (JSONArray) crewMembersJSON.get(i);
-				ArrayList<String> memberData = new ArrayList<>();
-				for (int j = 0; j < crewMemberDesc.size(); j++) {
-					memberData.add((String) crewMemberDesc.get(j));
-				}
+            setGameLength((int) (long) gameState.get("gameLength"));
+            setShipPieces();
 
-				crewMemberArrayList.add(memberData);
-			}
-        	
-			crewMembers = new ArrayList<>();
-        	loadCrewMembers(crewMemberArrayList);
-        	crew = new Crew(crewMembers, ship);
-        	crew.setMoney((int) (long) gameState.get("money"));
-        	
-        	planets = new ArrayList<>();
-        	JSONObject planetsJSON = (JSONObject) gameState.get("planets");
-        	for (Object p : planetsJSON.keySet()) {
-        		String planetName = (String) p;
-        		boolean hasShipPiece = (boolean) planetsJSON.get(p);
-        		planets.add(new Planet(planetName, hasShipPiece));
-        	}
-        	
-        	// consumables
-        	JSONArray consumablesJSON = (JSONArray) gameState.get("consumables");
-        	ArrayList<ArrayList<String>> consumablesList = new ArrayList<>();
-			for (int i = 0; i < consumablesJSON.size(); i++) {
-				JSONArray consumableDesc = (JSONArray) consumablesJSON.get(i);
-				ArrayList<String> consumableData = new ArrayList<>();
-				for (int j = 0; j < consumableDesc.size(); j++) {
-					consumableData.add((String) consumableDesc.get(j));
-				}
-				consumablesList.add(consumableData);
-			}
-			
-			for (ArrayList<String> cons : consumablesList) {
-				addCrewConsumable(cons.get(0));
-			}
-			
+            setFoundShipPieces((int) (long) gameState.get("foundShipPieces"));
+
+            setCurrentPlanetIndex((int) (long) gameState.get("currPlanetIndex"));
+
+            setupOutpost();
+            JSONArray crewMembersJSON = (JSONArray) gameState.get("crewMembers");
+            ArrayList<ArrayList<String>> crewMemberArrayList = new ArrayList<>();
+            for (int i = 0; i < crewMembersJSON.size(); i++) {
+                JSONArray crewMemberDesc = (JSONArray) crewMembersJSON.get(i);
+                ArrayList<String> memberData = new ArrayList<>();
+                for (int j = 0; j < crewMemberDesc.size(); j++) {
+                    memberData.add((String) crewMemberDesc.get(j));
+                }
+
+                crewMemberArrayList.add(memberData);
+            }
+
+            crewMembers = new ArrayList<>();
+            loadCrewMembers(crewMemberArrayList);
+            crew = new Crew(crewMembers, ship);
+            crew.setMoney((int) (long) gameState.get("money"));
+
+            planets = new ArrayList<>();
+            JSONObject planetsJSON = (JSONObject) gameState.get("planets");
+            for (Object p : planetsJSON.keySet()) {
+                String planetName = (String) p;
+                boolean hasShipPiece = (boolean) planetsJSON.get(p);
+                planets.add(new Planet(planetName, hasShipPiece));
+            }
+
+            // consumables
+            JSONArray consumablesJSON = (JSONArray) gameState.get("consumables");
+            ArrayList<ArrayList<String>> consumablesList = new ArrayList<>();
+            for (int i = 0; i < consumablesJSON.size(); i++) {
+                JSONArray consumableDesc = (JSONArray) consumablesJSON.get(i);
+                ArrayList<String> consumableData = new ArrayList<>();
+                for (int j = 0; j < consumableDesc.size(); j++) {
+                    consumableData.add((String) consumableDesc.get(j));
+                }
+                consumablesList.add(consumableData);
+            }
+
+            for (ArrayList<String> cons : consumablesList) {
+                addCrewConsumable(cons.get(0));
+            }
+
 
         } catch (FileNotFoundException err) {
-        	err.printStackTrace();
+            err.printStackTrace();
         } catch (IOException err) {
-        	err.printStackTrace();
+            err.printStackTrace();
         } catch (ParseException err) {
-        	err.printStackTrace();
+            err.printStackTrace();
         }
     }
 
@@ -203,37 +207,41 @@ public class GameEngine {
         // 0 Space Plague
         return randomEvent;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     */
     public void addCrewConsumable(String itemName) {
-    	switch(itemName) {
-    	case "PickledPlum":
-    		addCrewConsumable(new PickledPlum());
-    		break;
-    	case "Brownie":
-    		addCrewConsumable(new Brownie());
-    		break;
-    	case "Dumplings":
-    		addCrewConsumable(new Dumplings());
-    		break;
-    	case "FriedRice":
-    		addCrewConsumable(new FriedRice());
-    		break;
-    	case "Hotbot":
-    		addCrewConsumable(new Hotbot());
-    		break;
-    	case "PolyJuice":
-    		addCrewConsumable(new PolyJuice());
-    		break;
-    	case "SpaceCake":
-    		addCrewConsumable(new SpaceCake());
-    		break;
-    	case "TikkaMasala":
-    		addCrewConsumable(new TikkaMasala());
-    		break;
-    	case "Vaccine":
-    		addCrewConsumable(new Vaccine());
-    		break;
-    	}
+        switch(itemName) {
+            case "PickledPlum":
+                addCrewConsumable(new PickledPlum());
+                break;
+            case "Brownie":
+                addCrewConsumable(new Brownie());
+                break;
+            case "Dumplings":
+                addCrewConsumable(new Dumplings());
+                break;
+            case "FriedRice":
+                addCrewConsumable(new FriedRice());
+                break;
+            case "Hotbot":
+                addCrewConsumable(new Hotbot());
+                break;
+            case "PolyJuice":
+                addCrewConsumable(new PolyJuice());
+                break;
+            case "SpaceCake":
+                addCrewConsumable(new SpaceCake());
+                break;
+            case "TikkaMasala":
+                addCrewConsumable(new TikkaMasala());
+                break;
+            case "Vaccine":
+                addCrewConsumable(new Vaccine());
+                break;
+        }
     }
 
     /**
@@ -331,27 +339,31 @@ public class GameEngine {
             addCrewMember(crewType, memberName);
         }
     }
-    
-    public void loadCrewMembers(ArrayList<ArrayList<String>> crewMembers) {
-    	for (ArrayList<String> member : crewMembers) {
-    		String name = member.get(0);
-    		String type = member.get(7).toLowerCase();
-    		addCrewMember(type, name);
 
-    		int health = Integer.valueOf(member.get(1));
-    		String isPlagued = member.get(3);
-    		int hunger = Integer.valueOf(member.get(4));
-    		int fatigue = Integer.valueOf(member.get(5));
-    		int actions = Integer.valueOf(member.get(6));
-    		CrewMember c = this.crewMembers.get(this.crewMembers.size() - 1);
-    		c.setHealth(health);
-    		if (isPlagued.equals("T")) {
-    			c.makeSick();
-    		}
-    		c.setHunger(hunger);
-    		c.setFatique(fatigue);
-    		c.setActions(actions);
-    	}
+    /**
+     * <<auto generated javadoc comment>>
+     * @param crewMembers <<Param Desc>>
+     */
+    public void loadCrewMembers(ArrayList<ArrayList<String>> crewMembers) {
+        for (ArrayList<String> member : crewMembers) {
+            String name = member.get(0);
+            String type = member.get(7).toLowerCase();
+            addCrewMember(type, name);
+
+            int health = Integer.valueOf(member.get(1));
+            String isPlagued = member.get(3);
+            int hunger = Integer.valueOf(member.get(4));
+            int fatigue = Integer.valueOf(member.get(5));
+            int actions = Integer.valueOf(member.get(6));
+            CrewMember c = this.crewMembers.get(this.crewMembers.size() - 1);
+            c.setHealth(health);
+            if (isPlagued.equals("T")) {
+                c.makeSick();
+            }
+            c.setHunger(hunger);
+            c.setFatique(fatigue);
+            c.setActions(actions);
+        }
     }
 
     /**
@@ -562,7 +574,10 @@ public class GameEngine {
     // SHIP RELATED FUNCTIONS END
 
     // OUTPOST RELATED FUNCTIONS START
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void setupOutpost() {
         Food f1 = new Brownie();
         Food f2 = new FriedRice();
@@ -713,9 +728,13 @@ public class GameEngine {
             }
         }
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param index <<Param Desc>>
+     */
     public void setCurrentPlanetIndex(int index) {
-    	currentPlanetIndex = index;
+        currentPlanetIndex = index;
     }
 
     // PLANET RELATED FUNCTIONS END
@@ -730,9 +749,13 @@ public class GameEngine {
     public boolean isValidNumOfDays(int numOfDays) {
         return numOfDays <= 10 && numOfDays >= 3;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param amount <<Param Desc>>
+     */
     public void setFoundShipPieces(int amount) {
-    	foundShipPieces = amount;
+        foundShipPieces = amount;
     }
 
     /**
@@ -843,9 +866,13 @@ public class GameEngine {
     public int getCurrDay() {
         return currDay;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param currDay <<Param Desc>>
+     */
     public void setCurrDay(int currDay) {
-    	this.currDay = currDay;
+        this.currDay = currDay;
     }
 
     /**
@@ -872,6 +899,10 @@ public class GameEngine {
         AsteroidBelt.causeDamage(crew);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @return int <<Return Desc>>
+     */
     public int getFinalScore() {
         int finalScore = 0;
         finalScore = (gameLength - currDay) * 10000 + foundShipPieces * 10000;
@@ -884,6 +915,9 @@ public class GameEngine {
     }
 
     @SuppressWarnings("unchecked")
+    /**
+     * <<auto generated javadoc comment>>
+     */
     public void saveGameState() {
         JSONObject gameState = new JSONObject();
 
@@ -893,13 +927,13 @@ public class GameEngine {
         gameState.put("foundShipPieces", foundShipPieces);
         gameState.put("currPlanetIndex", currentPlanetIndex);
         gameState.put("money", crew.getMoney());
-        
+
         // planets state
         JSONObject planetsList = new JSONObject();
         for (Planet p : this.planets) {
-        	planetsList.put(p.getName(), p.stillHasShipPieces());
+            planetsList.put(p.getName(), p.stillHasShipPieces());
         }
-        
+
         gameState.put("planets", planetsList);
 
         // consumables state

@@ -248,10 +248,6 @@ public class Game {
         typePrint();
     }
 
-    /**
-     * Prints the list of items in a pretty table
-     * @param consumables list of items
-     */
     public void printCrewConsumables(ArrayList<ArrayList<String>> consumables,
             boolean withIndex) {
         int counter = 0;
@@ -275,6 +271,10 @@ public class Game {
         }
     }
 
+    /**
+     * Prints the list of items in a pretty table
+     * @param consumables list of items
+     */
     /**
      * Get the player input for the items they are going to buy
      */

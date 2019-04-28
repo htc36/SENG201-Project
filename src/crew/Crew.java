@@ -41,7 +41,7 @@ public class Crew {
      */
     public void removeCrewMember(CrewMember c) {
         if (!crewMembers.remove(c)) {
-        	throw new CrewMemberNotFoundException("No such crew member");
+            throw new CrewMemberNotFoundException("No such crew member");
         }
     }
 
@@ -120,9 +120,13 @@ public class Crew {
     public void addMoney(int sum) {
         money += sum;
     }
-    
+
+    /**
+     * <<auto generated javadoc comment>>
+     * @param sum <<Param Desc>>
+     */
     public void setMoney(int sum) {
-    	money = sum;
+        money = sum;
     }
 
     /**
@@ -180,7 +184,7 @@ public class Crew {
         String errTemplate = "There is not enough " + itemName + " in your stock.";
         throw new InsufficientItemInStock(errTemplate);
     }
-    
+
     /**
      * adds a consumable to the crew's possession
      * @param item the consumable item
