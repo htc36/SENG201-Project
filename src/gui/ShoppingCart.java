@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -56,6 +57,8 @@ public class ShoppingCart {
         newItem.setText(itemQuery);
         newItem.setVisible(true);
         newItem.setSelected(true);
+        newItem.setForeground(Color.WHITE);
+        newItem.setBackground(Color.BLACK);
         newItem.addItemListener(new ItemListener() {
             /**
              * <<auto generated javadoc comment>>
@@ -66,6 +69,7 @@ public class ShoppingCart {
                 removeItemFromShoppingCart(newItem);
             }
         });
+        
         // supports 2 columns of shopping items
         if (checkboxes.size() <= 7) {
             newItem.setBounds(
