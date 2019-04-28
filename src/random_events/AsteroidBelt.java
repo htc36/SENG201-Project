@@ -18,11 +18,6 @@ public class AsteroidBelt implements RandomEvents{
         } else {
             spaceShip.receiveDamage(20);
         }
-
-        System.out.println("WARNING");
-        System.out.println("The spaceship has BONKED into an asteroid belt");
-        System.out.println("N: The pilot won't have cold beers tonight");
-        System.out.println();
     }
 
 }
