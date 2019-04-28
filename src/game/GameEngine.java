@@ -570,6 +570,10 @@ public class GameEngine {
     public boolean isSpaceshipAbleToFly() {
         return ship.getHealth() > 25;
     }
+    
+    public String getSpaceshipName() {
+    	return ship.getName();
+    }
 
     // SHIP RELATED FUNCTIONS END
 
@@ -832,8 +836,12 @@ public class GameEngine {
      * increments the current day
      */
     public void endDay() {
-        refreshActions();
+        refreshActions(); 
         currDay++;
+        if (currDay > 10) {
+        	currDay = 10;
+        }
+        
     }
 
     /**
