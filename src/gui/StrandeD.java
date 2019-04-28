@@ -50,6 +50,9 @@ public class StrandeD {
         game.closeMainScreen(this);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         frmWelcomeScreen = new JFrame();
         frmWelcomeScreen.setResizable(false);

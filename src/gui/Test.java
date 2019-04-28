@@ -34,6 +34,9 @@ public class Test {
         initialize();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);

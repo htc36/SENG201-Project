@@ -106,6 +106,9 @@ public class CommandCenter {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void refreshPage() {
         currShipPieces.setText(String.valueOf(engine.getFoundShipPieces()));
         currDay.setText(String.valueOf(engine.getCurrDay()));
@@ -115,6 +118,9 @@ public class CommandCenter {
             radarPlanetStatus.setText("Detected ship piece");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void refreshSpaceshipPage() {
         int shipHealth = engine.getSpaceshipHealth();
         if (shipHealth <= 30) {
@@ -126,6 +132,9 @@ public class CommandCenter {
         spaceshipHealth.setValue(shipHealth);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void refreshInventory() {
         ArrayList<ArrayList<String>> crewConsumables = engine.getCrewConsumables();
         String template = "<html>";
@@ -139,6 +148,10 @@ public class CommandCenter {
         currInventory.setText(template);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param itemName <<Param Desc>>
+     */
     private void getItemDescription(String itemName) {
         String itemNames = "";
         String itemTypes = "";
@@ -187,6 +200,10 @@ public class CommandCenter {
         this.itemFills.setText(itemFills);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param item <<Param Desc>>
+     */
     private void showItemDetails(String item) {
         String imageName = "/img/" + item.toLowerCase() + ".png";
         selectedItem.setIcon(new ImageIcon(CommandCenter.class.getResource(imageName)));
@@ -194,6 +211,9 @@ public class CommandCenter {
     }
 
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void refreshCrewStatusPage() {
         String crewNames = "<html>";
         String crewTypes = "<html>";
@@ -279,6 +299,10 @@ public class CommandCenter {
         this.crewActions.setText(crewActions);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param commitActions <<Param Desc>>
+     */
     private void refreshCrewButtons(JPanel commitActions) {
         int memberButtonsSize = 100;
         int memberButtonsSpacing = 10;
@@ -320,6 +344,9 @@ public class CommandCenter {
 
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void refreshSelectedCrews() {
         for (int i = 0; i < crewButtons.size(); i++) {
             if (selectedCrews.contains(i)) {
@@ -329,6 +356,10 @@ public class CommandCenter {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param index <<Param Desc>>
+     */
     private void addCrewToSelection(int index) {
         if (selectedCrews.contains(index)) {
             selectedCrews.remove(selectedCrews.indexOf(index));
@@ -354,6 +385,10 @@ public class CommandCenter {
         refreshSelectedCrews();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param consumables <<Param Desc>>
+     */
     private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
         JDialog consWindow = new JDialog();
         consWindow.setResizable(false);
@@ -432,6 +467,9 @@ public class CommandCenter {
         game.closeCommandCenter(this);
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         UIManager.put("TabbedPane.contentBorderInsets", new InsetsUIResource(0, 0, 0, 0));
         frmCommandCenter = new JFrame();

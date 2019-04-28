@@ -87,6 +87,10 @@ public class SetupScreen {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param type <<Param Desc>>
+     */
     private void updateCrewMemberDescriptions(String type) {
         switch(type) {
             case "explorer":
@@ -116,6 +120,11 @@ public class SetupScreen {
         }
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param type <<Param Desc>>
+     * @param name <<Param Desc>>
+     */
     private void addCrewMember(String type, String name) {
         errorLabel.setText("");
         if (crewList.size() > 3) {
@@ -138,6 +147,10 @@ public class SetupScreen {
         crewMemberName.setText("");
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param index <<Param Desc>>
+     */
     private void deleteCrewMember(int index) {
         if (crewList.size() == 0)
             return;
@@ -147,11 +160,18 @@ public class SetupScreen {
         updateCrewMemberIcons();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     * @param days <<Param Desc>>
+     */
     private void updateShipPieces(int days) {
         int numPieces = engine.calculateShipPieces(days);
         numShipPieces.setText(String.valueOf(numPieces));
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         frmCrewSetup = new JFrame();
         frmCrewSetup.setBackground(Color.BLACK);

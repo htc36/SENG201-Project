@@ -38,6 +38,9 @@ public class SpaceshipStatus {
         initialize();
     }
 
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 800, 600);

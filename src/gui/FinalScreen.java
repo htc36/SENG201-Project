@@ -35,6 +35,9 @@ public class FinalScreen {
     public void finishedWindow() {
         game.closeFinalScreen(this);
     }
+    /**
+     * <<auto generated javadoc comment>>
+     */
     private void initialize() {
         frame = new JFrame();
         frame.getContentPane().setBackground(Color.BLACK);
