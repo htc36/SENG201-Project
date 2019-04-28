@@ -1461,6 +1461,11 @@ public class CommandCenter {
         mnFile.add(mntmLoad);
 
         JMenuItem mntmExit = new JMenuItem("Exit");
+        mntmExit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                frmCommandCenter.dispose();
+            }
+        });
         mnFile.add(mntmExit);
 
         JMenu mnNewMenu = new JMenu("Help");
