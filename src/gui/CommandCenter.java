@@ -74,6 +74,7 @@ public class CommandCenter {
 
     private ArrayList<Integer> selectedCrews;
     private ArrayList<JToggleButton> crewButtons;
+    private ArrayList<JLabel> crewLabels;
 
     private JLabel radarPlanetStatus;
 
@@ -87,6 +88,7 @@ public class CommandCenter {
         this.game = game;
         selectedCrews = new ArrayList<>();
         crewButtons = new ArrayList<>();
+        crewLabels = new ArrayList<>();
         initialize();
         frmCommandCenter.setVisible(true);
     }
@@ -314,6 +316,7 @@ public class CommandCenter {
                 int health = Integer.valueOf(crewMembers.get(i).get(1));
                 if (health == 0) {
                     crewButtons.get(i).setVisible(false);
+                    crewLabels.get(i).setVisible(false);
                 }
             }
             return;
@@ -339,6 +342,13 @@ public class CommandCenter {
             });
             cMember.setBounds(12 + counter * (memberButtonsSize + memberButtonsSpacing), 21, memberButtonsSize, memberButtonsSize);
             commitActions.add(cMember);
+            JLabel name = new JLabel("");
+            name.setText(member.get(0));
+            name.setBounds(12 + counter * (memberButtonsSize + memberButtonsSpacing), 21 + memberButtonsSize + 5, memberButtonsSize, 20);
+            name.setForeground(Color.WHITE);
+            name.setFont(new Font("Quantico", Font.PLAIN, 16));
+            crewLabels.add(name);
+            commitActions.add(name);
             counter++;
         }
 
@@ -629,6 +639,9 @@ public class CommandCenter {
         commitActions.setBackground(Color.BLACK);
         tabbedPane.addTab("Commit Actions", null, commitActions, null);
         commitActions.setLayout(null);
+        
+        int buttonHeight= 144;
+        
 
         JButton memberUseConsumable = new JButton("Use consumables");
         memberUseConsumable.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
@@ -659,7 +672,7 @@ public class CommandCenter {
                 getInputCrewConsume(userItems);
             }
         });
-        memberUseConsumable.setBounds(12, 134, 210, 179);
+        memberUseConsumable.setBounds(12, 154, 210, 169);
         commitActions.add(memberUseConsumable);
 
         JButton memberSleep = new JButton("Sleep");
@@ -695,7 +708,7 @@ public class CommandCenter {
                 }
             }
         });
-        memberSleep.setBounds(232, 134, 210, 179);
+        memberSleep.setBounds(232, 154, 210, 169);
         commitActions.add(memberSleep);
 
         JButton memberRepair = new JButton("Repair shield");
@@ -731,7 +744,7 @@ public class CommandCenter {
                 }
             }
         });
-        memberRepair.setBounds(12, 320, 210, 179);
+        memberRepair.setBounds(12, 330, 210, 169);
         commitActions.add(memberRepair);
 
         JButton memberSearch = new JButton("Search the planet");
@@ -793,7 +806,7 @@ public class CommandCenter {
 
             }
         });
-        memberSearch.setBounds(232, 320, 210, 179);
+        memberSearch.setBounds(232, 330, 210, 169);
         commitActions.add(memberSearch);
 
         JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
