@@ -849,7 +849,7 @@ public class GameEngine {
      * @return boolean True if ended, false otherwise
      */
     public boolean hasGameEnded() {
-        return hasFoundEnoughPieces() || gameLength - currDay == -1 || getDeadCrewMembers().size() == getCrewMemberStatus().size();
+        return hasFoundEnoughPieces() || gameLength - currDay == 0 || getDeadCrewMembers().size() == getCrewMemberStatus().size();
     }
 
     /**
