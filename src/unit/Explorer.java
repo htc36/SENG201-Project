@@ -14,8 +14,8 @@ public class Explorer extends CrewMember {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Explorer
+     * @return ArrayList<String> ArrayList String representation of an Explorer
      */
     @Override
     public ArrayList<String> getCrewString() {

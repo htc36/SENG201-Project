@@ -22,8 +22,8 @@ public class Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param health <<Param Desc>>
+     * Sets the health of a unit to amount
+     * @param health amount of health
      */
     public void setHealth(int health) {
         this.health = health;

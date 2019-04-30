@@ -74,7 +74,7 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Clears the shopping bag
      */
     public void clearShoppingBag() {
         shoppingBag.clear();
@@ -123,8 +123,8 @@ public class Outpost {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return Consumable <<Return Desc>>
+     * Returns a random item from the consumables list
+     * @return Consumable Random consumable
      */
     public Consumable getRandomItem() {
         Random rand = new Random();

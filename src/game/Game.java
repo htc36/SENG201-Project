@@ -159,8 +159,8 @@ public class Game {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param shoppingBag <<Param Desc>>
+     * Prints the user's shopping bag
+     * @param shoppingBag Player's shopping bag
      */
     public void printShoppingBag(TreeMap<String, Integer> shoppingBag) {
         return;

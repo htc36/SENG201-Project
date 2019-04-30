@@ -24,8 +24,8 @@ public class Actioneer extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Actoineer
+     * @return ArrayList<String> ArrayList String representation of an Actioneer
      */
     @Override
     public ArrayList<String> getCrewString() {

@@ -154,8 +154,8 @@ public class ShoppingCart {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * Returns the total price of player's shopping cart
+     * @return int Total price of the shopping cart
      */
     public int getTotalPrice() {
         return engine.getShoppingBagTotalPrice();

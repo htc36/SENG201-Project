@@ -49,32 +49,32 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param actions <<Param Desc>>
+     * Sets the action of a crew member to an amount
+     * @param actions the amount of actions to be set to
      */
     public void setActions(int actions) {
         this.actions = actions;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param hunger <<Param Desc>>
+     * Sets the hunger of a crew member to an amount
+     * @param hunger the amount of hunger to be set to
      */
     public void setHunger(int hunger) {
         hungerLevel = hunger;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param fatique <<Param Desc>>
+     * Sets the fatigue of a crew member to an amount
+     * @param fatique the amount of fatigue to be set to
      */
     public void setFatique(int fatique) {
         fatiqueLevel = fatique;
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return boolean <<Return Desc>>
+     * Returns whether a crew member can still do actions
+     * @return boolean True if can do actions, false otherwise
      */
     public boolean stillHasActions() {
         return actions > 0;
@@ -262,8 +262,9 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param item <<Param Desc>>
+     * feeding an item to a crew member, increasing their health
+     * and decreasing their hunger level
+     * @param item the item
      */
     public void useItem(Consumable item) {
         reduceAction();
@@ -274,8 +275,8 @@ public abstract class CrewMember extends Unit {
         }
     }
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * Reduces the health of a crew member by a certain amount
+     * @param amount the amount
      */
     @Override
     public void reduceHealth(int amount){
@@ -290,8 +291,8 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns the representation of a crew member in ArrayList<String>
+     * @return ArrayList<String> Representation of a crew member
      */
     public ArrayList<String> getCrewString() {
         String status = "F";

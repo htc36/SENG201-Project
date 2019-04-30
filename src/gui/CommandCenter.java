@@ -333,8 +333,8 @@ public class CommandCenter {
             cMember.setIcon(new ImageIcon(CommandCenter.class.getResource(crewIcon)));
             cMember.addActionListener(new ActionListener() {
                 /**
-                 * <<auto generated javadoc comment>>
-                 * @param e <<Param Desc>>
+                 * Adds crew member linked to button to selected crew
+                 * @param e Action event
                  */
                 public void actionPerformed(ActionEvent e) {
                     addCrewToSelection(crewMembers.indexOf(member));
@@ -420,8 +420,8 @@ public class CommandCenter {
             itemButton.setBackground(Color.DARK_GRAY);
             itemButton.addActionListener(new ActionListener() {
                 /**
-                 * <<auto generated javadoc comment>>
-                 * @param e <<Param Desc>>
+                 * Selected crew member consumes the item linked to the button
+                 * @param e Action event
                  */
                 public void actionPerformed(ActionEvent e) {
                     try {
@@ -651,7 +651,7 @@ public class CommandCenter {
         memberUseConsumable.addMouseListener(new MouseAdapter() {
             /**
              * Changes picture on right depending on which button mouse is hovering over
-             * @param e <<Param Desc>>
+             * @param e Mouse event
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -1044,8 +1044,8 @@ public class CommandCenter {
         btnPurchase.setFont(outpostHeaderFont);
         btnPurchase.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Purchases all the items in the shopping bag
+             * @param arg0 Action Event
              */
             public void actionPerformed(ActionEvent arg0) {
                 cart.purchaseItems();
@@ -1440,7 +1440,7 @@ public class CommandCenter {
         mntmSave.addActionListener(new ActionListener() {
             /**
              * Button which saves the game
-             * @param arg0 <<Param Desc>>
+             * @param arg0 Action Event
              */
             public void actionPerformed(ActionEvent arg0) {
                 engine.saveGameState();
@@ -1451,7 +1451,7 @@ public class CommandCenter {
         JMenuItem mntmLoad = new JMenuItem("Load");
         mntmLoad.addActionListener(new ActionListener() {
             /**
-             * Button which loads the game>
+             * Button which loads the game
              * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {

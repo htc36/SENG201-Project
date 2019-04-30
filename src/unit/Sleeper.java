@@ -24,8 +24,8 @@ public class Sleeper extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Sleeper
+     * @return ArrayList<String> ArrayList String representation of an Sleeper
      */
     @Override
     public ArrayList<String> getCrewString() {

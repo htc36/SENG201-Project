@@ -63,8 +63,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<CrewMember> <<Return Desc>>
+     * Returns an ArrayList of crew members that are hungry or tired
+     * @return ArrayList<CrewMember> Hungry or tired Crew Members
      */
     public ArrayList<CrewMember> getUnhealthyCrewMembers() {
         ArrayList<CrewMember> unhealthyMembers = new ArrayList<>();
@@ -77,8 +77,8 @@ public class Crew {
 
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<CrewMember> <<Return Desc>>
+     * Returns an ArrayList of dead crew members
+     * @return ArrayList<CrewMember> Dead crew members
      */
     public ArrayList<CrewMember> getDeadCrewMembers() {
         ArrayList<CrewMember> deadMembers = new ArrayList<>();
@@ -122,8 +122,8 @@ public class Crew {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param sum <<Param Desc>>
+     * Sets the money to amount
+     * @param sum sum of money
      */
     public void setMoney(int sum) {
         money = sum;

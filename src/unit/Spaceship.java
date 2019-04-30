@@ -29,8 +29,8 @@ public class Spaceship extends Unit {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Spaceship
+     * @return ArrayList<String> ArrayList String representation of an Spaceship
      */
     public ArrayList<String> getShipStatus() {
         ArrayList<String> result = new ArrayList<>();

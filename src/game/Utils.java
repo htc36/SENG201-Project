@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Utils {
     /**
-     * <<auto generated javadoc comment>>
+     * Prints COOL AS HELL Spaceship ASCII
      */
     public static void printSpaceshipASCII() {
         String spaceship = ""  +
@@ -19,8 +19,9 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param unlucky <<Param Desc>>
+     * Prints the spaceship travelling to another planet, if unlucky is 
+     * set to True, is will also show the spaceship crashing an asteroid
+     * @param unlucky True if crashed, false otherwire
      */
     public static void printSpaceshipTravelling(boolean unlucky) {
         for (int i = 5; i > 0; i--) {
@@ -54,7 +55,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the crew members as ASCII art 
      */
     public static void printCrewASCII() {
         String[] flavourText = {"heyy boss", 
@@ -92,8 +93,8 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return String <<Return Desc>>
+     * Returns a random death message
+     * @return String random death message
      */
     public static String getDeathMessage() {
         String[] templates = { "Beloved", 
@@ -145,7 +146,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the header for food selection
      */
     public static void printActionCommitFoodSelectionHeader() {
         typePrint("Index      Type        Name Price Heal Fill Cures_Plague");
@@ -153,7 +154,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the crew status header
      */
     public static void printCrewStatusHeader() {
         String template = "";
@@ -166,7 +167,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the spaceship status header
      */
     public static void printSpaceshipHeader() {
         String template = "";
@@ -179,7 +180,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the outpost header
      */
     public static void printOutpostHeader() {
         typePrint();
@@ -193,7 +194,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the action center header
      */
     public static void printActionCenterHeader() {
         String topRows = "";
@@ -205,7 +206,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the action center choices
      */
     public static void printActionCenterChoices() {
         typePrint();
@@ -219,7 +220,7 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Prints the header for homepage
      */
     public static void printHomepageHeader() {
         typePrint();
@@ -294,20 +295,11 @@ public class Utils {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Clears the screen
      */
     public static void clearScreen() {
-        //System.out.print("\033[H\033[2J");
-        //System.out.flush();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
-
-    /**
-     * <<auto generated javadoc comment>>
-     * @param args <<Param Desc>>
-     */
-    public static void main(String[] args) {
-        System.out.println(Utils.getDeathMessage());
-    }
-
 
 }

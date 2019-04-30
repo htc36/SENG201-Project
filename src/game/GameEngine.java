@@ -67,10 +67,9 @@ public class GameEngine {
         crewMembers = new ArrayList<>();
     }
 
-    // Constructor for GameEngine when loading from a save file
     /**
-     * <<auto generated javadoc comment>>
-     * @param saveFilename <<Param Desc>>
+     * Another constructor for Game Engine to load the game from a save file
+     * @param saveFilename Filename for the save file
      * @throws FileNotFoundException 
      */
     public GameEngine(String saveFilename) throws FileNotFoundException {
@@ -215,8 +214,8 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
+     * Adds consumable item to crew's possession
+     * @param itemName Name of the item
      */
     public void addCrewConsumable(String itemName) {
         switch(itemName) {
@@ -347,8 +346,8 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param crewMembers <<Param Desc>>
+     * Creates fresh batch of crew members from an array of crew member descriptions
+     * @param crewMembers crew members descriptions 
      */
     public void loadCrewMembers(ArrayList<ArrayList<String>> crewMembers) {
         for (ArrayList<String> member : crewMembers) {
@@ -586,7 +585,7 @@ public class GameEngine {
     // OUTPOST RELATED FUNCTIONS START
 
     /**
-     * <<auto generated javadoc comment>>
+     * Creates a new outpost
      */
     public void setupOutpost() {
         Food f1 = new Brownie();
@@ -740,8 +739,8 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param index <<Param Desc>>
+     * Sets the current location of the spaceship to planet index
+     * @param index Index of planet
      */
     public void setCurrentPlanetIndex(int index) {
         currentPlanetIndex = index;
@@ -761,8 +760,8 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param amount <<Param Desc>>
+     * Sets the number of ship pieces found to amount
+     * @param amount Amount of ship pieces found
      */
     public void setFoundShipPieces(int amount) {
         foundShipPieces = amount;
@@ -882,8 +881,8 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param currDay <<Param Desc>>
+     * Sets the current day
+     * @param currDay current day
      */
     public void setCurrDay(int currDay) {
         this.currDay = currDay;
@@ -914,8 +913,9 @@ public class GameEngine {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return int <<Return Desc>>
+     * Processes the achievements the player has then calculates
+     * the final score
+     * @return int The final score
      */
     public int getFinalScore() {
         int finalScore = 0;
@@ -930,7 +930,7 @@ public class GameEngine {
 
     @SuppressWarnings("unchecked")
     /**
-     * <<auto generated javadoc comment>>
+     * Saves the game state to a JSON file
      */
     public void saveGameState() {
         JSONObject gameState = new JSONObject();

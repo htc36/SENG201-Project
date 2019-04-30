@@ -24,8 +24,8 @@ public class Medic extends CrewMember {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Medic
+     * @return ArrayList<String> ArrayList String representation of an Medic
      */
     @Override
     public ArrayList<String> getCrewString() {

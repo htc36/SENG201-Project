@@ -26,8 +26,8 @@ public class Food extends Consumable {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns the stats of a consumable as ArrayList of String
+     * @return ArrayList<String> Status of consumable
      */
     public ArrayList<String> getConsumableStats() {
         ArrayList<String> template = super.getConsumableStats();

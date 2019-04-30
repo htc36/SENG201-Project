@@ -1,13 +1,13 @@
 package game;
 public class InsufficientFundException extends RuntimeException {
     /**
-     * <<auto generated javadoc comment>>
+     * Default constructor for Insufficient Fund Exception
      */
     public InsufficientFundException() {}
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param message <<Param Desc>>
+     * Constructor for Insufficient Fund Exception with message
+     * @param message The message
      */
     public InsufficientFundException(String message) {
         super(message);

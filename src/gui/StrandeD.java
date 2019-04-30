@@ -30,28 +30,28 @@ public class StrandeD {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Closes the Stranded window
      */
     public void closeWindow() {
         frmWelcomeScreen.dispose();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Loads the game from the save file
      */
     public void loadGame() {
         game.loadGame(this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Closes the Stranded window
      */
     public void finishedWindow() {
         game.closeMainScreen(this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Launches the Stranded window
      */
     private void initialize() {
         frmWelcomeScreen = new JFrame();
@@ -88,8 +88,8 @@ public class StrandeD {
         JButton btnLoad = new JButton("Load");
         btnLoad.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Loads the previously saved game
+             * @param arg0 Action Event
              */
             public void actionPerformed(ActionEvent arg0) {
                 loadGame();
