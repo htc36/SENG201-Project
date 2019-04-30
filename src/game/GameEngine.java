@@ -974,7 +974,8 @@ public class GameEngine {
 
         // write json object to save file
         try {
-            FileWriter f = new FileWriter("./save.json");
+            String homeEnv = System.getenv("HOME");
+            FileWriter f = new FileWriter(homeEnv + "/.save.json");
             f.write(gameState.toJSONString());
             f.flush();
             f.close();
