@@ -5,6 +5,9 @@ import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import game.GameEngine;
 
@@ -37,7 +40,7 @@ public class GameGUI {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        } 
 
         //		for (int i = 0; i < gameEnv.getAvailableFontFamilyNames().length; i++) {
         //			System.out.println(gameEnv.getAvailableFontFamilyNames()[i]);
@@ -50,7 +53,8 @@ public class GameGUI {
      */
     public void loadGame(StrandeD mainWindow) {
         mainWindow.closeWindow();
-        engine = new GameEngine("./save.json");
+        String homeEnv = System.getenv("HOME");
+        engine = new GameEngine(homeEnv + "/.save.json");
         launchCommandCenter();
     }
 
@@ -60,7 +64,8 @@ public class GameGUI {
      */
     public void loadGame(CommandCenter commandCenter) {
         commandCenter.closeWindow();
-        engine = new GameEngine("./save.json");
+        String homeEnv = System.getenv("HOME");
+        engine = new GameEngine(homeEnv + "/.save.json");
         launchCommandCenter();
     }
 
