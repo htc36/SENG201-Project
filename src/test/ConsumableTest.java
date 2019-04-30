@@ -3,54 +3,74 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import consumable.*;
+import unit.CrewMember;
+import unit.Explorer;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ConsumableTest {
-
-    @Test
-    void medicalSupplyErrorTest() {
-        assertThrows(InvalidParameterException.class, 
-                () -> new MedicalSupply("", 0, 1000, false));
-        assertThrows(InvalidParameterException.class, 
-                () -> new MedicalSupply("Potion", 10, 0, false));
+    
+    private CrewMember c1;
+    
+    /**
+     * Create a random Crew Member for our test case
+     * Hang in there, Dora!
+     */
+    @BeforeEach
+    public void setup() {
+        c1 = new Explorer("Dora");
     }
-
+    
+    /**
+     * Vaccine and PolyJuice should cure space plague
+     * but not Pickled Plum
+     */
     @Test
-    void foodErrorTest() {
-        assertThrows(InvalidParameterException.class, 
-                () -> new Food("", 10, 100, 1));
-        assertThrows(InvalidParameterException.class, 
-                () -> new Food("Tacos", 10, 0, 1));
+    void medicalCurePlagueTest() {
+        c1.makeSick();
+        c1.useItem(new Vaccine());
+        assertEquals(false, c1.isSick());
+        c1.makeSick();
+        c1.useItem(new PolyJuice());
+        assertEquals(false, c1.isSick());
+        c1.makeSick();
+        c1.useItem(new PickledPlum());
+        assertEquals(true, c1.isSick());
     }
-
+    
+    /**
+     * Every food should decrease hunger by some amount
+     */
     @Test
-    void createFoodList() {
-        ArrayList<Food> c = new ArrayList<>();
-        c.add(new Food("Raw chicken", 1, 2, 3));
-        assertEquals(1, c.get(0).getHealingAmount());
-        assertEquals(2, c.get(0).getPrice());
-        assertEquals(3, c.get(0).getFillStomach());
+    void cureHungerTest() {
+        ArrayList<Food> foods = new ArrayList<>();
+        foods.add(new Brownie());
+        foods.add(new Dumplings());
+        foods.add(new FriedRice());
+        foods.add(new Hotbot());
+        foods.add(new SpaceCake());
+        foods.add(new TikkaMasala());
+        for (Food item : foods) {
+            c1.setHunger(100);
+            c1.useItem(item);
+            assertEquals(true, c1.getHunger() < 100);
+        }
     }
-
+    
+    /**
+     * We should be able to create an array list of 
+     * consumables containing foods and medical supplies
+     * thank god (or God) for inheritance
+     */
     @Test
-    void createMedicalSupplyList() {
-        ArrayList<MedicalSupply> c = new ArrayList<>();
-        c.add(new MedicalSupply("Elixir", 1, 2, false));
-        assertEquals(1, c.get(0).getHealingAmount());
-        assertEquals(2, c.get(0).getPrice());
-        assertEquals(false, c.get(0).canHealSpacePlague());
-    }
-
-    @Test
-    void createConsumableList() {
-        ArrayList<Consumable> c = new ArrayList<>();
-        c.add(new Food("Raw chicken", 10, 10, 10));
-        c.add(new MedicalSupply("Elixir", 10, 10, false));
-        assertEquals(2, c.size());
+    void inheritanceTest() {
+        ArrayList<Consumable> consumablesList = new ArrayList<>();
+        consumablesList.add(new Brownie());
+        consumablesList.add(new Vaccine());
     }
 
 }

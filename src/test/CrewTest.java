@@ -6,44 +6,63 @@ import java.util.ArrayList;
 
 import unit.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import consumable.Consumable;
-import consumable.Food;
-import consumable.MedicalSupply;
+import consumable.*;
 import crew.Crew;
 
 class CrewTest {
 
-    @Test
+    private Crew c;
+
+    @BeforeEach
     void createCrew() {
-        Medic c1 = new Medic("Walter");
-        Sleeper c2 = new Sleeper("Richard");
-        HardWorker c3 = new HardWorker("Matthias");
+        Medic c1 = new Medic("Matthias");
+        Actioneer c2 = new Actioneer("Miguel");
         ArrayList<CrewMember> members = new ArrayList<>();
         members.add(c1);
         members.add(c2);
-        members.add(c3);
 
         Spaceship s = new Spaceship("Intergalactika");
 
-        Crew c = new Crew(members, s);
-        c.addConsumable(new Food("Rice", 10, 10, 10));
-        c.addConsumable(new MedicalSupply("Snake's Egg", 10, 10, false));
+        c = new Crew(members, s);
+        c.addConsumable(new Brownie());
+        c.addConsumable(new Vaccine());
+    }
+    
+    @Test
+    void consumeItemTest() {
+        CrewMember c1 = c.getCrewMembers().get(0);
+        c1.setHunger(100);
+        c1.useItem(c.popConsumable("Brownie"));
+        assertEquals(true, c1.getHunger() < 100);
+    }
 
-        Consumable item = c.popConsumable("Rice");
-        String itemName = item.getName();
-        assertEquals("Rice", itemName);
+    @Test
+    void outOfActionsTest() {
+        CrewMember c1 = c.getCrewMembers().get(0);
+        c1.useItem(c.popConsumable("Brownie"));
+        c1.useItem(c.popConsumable("Vaccine"));
+        assertEquals(false, c1.stillHasActions());
+        
+        CrewMember c2 = c.getCrewMembers().get(1);
+        c2.sleep(0);
+        c2.sleep(0);
 
-        c.popRandomItem();
-
-        c.addConsumable(new Food("Blue cake", 10, 10, 10));
-        c.addConsumable(new Food("Red cake", 10, 10, 10));
-        c.addConsumable(new Food("Blue cake", 10, 10, 10));
-        c.addConsumable(new Food("Blue cake", 10, 10, 10));
-
-        assertEquals(3, c.getConsumableCount("Blue cake"));
-        assertEquals(1, c.getConsumableCount("Red cake"));
+        // Actioneer has 3 actions instead of the usual 2
+        assertEquals(true, c2.stillHasActions());
+        c2.sleep(0);
+        assertEquals(false, c2.stillHasActions());
+        
+        // piloting a spaceship requires 2 crew members,
+        // should reduce both of their actions
+        c1.setActions(2);
+        c2.setActions(2);
+        c1.pilotShip(c2);
+        
+        assertEquals(true, c1.getActions() == 1);
+        assertEquals(true, c2.getActions() == 1);
     }
 
 }
