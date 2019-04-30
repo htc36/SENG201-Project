@@ -4,10 +4,14 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import game.GameEngine;
 
@@ -17,7 +21,7 @@ public class GameGUI {
     private GraphicsEnvironment gameEnv;
 
     /**
-     * <<auto generated javadoc comment>>
+     * Constructor for game gui
      */
     public GameGUI() {
         engine = new GameEngine();
@@ -42,43 +46,53 @@ public class GameGUI {
             e.printStackTrace();
         } 
 
-        //		for (int i = 0; i < gameEnv.getAvailableFontFamilyNames().length; i++) {
-        //			System.out.println(gameEnv.getAvailableFontFamilyNames()[i]);
-        //		}
+
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param mainWindow <<Param Desc>>
+     * Loads the game from previously saved game
+     * @param mainWindow main window
      */
     public void loadGame(StrandeD mainWindow) {
         mainWindow.closeWindow();
         String homeEnv = System.getenv("HOME");
-        engine = new GameEngine(homeEnv + "/.save.json");
+        try {
+			engine = new GameEngine(homeEnv + "/.save.json");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+            return;
+		}
         launchCommandCenter();
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param commandCenter <<Param Desc>>
+     * Loads game from command center
+     * @param commandCenter command center
      */
     public void loadGame(CommandCenter commandCenter) {
         commandCenter.closeWindow();
         String homeEnv = System.getenv("HOME");
-        engine = new GameEngine(homeEnv + "/.save.json");
+        try {
+			engine = new GameEngine(homeEnv + "/.save.json");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+            return;
+		}
         launchCommandCenter();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Launches the main screen
      */
     public void launchMainScreen() {
         new StrandeD(this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param mainWindow <<Param Desc>>
+     * Closes the main screen
+     * @param mainWindow main window
      */
     public void closeMainScreen(StrandeD mainWindow) {
         mainWindow.closeWindow();
@@ -86,7 +100,7 @@ public class GameGUI {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Launches setup screen
      */
     public void launchSetupScreen() {
         engine = new GameEngine();
@@ -94,8 +108,8 @@ public class GameGUI {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param setupScreen <<Param Desc>>
+     * Closes setup screen
+     * @param setupScreen setup screen
      */
     public void closeSetupScreen(SetupScreen setupScreen) {
         setupScreen.closeWindow();
@@ -103,15 +117,15 @@ public class GameGUI {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * launches command center
      */
     public void launchCommandCenter() {
         new CommandCenter(engine, this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param commandCenter <<Param Desc>>
+     * Closes command center
+     * @param commandCenter Command center
      */
     public void closeCommandCenter(CommandCenter commandCenter) {
         commandCenter.closeWindow();
@@ -119,23 +133,23 @@ public class GameGUI {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Launches final screen
      */
     public void launchFinalScreen() {
         new FinalScreen(engine, this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param finalScreen <<Param Desc>>
+     * Closes final screen
+     * @param finalScreen final screen
      */
     public void closeFinalScreen(FinalScreen finalScreen) {
         finalScreen.closeWindow();
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param args <<Param Desc>>
+     * Creates new game engine and launches the main screen
+     * @param args 
      */
     public static void main(String[] args) {
         // Load the custom font we use for the game

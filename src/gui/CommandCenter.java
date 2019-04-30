@@ -109,7 +109,7 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Refreshes page, makes sure all statuses are updates at the beginning of each day
      */
     private void refreshPage() {
         currShipPieces.setText(String.valueOf(engine.getFoundShipPieces()));
@@ -121,7 +121,7 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Updates space ship shield levels
      */
     private void refreshSpaceshipPage() {
         int shipHealth = engine.getSpaceshipHealth();
@@ -135,7 +135,7 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Updates the inventory 
      */
     private void refreshInventory() {
         ArrayList<ArrayList<String>> crewConsumables = engine.getCrewConsumables();
@@ -151,8 +151,8 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemName <<Param Desc>>
+     * gets description of item on the vist outpost page
+     * @param itemName name of item 
      */
     private void getItemDescription(String itemName) {
         String itemNames = "";
@@ -203,8 +203,8 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param item <<Param Desc>>
+     * Displays the details of a specific item
+     * @param item the name of the item
      */
     private void showItemDetails(String item) {
         String imageName = "/img/" + item.toLowerCase() + ".png";
@@ -214,7 +214,7 @@ public class CommandCenter {
 
 
     /**
-     * <<auto generated javadoc comment>>
+     * Updates the crew statuses and end of each day and after any actions
      */
     private void refreshCrewStatusPage() {
         String crewNames = "<html>";
@@ -302,8 +302,8 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param commitActions <<Param Desc>>
+     * Checks if crew member is dead if so d not display in commit actions page
+     * @param commitActions the page
      */
     private void refreshCrewButtons(JPanel commitActions) {
         int memberButtonsSize = 100;
@@ -355,7 +355,7 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * If there's more than 2 crew members selected, deselect the first crew member
      */
     private void refreshSelectedCrews() {
         for (int i = 0; i < crewButtons.size(); i++) {
@@ -367,8 +367,8 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param index <<Param Desc>>
+     * Tells the game engine which crew is in selection
+     * @param index index of crew member
      */
     private void addCrewToSelection(int index) {
         if (selectedCrews.contains(index)) {
@@ -396,8 +396,8 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param consumables <<Param Desc>>
+     * Displays consumables user has in inventory
+     * @param consumables list of consumables in inventory
      */
     private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
         JDialog consWindow = new JDialog();
@@ -457,28 +457,28 @@ public class CommandCenter {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * loads game
      */
     public void loadGameState() {
         game.loadGame(this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * closes window
      */
     public void closeWindow() {
         frmCommandCenter.dispose();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * closes window
      */
     public void finishedWindow() {
         game.closeCommandCenter(this);
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Sets up command center display
      */
     private void initialize() {
         UIManager.put("TabbedPane.contentBorderInsets", new InsetsUIResource(0, 0, 0, 0));
@@ -650,7 +650,7 @@ public class CommandCenter {
         memberUseConsumable.setBackground(new Color(20, 20, 20));
         memberUseConsumable.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
+             * Changes picture on right depending on which button mouse is hovering over
              * @param e <<Param Desc>>
              */
             @Override
@@ -660,8 +660,8 @@ public class CommandCenter {
         });
         memberUseConsumable.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Launches consumable screen when button is clicked
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 if (selectedCrews.size() != 1) {
@@ -682,8 +682,8 @@ public class CommandCenter {
         memberSleep.setBorderPainted(false);
         memberSleep.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Changes image on right when mouse is hovered over button
+             * @param e Mouse event
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -692,8 +692,8 @@ public class CommandCenter {
         });
         memberSleep.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Sleeps selected crew member
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 if (selectedCrews.size() != 1) {
@@ -718,8 +718,8 @@ public class CommandCenter {
         memberRepair.setBorderPainted(false);
         memberRepair.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Changes image on right when hovering over button
+             * @param e Mouse event
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -728,8 +728,8 @@ public class CommandCenter {
         });
         memberRepair.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Repairs ship button
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 if (selectedCrews.size() != 1) {
@@ -754,8 +754,8 @@ public class CommandCenter {
         memberSearch.setBorderPainted(false);
         memberSearch.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Changes image on right when hovering over button
+             * @param e Mouse Event
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -764,8 +764,8 @@ public class CommandCenter {
         });
         memberSearch.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Searches planet when button is clicked
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 boolean foundShipPiece = false;
@@ -812,8 +812,8 @@ public class CommandCenter {
         JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
         memberPilot.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Changes image on right when mouse hovers over button
+             * @param e mouse event
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -826,8 +826,8 @@ public class CommandCenter {
         memberPilot.setBorderPainted(false);
         memberPilot.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Goes to new planet button
+             * @param e action event
              */
             public void actionPerformed(ActionEvent e) {
                 if (selectedCrews.size() != 2) {
@@ -1091,8 +1091,8 @@ public class CommandCenter {
         brownieBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/brownie.png")));
         brownieBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * brownie button
+             * @param arg0 action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("Brownie");
@@ -1106,8 +1106,8 @@ public class CommandCenter {
         friedRiceBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/friedrice.png")));
         friedRiceBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * fried rice button
+             * @param arg0 action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("FriedRice");
@@ -1121,8 +1121,8 @@ public class CommandCenter {
         dumplingsBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/dumplings.png")));
         dumplingsBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * dumpling button
+             * @param arg0 action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("Dumplings");
@@ -1136,8 +1136,8 @@ public class CommandCenter {
         spacecakeBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spacecake.png")));
         spacecakeBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Space cake button
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("SpaceCake");
@@ -1151,8 +1151,8 @@ public class CommandCenter {
         tikkaMasalaBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/tikkamasala.png")));
         tikkaMasalaBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Tikka Masala button
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("TikkaMasala");
@@ -1166,8 +1166,8 @@ public class CommandCenter {
         hotbotBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/hotbot.png")));
         hotbotBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Hot bot button 
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("Hotbot");
@@ -1181,8 +1181,8 @@ public class CommandCenter {
         polyjuiceBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/polyjuice.png")));
         polyjuiceBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Poly Juice button
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("PolyJuice");
@@ -1196,8 +1196,8 @@ public class CommandCenter {
         pickledPlumBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/pickledplum.png")));
         pickledPlumBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Pickled plum button
+             * @param arg0 action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("PickledPlum");
@@ -1211,8 +1211,8 @@ public class CommandCenter {
         vaccineBtn.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/vaccine.png")));
         vaccineBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Vacciene button
+             * @param arg0 action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 showItemDetails("Vaccine");
@@ -1260,8 +1260,8 @@ public class CommandCenter {
         btnAddToCart.setBackground(Color.DARK_GRAY);
         btnAddToCart.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Add to item(s) to cart button
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 String itemQuery = itemNames.getText();
@@ -1320,8 +1320,8 @@ public class CommandCenter {
         endDayButton.setForeground(Color.WHITE);
         endDayButton.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Button which ends the day
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 engine.endDay();
@@ -1439,7 +1439,7 @@ public class CommandCenter {
         JMenuItem mntmSave = new JMenuItem("Save");
         mntmSave.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
+             * Button which saves the game
              * @param arg0 <<Param Desc>>
              */
             public void actionPerformed(ActionEvent arg0) {
@@ -1451,8 +1451,8 @@ public class CommandCenter {
         JMenuItem mntmLoad = new JMenuItem("Load");
         mntmLoad.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Button which loads the game>
+             * @param arg0 action event 
              */
             public void actionPerformed(ActionEvent arg0) {
                 loadGameState();

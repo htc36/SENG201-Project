@@ -23,20 +23,20 @@ public class FinalScreen {
         initialize();
     }
     /**
-     * <<auto generated javadoc comment>>
+     * Closes window
      */
     public void closeWindow() {
         frame.dispose();
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Closes window
      */
     public void finishedWindow() {
         game.closeFinalScreen(this);
     }
     /**
-     * <<auto generated javadoc comment>>
+     * Sets up the final screen window
      */
     private void initialize() {
         frame = new JFrame();

@@ -60,7 +60,7 @@ public class SetupScreen {
     }
 
     /**
-     * 
+     * Closes the window
      */
     public void finishedWindow() {
         game.closeSetupScreen(this);
@@ -165,8 +165,7 @@ public class SetupScreen {
 
     /**
      * Sets the number of ship pieces depending on the amount of days
-     * @param days <<param desc>>
-     * f 
+     * @param days Number of days
      */
     private void updateShipPieces(int days) {
         int numPieces = engine.calculateShipPieces(days);
@@ -174,7 +173,7 @@ public class SetupScreen {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Launches the setup screen
      */
     private void initialize() {
         frmCrewSetup = new JFrame();
@@ -289,8 +288,8 @@ public class SetupScreen {
         explorerBtn.setForeground(Color.WHITE);
         explorerBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Selects the explorer for crew member
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 addCrewMember("explorer", crewMemberName.getText());
@@ -302,8 +301,8 @@ public class SetupScreen {
         JLabel fourthCrewMemberIcon = new JLabel("");
         fourthCrewMemberIcon.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Removes the fourth crew member if exists
+             * @param e Mouse event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -316,8 +315,8 @@ public class SetupScreen {
         JLabel secondCrewMemberIcon = new JLabel("");
         secondCrewMemberIcon.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Removes the second crew member when clicked
+             * @param e Mouse Event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -330,8 +329,8 @@ public class SetupScreen {
         JLabel thirdCrewMemberIcon = new JLabel("");
         thirdCrewMemberIcon.addMouseListener(new MouseAdapter() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Removes third crew member when clicked
+             * @param e Mouse event
              */
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -353,8 +352,8 @@ public class SetupScreen {
         medicBtn.setBorderPainted(false);
         medicBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Adds crew member of type medic if there is no name given displays details
+             * @param arg0 Action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("medic", crewMemberName.getText());
@@ -371,8 +370,8 @@ public class SetupScreen {
         sleeperBtn.setBorderPainted(false);
         sleeperBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Creates a new crew member of type sleeper
+             * @param arg0 Action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("sleeper", crewMemberName.getText());
@@ -388,8 +387,8 @@ public class SetupScreen {
         hungusBtn.setBorderPainted(false);
         hungusBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Creates a new crew member of type hungus
+             * @param arg0 Action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("hungus", crewMemberName.getText());
@@ -405,8 +404,8 @@ public class SetupScreen {
         actioneerBtn.setBorderPainted(false);
         actioneerBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Creates a new crew member of type Actoineer
+             * @param arg0 Action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("actioneer", crewMemberName.getText());
@@ -422,8 +421,8 @@ public class SetupScreen {
         builderBtn.setBorderPainted(false);
         builderBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Creates a new crew member of type Builder
+             * @param arg0 Action event
              */
             public void actionPerformed(ActionEvent arg0) {
                 addCrewMember("builder", crewMemberName.getText());
@@ -446,8 +445,8 @@ public class SetupScreen {
         slider.setForeground(SystemColor.menu);
         slider.addChangeListener(new ChangeListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param arg0 <<Param Desc>>
+             * Sets the number of days for game length
+             * @param arg0 Change event
              */
             public void stateChanged(ChangeEvent arg0) {
                 updateShipPieces(slider.getValue());
@@ -480,8 +479,9 @@ public class SetupScreen {
         proceedBtn.setBackground(Color.DARK_GRAY);
         proceedBtn.addActionListener(new ActionListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Saves the settings made by user and exits the setup screen
+             * then runs the game
+             * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
                 engine.setupSpaceship(spaceshipName.getText());

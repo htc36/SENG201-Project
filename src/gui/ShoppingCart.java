@@ -27,12 +27,12 @@ public class ShoppingCart {
     private GameEngine engine;
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param panel <<Param Desc>>
-     * @param x <<Param Desc>>
-     * @param y <<Param Desc>>
-     * @param engine <<Param Desc>>
-     * @param priceLabel <<Param Desc>>
+     * Constructor for shopping cart
+     * @param panel Panel where to show the cart
+     * @param x X axis of shopping cart location
+     * @param y Y axis of shopping cart location
+     * @param engine Game engine
+     * @param priceLabel Label showing the prices
      */
     public ShoppingCart(JPanel panel, int x, int y, GameEngine engine, JLabel priceLabel) {
         this.panel = panel;
@@ -44,8 +44,8 @@ public class ShoppingCart {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param itemQuery <<Param Desc>>
+     * Adds selected item to the shopping cart
+     * @param itemQuery the item
      */
     public void addItemToShoppingCart(String itemQuery) {
         int amount = Integer.valueOf(itemQuery.split("x")[0]);
@@ -61,8 +61,8 @@ public class ShoppingCart {
         newItem.setBackground(Color.BLACK);
         newItem.addItemListener(new ItemListener() {
             /**
-             * <<auto generated javadoc comment>>
-             * @param e <<Param Desc>>
+             * Removes item from the shopping cart when the box is unchecked
+             * @param e Item Event
              */
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -91,8 +91,8 @@ public class ShoppingCart {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param item <<Param Desc>>
+     * Removes item from the shopping cart
+     * @param item The checkbox clicked
      */
     public void removeItemFromShoppingCart(JCheckBox item) {
         String itemQuery = item.getText();
@@ -113,7 +113,8 @@ public class ShoppingCart {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Updates the shopping cart according to current shopping cart 
+     * display
      */
     public void redrawShoppingCart() {
         int counter = 0;
@@ -133,7 +134,8 @@ public class ShoppingCart {
     }
 
     /**
-     * <<auto generated javadoc comment>>
+     * Purchases item
+     * Adds item to the inventory, also deducts cost from money
      */
     public void purchaseItems() {
         try {

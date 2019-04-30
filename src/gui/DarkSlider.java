@@ -17,24 +17,24 @@ public class DarkSlider extends BasicSliderUI {
 
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param b <<Param Desc>>
+     * Constructs dark slider
+     * @param b Jslider
      */
     public DarkSlider(JSlider b) {
         super(b);
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param g <<Param Desc>>
+     * Doesn't display outline when focused
+     * @param g Graphics
      */
     @Override
     public void paintFocus(Graphics g) {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param g <<Param Desc>>
+     * Makes white line
+     * @param g Graphics
      */
     @Override
     public void paintTrack(Graphics g) {
@@ -52,8 +52,8 @@ public class DarkSlider extends BasicSliderUI {
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @param g <<Param Desc>>
+     * Displays thumb to select and move
+     * @param g Graphics
      */
     @Override
     public void paintThumb(Graphics g) {

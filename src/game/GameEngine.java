@@ -20,6 +20,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -70,8 +71,13 @@ public class GameEngine {
     /**
      * <<auto generated javadoc comment>>
      * @param saveFilename <<Param Desc>>
+     * @throws FileNotFoundException 
      */
-    public GameEngine(String saveFilename) {
+    public GameEngine(String saveFilename) throws FileNotFoundException {
+    	File saveFile = new File(saveFilename);
+    	if (!saveFile.exists()) {
+    		throw new FileNotFoundException("No saved file found");
+    	}
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(saveFilename));
