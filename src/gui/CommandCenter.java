@@ -407,6 +407,7 @@ public class CommandCenter {
         consWindow.setBounds(100, 100, 340, 380);
         consWindow.getContentPane().setLayout(null);
         consWindow.setVisible(true);
+        consWindow.setLocationRelativeTo(null);
 
         int itemsSpacing = 10;
         int buttonSize = 100;
@@ -489,6 +490,7 @@ public class CommandCenter {
         frmCommandCenter.setBounds(100, 100, 1024, 800);
         frmCommandCenter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCommandCenter.getContentPane().setLayout(null);
+        frmCommandCenter.setLocationRelativeTo(null);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setUI(new ModernTab());

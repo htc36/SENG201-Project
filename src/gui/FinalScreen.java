@@ -48,6 +48,7 @@ public class FinalScreen {
         frame.setVisible(true);
         frame.setTitle("Final Score");
         frame.getContentPane().setLayout(null);
+        frame.setLocationRelativeTo(null);
 
         JLabel lblFinalScoreText = new JLabel("Your final score is");
         lblFinalScoreText.setHorizontalAlignment(SwingConstants.CENTER);

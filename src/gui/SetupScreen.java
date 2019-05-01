@@ -202,6 +202,7 @@ public class SetupScreen {
         frmCrewSetup.setResizable(false);
         frmCrewSetup.setBounds(100, 100, 800, 600);
         frmCrewSetup.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        frmCrewSetup.setLocationRelativeTo(null);
 
         frmCrewSetup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCrewSetup.getContentPane().setLayout(null);

@@ -55,6 +55,10 @@ public class StrandeD {
         frmWelcomeScreen.setAutoRequestFocus(false);
         frmWelcomeScreen.getContentPane().setBackground(Color.WHITE);
         frmWelcomeScreen.getContentPane().setLayout(null);
+        frmWelcomeScreen.setBackground(Color.WHITE);
+        frmWelcomeScreen.setTitle("StrandeD");
+        frmWelcomeScreen.setBounds(100, 100, 800, 600);
+        frmWelcomeScreen.setLocationRelativeTo(null);
 
         JLabel lblNewLabel = new JLabel("StrandeD");
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -111,9 +115,6 @@ public class StrandeD {
         lblNewLabel_1.setIcon(new ImageIcon(StrandeD.class.getResource("/img/setupbg.jpg")));
         lblNewLabel_1.setBounds(0, 0, 800, 563);
         frmWelcomeScreen.getContentPane().add(lblNewLabel_1);
-        frmWelcomeScreen.setBackground(Color.WHITE);
-        frmWelcomeScreen.setTitle("StrandeD");
-        frmWelcomeScreen.setBounds(100, 100, 800, 600);
         frmWelcomeScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
