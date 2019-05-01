@@ -81,35 +81,31 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * @return number of actions the crew member has
+     * Returns the number of actions the crew member has 
+     * @return int number of actions
      */
     public int getActions() {
         return actions;
     }
 
     /**
-     * @return int returns the fatique level of a crew member
-     */
-    public int getFatiqueLevel() {
-        return fatiqueLevel;
-    }
-
-    /**
-     * @return int returns the luck stat of a crew member
+     * Returns the luck stat of a crew member
+     * @return int luck stat
      */
     public int getLuck() {
         return luck;
     }
 
     /**
-     * @return fatique level of crew member
+     * Returns the fatigue level of the crew member
+     * @return int fatique level
      */
     public int getFatique() {
         return fatiqueLevel;
     }
 
     /**
-     * Increases the crew member's fatique level
+     * Increases the crew member's fatigue level
      */
     public void increaseFatique(int amount) {
         fatiqueLevel += amount;
@@ -118,7 +114,8 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * @return hunger level of crew member
+     * Returns the hunger level of the crew
+     * @return int hunger level
      */
     public int getHunger() {
         return hungerLevel;
@@ -147,8 +144,8 @@ public abstract class CrewMember extends Unit {
     }
 
     /** 
-     * @return crew member's health status
-     * returns true if crew member has the plague
+     * Returns if crew member has space plague
+     * @return boolean True if has space plague, false otherwise
      */
     public boolean isSick() {
         return hasPlague;

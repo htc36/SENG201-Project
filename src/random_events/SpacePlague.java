@@ -7,12 +7,12 @@ import crew.Crew;
 import unit.CrewMember;
 
 public class SpacePlague implements RandomEvents {
+
     /**
-     * Space Plague! 
-     * space plague sets random crew members between 1 to all 
+     * Space plague sets random crew members between 1 to every crew member
      * to be plagued, while they are plagued they will receive 
      * damage over time
-     * @param cr the crew
+     * @param cr crew
      */
     public static void causeDamage(Crew cr) {
         ArrayList<CrewMember> c = cr.getCrewMembers();

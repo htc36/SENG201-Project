@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="/home/cosc/student/kta79/SpaceExplorer.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/src/Manifest.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/src/Manifest.txt" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=src/&lt;consumable"/>
+        <javaElement handleIdentifier="=src/&lt;planet"/>
+        <javaElement handleIdentifier="=src/&lt;gui"/>
+        <javaElement handleIdentifier="=src/&lt;random_events"/>
+        <javaElement handleIdentifier="=src/&lt;lib"/>
+        <file path="/src/tags"/>
+        <javaElement handleIdentifier="=src/&lt;game"/>
+        <javaElement handleIdentifier="=src/&lt;outpost"/>
+        <javaElement handleIdentifier="=src/&lt;img"/>
+        <file path="/src/.project"/>
+        <javaElement handleIdentifier="=src/&lt;crew"/>
+        <javaElement handleIdentifier="=src/&lt;unit"/>
+        <file path="/src/save.json"/>
+        <file path="/src/.classpath"/>
+        <javaElement handleIdentifier="=src/&lt;font"/>
+        <javaElement handleIdentifier="=src/&lt;bin"/>
+    </selectedElements>
+</jardesc>

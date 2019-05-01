@@ -45,6 +45,10 @@ public class Crew {
         }
     }
 
+    /**
+     * Returns the crew's consumables
+     * @return TreeMap<Consumable,Integer> crew's consumables
+     */
     public TreeMap<Consumable, Integer> getConsumables() {
         return consumables;
     }

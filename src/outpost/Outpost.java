@@ -69,6 +69,10 @@ public class Outpost {
         return shoppingBag.contains(itemName);
     }
 
+    /**
+     * Returns the map of item name to consumable object
+     * @return Map of item name to consumable object
+     */
     public TreeMap<String, Consumable> getConsumableMap() {
         return conMap;
     }
@@ -108,6 +112,10 @@ public class Outpost {
         return false;
     }
 
+    /**
+     * Returns the current state of player's shopping bag
+     * @return TreeMap<String,Integer> current state of player's shopping bag
+     */
     public TreeMap<String, Integer> getShoppingBagStatus() {
         TreeMap<String, Integer> template = new TreeMap<>();
         TreeSet<String> itemsInBag = new TreeSet<String>();

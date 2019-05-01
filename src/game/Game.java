@@ -240,6 +240,11 @@ public class Game {
         typePrint();
     }
 
+    /**
+     * Prints the list of crew's consumables in a pretty table format
+     * @param consumables list of consumables
+     * @param withIndex set to True if index at the front is desired, false otherwise
+     */
     public void printCrewConsumables(ArrayList<ArrayList<String>> consumables,
             boolean withIndex) {
         int counter = 0;

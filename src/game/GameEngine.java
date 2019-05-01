@@ -576,6 +576,10 @@ public class GameEngine {
         return ship.getHealth() > 25;
     }
     
+    /**
+     * Returns the crew's spaceship name
+     * @return String Crew's spaceship name
+     */
     public String getSpaceshipName() {
     	return ship.getName();
     }
@@ -633,6 +637,10 @@ public class GameEngine {
         }
     }
 
+    /**
+     * Returns the shopping bag of a player from the outpost
+     * @return Shopping bag of player
+     */
     public TreeMap<String, Integer> getShoppingBag() {
         TreeMap<String, Integer> itemMap = outpost.getShoppingBagStatus();
         return itemMap;
@@ -928,10 +936,10 @@ public class GameEngine {
         return finalScore;
     }
 
-    @SuppressWarnings("unchecked")
     /**
      * Saves the game state to a JSON file
      */
+    @SuppressWarnings("unchecked")
     public void saveGameState() {
         JSONObject gameState = new JSONObject();
 

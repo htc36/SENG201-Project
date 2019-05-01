@@ -19,7 +19,8 @@ public class Food extends Consumable {
     }
 
     /**
-     * @return int hunger level it decreases when consumed
+     * Returns hunger level it decreases when consumed
+     * @return int hunger level decreased
      */
     public int getFillStomach() {
         return fillStomach;
