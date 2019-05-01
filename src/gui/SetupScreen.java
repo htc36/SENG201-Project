@@ -34,6 +34,7 @@ public class SetupScreen {
     private GameEngine engine;
     private ArrayList<String> crewList;
     private ArrayList<JLabel> iconsList;
+    private ArrayList<JLabel> namesList;
     private JLabel typeLabel;
     private JLabel descLabel;
     private JLabel numShipPieces;
@@ -48,8 +49,10 @@ public class SetupScreen {
         this.game = game;
         crewList = new ArrayList<>();
         iconsList = new ArrayList<>();
+        namesList = new ArrayList<>();
         initialize();
         frmCrewSetup.setVisible(true);
+        
     }
 
     /**
@@ -75,6 +78,7 @@ public class SetupScreen {
             if (i >= crewList.size())
                 return;
             iconsList.get(i).setName(crewList.get(i));
+            namesList.get(i).setText("<html>" + crewList.get(i).split("-")[0] + "</html>");
             if (crewList.get(i).endsWith("medic"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/medic.png")));
             else if (crewList.get(i).endsWith("explorer"))
@@ -144,7 +148,7 @@ public class SetupScreen {
             return;
         }
 
-        crewList.add(0, crewMemberName.getText() + "-" + type);
+        crewList.add(0, name + "-" + type);
 
         updateCrewMemberIcons();
         crewMemberName.setText("");
@@ -186,6 +190,31 @@ public class SetupScreen {
 
         frmCrewSetup.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frmCrewSetup.getContentPane().setLayout(null);
+        
+        JLabel crew1Name = new JLabel("");
+        crew1Name.setForeground(Color.WHITE);
+        crew1Name.setBounds(34, 393, 90, 36);
+        frmCrewSetup.getContentPane().add(crew1Name);
+        
+        JLabel crew2Name = new JLabel("");
+        crew2Name.setForeground(Color.WHITE);
+        crew2Name.setBounds(171, 393, 90, 36);
+        frmCrewSetup.getContentPane().add(crew2Name);
+        
+        JLabel crew3Name = new JLabel("");
+        crew3Name.setForeground(Color.WHITE);
+        crew3Name.setBounds(34, 524, 90, 36);
+        frmCrewSetup.getContentPane().add(crew3Name);
+        
+        JLabel crew4Name = new JLabel("");
+        crew4Name.setForeground(Color.WHITE);
+        crew4Name.setBounds(171, 524, 90, 36);
+        frmCrewSetup.getContentPane().add(crew4Name);
+        
+        namesList.add(crew1Name);
+        namesList.add(crew2Name);
+        namesList.add(crew3Name);
+        namesList.add(crew4Name);
 
         JLabel lblCrewMembers = new JLabel("Crew Members");
         lblCrewMembers.setFont(new Font("Ubuntu", Font.BOLD, 15));
@@ -276,9 +305,12 @@ public class SetupScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(0);
+                crew1Name.setText("");
             }
         });
-        firstCrewMemberIcon.setBounds(34, 340, 90, 90);
+        
+        firstCrewMemberIcon.setBounds(34, 305, 90, 90);
+       
         frmCrewSetup.getContentPane().add(firstCrewMemberIcon);
 
         JButton explorerBtn = new JButton("Explorer");
@@ -292,7 +324,9 @@ public class SetupScreen {
              * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
+            	crew1Name.setText(crewMemberName.getText());
                 addCrewMember("explorer", crewMemberName.getText());
+                
             }
         });
         explorerBtn.setBounds(12, 64, 90, 90);
@@ -309,7 +343,7 @@ public class SetupScreen {
                 deleteCrewMember(3);
             }
         });
-        fourthCrewMemberIcon.setBounds(150, 442, 90, 90);
+        fourthCrewMemberIcon.setBounds(171, 434, 90, 90);
         frmCrewSetup.getContentPane().add(fourthCrewMemberIcon);
 
         JLabel secondCrewMemberIcon = new JLabel("");
@@ -323,7 +357,7 @@ public class SetupScreen {
                 deleteCrewMember(1);
             }
         });
-        secondCrewMemberIcon.setBounds(150, 340, 90, 90);
+        secondCrewMemberIcon.setBounds(171, 305, 90, 90);
         frmCrewSetup.getContentPane().add(secondCrewMemberIcon);
 
         JLabel thirdCrewMemberIcon = new JLabel("");
@@ -337,7 +371,7 @@ public class SetupScreen {
                 deleteCrewMember(2);
             }
         });
-        thirdCrewMemberIcon.setBounds(34, 442, 90, 90);
+        thirdCrewMemberIcon.setBounds(34, 434, 90, 90);
         frmCrewSetup.getContentPane().add(thirdCrewMemberIcon);
 
         iconsList.add(firstCrewMemberIcon);
@@ -507,7 +541,7 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(proceedBtn);
 
         JLabel lblThereIsA = new JLabel("");
-        lblThereIsA.setBounds(20, 292, 286, 66);
+        lblThereIsA.setBounds(20, 292, 286, 15);
         frmCrewSetup.getContentPane().add(lblThereIsA);
         errorLabel = lblThereIsA;
 
@@ -515,6 +549,8 @@ public class SetupScreen {
         lblNewLabel.setIcon(new ImageIcon(SetupScreen.class.getResource("/img/setupscreen.jpg")));
         lblNewLabel.setBounds(0, 0, 800, 572);
         frmCrewSetup.getContentPane().add(lblNewLabel);
+        
+        
 
     }
 }
