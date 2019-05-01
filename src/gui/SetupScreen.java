@@ -75,7 +75,6 @@ public class SetupScreen {
      */
     private void updateCrewMemberIcons() {		
         for (int i = 0; i < iconsList.size(); i++) {
-        	System.out.println("Setting namesList " + i + " to empty string");
 			iconsList.get(i).setIcon(null);
 			namesList.get(i).setText("");
             if (i >= crewList.size()) {
@@ -83,7 +82,6 @@ public class SetupScreen {
             }
             String name = crewList.get(i)[0];
             String type = crewList.get(i)[1];
-        	System.out.println("Setting namesList " + i + " to their name " + name);
 			namesList.get(i).setText("<html>" + name + "</html>");
 
 			switch(type) {
