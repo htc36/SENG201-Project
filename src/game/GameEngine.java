@@ -136,7 +136,10 @@ public class GameEngine {
             }
 
             for (ArrayList<String> cons : consumablesList) {
-                addCrewConsumable(cons.get(0));
+            	int stock = Integer.valueOf(cons.get(5));
+            	for (int i = 0; i < stock; i++) {
+					addCrewConsumable(cons.get(0));
+            	}
             }
 
 
