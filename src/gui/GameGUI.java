@@ -6,9 +6,6 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

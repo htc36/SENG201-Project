@@ -640,9 +640,6 @@ public class CommandCenter {
         tabbedPane.addTab("Commit Actions", null, commitActions, null);
         commitActions.setLayout(null);
         
-        int buttonHeight= 144;
-        
-
         JButton memberUseConsumable = new JButton("Use consumables");
         memberUseConsumable.setFont(new Font("Ubuntu Mono", Font.ITALIC, 16));
         memberUseConsumable.setForeground(Color.WHITE);

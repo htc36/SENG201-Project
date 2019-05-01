@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Compiling .java files"
-javac -d bin -cp . \
+javac -d bin -cp src/lib/json-simple-1.1.1.jar:. \
 	src/unit/*.java \
 	src/consumable/*.java \
 	src/crew/*.java \
