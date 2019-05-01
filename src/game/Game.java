@@ -4,7 +4,6 @@ import static game.Utils.typePrint;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -163,31 +162,29 @@ public class Game {
      * @param crewNumbers the number of crew members to be inputted
      * @return ArrayList<String> list of produced crew members
      */
-    public ArrayList<String> getInputCrewMembers(int crewNumbers) {
-        ArrayList<String> crewString = new ArrayList<>();
+    public ArrayList<String[]> getInputCrewMembers(int crewNumbers) {
+        ArrayList<String[]> crewString = new ArrayList<>();
         ArrayList<String> crewMemberTypes = g.getCrewMemberTypes();
+		reader.nextLine();
         for (int i = 0; i < crewNumbers; i++) {
+            String crewName = "";
             String crewType = "";
-            String crewInfo = "";
+			System.out.print("Input crew name followed by their type ");
+			System.out.println(" (" + (crewNumbers - i) + " to go)");
+			System.out.println("For example:");
+			System.out.println("> dora");
+			System.out.println("> explorer");
             do {
-                System.out.print("Input crew name followed by their type without spaces");
-                System.out.println(" (" + (crewNumbers - i) + " to go)");
-                System.out.println("For example:");
-                System.out.println("> dora-explorer");
-                System.out.println("> ralph-builder");
                 System.out.println();
-                System.out.print("> ");
-                while(true) {
-                    crewInfo = reader.nextLine();
-                    if (isCrewInfoValid(crewInfo))
-                        break;
-                }
-                String[] splitter = crewInfo.split("-");
-                crewType = splitter[1].toLowerCase();
+				System.out.print("> ");
+				crewName = reader.nextLine();
+				System.out.println("What is " + crewName + "'s job?");
+				System.out.print("> ");
+				crewType = reader.nextLine();
                 if (!crewMemberTypes.contains(crewType)){
                     System.out.println("Invalid Crew Type");
                 }
-                crewString.add(crewInfo);
+                crewString.add(new String[]{crewName, crewType});
             } while (!crewMemberTypes.contains(crewType));
         }
 
@@ -277,7 +274,6 @@ public class Game {
      */
     public void getInputShoppingList() {
         String errMsg = "Clerk: Sorry I didn't quite catch that, try again?";
-        String allQueries = "";
         String query = "";
 
         while (true) {
@@ -665,7 +661,7 @@ public class Game {
      * Set the crew members
      * @param crewString string describing the crew members
      */
-    public void setCrewMembers(ArrayList<String> crewString) {
+    public void setCrewMembers(ArrayList<String[]> crewString) {
         g.setCrewMembers(crewString);
     }
 

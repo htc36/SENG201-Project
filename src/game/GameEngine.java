@@ -279,10 +279,10 @@ public class GameEngine {
      * @param name the name of the new crew member
      * @return boolean true if not a duplicate, false otherwise
      */
-    public boolean isCrewNameValid(ArrayList<String> crewList, String name) {
+    public boolean isCrewNameValid(ArrayList<String[]> crewList, String name) {
         // to avoid 2 crew members having the same name
-        for (String c : crewList) {
-            if (c.equals(name))
+        for (String[] c : crewList) {
+            if (c[0].equals(name))
                 return false;
         }
 
@@ -337,10 +337,10 @@ public class GameEngine {
      * adds them to the crew members list
      * @param crewString crew member string input from the player
      */
-    public void setCrewMembers(ArrayList<String> crewString) {
-        for (String s : crewString) {
-            String memberName = s.split("-")[0].toUpperCase();
-            String crewType = s.split("-")[1].toLowerCase();
+    public void setCrewMembers(ArrayList<String[]> crewString) {
+        for (String[] s : crewString) {
+            String memberName = s[0].toUpperCase();
+            String crewType = s[1].toLowerCase();
             addCrewMember(crewType, memberName);
         }
     }

@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JSlider;
 
@@ -32,9 +33,9 @@ public class SetupScreen {
     private JTextField spaceshipName;
     private JTextField crewMemberName;
     private GameEngine engine;
-    private ArrayList<String> crewList;
-    private ArrayList<JLabel> iconsList;
-    private ArrayList<JLabel> namesList;
+    private ArrayList<String[]> crewList;
+    private List<JLabel> iconsList;
+    private List<JLabel> namesList;
     private JLabel typeLabel;
     private JLabel descLabel;
     private JLabel numShipPieces;
@@ -77,19 +78,22 @@ public class SetupScreen {
             iconsList.get(i).setIcon(null);
             if (i >= crewList.size())
                 return;
-            iconsList.get(i).setName(crewList.get(i));
-            namesList.get(i).setText("<html>" + crewList.get(i).split("-")[0] + "</html>");
-            if (crewList.get(i).endsWith("medic"))
+            String name = crewList.get(i)[0];
+            String type = crewList.get(i)[1];
+            iconsList.get(i).setName(name);
+			namesList.get(i).setText("<html>" + name + "</html>");
+
+            if (type.equals("medic"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/medic.png")));
-            else if (crewList.get(i).endsWith("explorer"))
+            else if (type.equals("explorer"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/explorer.png")));
-            else if (crewList.get(i).endsWith("builder"))
+            else if (type.equals("builder"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/builder.png")));
-            else if (crewList.get(i).endsWith("hungus"))
+            else if (type.equals("hungus"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/hungus.png")));
-            else if (crewList.get(i).endsWith("actioneer"))
+            else if (type.equals("actioneer"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/actioneer.png")));
-            else if (crewList.get(i).endsWith("sleeper"))
+            else if (type.equals("sleeper"))
                 iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/sleeper.png")));
         }
     }
@@ -143,12 +147,12 @@ public class SetupScreen {
             return;
         }
 
-        if (!engine.isCrewNameValid(crewList, name + "-" + type)) {
+        if (!engine.isCrewNameValid(crewList, name)) {
             errorLabel.setText("<html>There is a crew member with that name!</html>");
             return;
         }
 
-        crewList.add(0, name + "-" + type);
+        crewList.add(0, new String[]{name, type});
 
         updateCrewMemberIcons();
         crewMemberName.setText("");
