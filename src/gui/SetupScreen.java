@@ -75,26 +75,37 @@ public class SetupScreen {
      */
     private void updateCrewMemberIcons() {		
         for (int i = 0; i < iconsList.size(); i++) {
-            iconsList.get(i).setIcon(null);
-            if (i >= crewList.size())
-                return;
+        	System.out.println("Setting namesList " + i + " to empty string");
+			iconsList.get(i).setIcon(null);
+			namesList.get(i).setText("");
+            if (i >= crewList.size()) {
+                continue;
+            }
             String name = crewList.get(i)[0];
             String type = crewList.get(i)[1];
-            iconsList.get(i).setName(name);
+        	System.out.println("Setting namesList " + i + " to their name " + name);
 			namesList.get(i).setText("<html>" + name + "</html>");
 
-            if (type.equals("medic"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/medic.png")));
-            else if (type.equals("explorer"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/explorer.png")));
-            else if (type.equals("builder"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/builder.png")));
-            else if (type.equals("hungus"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/hungus.png")));
-            else if (type.equals("actioneer"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/actioneer.png")));
-            else if (type.equals("sleeper"))
-                iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/sleeper.png")));
+			switch(type) {
+				case "medic":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/medic.png")));
+					break;
+				case "explorer":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/explorer.png")));
+					break;
+				case "builder":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/builder.png")));
+					break;
+				case "hungus":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/hungus.png")));
+					break;
+				case "actioneer":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/actioneer.png")));
+					break;
+				case "sleeper":
+					iconsList.get(i).setIcon(new ImageIcon(SetupScreen.class.getResource("/img/sleeper.png")));
+					break;
+			}
         }
     }
 
@@ -163,11 +174,13 @@ public class SetupScreen {
      * @param index location of crew member in crewList
      */
     private void deleteCrewMember(int index) {
+    	if (index >= crewList.size())
+    		return;
+
         if (crewList.size() == 0)
             return;
 
         crewList.remove(index);
-        iconsList.get(index).setIcon(null);
         updateCrewMemberIcons();
     }
 
@@ -309,7 +322,6 @@ public class SetupScreen {
             @Override
             public void mouseClicked(MouseEvent e) {
                 deleteCrewMember(0);
-                crew1Name.setText("");
             }
         });
         
@@ -328,9 +340,7 @@ public class SetupScreen {
              * @param e Action event
              */
             public void actionPerformed(ActionEvent e) {
-            	crew1Name.setText(crewMemberName.getText());
                 addCrewMember("explorer", crewMemberName.getText());
-                
             }
         });
         explorerBtn.setBounds(12, 64, 90, 90);
