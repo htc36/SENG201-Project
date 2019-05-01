@@ -4,6 +4,7 @@ import static game.Utils.typePrint;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -141,7 +142,6 @@ public class Game {
                 g.clearShoppingBag();
                 getInputShoppingList();
                 TreeMap<String, Integer> shoppingBag = g.getShoppingBag();
-                printShoppingBag(shoppingBag);
                 try {
                     g.purchaseItems(shoppingBag);
                 } catch (InsufficientFundException err) {
@@ -156,14 +156,6 @@ public class Game {
                 break;
         }
         return true;
-    }
-
-    /**
-     * Prints the user's shopping bag
-     * @param shoppingBag Player's shopping bag
-     */
-    public void printShoppingBag(TreeMap<String, Integer> shoppingBag) {
-        return;
     }
 
     /**
