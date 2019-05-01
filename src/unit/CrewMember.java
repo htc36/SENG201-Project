@@ -240,40 +240,40 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * use a medical item on a crew member, increasing their health
-     * and possibly curing them from space plague
-     * @param item the medicalsupply object item
-     */
-    public void useMedicalSupply(MedicalSupply item) {
-        addHealth(item.getHealingAmount());
-        if (item.canHealSpacePlague()) {
-            cureSick();
-        }
-    }
-
-    /**
      * feeding an item to a crew member, increasing their health
      * and decreasing their hunger level
-     * @param item the food object item
+     * @param item the item
      */
-    public void feed(Food item) {
+    public void useItem(Food item) {
         addHealth(item.getHealingAmount());
         decreaseHunger(item.getFillStomach());
     }
 
     /**
      * feeding an item to a crew member, increasing their health
-     * and decreasing their hunger level
+     * and cures space plague
      * @param item the item
+     */
+    public void useItem(MedicalSupply item) {
+        addHealth(item.getHealingAmount());
+        if (item.canHealSpacePlague()) {
+            cureSick();
+        }
+    }
+    
+    /**
+     * uses an item, calls other useItem depending
+     * on the item type
+     * @param item
      */
     public void useItem(Consumable item) {
         reduceAction();
-        if (item instanceof Food) {
-            feed((Food) item);
-        } else if (item instanceof MedicalSupply) {
-            useMedicalSupply((MedicalSupply) item);
-        }
+        if (item instanceof Food)
+            useItem((Food) item);
+        else
+            useItem((MedicalSupply) item);
     }
+
     /**
      * Reduces the health of a crew member by a certain amount
      * @param amount the amount
