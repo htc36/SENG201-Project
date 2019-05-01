@@ -25,8 +25,8 @@ public class Builder extends CrewMember{
     }
 
     /**
-     * <<auto generated javadoc comment>>
-     * @return ArrayList<String> <<Return Desc>>
+     * Returns ArrayList of String representation of an Builder
+     * @return ArrayList<String> ArrayList String representation of an Builder
      */
     @Override
     public ArrayList<String> getCrewString() {
