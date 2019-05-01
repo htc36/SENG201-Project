@@ -1465,12 +1465,6 @@ public class CommandCenter {
         });
         mnFile.add(mntmExit);
 
-        JMenu mnNewMenu = new JMenu("Help");
-        menuBar.add(mnNewMenu);
-
-        JMenuItem mntmAbout = new JMenuItem("About");
-        mnNewMenu.add(mntmAbout);
-
         tabbedPane.addChangeListener(new ChangeListener() {
             /**
              * Initialize the contents of the frame.

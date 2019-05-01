@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,16 +25,23 @@ public class GameGUI {
         engine = new GameEngine();
         gameEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Karumbi.ttf")));
+        	URL fontPath = getClass().getResource("/font/Karumbi.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
 
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Quantico-Regular.ttf")));
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Quantico-Bold.ttf")));
+            fontPath = getClass().getResource("/font/Quantico-Regular.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
+            fontPath = getClass().getResource("/font/Quantico-Bold.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
 
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/UbuntuMono-R.ttf")));
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/UbuntuMono-B.ttf")));
+            fontPath = getClass().getResource("/font/UbuntuMono-R.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
+            fontPath = getClass().getResource("/font/UbuntuMono-B.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
 
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Ubuntu-R.ttf")));
-            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("font/Ubuntu-B.ttf")));
+            fontPath = getClass().getResource("/font/Ubuntu-R.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
+            fontPath = getClass().getResource("/font/Ubuntu-B.ttf");
+            gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
 
         } catch (FontFormatException e) {
             // TODO Auto-generated catch block
