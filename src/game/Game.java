@@ -334,7 +334,7 @@ public class Game {
         Utils.clearScreen();
         ArrayList<String> deadCrew = g.getDeadCrewMembers();
         if (deadCrew.size() != 0){
-            typePrint("Sady there has been a death(s), the following have died");
+            typePrint("Sadly there has been a death(s), the following have died");
             for (String name : deadCrew) {
                 typePrint(Utils.getDeathMessage() + ": " + name + ", Day ");
             }
