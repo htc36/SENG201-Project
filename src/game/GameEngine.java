@@ -81,10 +81,8 @@ public class GameEngine {
         try {
             Object obj = parser.parse(new FileReader(saveFilename));
             JSONObject gameState = (JSONObject) obj;
-            System.out.println(gameState);
 
             setCurrDay((int) (long) gameState.get("currDay"));
-            System.out.println(this.currDay);
 
             String shipName = (String) gameState.get("shipName");
             ship = new Spaceship(shipName);
@@ -214,6 +212,14 @@ public class GameEngine {
         // 1 Alien Pirates
         // 0 Space Plague
         return randomEvent;
+    }
+    
+    /**
+     * Gets item that was lost from alien invasion
+     * @return String item that was taken
+     */
+    public String getCrewLostItem() {
+    	return crew.getLostItem();
     }
 
     /**
@@ -544,6 +550,19 @@ public class GameEngine {
         } while (nextPlanetIndex == currentPlanetIndex);
         currentPlanetIndex = nextPlanetIndex;
 
+    }
+    
+    /**
+     * Gets the crew members that are sick
+     * @return String a string of sick crew members
+     */
+    public ArrayList<String> getSickCrew() {
+    	ArrayList<String> sickCrew = new ArrayList<String>();
+    	for (CrewMember crew : crewMembers) {
+    		if (crew.isSick())
+    			sickCrew.add(crew.getName());		
+    	}
+    	return sickCrew;
     }
 
     // CREW RELATED FUNCTIONS END
@@ -1000,6 +1019,14 @@ public class GameEngine {
             err.printStackTrace();
         }
 
+    }
+    
+    /**
+     * Gets a random death message for our hard working crew member :'(
+     * @return String random death message
+     */
+    public String getDeathMessage() {
+    	return Utils.getDeathMessage();
     }
 
     // GAME RELATED FUNCTIONS END
