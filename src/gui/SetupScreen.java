@@ -39,7 +39,6 @@ public class SetupScreen {
     private JLabel typeLabel;
     private JLabel descLabel;
     private JLabel numShipPieces;
-    private JLabel errorLabel;
     private GameGUI game;
 
     /**
@@ -146,7 +145,6 @@ public class SetupScreen {
      * @param name name of crew member
      */
     private void addCrewMember(String type, String name) {
-        errorLabel.setText("");
         if (crewList.size() > 3) {
             crewList.remove(3);
         }
@@ -157,7 +155,7 @@ public class SetupScreen {
         }
 
         if (!engine.isCrewNameValid(crewList, name)) {
-            errorLabel.setText("<html>There is a crew member with that name!</html>");
+        	JOptionPane.showMessageDialog(new JFrame(), "Sorry there is already a crew member with the same name");
             return;
         }
 
@@ -274,36 +272,42 @@ public class SetupScreen {
         JSeparator separator = new JSeparator();
         separator.setForeground(Color.GRAY);
         separator.setBackground(Color.GRAY);
-        separator.setBounds(385, 232, 388, 24);
+        separator.setBounds(387, 244, 388, 24);
         frmCrewSetup.getContentPane().add(separator);
 
         JLabel lblGameLength = new JLabel("Game Length (days)");
         lblGameLength.setBackground(Color.GRAY);
         lblGameLength.setFont(new Font("Ubuntu", Font.BOLD, 15));
         lblGameLength.setForeground(SystemColor.menu);
-        lblGameLength.setBounds(387, 374, 158, 36);
+        lblGameLength.setBounds(387, 323, 158, 36);
         frmCrewSetup.getContentPane().add(lblGameLength);
 
         JLabel lblSpaceshipName = new JLabel("Spaceship name");
         lblSpaceshipName.setFont(new Font("Ubuntu", Font.BOLD, 15));
         lblSpaceshipName.setForeground(SystemColor.menu);
-        lblSpaceshipName.setBounds(387, 322, 158, 36);
+        lblSpaceshipName.setBounds(387, 263, 158, 36);
         frmCrewSetup.getContentPane().add(lblSpaceshipName);
 
         spaceshipName = new JTextField();
         spaceshipName.setOpaque(false);
-        spaceshipName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
+        spaceshipName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 15));
         spaceshipName.setCaretColor(Color.GRAY);
         spaceshipName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GRAY));
-        spaceshipName.setForeground(Color.GRAY);
-        spaceshipName.setBounds(588, 333, 167, 19);
+        spaceshipName.setForeground(Color.WHITE);
+        spaceshipName.setBounds(588, 274, 167, 19);
         spaceshipName.setText("Andromeda");
         frmCrewSetup.getContentPane().add(spaceshipName);
         spaceshipName.setColumns(10);
 
         crewMemberName = new JTextField();
+        crewMemberName.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		if (!crewMemberName.getText().equals("") && !crewTypeLabel.getText().equals(""))
+        			addCrewMember(crewTypeLabel.getText().toLowerCase(), crewMemberName.getText());
+        	}
+        });
         crewMemberName.setOpaque(false);
-        crewMemberName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
+        crewMemberName.setFont(new Font("Ubuntu Mono", Font.PLAIN, 15));
         crewMemberName.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
         crewMemberName.setBorder(new MatteBorder(0, 0, 2, 0, (Color) Color.GRAY));
         crewMemberName.setCaretColor(Color.WHITE);
@@ -479,14 +483,15 @@ public class SetupScreen {
         frmCrewSetup.getContentPane().add(builderBtn);
 
         JLabel lblNumShipPieces = new JLabel("6");
-        lblNumShipPieces.setFont(new Font("Ubuntu Mono", Font.PLAIN, 12));
-        lblNumShipPieces.setForeground(Color.GRAY);
-        lblNumShipPieces.setBounds(588, 268, 71, 36);
+        lblNumShipPieces.setFont(new Font("Ubuntu Mono", Font.PLAIN, 15));
+        lblNumShipPieces.setForeground(Color.WHITE);
+        lblNumShipPieces.setBounds(588, 445, 71, 36);
         frmCrewSetup.getContentPane().add(lblNumShipPieces);
 
         numShipPieces = lblNumShipPieces;
 
         JSlider slider = new JSlider();
+        slider.setFont(new Font("Dialog", Font.BOLD, 14));
         slider.setUI(new DarkSlider(slider));
         slider.setOpaque(false);
         slider.setForeground(SystemColor.menu);
@@ -504,7 +509,7 @@ public class SetupScreen {
         slider.setPaintTicks(true);
         slider.setMaximum(10);
         slider.setMinimum(3);
-        slider.setBounds(387, 422, 369, 58);
+        slider.setBounds(387, 371, 369, 58);
         frmCrewSetup.getContentPane().add(slider);
 
         JLabel lblSelextYourCrew = new JLabel("Select your crew members");
@@ -516,7 +521,7 @@ public class SetupScreen {
         JLabel lblNumberOfShip = new JLabel("Number of ship pieces");
         lblNumberOfShip.setFont(new Font("Ubuntu", Font.BOLD, 15));
         lblNumberOfShip.setForeground(SystemColor.menu);
-        lblNumberOfShip.setBounds(387, 268, 175, 36);
+        lblNumberOfShip.setBounds(387, 444, 175, 36);
         frmCrewSetup.getContentPane().add(lblNumberOfShip);
 
         JButton proceedBtn = new JButton("Proceed");
@@ -550,13 +555,8 @@ public class SetupScreen {
                 finishedWindow();
             }
         });
-        proceedBtn.setBounds(659, 507, 114, 25);
+        proceedBtn.setBounds(661, 524, 114, 25);
         frmCrewSetup.getContentPane().add(proceedBtn);
-
-        JLabel lblThereIsA = new JLabel("");
-        lblThereIsA.setBounds(20, 292, 286, 15);
-        frmCrewSetup.getContentPane().add(lblThereIsA);
-        errorLabel = lblThereIsA;
 
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(SetupScreen.class.getResource("/img/setupscreen.jpg")));
