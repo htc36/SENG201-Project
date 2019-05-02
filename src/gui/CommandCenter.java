@@ -78,6 +78,7 @@ public class CommandCenter {
 
     private JLabel radarPlanetStatus;
 
+	private ArrayList<String> prevDead;
     private JLabel infoBox;
 
     /**
@@ -89,6 +90,7 @@ public class CommandCenter {
         selectedCrews = new ArrayList<>();
         crewButtons = new ArrayList<>();
         crewLabels = new ArrayList<>();
+        prevDead = new ArrayList<>();
         initialize();
         frmCommandCenter.setVisible(true);
     }
@@ -97,13 +99,26 @@ public class CommandCenter {
      * Start the day and gets random event to occur, 1/3 chance of no event, 1/3 chance of Alien Pirates, 1/3 chance of Space Plague
      */
     public void startDay() {
+    	String template = "";
         int randomEvent = engine.getRandomEvent();
         switch (randomEvent) {
             case 1:
-                JOptionPane.showMessageDialog(new JFrame(), "Alien Pirates");
+            	String lostItem = engine.getCrewLostItem();
+            	template = "Oh no those pesky alien pirates invaded the ship and raided our inventory,\n";
+            	if (lostItem.equals(""))
+            		template += "lucky for you the inventory is empty";
+            	else
+            		template += "sadly you lost the item: " + lostItem;
+				JOptionPane.showMessageDialog(new JFrame(), template);
                 break;
             case 0:
-                JOptionPane.showMessageDialog(new JFrame(), "Space Plague");
+            	template = "Oh no the following crew members all have Space Plague now:\n";
+            	template += String.join(", ", engine.getSickCrew()) + "\n";
+            	template += "Health has been deducted and will continue to be deducted\n";
+            	template += "until they are vaccinated from the outpost";
+                JOptionPane.showMessageDialog(new JFrame(), template);
+                		
+                
                 break;
         }
     }
@@ -228,19 +243,29 @@ public class CommandCenter {
         int numNewlines = 4;
 
         for (ArrayList<String> member : engine.getCrewMemberStatus()) {
+            String name = member.get(0);
             String health = member.get(1);
             if (Integer.valueOf(health) == 0) {
+            	if (!prevDead.contains(name)) {
+            		String template = "";
+            		template += "Sadly, there has been a death\n";
+            		template += engine.getDeathMessage() + "...";
+            		template += name;
+					JOptionPane.showMessageDialog(new JFrame(), template);
+            	}
+            	prevDead.add(name);
                 continue;
             }
-            crewHealth += health;
-            for (int i = 0; i < numNewlines; i++) {
-                crewHealth += "<br>";
-            }
 
-            String name = member.get(0);
             crewNames += name;
             for (int i = 0; i < numNewlines; i++) {
                 crewNames += "<br>";
+            }
+
+
+            crewHealth += health;
+            for (int i = 0; i < numNewlines; i++) {
+                crewHealth += "<br>";
             }
 
             String type = member.get(7);
@@ -631,6 +656,11 @@ public class CommandCenter {
         crewActions = lblCrewActions;
         lblCrewActions.setBounds(886, 112, 82, 471);
         crewStatus.add(lblCrewActions);
+        
+        JLabel lblNewLabel = new JLabel("New label");
+        lblNewLabel.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/CrewStatus.jpg")));
+        lblNewLabel.setBounds(0, 0, 995, 617);
+        crewStatus.add(lblNewLabel);
 
         /// COMMIT ACTIONS START
         /// COMMIT ACTIONS START
@@ -668,8 +698,13 @@ public class CommandCenter {
                     return;
                 }
                 ArrayList<ArrayList<String>> userItems = engine.getCrewConsumables();
+                if (userItems.size() == 0) {
+                	JOptionPane.showMessageDialog(new JFrame(), "You have no consumables to use");
+                	return;
+                }
                 getInputCrewConsume(userItems);
             }
+            
         });
         memberUseConsumable.setBounds(12, 154, 210, 169);
         commitActions.add(memberUseConsumable);
@@ -696,12 +731,13 @@ public class CommandCenter {
              */
             public void actionPerformed(ActionEvent e) {
                 if (selectedCrews.size() != 1) {
-                    JOptionPane.showMessageDialog(new JFrame(), "1 crew member needed for this action");
+                    JOptionPane.showMessageDialog(new JFrame(), "You need at least 1 crew member to perform this action");
                     return;
                 }
                 try {
                     engine.selectedCrewSleep();
-                    JOptionPane.showMessageDialog(new JFrame(), "Slept");
+                    String name = engine.selectedCrewName();
+                    JOptionPane.showMessageDialog(new JFrame(), name + " has had a good shut eye");
                 } catch (InsufficientActionException err) {
                     JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
                 }
@@ -736,8 +772,13 @@ public class CommandCenter {
                     return;
                 }
                 try {
+                	String template = "";
+					if (engine.getSpaceshipHealth() == 100)
+						template = "We don't have any damage cap, but Jerry let one rip in the dunny so we'll deal to that";
+					else
+						template = "Nice job, you know what they say healthy ship happy crew";
                     engine.selectedCrewRepairShield();
-                    JOptionPane.showMessageDialog(new JFrame(), "Repaired");
+                    JOptionPane.showMessageDialog(new JFrame(), template);
                 } catch (InsufficientActionException err) {
                     JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
                 }
@@ -780,7 +821,7 @@ public class CommandCenter {
                 }
 
                 if (foundShipPiece) {
-                    JOptionPane.showMessageDialog(new JFrame(), "Found ship piece");
+                    JOptionPane.showMessageDialog(new JFrame(), "Exciting news! We found a ship piece!");
                     engine.incrementFoundShipPieces();
                     engine.planetExtractShipPieces();
                     if (engine.hasGameEnded()) {
@@ -788,16 +829,19 @@ public class CommandCenter {
                         return;
                     }
                 } else {
+                	String template = "";
                     if (engine.unlucky(20)) {
-                        JOptionPane.showMessageDialog(new JFrame(), "Found nothing");
+                    	template += "Sorry cap, you got the dud end of the stick here\n";
+                    	template += "We found nothing";
                         // found nothing
                     } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
-                        JOptionPane.showMessageDialog(new JFrame(), "Found random item");
-                        engine.crewGetRandomItem();
+                        String itemName = engine.crewGetRandomItem();
+                    	template += "The following item has been found:" + itemName;
                     } else { // 50% chance it's money
-                        JOptionPane.showMessageDialog(new JFrame(), "Found money");
+                    	template += "$45 has been found, this will update the coffers";
                         engine.crewAddMoney();
                     }
+					JOptionPane.showMessageDialog(new JFrame(), template);
                 }
 
                 refreshPage();
@@ -808,7 +852,7 @@ public class CommandCenter {
         memberSearch.setBounds(232, 330, 210, 169);
         commitActions.add(memberSearch);
 
-        JButton memberPilot = new JButton("PUNCH THE BOOSTERS");
+        JButton memberPilot = new JButton("Go to a new planet");
         memberPilot.addMouseListener(new MouseAdapter() {
             /**
              * Changes image on right when mouse hovers over button
@@ -841,14 +885,17 @@ public class CommandCenter {
 
                 try {
                     engine.selectedCrewPilotSpaceship();
+                    String template = "";
                     if (engine.isHitAsteroid()) {
                         engine.asteroidCausingDamage();
-                        JOptionPane.showMessageDialog(new JFrame(), "Crashed asteroid, arrived at " + engine.getPlanetName());
-                    } else 
-                        JOptionPane.showMessageDialog(new JFrame(), "Arrived safely at " + engine.getPlanetName());
+                        template += "The spaceship has BONKed to an asteroid belt\n";
+                        template += "The pilot won't have cold beers tonight\n";
+                    }
+					template += "We have arrived at " + engine.getPlanetName();
+					JOptionPane.showMessageDialog(new JFrame(), template);
 
                     if (engine.planetHasShipPieces())
-                        JOptionPane.showMessageDialog(new JFrame(), "Planet has ship piece");
+                        JOptionPane.showMessageDialog(new JFrame(), "Our radar has detected presence of a ship piece");
 
                     refreshPage();
                 } catch (InsufficientActionException err) {
@@ -860,6 +907,7 @@ public class CommandCenter {
         commitActions.add(memberPilot);
 
         JLabel lblCurrentInventory_2 = new JLabel("");
+        lblCurrentInventory_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewlaunch.png")));
         lblCurrentInventory_2.setBounds(460, 21, 523, 588);
         commitActions.add(lblCurrentInventory_2);
         infoBox = lblCurrentInventory_2;
@@ -898,7 +946,7 @@ public class CommandCenter {
 
         JLabel spaceshipIcon = new JLabel("");
         spaceshipIcon.setBounds(12, 12, 971, 396);
-        spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/spaceship.png")));
+        spaceshipIcon.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/rockwet.jpg")));
         spaceshipStatus.add(spaceshipIcon);
 
         /// SPACESHIP PAGE END
@@ -1157,7 +1205,8 @@ public class CommandCenter {
                 showItemDetails("TikkaMasala");
             }
         });
-        tikkaMasalaBtn.setBounds(x + spacing + consumablesIconSize, y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
+        tikkaMasalaBtn.setBounds(x + spacing + consumablesIconSize, 
+        		y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(tikkaMasalaBtn);
 
         JButton hotbotBtn = new JButton(""); // Hotbot
@@ -1172,7 +1221,8 @@ public class CommandCenter {
                 showItemDetails("Hotbot");
             }
         });
-        hotbotBtn.setBounds(x + 2 * (spacing + consumablesIconSize), y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
+        hotbotBtn.setBounds(x + 2 * (spacing + consumablesIconSize), 
+        		y + spacing + consumablesIconSize, consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(hotbotBtn);
 
         JButton polyjuiceBtn = new JButton(""); // Poly Juice
@@ -1202,7 +1252,8 @@ public class CommandCenter {
                 showItemDetails("PickledPlum");
             }
         });
-        pickledPlumBtn.setBounds(x + spacing + consumablesIconSize, y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+        pickledPlumBtn.setBounds(x + spacing + consumablesIconSize, 
+        		y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(pickledPlumBtn);
 
         JButton vaccineBtn = new JButton(""); // Vaccine
@@ -1217,7 +1268,8 @@ public class CommandCenter {
                 showItemDetails("Vaccine");
             }
         });
-        vaccineBtn.setBounds(x + 2 * (spacing + consumablesIconSize), y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
+        vaccineBtn.setBounds(x + 2 * (spacing + consumablesIconSize), 
+        		y + 2 * (consumablesIconSize + spacing), consumablesIconSize, consumablesIconSize);
         VisitOutpost.add(vaccineBtn);
 
         // ITEM ICONS END
