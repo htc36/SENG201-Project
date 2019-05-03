@@ -60,19 +60,28 @@ public class StrandeD {
         frmWelcomeScreen.setBounds(100, 100, 800, 600);
         frmWelcomeScreen.setLocationRelativeTo(null);
 
-        JLabel lblNewLabel = new JLabel("StrandeD");
-        lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-        lblNewLabel.setBackground(Color.WHITE);
-        lblNewLabel.setForeground(UIManager.getColor("CheckBoxMenuItem.disabledForeground"));
-        lblNewLabel.setBounds(250, 181, 286, 107);
-        lblNewLabel.setFont(new Font("Karumbi", Font.PLAIN, 99));
-        frmWelcomeScreen.getContentPane().add(lblNewLabel);
+        JLabel lblGameTitleShadow = new JLabel("StrandeD");
+        lblGameTitleShadow.setHorizontalAlignment(SwingConstants.CENTER);
+        lblGameTitleShadow.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblGameTitleShadow.setBackground(Color.WHITE);
+        lblGameTitleShadow.setForeground(UIManager.getColor("CheckBoxMenuItem.disabledForeground"));
+        lblGameTitleShadow.setBounds(250, 181, 286, 107);
+        lblGameTitleShadow.setFont(new Font("Karumbi", Font.PLAIN, 99));
+        frmWelcomeScreen.getContentPane().add(lblGameTitleShadow);
 
-        JButton btnNewButton = new JButton("Start");
-        btnNewButton.setFont(new Font("Ubuntu", Font.BOLD, 16));
-        btnNewButton.setForeground(UIManager.getColor("Panel.background"));
-        btnNewButton.addActionListener(new ActionListener() {
+        JLabel lblGameTitleFront = new JLabel("StrandeD");
+        lblGameTitleFront.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblGameTitleFront.setHorizontalAlignment(SwingConstants.CENTER);
+        lblGameTitleFront.setForeground(UIManager.getColor("PasswordField.selectionForeground"));
+        lblGameTitleFront.setFont(new Font("Karumbi", Font.PLAIN, 90));
+        lblGameTitleFront.setBackground(Color.WHITE);
+        lblGameTitleFront.setBounds(263, 196, 258, 77);
+        frmWelcomeScreen.getContentPane().add(lblGameTitleFront);
+
+        JButton btnStart = new JButton("Start");
+        btnStart.setFont(new Font("Ubuntu", Font.BOLD, 16));
+        btnStart.setForeground(UIManager.getColor("Panel.background"));
+        btnStart.addActionListener(new ActionListener() {
             /**
              * Initialize the contents of the frame.
              */
@@ -80,10 +89,10 @@ public class StrandeD {
                 finishedWindow();
             }
         });
-        btnNewButton.setBorder(null);
-        btnNewButton.setBackground(Color.DARK_GRAY);
-        btnNewButton.setBounds(336, 300, 110, 42);
-        frmWelcomeScreen.getContentPane().add(btnNewButton);
+        btnStart.setBorder(null);
+        btnStart.setBackground(Color.DARK_GRAY);
+        btnStart.setBounds(336, 300, 110, 42);
+        frmWelcomeScreen.getContentPane().add(btnStart);
 
         JButton btnLoad = new JButton("Load");
         btnLoad.addActionListener(new ActionListener() {
@@ -102,19 +111,10 @@ public class StrandeD {
         btnLoad.setBounds(336, 364, 110, 42);
         frmWelcomeScreen.getContentPane().add(btnLoad);
 
-        JLabel label = new JLabel("StrandeD");
-        label.setHorizontalTextPosition(SwingConstants.CENTER);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        label.setForeground(UIManager.getColor("PasswordField.selectionForeground"));
-        label.setFont(new Font("Karumbi", Font.PLAIN, 90));
-        label.setBackground(Color.WHITE);
-        label.setBounds(263, 196, 258, 77);
-        frmWelcomeScreen.getContentPane().add(label);
-
-        JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(StrandeD.class.getResource("/img/setupbg.jpg")));
-        lblNewLabel_1.setBounds(0, 0, 800, 563);
-        frmWelcomeScreen.getContentPane().add(lblNewLabel_1);
+        JLabel lblBackground = new JLabel("");
+        lblBackground.setIcon(new ImageIcon(StrandeD.class.getResource("/img/setupbg.jpg")));
+        lblBackground.setBounds(0, 0, 800, 563);
+        frmWelcomeScreen.getContentPane().add(lblBackground);
         frmWelcomeScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

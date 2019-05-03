@@ -269,11 +269,11 @@ public class SetupScreen {
 
         descLabel = crewDescLabel;
 
-        JSeparator separator = new JSeparator();
-        separator.setForeground(Color.GRAY);
-        separator.setBackground(Color.GRAY);
-        separator.setBounds(387, 244, 388, 24);
-        frmCrewSetup.getContentPane().add(separator);
+        JSeparator separatorHorizontal = new JSeparator();
+        separatorHorizontal.setForeground(Color.GRAY);
+        separatorHorizontal.setBackground(Color.GRAY);
+        separatorHorizontal.setBounds(387, 244, 388, 24);
+        frmCrewSetup.getContentPane().add(separatorHorizontal);
 
         JLabel lblGameLength = new JLabel("Game Length (days)");
         lblGameLength.setBackground(Color.GRAY);
@@ -490,27 +490,27 @@ public class SetupScreen {
 
         numShipPieces = lblNumShipPieces;
 
-        JSlider slider = new JSlider();
-        slider.setFont(new Font("Dialog", Font.BOLD, 14));
-        slider.setUI(new DarkSlider(slider));
-        slider.setOpaque(false);
-        slider.setForeground(SystemColor.menu);
-        slider.addChangeListener(new ChangeListener() {
+        JSlider sliderDays = new JSlider();
+        sliderDays.setFont(new Font("Dialog", Font.BOLD, 14));
+        sliderDays.setUI(new DarkSlider(sliderDays));
+        sliderDays.setOpaque(false);
+        sliderDays.setForeground(SystemColor.menu);
+        sliderDays.addChangeListener(new ChangeListener() {
             /**
              * Sets the number of days for game length
              * @param arg0 Change event
              */
             public void stateChanged(ChangeEvent arg0) {
-                updateShipPieces(slider.getValue());
+                updateShipPieces(sliderDays.getValue());
             }
         });
-        slider.setMajorTickSpacing(1);
-        slider.setPaintLabels(true);
-        slider.setPaintTicks(true);
-        slider.setMaximum(10);
-        slider.setMinimum(3);
-        slider.setBounds(387, 371, 369, 58);
-        frmCrewSetup.getContentPane().add(slider);
+        sliderDays.setMajorTickSpacing(1);
+        sliderDays.setPaintLabels(true);
+        sliderDays.setPaintTicks(true);
+        sliderDays.setMaximum(10);
+        sliderDays.setMinimum(3);
+        sliderDays.setBounds(387, 371, 369, 58);
+        frmCrewSetup.getContentPane().add(sliderDays);
 
         JLabel lblSelextYourCrew = new JLabel("Select your crew members");
         lblSelextYourCrew.setFont(new Font("Ubuntu", Font.BOLD, 15));
@@ -537,7 +537,7 @@ public class SetupScreen {
              */
             public void actionPerformed(ActionEvent e) {
                 engine.setupSpaceship(spaceshipName.getText());
-                engine.setGameLength(slider.getValue());
+                engine.setGameLength(sliderDays.getValue());
                 if (!engine.isCrewNumberValid(crewList.size())) {
                     JOptionPane.showMessageDialog(
                             new JFrame(),
@@ -558,10 +558,10 @@ public class SetupScreen {
         proceedBtn.setBounds(661, 524, 114, 25);
         frmCrewSetup.getContentPane().add(proceedBtn);
 
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(SetupScreen.class.getResource("/img/setupscreen.jpg")));
-        lblNewLabel.setBounds(0, 0, 800, 572);
-        frmCrewSetup.getContentPane().add(lblNewLabel);
+        JLabel lblBackground = new JLabel("");
+        lblBackground.setIcon(new ImageIcon(SetupScreen.class.getResource("/img/setupscreen.jpg")));
+        lblBackground.setBounds(0, 0, 800, 572);
+        frmCrewSetup.getContentPane().add(lblBackground);
         
         
 

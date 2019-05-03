@@ -43,57 +43,69 @@ public class FinalScreen {
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setBackground(Color.BLACK);
         frame.setResizable(false);
-        frame.setBounds(100, 100, 450, 300);
+        frame.setBounds(100, 100, 350, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setTitle("Final Score");
         frame.getContentPane().setLayout(null);
         frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
-        JLabel lblFinalScoreText = new JLabel("Your final score is");
-        lblFinalScoreText.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel lblFinalScoreText = new JLabel("Final score:");
+        lblFinalScoreText.setHorizontalAlignment(SwingConstants.LEFT);
         lblFinalScoreText.setForeground(Color.WHITE);
-        lblFinalScoreText.setFont(new Font("Tibetan Machine Uni", Font.BOLD, 18));
-        lblFinalScoreText.setBounds(90, 15, 249, 54);
+        lblFinalScoreText.setFont(new Font("Quantico", Font.BOLD, 18));
+        lblFinalScoreText.setBounds(24, 24, 130, 54);
         frame.getContentPane().add(lblFinalScoreText);
 
-        JLabel lblFinalScoreCount = new JLabel("finalscore");
-        lblFinalScoreCount.setFont(new Font("Bitstream Vera Sans Mono", Font.BOLD, 49));
+        JLabel lblFinalScoreCount = new JLabel("");
+        lblFinalScoreCount.setFont(new Font("Bitstream Vera Sans Mono", Font.BOLD, 30));
         lblFinalScoreCount.setForeground(Color.WHITE);
-        lblFinalScoreCount.setHorizontalAlignment(SwingConstants.CENTER);
-        lblFinalScoreCount.setBounds(62, 180, 324, 80);
+        lblFinalScoreCount.setHorizontalAlignment(SwingConstants.LEFT);
+        lblFinalScoreCount.setBounds(197, 12, 187, 80);
         frame.getContentPane().add(lblFinalScoreCount);
         lblFinalScoreCount.setText(String.valueOf(engine.getFinalScore()));
         
-        JLabel lblNewLabel = new JLabel("Ships Name:");
-        lblNewLabel.setForeground(Color.WHITE);
-        lblNewLabel.setBounds(12, 58, 158, 48);
-        frame.getContentPane().add(lblNewLabel);
+        JLabel lblShipName = new JLabel("Ship's Name:");
+        lblShipName.setFont(new Font("Ubuntu Light", Font.BOLD, 13));
+        lblShipName.setForeground(Color.WHITE);
+        lblShipName.setBounds(24, 163, 158, 25);
+        frame.getContentPane().add(lblShipName);
         
-        JLabel lblNewLabel_1 = new JLabel("Number of Days:");
-        lblNewLabel_1.setForeground(Color.WHITE);
-        lblNewLabel_1.setBounds(12, 105, 146, 15);
-        frame.getContentPane().add(lblNewLabel_1);
+        JLabel lblNumDays = new JLabel("Number of days:");
+        lblNumDays.setFont(new Font("Ubuntu Light", Font.BOLD, 13));
+        lblNumDays.setForeground(Color.WHITE);
+        lblNumDays.setBounds(24, 212, 146, 15);
+        frame.getContentPane().add(lblNumDays);
         
-        JLabel shipPieces = new JLabel("fgf");
-        shipPieces.setForeground(Color.WHITE);
-        shipPieces.setBounds(12, 132, 390, 36);
-        if (engine.hasFoundEnoughPieces()) 
-        	shipPieces.setText("<html>Congratulations you won the game and have collected all the ship pieces</html>");
-        else
-        	shipPieces.setText("<html>Better luck next time, you did not collect all the ship pieces</html>");
-        frame.getContentPane().add(shipPieces);
+        JLabel lblWonGame = new JLabel("");
+        lblWonGame.setHorizontalAlignment(SwingConstants.LEFT);
+        lblWonGame.setForeground(Color.WHITE);
+        lblWonGame.setBounds(24, 88, 314, 43);
+        String template = "<html>";
+        if (engine.hasFoundEnoughPieces()) {
+            lblWonGame.setForeground(Color.GREEN);
+        	template += "You have collected all the ship pieces<br>";
+        	template += "Congratulations, you won the game!";
+        }
+        else {
+            lblWonGame.setForeground(Color.RED);
+        	template += "You did not collect all the ship pieces<br>";
+        	template += "better luck next time!";
+        }
+        template += "</html>";
+        lblWonGame.setText(template);
+        frame.getContentPane().add(lblWonGame);
         
-        JLabel shipNameDetail = new JLabel("New label");
+        JLabel shipNameDetail = new JLabel("");
         shipNameDetail.setForeground(Color.WHITE);
-        shipNameDetail.setBounds(197, 75, 205, 15);
+        shipNameDetail.setBounds(197, 168, 141, 15);
         shipNameDetail.setText(engine.getSpaceshipName());
         frame.getContentPane().add(shipNameDetail);
         
-        JLabel days = new JLabel("New label");
+        JLabel days = new JLabel("");
         days.setForeground(Color.WHITE);
-        days.setBounds(197, 105, 66, 15);
-        days.setText(String.valueOf(engine.getCurrDay()));
+        days.setBounds(197, 212, 66, 15);
+        days.setText(String.valueOf(engine.getCurrDay() - 1));
         frame.getContentPane().add(days);
     }
 }

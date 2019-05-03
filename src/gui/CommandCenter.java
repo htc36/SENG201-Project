@@ -455,8 +455,8 @@ public class CommandCenter {
         consWindow.setTitle("Select Consumables");
         consWindow.setBounds(100, 100, 340, 380);
         consWindow.getContentPane().setLayout(null);
-        consWindow.setVisible(true);
         consWindow.setLocationRelativeTo(null);
+        consWindow.setVisible(true);
 
         int itemsSpacing = 10;
         int buttonSize = 100;
@@ -687,10 +687,10 @@ public class CommandCenter {
         lblCrewActions.setBounds(886, 112, 82, 471);
         crewStatus.add(lblCrewActions);
         
-        JLabel lblNewLabel = new JLabel("New label");
-        lblNewLabel.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/CrewStatus.jpg")));
-        lblNewLabel.setBounds(0, 0, 995, 617);
-        crewStatus.add(lblNewLabel);
+        JLabel lblCrewStatusBG = new JLabel("New label");
+        lblCrewStatusBG.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/CrewStatus.jpg")));
+        lblCrewStatusBG.setBounds(0, 0, 995, 617);
+        crewStatus.add(lblCrewStatusBG);
 
         /// COMMIT ACTIONS START
         /// COMMIT ACTIONS START
@@ -936,11 +936,11 @@ public class CommandCenter {
         memberPilot.setBounds(12, 506, 430, 103);
         commitActions.add(memberPilot);
 
-        JLabel lblCurrentInventory_2 = new JLabel("");
-        lblCurrentInventory_2.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewlaunch.png")));
-        lblCurrentInventory_2.setBounds(460, 21, 523, 588);
-        commitActions.add(lblCurrentInventory_2);
-        infoBox = lblCurrentInventory_2;
+        JLabel lblActionImage = new JLabel("");
+        lblActionImage.setIcon(new ImageIcon(CommandCenter.class.getResource("/img/crewlaunch.png")));
+        lblActionImage.setBounds(460, 21, 523, 588);
+        commitActions.add(lblActionImage);
+        infoBox = lblActionImage;
 
         refreshCrewButtons(commitActions);
 
@@ -958,15 +958,15 @@ public class CommandCenter {
         tabbedPane.addTab("Spaceship Status", null, spaceshipStatus, null);
         spaceshipStatus.setLayout(null);
 
-        JProgressBar progressBar = new JProgressBar();
-        progressBar.setBackground(Color.DARK_GRAY);
-        progressBar.setForeground(new Color(34, 139, 34));
-        progressBar.setFont(new Font("Ubuntu", Font.PLAIN, 14));
-        progressBar.setBounds(30, 476, 923, 20);
-        progressBar.setValue(engine.getSpaceshipHealth());
-        progressBar.setStringPainted(true);
-        spaceshipStatus.add(progressBar);
-        spaceshipHealth = progressBar;
+        JProgressBar progressBarShipHealth = new JProgressBar();
+        progressBarShipHealth.setBackground(Color.DARK_GRAY);
+        progressBarShipHealth.setForeground(new Color(34, 139, 34));
+        progressBarShipHealth.setFont(new Font("Ubuntu", Font.PLAIN, 14));
+        progressBarShipHealth.setBounds(30, 476, 923, 20);
+        progressBarShipHealth.setValue(engine.getSpaceshipHealth());
+        progressBarShipHealth.setStringPainted(true);
+        spaceshipStatus.add(progressBarShipHealth);
+        spaceshipHealth = progressBarShipHealth;
 
         JLabel lblShieldLevel = new JLabel("Shield Level ");
         lblShieldLevel.setFont(defaultHeaderFont);
@@ -1323,10 +1323,10 @@ public class CommandCenter {
         int spinnerStep = 1;
         int spinnerInitValue = 0;
         SpinnerModel model = new SpinnerNumberModel(spinnerInitValue, spinnerMin, spinnerMax, spinnerStep);
-        JSpinner spinner = new JSpinner(model);
-        spinner.setBackground(Color.DARK_GRAY);
-        spinner.setBounds(selected_x, 413, 66, 45);
-        VisitOutpost.add(spinner);
+        JSpinner spinnerItemQuantity = new JSpinner(model);
+        spinnerItemQuantity.setBackground(Color.DARK_GRAY);
+        spinnerItemQuantity.setBounds(selected_x, 413, 66, 45);
+        VisitOutpost.add(spinnerItemQuantity);
 
         JLabel lblSelecteditem = new JLabel("");
         lblSelecteditem.setForeground(Color.GRAY);
@@ -1348,7 +1348,7 @@ public class CommandCenter {
                 String itemQuery = itemNames.getText();
                 if (itemQuery.equals(""))
                     return;
-                int amount = (Integer) spinner.getValue();
+                int amount = (Integer) spinnerItemQuantity.getValue();
                 cart.addItemToShoppingCart(amount + "x" + itemQuery);
             }
         });
@@ -1360,16 +1360,16 @@ public class CommandCenter {
         /// SELECTED ITEM END
 
         // SEPARATOR IN THE MIDDLE
-        JSeparator separator = new JSeparator();
-        separator.setForeground(Color.DARK_GRAY);
-        separator.setOrientation(SwingConstants.VERTICAL);
-        separator.setBounds(564, 26, 18, 554);
-        VisitOutpost.add(separator);
+        JSeparator separatorHorizontal = new JSeparator();
+        separatorHorizontal.setForeground(Color.DARK_GRAY);
+        separatorHorizontal.setOrientation(SwingConstants.VERTICAL);
+        separatorHorizontal.setBounds(564, 26, 18, 554);
+        VisitOutpost.add(separatorHorizontal);
 
-        JSeparator separator_1 = new JSeparator();
-        separator_1.setForeground(Color.DARK_GRAY);
-        separator_1.setBounds(shopping_x, 310, 383, 2);
-        VisitOutpost.add(separator_1);
+        JSeparator separatorVertical = new JSeparator();
+        separatorVertical.setForeground(Color.DARK_GRAY);
+        separatorVertical.setBounds(shopping_x, 310, 383, 2);
+        VisitOutpost.add(separatorVertical);
 
         // INVENTORY ITEM START
         // INVENTORY ITEM START
@@ -1430,25 +1430,25 @@ public class CommandCenter {
         endDayButton.setBounds(860, bottomPanel_y + 30, 114, 25);
         frmCommandCenter.getContentPane().add(endDayButton);
 
-        JLabel lblShipPiecesFound = new JLabel("Ship Pieces Found:");
-        lblShipPiecesFound.setForeground(Color.LIGHT_GRAY);
-        lblShipPiecesFound.setFont(footerGameStateFont);
-        lblShipPiecesFound.setBounds(bottomPanel_x, bottomPanel_y, 136, 25);
-        frmCommandCenter.getContentPane().add(lblShipPiecesFound);
+        JLabel lblShipPiece = new JLabel("Ship Pieces Found:");
+        lblShipPiece.setForeground(Color.LIGHT_GRAY);
+        lblShipPiece.setFont(footerGameStateFont);
+        lblShipPiece.setBounds(bottomPanel_x, bottomPanel_y, 136, 25);
+        frmCommandCenter.getContentPane().add(lblShipPiece);
 
-        JLabel lblX = new JLabel("x");
-        lblX.setForeground(Color.LIGHT_GRAY);
-        lblX.setFont(footerGameStateFont);
-        lblX.setText("0");
-        lblX.setBounds(bottomPanelCol2_x, bottomPanel_y, 55, 25);
-        frmCommandCenter.getContentPane().add(lblX);
-        currShipPieces = lblX;
+        JLabel lblFoundPieces = new JLabel("x");
+        lblFoundPieces.setForeground(Color.LIGHT_GRAY);
+        lblFoundPieces.setFont(footerGameStateFont);
+        lblFoundPieces.setText("0");
+        lblFoundPieces.setBounds(bottomPanelCol2_x, bottomPanel_y, 55, 25);
+        frmCommandCenter.getContentPane().add(lblFoundPieces);
+        currShipPieces = lblFoundPieces;
 
-        JLabel lblOutOf = new JLabel("out of");
-        lblOutOf.setForeground(Color.LIGHT_GRAY);
-        lblOutOf.setFont(footerGameStateFont);
-        lblOutOf.setBounds(bottomPanelCol2_x + 25, bottomPanel_y, 55, 25);
-        frmCommandCenter.getContentPane().add(lblOutOf);
+        JLabel lblPieceOutOf = new JLabel("out of");
+        lblPieceOutOf.setForeground(Color.LIGHT_GRAY);
+        lblPieceOutOf.setFont(footerGameStateFont);
+        lblPieceOutOf.setBounds(bottomPanelCol2_x + 25, bottomPanel_y, 55, 25);
+        frmCommandCenter.getContentPane().add(lblPieceOutOf);
 
         JLabel lblTotalShipPieces = new JLabel("y");
         lblTotalShipPieces.setForeground(Color.LIGHT_GRAY);
@@ -1471,11 +1471,11 @@ public class CommandCenter {
         frmCommandCenter.getContentPane().add(lblCurrentDayCount);
         currDay = lblCurrentDayCount;
 
-        JLabel label_9 = new JLabel("out of");
-        label_9.setForeground(Color.LIGHT_GRAY);
-        label_9.setBounds(bottomPanelCol2_x + 25, bottomPanel_y + 30, 55, 25);
-        label_9.setFont(footerGameStateFont);
-        frmCommandCenter.getContentPane().add(label_9);
+        JLabel lblDayOutOf = new JLabel("out of");
+        lblDayOutOf.setForeground(Color.LIGHT_GRAY);
+        lblDayOutOf.setBounds(bottomPanelCol2_x + 25, bottomPanel_y + 30, 55, 25);
+        lblDayOutOf.setFont(footerGameStateFont);
+        frmCommandCenter.getContentPane().add(lblDayOutOf);
 
         JLabel lblGameLengthTotal = new JLabel("y");
         lblGameLengthTotal.setForeground(Color.LIGHT_GRAY);

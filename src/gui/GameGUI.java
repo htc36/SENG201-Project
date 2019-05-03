@@ -24,7 +24,7 @@ public class GameGUI {
         engine = new GameEngine();
         gameEnv = GraphicsEnvironment.getLocalGraphicsEnvironment();
         try {
-        	URL fontPath = getClass().getResource("/font/Karumbi.ttf");
+        	URL fontPath = GameGUI.class.getResource("/font/Karumbi.ttf");
             gameEnv.registerFont(Font.createFont(Font.TRUETYPE_FONT, fontPath.openStream()));
 
             fontPath = getClass().getResource("/font/Quantico-Regular.ttf");
