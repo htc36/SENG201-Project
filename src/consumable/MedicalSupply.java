@@ -19,8 +19,8 @@ public class MedicalSupply extends Consumable {
     }
 
     /**
-     * @return boolean true if it can heal space plague, 
-     * false otherwise
+     * Returns if the item can heal space plague
+     * @return boolean true if it can, false otherwise
      */
     public boolean canHealSpacePlague() {
         return healsSpacePlague;
@@ -28,7 +28,7 @@ public class MedicalSupply extends Consumable {
 
     /**
      * Returns the stats of a consumable as ArrayList of String
-     * @return ArrayList<String> Status of consumable
+     * @return ArrayList Status of consumable
      */
     public ArrayList<String> getConsumableStats() {
         ArrayList<String> template = super.getConsumableStats();

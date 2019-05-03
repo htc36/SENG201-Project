@@ -1,4 +1,4 @@
-package random_events;
+package events;
 
 import crew.Crew;
 import unit.Spaceship;

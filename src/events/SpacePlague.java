@@ -1,4 +1,4 @@
-package random_events;
+package events;
 
 import java.util.ArrayList;
 import java.util.Random;

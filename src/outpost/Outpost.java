@@ -114,7 +114,7 @@ public class Outpost {
 
     /**
      * Returns the current state of player's shopping bag
-     * @return TreeMap<String,Integer> current state of player's shopping bag
+     * @return TreeMap current state of player's shopping bag
      */
     public TreeMap<String, Integer> getShoppingBagStatus() {
         TreeMap<String, Integer> template = new TreeMap<>();

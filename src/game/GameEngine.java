@@ -7,9 +7,9 @@ import java.util.TreeMap;
 
 import consumable.*;
 import crew.Crew;
+import events.*;
 import outpost.Outpost;
 import planet.Planet;
-import random_events.*;
 import unit.*;
 
 // Use JSON Simple to write save files
@@ -162,7 +162,7 @@ public class GameEngine {
 
     /**
      * Returns the list of items the crew has
-     * @return ArrayList<ArrayList<String>> List of items owned by the crew
+     * @return ArrayList List of items owned by the crew
      */
     public ArrayList<ArrayList<String>> getCrewConsumables() {
         TreeMap<Consumable, Integer> crewItems = crew.getConsumables();
@@ -328,7 +328,7 @@ public class GameEngine {
 
     /**
      * Remove a crew member from the crew members list
-     * @param c The crew member to be removed
+     * @param name The crew member to be removed
      */
     public void removeCrewMember(String name) throws CrewMemberNotFoundException {
         CrewMember toBeRemoved = null;
@@ -382,7 +382,7 @@ public class GameEngine {
 
     /**
      * Returns the current status of the crew members
-     * @return ArrayList<ArrayList<String>> List of crew member current stats
+     * @return ArrayList List of crew member current stats
      */
     public ArrayList<ArrayList<String>> getCrewMemberStatus() {
         return crew.getCrewMemberStatus();
@@ -686,7 +686,7 @@ public class GameEngine {
 
     /**
      * Returns the list of items that are currently in sale on the outpost
-     * @return ArrayList<ArrayList<String>> List of items on sale
+     * @return ArrayList List of items on sale
      */
     public ArrayList<ArrayList<String>> getOutpostSaleProducts() {
         return outpost.getSaleProducts();
