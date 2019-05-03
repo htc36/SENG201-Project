@@ -232,6 +232,8 @@ public class CommandCenter {
      * Updates the crew statuses and end of each day and after any actions
      */
     private void refreshCrewStatusPage() {
+    	ArrayList<String> hungryCrews = new ArrayList<>();
+    	ArrayList<String> tiredCrews = new ArrayList<>();
         String crewNames = "<html>";
         String crewTypes = "<html>";
         String crewHealth = "<html>";
@@ -288,12 +290,16 @@ public class CommandCenter {
 
             String hunger = member.get(4);
             crewHunger += hunger;
+            if (Integer.valueOf(hunger) >= 80)
+            	hungryCrews.add(name);
             for (int i = 0; i < numNewlines; i++) {
                 crewHunger += "<br>";
             }
 
             String fatigue = member.get(5);
             crewFatigue += fatigue;
+            if (Integer.valueOf(fatigue) >= 80)
+            	tiredCrews.add(name);
             for (int i = 0; i < numNewlines; i++) {
                 crewFatigue += "<br>";
             }
@@ -324,6 +330,24 @@ public class CommandCenter {
         this.crewHungers.setText(crewHunger);
         this.crewFatigues.setText(crewFatigue);
         this.crewActions.setText(crewActions);
+        String template = ""; 
+
+        if (!tiredCrews.isEmpty()) {
+        	template = "The following crew members are extremely tired:\n";
+        	template += String.join(", ", tiredCrews) + "\n\n";
+        }        
+        if (!hungryCrews.isEmpty()) {
+        	template += "The following crew members are extremely hungry:\n";
+        	template += String.join(", ", hungryCrews) + "\n\n";
+        }
+
+        if (!hungryCrews.isEmpty() || !tiredCrews.isEmpty()) {
+        	template += "Warning: These crew members will now receive excessive damage";
+        	JOptionPane.showMessageDialog(new JFrame(), template);
+
+        }
+        
+
     }
 
     /**
@@ -454,8 +478,14 @@ public class CommandCenter {
                         engine.selectedCrewUseItem(consumables.indexOf(item));
                         String selectedCrewName = engine.selectedCrewName();
                         String template = "";
-                        template += selectedCrewName + " consumed a " + itemName + ". ";
-                        template += "Their health has been increased by " + item.get(2) + ". ";
+                        template += selectedCrewName + " consumed a " + itemName + "\n";
+                        template += "Their health has been increased by " + item.get(2) + "\n";
+                        if (item.get(3).equals("[Food]")) 
+                        	template += "Their hunger has decreased by " + item.get(4);
+                        else 
+                        	if (item.get(4).equals("T"))
+                        		template += "They have been cured of Space Plague";
+
                         JOptionPane.showMessageDialog(new JFrame(), template);
                     } catch (InsufficientActionException err) {
                         JOptionPane.showMessageDialog(new JFrame(), err.getMessage());
@@ -836,7 +866,7 @@ public class CommandCenter {
                         // found nothing
                     } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
                         String itemName = engine.crewGetRandomItem();
-                    	template += "The following item has been found:" + itemName;
+                    	template += "The following item has been found: " + itemName;
                     } else { // 50% chance it's money
                     	template += "$45 has been found, this will update the coffers";
                         engine.crewAddMoney();
