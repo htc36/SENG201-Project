@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"consumable"},{"l":"crew"},{"l":"game"},{"l":"gui"},{"l":"outpost"},{"l":"planet"},{"l":"random_events"},{"l":"unit"}]
+packageSearchIndex = [{"l":"consumable"},{"l":"crew"},{"l":"events"},{"l":"game"},{"l":"gui"},{"l":"outpost"},{"l":"planet"},{"l":"unit"}]
