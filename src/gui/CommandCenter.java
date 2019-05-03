@@ -42,43 +42,161 @@ import javax.swing.JMenuItem;
 
 public class CommandCenter {
 
+    /**
+     * The main frame holding all the stuff in command center
+     */
     private JFrame frmCommandCenter;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine engine;
+
+    /**
+     * The game GUI manager
+     */
     private GameGUI game;
+
+    /**
+     * Total found ship pieces so far
+     */
     private JLabel currShipPieces;
+
+    /**
+     * Count of current day
+     */
     private JLabel currDay;
+
+    /**
+     * Health of the spaceship
+     */
     private JProgressBar spaceshipHealth;
 
+    /**
+     * Label showing all the crew names
+     */
     private JLabel crewNames;
+
+    /**
+     * Label showing all the crew types
+     */
     private JLabel crewTypes;
+
+    /**
+     * Label showing all the crew healths
+     */
     private JLabel crewHealths;
+
+    /**
+     * Label showing all the crew luck stat
+     */
     private JLabel crewLucks;
+
+    /**
+     * Label showing all the crew sickness status
+     */
     private JLabel crewPlagues;
+
+    /**
+     * Label showing all the crew hunger
+     */
     private JLabel crewHungers;
+
+    /**
+     * Label showing all the crew fatigue level
+     */
     private JLabel crewFatigues;
+
+    /**
+     * Label showing all the crew number of actions left
+     */
     private JLabel crewActions;
 
+    /**
+     * Label showing item name when button of item is clicked
+     */
     private JLabel itemNames;
+
+    /**
+     * Label showing item type when button of item is clicked
+     */
     private JLabel itemTypes;
+
+    /**
+     * Label showing item healing stat when button of item is clicked
+     */
     private JLabel itemHealings;
+
+    /**
+     * Label showing item price when button of item is clicked
+     */
     private JLabel itemPrices;
+
+    /**
+     * Label showing item cure space plague stat when button of item is clicked
+     */
     private JLabel itemCures;
+
+    /**
+     * Label showing item reduce hunger stat when button of item is clicked
+     */
     private JLabel itemFills;
 
+
+    /**
+     * Label showing currently selected item
+     */
     private JLabel selectedItem;
+
+    /**
+     * Crew's shopping cart
+     */
     private ShoppingCart cart;
+
+    /**
+     * Crew's shopping cart's total price
+     */
     private JLabel cartPrice;
 
+    /**
+     * Total current money the crew has
+     */
     private JLabel currMoney;
+
+    /**
+     * All of the items in crew's inventory
+     */
     private JLabel currInventory;
 
+    /**
+     * List of selected crew members, maximum is 2
+     */
     private ArrayList<Integer> selectedCrews;
+    
+    /**
+     * List of buttons to specify which crew member to take action next
+     */
     private ArrayList<JToggleButton> crewButtons;
+    
+    /**
+     * List of names to complement the buttons showing crew members
+     * in the commit action page
+     */
     private ArrayList<JLabel> crewLabels;
 
+    /**
+     * Label showing whether the planet has a ship piece
+     */
     private JLabel radarPlanetStatus;
 
+    /** 
+     * List of previously dead crew members
+     */
 	private ArrayList<String> prevDead;
+	
+	/**
+	 * Label showing splash image of the hovered action in commit action page
+	 */
     private JLabel infoBox;
 
     /**
@@ -166,7 +284,7 @@ public class CommandCenter {
     }
 
     /**
-     * gets description of item on the vist outpost page
+     * gets description of item on the visit outpost page
      * @param itemName name of item 
      */
     private void getItemDescription(String itemName) {

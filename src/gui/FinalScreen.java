@@ -10,8 +10,19 @@ import java.awt.Color;
 
 public class FinalScreen {
 
+    /**
+     * Main frame that holds everything inside the final screen
+     */
     private JFrame frame;
+
+    /**
+     * The gui manager
+     */
     private GameGUI game;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine engine;
 
     /**

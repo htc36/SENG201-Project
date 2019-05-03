@@ -13,7 +13,14 @@ import crew.InsufficientItemInStock;
 import game.InsufficientFundException;
 
 public class Game {
+    /**
+     * Scanner object to read input from user
+     */
     private Scanner reader;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine g;
 
     /**

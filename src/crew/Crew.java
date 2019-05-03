@@ -11,12 +11,34 @@ import unit.CrewMemberNotFoundException;
 import unit.Spaceship;
 
 public class Crew {
+    /**
+     * Map of crew's consumables and their count
+     */
     private TreeMap<Consumable, Integer> consumables;
+    
+    /**
+     * List of crew's consumables name
+     */
     private ArrayList<String> consumablesList;
+    
+    /**
+     * Name of item lost from the last alien pirates
+     */
     private String lostItem;
 
+    /**
+     * Number of money the crew has
+     */
     private int money;
+    
+    /*
+     * List of crew members in the crew
+     */
     private ArrayList<CrewMember> crewMembers;
+    
+    /**
+     * Crew's spaceship
+     */
     private Spaceship ship;
 
     /**

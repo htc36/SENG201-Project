@@ -5,8 +5,17 @@ import java.util.ArrayList;
 
 public class Consumable implements Comparable<Consumable> {
 
+    /**
+     * The price of the consumable
+     */
     private int price;
+    /**
+     * The healing amount of the consumable
+     */
     private int healingAmount;
+    /**
+     * The name of the consumable
+     */
     private String name;
 
     /**

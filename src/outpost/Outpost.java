@@ -9,9 +9,25 @@ import java.util.TreeSet;
 import consumable.Consumable;
 
 public class Outpost {
+    
+    /**
+     * List of consumables sold by this outpost
+     */
     private Consumable[] consumables;
+    
+    /**
+     * Map mapping from item name to consumable object in the consumables list
+     */
     private TreeMap<String, Consumable> conMap;
+    
+    /**
+     * List of item names in the crew's shopping bag
+     */
     private ArrayList<String> shoppingBag;
+    
+    /**
+     * Total price of items inside crew's shopping bag
+     */
     private int totalPrice;
 
     /**

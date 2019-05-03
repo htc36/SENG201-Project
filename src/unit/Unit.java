@@ -1,7 +1,15 @@
 package unit;
 
 public class Unit {
+    
+    /**
+     * Health of the unit
+     */
     private int health;
+    
+    /**
+     * Name of the unit
+     */
     private String name;
 
     /**

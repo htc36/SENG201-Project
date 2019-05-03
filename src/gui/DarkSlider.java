@@ -13,8 +13,10 @@ import javax.swing.plaf.basic.BasicSliderUI;
 
 public class DarkSlider extends BasicSliderUI {
 
+    /**
+     * https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/BasicStroke.html
+     */
     private BasicStroke stroke = new BasicStroke(1f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0f, new float[]{1f, 2f}, 0f);
-
 
     /**
      * Constructs dark slider

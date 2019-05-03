@@ -13,7 +13,14 @@ import javax.swing.UIManager;
 
 public class StrandeD {
 
+    /**
+     * Main frame that holds everything in this main screen
+     */
     private JFrame frmWelcomeScreen;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameGUI game;
 
     /**

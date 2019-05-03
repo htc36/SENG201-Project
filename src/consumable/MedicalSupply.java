@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class MedicalSupply extends Consumable {
 
+    /**
+     * Can the medical supply heal space plague
+     */
     private boolean healsSpacePlague;
 
     /**

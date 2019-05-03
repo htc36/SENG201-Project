@@ -2,7 +2,15 @@ package planet;
 
 public class Planet {
 
+    
+    /**
+     * Name of the planet
+     */
     private String name;
+    
+    /**
+     * Whether the planet as a ship piece or not
+     */
     private boolean hasShipPieces;
 
     /**

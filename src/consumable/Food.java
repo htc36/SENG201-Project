@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Food extends Consumable {
 
+    /**
+     * The amount of hunger it reduces
+     */
     private int fillStomach;
 
     /**

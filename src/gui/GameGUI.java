@@ -14,7 +14,14 @@ import game.GameEngine;
 
 public class GameGUI {
 
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine engine;
+    
+    /**
+     * Used for importing fonts that will be used throughout the game
+     */
     private GraphicsEnvironment gameEnv;
 
     /**

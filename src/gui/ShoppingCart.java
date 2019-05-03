@@ -16,14 +16,50 @@ import game.InsufficientFundException;
 
 public class ShoppingCart {
 
+    /**
+     * The panel shopping cart will draw on
+     */
     private JPanel panel;
+    
+    /**
+     * Label showing the total price of the cart
+     */
     private JLabel priceLabel;
+    
+    /**
+     * List of checkboxes showing all the items in 
+     * the shopping cart
+     */
     private ArrayList<JCheckBox> checkboxes;
+    
+    /**
+     * X axis of the shopping cart location
+     */
     private int x;
+    
+    /**
+     * Y axis of the shopping cart location
+     */
     private int y;
-    private int checkboxSpacing = 3;
-    private int checkboxHeight = 23;
-    private int checkboxWidth = 120;
+    
+    /**
+     * Spacing between each item in the shopping cart
+     */
+    private final int checkboxSpacing = 3;
+    
+    /**
+     * Height of each item in the shopping cart
+     */
+    private final int checkboxHeight = 23;
+    
+    /**
+     * Width of each item in the shopping cart
+     */
+    private final int checkboxWidth = 120;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine engine;
 
     /**

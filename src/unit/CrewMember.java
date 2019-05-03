@@ -9,10 +9,31 @@ import consumable.MedicalSupply;
 
 public abstract class CrewMember extends Unit {
 
+    /**
+     * Current hunger level of a crew member
+     */
     private int hungerLevel;
+
+    /**
+     * Current fatigue level of a crew member
+     */
     private int fatiqueLevel;
+
+    /**
+     * Luck stat of a crew member
+     * The higher it is, the more chance it has of 
+     * finding a ship piece
+     */
     private int luck;
+
+    /**
+     * Number of actions left
+     */
     private int actions;
+
+    /**
+     * Whether it has space plague
+     */
     private boolean hasPlague;
 
     /**

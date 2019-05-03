@@ -29,16 +29,60 @@ import java.awt.SystemColor;
 
 public class SetupScreen {
 
+    /**
+     * Main frame that holds all the things in Setup Screen
+     */
     private JFrame frmCrewSetup;
+    
+    /**
+     * Text field where player can input their spaceship name
+     */
     private JTextField spaceshipName;
+
+    /**
+     * Text field where player can input their crew members name
+     */
     private JTextField crewMemberName;
+
+    /**
+     * Engine that runs and keeps track of the game state
+     */
     private GameEngine engine;
+
+    /**
+     * List of crew members and their type
+     */
     private ArrayList<String[]> crewList;
+
+    /**
+     * List of labels showing added crew members icons
+     */
     private List<JLabel> iconsList;
+
+    /**
+     * List of labels showing added crew members names 
+     * to complement the icon
+     */
     private List<JLabel> namesList;
+
+    /**
+     * Label showing the crew member type
+     */
     private JLabel typeLabel;
+
+    /**
+     * Label showing crew member type description
+     */
     private JLabel descLabel;
+
+    /**
+     * Label showing number of ship pieces the crew has to find
+     */
     private JLabel numShipPieces;
+
+    /**
+     * The gui manager
+     */
     private GameGUI game;
 
     /**

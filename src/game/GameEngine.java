@@ -28,18 +28,69 @@ import java.io.IOException;
 
 public class GameEngine {
 
+    /**
+     * Length of the game
+     */
     private int gameLength;
+
+    /**
+     * Number of ship pieces in total
+     */
     private int shipPieces;
+
+    /**
+     * List of possible crew member types
+     */
     private ArrayList<String> crewMemberTypes;
+
+    /**
+     * List of crew's crew members
+     */
     private ArrayList<CrewMember> crewMembers;
+
+    /**
+     * Crew's spaceship
+     */
     private Spaceship ship;
+
+    /**
+     * The crew
+     */
     private Crew crew;
+
+    /**
+     * Outpost where crew can buy stuff
+     */
     private Outpost outpost;
+
+    /**
+     * Count of current day
+     */
     private int currDay;
+
+    /**
+     * List of planets that can be travelled to
+     */
     private ArrayList<Planet> planets;
+
+    /**
+     * Current position in the galaxy
+     */
     private int currentPlanetIndex;
+
+    /**
+     * Number of ship pieces found by the crew
+     */
     private int foundShipPieces;
+
+    /**
+     * Current crew member that is ready to commit an action
+     */
     private CrewMember selectedCrew;
+
+    /**
+     * The copilot if the crew is going to another planet
+     */
     private CrewMember copilot;
 
     /**
