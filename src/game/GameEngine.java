@@ -556,6 +556,13 @@ public class GameEngine {
     }
 
     /**
+     * Kills the selected crew member, useful for testing
+     */
+    public void selectedCrewKill() {
+        selectedCrew.setHealth(0);
+    }
+
+    /**
      * Sets the copilot to pilot the spaceship to another planet
      * @param index index of the copilot in the crew list
      */
@@ -590,7 +597,7 @@ public class GameEngine {
     }
 
     /**
-     * Selected crew and copilot pilots th ship to another planet
+     * Selected crew and copilot pilots the ship to another planet
      */
     public void selectedCrewPilotSpaceship() {
         selectedCrew.pilotShip(copilot);
