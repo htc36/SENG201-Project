@@ -218,10 +218,27 @@ public class GameEngineTest {
                 else
                     assertEquals(2, engine.getCrewConsumables().size());
             } else { // 50% chance it's money
+                System.out.println("Found money");
                 engine.crewAddMoney();
                 assertEquals(145, engine.getCrewMoney());
             }
         }
+    }
+
+    @Test
+    void shoppingBagPriceTest() {
+        engine.addItemToShoppingBag("7xBrownie");
+        assertEquals(true, engine.isShoppingBagTooExpensive());
+        engine.removeItemFromShoppingBag("Brownie");
+        assertEquals(false, engine.isShoppingBagTooExpensive());
+    }
+    
+    @Test
+    void outpostItemNameTest() {
+        assertEquals(false, engine.hasOutpostStock("$3Rice"));
+        assertEquals(true, engine.hasOutpostStock("Vaccine"));
+        assertEquals(false, engine.hasOutpostStock("VAccine"));
+        assertEquals(true, engine.hasOutpostStock("Brownie"));
     }
     
 }
