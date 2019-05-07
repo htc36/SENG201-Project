@@ -175,5 +175,26 @@ public class GameEngineTest {
         assertEquals("Hotbot", engine.getCrewConsumables().get(1).get(0));
         assertEquals("Vaccine", engine.getCrewConsumables().get(2).get(0));
     }
-
+    
+    @Test
+    void curePlagueTest() {
+        int randomEvent = engine.getRandomEvent();
+        switch(randomEvent) {
+        case 0:
+            String crewOneHealth = engine.getCrewMemberStatus().get(0).get(1);
+            assertEquals("95", crewOneHealth);
+            String crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
+            assertEquals("T", crewOneSick);
+            engine.selectCrewMember(0);
+            engine.selectedCrewUseItem(0);
+            crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
+            assertEquals("F", crewOneSick);
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        }
+    }
+    
 }
