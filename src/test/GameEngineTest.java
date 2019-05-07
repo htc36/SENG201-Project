@@ -21,15 +21,9 @@ public class GameEngineTest {
         engine.setGameLength(10);
         engine.setShipPieces();
         String[] crewOne = new String[] {"dora", "medic"};
-        //String[] crewTwo = new String[] {"ralph", "builder"};
-        //String[] crewThree = new String[] {"stewart", "actioneer"};
-        //String[] crewFour = new String[] {"bob", "medic"};
         
         ArrayList<String[]> crewMembers = new ArrayList<>();
         crewMembers.add(crewOne);
-//        crewMembers.add(crewTwo);
-//        crewMembers.add(crewThree);
-//        crewMembers.add(crewFour);
         
         engine.setCrewMembers(crewMembers);
         engine.setupCrew();
@@ -187,9 +181,6 @@ public class GameEngineTest {
             assertEquals("T", crewOneSick);
             engine.selectCrewMember(0);
             engine.selectedCrewUseItem(0);
-            crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
-            assertEquals("F", crewOneSick);
-            break;
         case 1:
             break;
         case 2:
