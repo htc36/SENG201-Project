@@ -205,7 +205,23 @@ public class GameEngineTest {
             assertEquals(false, engine.planetHasShipPieces());
             // and increments the number of ship piece by one
             assertEquals(1, engine.getFoundShipPieces());
-        } 
+        } else {
+            if (engine.unlucky(20)) { // 20% of finding nothing
+                System.out.println("Found nothing");
+                //
+            } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
+                assertEquals(1, engine.getCrewConsumables().size());
+                System.out.println("Found random item");
+                String randomItem = engine.crewGetRandomItem();
+                if (randomItem.equals("Vaccine"))
+                    assertEquals(1, engine.getCrewConsumables().size());
+                else
+                    assertEquals(2, engine.getCrewConsumables().size());
+            } else { // 50% chance it's money
+                engine.crewAddMoney();
+                assertEquals(145, engine.getCrewMoney());
+            }
+        }
     }
     
 }
