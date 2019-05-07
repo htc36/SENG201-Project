@@ -298,10 +298,10 @@ public abstract class CrewMember extends Unit {
      */
     @Override
     public void reduceHealth(int amount){
-        if (hungerLevel > 50 || fatiqueLevel > 50)
-            super.reduceHealth(amount * 2);
-        else if (hungerLevel > 80 || fatiqueLevel > 80)
+        if (hungerLevel > 80 || fatiqueLevel > 80)
             super.reduceHealth(amount * 3);
+        else if (hungerLevel > 50 || fatiqueLevel > 50)
+            super.reduceHealth(amount * 2);
         else
             super.reduceHealth(amount);
     }
