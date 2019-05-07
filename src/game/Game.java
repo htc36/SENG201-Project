@@ -666,7 +666,7 @@ public class Game {
 
     /**
      * Set the crew members
-     * @param crewString string describing the crew members
+     * @param ArrayList list of strings describing the crew members
      */
     public void setCrewMembers(ArrayList<String[]> crewString) {
         g.setCrewMembers(crewString);
