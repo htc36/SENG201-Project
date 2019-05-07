@@ -17,23 +17,32 @@ public class GameEngineTest {
     @BeforeEach
     void setup() {
         engine = new GameEngine();
+        // set spaceship name
         engine.setupSpaceship("X-WING");
+        // set game length to 10 days
         engine.setGameLength(10);
         engine.setShipPieces();
+
         String[] crewOne = new String[] {"dora", "medic"};
         
         ArrayList<String[]> crewMembers = new ArrayList<>();
         crewMembers.add(crewOne);
         
+        // add crew members
         engine.setCrewMembers(crewMembers);
         engine.setupCrew();
+        
+        // add 1 vaccine to crew's inventory
         Consumable vaccine = new Vaccine();
         engine.addCrewConsumable(vaccine);
+        
+        // setup the planets
         engine.setupPlanets();
     }
     
     @Test
     void totalShipPieceTest() {
+        // floor(2/3 * 10) should be 6
         assertEquals(6, engine.getShipPieces());
     }
     
@@ -48,8 +57,10 @@ public class GameEngineTest {
         engine.selectCrewMember(0);
         engine.selectedCrewSleep();
         engine.selectedCrewSleep();
+        // should not have actions left after doing 2 actions
         assertEquals(false, engine.selectedCrewHasAction());
         engine.endDay();
+        // actions should be refreshed after ending the day
         assertEquals(true, engine.selectedCrewHasAction());
     }
 
@@ -58,15 +69,18 @@ public class GameEngineTest {
         int randomEvent = engine.getRandomEvent();
         switch(randomEvent) {
         case 0:
+            // test for space plague
             String crewOneHealth = engine.getCrewMemberStatus().get(0).get(1);
             assertEquals("95", crewOneHealth);
             ArrayList<String> sickCrews = engine.getSickCrew();
             assertEquals("DORA", sickCrews.get(0));
             break;
         case 1:
+            // test for alien pirates
             assertEquals("Vaccine", engine.getCrewLostItem());
             break;
         case 2:
+            // nothing happens
             break;
         }
     }
@@ -132,6 +146,7 @@ public class GameEngineTest {
     
     @Test
     void crewPilotTest() {
+        // add 2 crew members so we can pilot the spaceship
         String[] crewOne = new String[] {"dora", "medic"};
         String[] crewTwo = new String[] {"ralph", "builder"};
         
@@ -147,6 +162,7 @@ public class GameEngineTest {
         engine.setCopilot(1);
         String currPlanetName = engine.getPlanetName();
         engine.selectedCrewPilotSpaceship();
+        // checks if the current planet is not the same as the previous one
         assertEquals(false, currPlanetName.equals(engine.getPlanetName()));
     }
     
@@ -175,6 +191,7 @@ public class GameEngineTest {
         int randomEvent = engine.getRandomEvent();
         switch(randomEvent) {
         case 0:
+            // test curing plague with vaccine
             System.out.println("Testing Cure Plague");
             String crewOneHealth = engine.getCrewMemberStatus().get(0).get(1);
             assertEquals("95", crewOneHealth);
@@ -182,6 +199,8 @@ public class GameEngineTest {
             assertEquals("T", crewOneSick);
             engine.selectCrewMember(0);
             engine.selectedCrewUseItem(0);
+            crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
+            assertEquals("F", crewOneSick);
         case 1:
             break;
         case 2:
@@ -228,16 +247,21 @@ public class GameEngineTest {
     @Test
     void shoppingBagPriceTest() {
         engine.addItemToShoppingBag("7xBrownie");
+        // should not have enough money to buy these
         assertEquals(true, engine.isShoppingBagTooExpensive());
         engine.removeItemFromShoppingBag("Brownie");
+        // should not have enough money to buy these
         assertEquals(false, engine.isShoppingBagTooExpensive());
     }
     
     @Test
     void outpostItemNameTest() {
+        // outpost should not have these items
         assertEquals(false, engine.hasOutpostStock("$3Rice"));
-        assertEquals(true, engine.hasOutpostStock("Vaccine"));
         assertEquals(false, engine.hasOutpostStock("VAccine"));
+        
+        // but should have these
+        assertEquals(true, engine.hasOutpostStock("Vaccine"));
         assertEquals(true, engine.hasOutpostStock("Brownie"));
     }
     
