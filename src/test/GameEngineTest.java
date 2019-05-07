@@ -78,15 +78,18 @@ public class GameEngineTest {
     }
     
     @Test
-    void foundAllPiecesTest() {
+    void gameEndsTest() {
         // game should end when all pieces are found
         engine.setFoundShipPieces(6);
         assertEquals(true, engine.hasGameEnded());
         
         // game should end when no more days left
         engine.setFoundShipPieces(0);
+        
+        // game should not end on the last day
         engine.setCurrDay(10);
         assertEquals(false, engine.hasGameEnded());
+        // but should end on the day after
         engine.endDay();
         assertEquals(true, engine.hasGameEnded());
         engine.setCurrDay(1);
@@ -151,6 +154,26 @@ public class GameEngineTest {
         String currPlanetName = engine.getPlanetName();
         engine.selectedCrewPilotSpaceship();
         assertEquals(false, currPlanetName.equals(engine.getPlanetName()));
+    }
+    
+    @Test
+    void crewShoppingTest() {
+        // add enough money to do some shopping spree
+        engine.crewAddMoney();
+        engine.crewAddMoney();
+        engine.crewAddMoney();
+        engine.crewAddMoney();
+
+        engine.addItemToShoppingBag("1xBrownie");
+        engine.addItemToShoppingBag("1xHotbot");
+        engine.purchaseItems(engine.getShoppingBag());
+        // make sure all items are added to crew's inventory
+        assertEquals(3, engine.getCrewConsumables().size());
+        
+        // make sure they are sorted by item name
+        assertEquals("Brownie", engine.getCrewConsumables().get(0).get(0));
+        assertEquals("Hotbot", engine.getCrewConsumables().get(1).get(0));
+        assertEquals("Vaccine", engine.getCrewConsumables().get(2).get(0));
     }
 
 }
