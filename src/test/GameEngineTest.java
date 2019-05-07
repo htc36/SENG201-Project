@@ -175,6 +175,7 @@ public class GameEngineTest {
         int randomEvent = engine.getRandomEvent();
         switch(randomEvent) {
         case 0:
+            System.out.println("Testing Cure Plague");
             String crewOneHealth = engine.getCrewMemberStatus().get(0).get(1);
             assertEquals("95", crewOneHealth);
             String crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
@@ -186,6 +187,25 @@ public class GameEngineTest {
         case 2:
             break;
         }
+    }
+    
+    @Test
+    void crewSearchPlanetTest() {
+        // crew should start on planet with a ship piece
+        assertEquals(true, engine.planetHasShipPieces());
+        engine.selectCrewMember(0);
+        
+        boolean foundPieces = engine.selectedCrewSearchPlanet();
+
+        if (foundPieces) {
+            System.out.println("Found ship piece");
+            engine.incrementFoundShipPieces();
+            engine.planetExtractShipPieces();
+            // the ship piece should now be gone
+            assertEquals(false, engine.planetHasShipPieces());
+            // and increments the number of ship piece by one
+            assertEquals(1, engine.getFoundShipPieces());
+        } 
     }
     
 }
