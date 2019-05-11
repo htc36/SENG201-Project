@@ -145,6 +145,12 @@ public class GameEngineTest {
     }
     
     @Test
+    void finalScoreTest() {
+        int finalScore = engine.getFinalScore();
+        assertEquals(90000, finalScore);
+    }
+    
+    @Test
     void crewPilotTest() {
         // add 2 crew members so we can pilot the spaceship
         String[] crewOne = new String[] {"dora", "medic"};
@@ -178,7 +184,7 @@ public class GameEngineTest {
         engine.addItemToShoppingBag("1xHotbot");
         engine.purchaseItems(engine.getShoppingBag());
         // make sure all items are added to crew's inventory
-        assertEquals(3, engine.getCrewConsumables().size());
+        assertEquals(3, engine.getCrewConsumablesCount());
         
         // make sure they are sorted by item name
         assertEquals("Brownie", engine.getCrewConsumables().get(0).get(0));
