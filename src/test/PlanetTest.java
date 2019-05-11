@@ -31,5 +31,15 @@ class PlanetTest {
 		assertEquals(true, p3.stillHasShipPieces());
 	}
 	
+	@Test
+	public void planetStringTest() {
+	    assertEquals("Mercury false", p1.toString());
+	}
+
+	@Test
+	public void planetGetNameTest() {
+	    assertEquals("Mercury", p1.getName());
+	}
+	
 	
 }
