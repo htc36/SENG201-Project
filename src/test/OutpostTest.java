@@ -2,6 +2,10 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +18,7 @@ class OutpostTest {
     private int totalPrice;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         Food f1 = new Brownie();
         Food f2 = new Dumplings();
         Food f3 = new FriedRice();
@@ -34,7 +38,7 @@ class OutpostTest {
     }
 
     @Test
-    public void shoppingBagPriceTest() {
+    void shoppingBagPriceTest() {
         // now lets try putting stuff to the shopping bag
         for (String item : o.getConsumableMap().keySet()) {
             o.addItemToShoppingBag(item);
@@ -44,15 +48,85 @@ class OutpostTest {
     }
     
     @Test
-    public void clearShoppingBagTest() {
+    void clearShoppingBagTest() {
         // now lets try putting stuff to the shopping bag
         for (String item : o.getConsumableMap().keySet()) {
             o.addItemToShoppingBag(item);
         }
         
+        assertEquals(true, o.hasItemInShoppingBag("Vaccine"));
+        assertEquals(true, o.hasItemInShoppingBag("PolyJuice"));
+        
+        o.removeItemFromShoppingBag("Vaccine");
+        assertEquals(false, o.hasItemInShoppingBag("Vaccine"));
+
         o.clearShoppingBag();
+
         
         assertEquals(0, o.getTotalPrice());
+    }
+    
+    @Test
+    void hasItemInStockTest() {
+        String[] itemNames = new String[] {"Brownie", "Dumplings", "FriedRice", "Hotbot",
+                "TikkaMasala", "SpaceCake", "Vaccine", "PolyJuice", "PickledPlum"};
+        
+        boolean found = false;
+        for (int i = 0; i < itemNames.length; i++) {
+            assertEquals(true, o.hasItemInStock(itemNames[i]));
+        }
+        
+        assertEquals(false, o.hasItemInStock("Pie"));
+        
+    }
+    
+    @Test
+    void shoppingBagStatusTest() {
+        // now lets try putting stuff to the shopping bag
+        for (String item : o.getConsumableMap().keySet()) {
+            o.addItemToShoppingBag(item);
+        }
+        
+        String[] itemNames = new String[] {"Brownie", "Dumplings", "FriedRice", "Hotbot",
+                "PickledPlum", "PolyJuice", "SpaceCake", "TikkaMasala", "Vaccine"};
+        
+        int i = 0;
+        TreeMap<String, Integer> shoppingBag = o.getShoppingBagStatus();
+        for (Map.Entry<String, Integer> entry : shoppingBag.entrySet()) {
+            assertEquals(itemNames[i], entry.getKey());
+            assertEquals(1, (int) entry.getValue());
+            i++;
+        }
+        
+    }
+    
+    @Test
+    void getRandomItemTest() {
+        Consumable c = o.getRandomItem();
+        String[] itemNames = new String[] {"Brownie", "Dumplings", "FriedRice", "Hotbot",
+                "TikkaMasala", "SpaceCake", "Vaccine", "PolyJuice", "PickledPlum"};
+        
+        boolean found = false;
+        for (int i = 0; i < itemNames.length; i++) {
+            if (itemNames[i].equals(c.getName())) 
+                found = true;
+            
+        }
+        
+        assertEquals(true, found);
+    }
+    
+    @Test
+    void getSaleItemsTest() {
+        String[] itemNames = new String[] {"Brownie", "Dumplings", "FriedRice", "Hotbot",
+                "TikkaMasala", "SpaceCake", "Vaccine", "PolyJuice", "PickledPlum"};
+        
+        int i = 0;
+        ArrayList<ArrayList<String>> saleItems = o.getSaleProducts();
+        for (ArrayList<String> saleItem : saleItems) {
+            assertEquals(itemNames[i], saleItem.get(0));
+            i++;
+        }
         
     }
 
