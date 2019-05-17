@@ -513,6 +513,15 @@ public class GameEngine {
 
         return found;
     }
+    
+    /**
+     * Returns the selected crew member for next action
+     * Useful for testing
+     * @return CrewMember selected crew member
+     */
+    public CrewMember getSelectedCrew() {
+        return selectedCrew;
+    }
 
     /**
      * Cancel the current selected crew selection

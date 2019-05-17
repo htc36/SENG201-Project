@@ -34,11 +34,13 @@ class PlanetTest {
 	@Test
 	public void planetStringTest() {
 	    assertEquals("Mercury false", p1.toString());
+	    assertEquals("Mars true", p2.toString());
 	}
 
 	@Test
 	public void planetGetNameTest() {
 	    assertEquals("Mercury", p1.getName());
+	    assertEquals("Mars", p2.getName());
 	}
 	
 	

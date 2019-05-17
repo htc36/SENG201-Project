@@ -41,6 +41,46 @@ public class GameEngineTest {
     }
     
     @Test
+    void validCrewNumberTest() {
+        assertEquals(false, engine.isCrewNumberValid(1));
+        assertEquals(true, engine.isCrewNumberValid(2));
+        assertEquals(true, engine.isCrewNumberValid(3));
+        assertEquals(true, engine.isCrewNumberValid(4));
+        assertEquals(false, engine.isCrewNumberValid(5));
+    }
+    
+    @Test
+    void addCrewMembersTest() {
+        engine.addCrewMember("explorer", "ralph");
+        engine.addCrewMember("sleeper", "bob");
+        engine.addCrewMember("actioneer", "dora");
+        engine.addCrewMember("hungus", "joe");
+        engine.setupCrew();
+        assertEquals(5, engine.getCrewMemberStatus().size());
+    }
+    
+    @Test
+    void removeCrewMemberTest() {
+        engine.selectCrewMember(0);
+        engine.selectedCrewKill();
+        engine.removeCrewMember("DORA");
+        assertEquals(0, engine.getCrewMemberStatus().size());
+    }
+    
+    @Test
+    void selectedCrewNameTest() {
+        engine.selectCrewMember(0);
+        assertEquals("DORA", engine.selectedCrewName());
+    }
+    
+    @Test
+    void selectedCrewCancelTest() {
+        engine.selectCrewMember(0);
+        engine.selectedCrewCancel();
+        assertNull(engine.getSelectedCrew());
+    }
+    
+    @Test
     void totalShipPieceTest() {
         // floor(2/3 * 10) should be 6
         assertEquals(6, engine.getShipPieces());
@@ -269,6 +309,32 @@ public class GameEngineTest {
         // but should have these
         assertEquals(true, engine.hasOutpostStock("Vaccine"));
         assertEquals(true, engine.hasOutpostStock("Brownie"));
+    }
+    
+    @Test
+    void getCrewMoneyTest() {
+        assertEquals(100, engine.getCrewMoney());
+    }
+    
+    @Test
+    void addCrewConsumableTest() {
+        engine.addCrewConsumable("Vaccine");
+        engine.addCrewConsumable("PickledPlum");
+        engine.addCrewConsumable("Brownie");
+        engine.addCrewConsumable("Dumplings");
+        engine.addCrewConsumable("FriedRice");
+        engine.addCrewConsumable("Hotbot");
+        engine.addCrewConsumable("PolyJuice");
+        engine.addCrewConsumable("SpaceCake");
+        engine.addCrewConsumable("TikkaMasala");
+        
+        ArrayList<ArrayList<String>> items = engine.getCrewConsumables();
+        for (ArrayList<String> item : items) {
+            if (item.get(0).equals("Vaccine")) 
+                assertEquals("2", item.get(5));
+            else 
+                assertEquals("1", item.get(5));
+        }
     }
     
 }
