@@ -41,6 +41,41 @@ public class GameEngineTest {
     }
     
     @Test
+    void spaceshipTest() {
+        assertEquals("X-WING", engine.getSpaceshipName());
+        assertTrue(engine.isSpaceshipAbleToFly());
+    }
+    
+    @Test
+    void gameLengthTest() {
+        assertEquals(10, engine.getGameLength());
+    }
+    
+    @Test
+    void validNumDaysTest() {
+        assertEquals(true, engine.isValidNumOfDays(3));
+        assertEquals(true, engine.isValidNumOfDays(6));
+        assertEquals(true, engine.isValidNumOfDays(10));
+        assertEquals(false, engine.isValidNumOfDays(11));
+        assertEquals(false, engine.isValidNumOfDays(2));
+    }
+    
+    @Test
+    void planetTest() {
+        engine.setCurrentPlanetIndex(0);
+        assertEquals("CX1337", engine.getPlanetName());
+        engine.planetExtractShipPieces();
+        assertFalse(engine.planetHasShipPieces());
+    }
+    
+    @Test
+    void foundShipPieceTest() {
+        engine.incrementFoundShipPieces();
+        engine.incrementFoundShipPieces();
+        assertEquals(2, engine.getFoundShipPieces());
+    }
+    
+    @Test
     void validCrewNumberTest() {
         assertEquals(false, engine.isCrewNumberValid(1));
         assertEquals(true, engine.isCrewNumberValid(2));
@@ -136,6 +171,7 @@ public class GameEngineTest {
         
         // game should not end on the last day
         engine.setCurrDay(10);
+        assertEquals(10, engine.getCurrDay());
         assertEquals(false, engine.hasGameEnded());
         // but should end on the day after
         engine.endDay();
@@ -206,6 +242,7 @@ public class GameEngineTest {
         
         engine.selectCrewMember(0);
         engine.setCopilot(1);
+        assertTrue(engine.isValidCopilot(0, 1));
         String currPlanetName = engine.getPlanetName();
         engine.selectedCrewPilotSpaceship();
         // checks if the current planet is not the same as the previous one
@@ -222,9 +259,15 @@ public class GameEngineTest {
 
         engine.addItemToShoppingBag("1xBrownie");
         engine.addItemToShoppingBag("1xHotbot");
+        assertEquals(55, engine.getShoppingBagTotalPrice());
         engine.purchaseItems(engine.getShoppingBag());
         // make sure all items are added to crew's inventory
         assertEquals(3, engine.getCrewConsumablesCount());
+
+        engine.addItemToShoppingBag("1xBrownie");
+        engine.addItemToShoppingBag("1xHotbot");
+        engine.clearShoppingBag();
+        assertEquals(0, engine.getShoppingBagTotalPrice());
         
         // make sure they are sorted by item name
         assertEquals("Brownie", engine.getCrewConsumables().get(0).get(0));
