@@ -64,5 +64,24 @@ class CrewTest {
         assertEquals(true, c1.getActions() == 1);
         assertEquals(true, c2.getActions() == 1);
     }
+    
+    @Test
+    void crewMoneyTest() {
+        c.setMoney(1000);
+        c.shellOutMoney(100);
+        assertEquals(900, c.getMoney());
+    }
+    
+    @Test
+    void consumablesCountTest() {
+        assertEquals(1, c.getConsumableCount("Brownie"));
+    }
 
+    @Test
+    void popRandomItemTest() {
+        c.popRandomItem();
+        c.popRandomItem();
+        assertEquals(0, c.getConsumableCount("Brownie"));
+        assertEquals(0, c.getConsumableCount("Vaccine"));
+    }
 }
