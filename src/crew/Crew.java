@@ -177,7 +177,7 @@ public class Crew {
         int itemCount = 0;
         for (Consumable c : consumables.keySet()) {
             String consumableName = c.getName();
-            if (consumableName == itemName) {
+            if (consumableName.equals(itemName)) {
                 itemCount = consumables.get(c);
             }
         }
