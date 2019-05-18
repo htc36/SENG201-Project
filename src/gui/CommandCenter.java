@@ -142,7 +142,6 @@ public class CommandCenter {
      */
     private JLabel itemFills;
 
-
     /**
      * Label showing currently selected item
      */
@@ -214,7 +213,10 @@ public class CommandCenter {
     }
 
     /**
-     * Start the day and gets random event to occur, 1/3 chance of no event, 1/3 chance of Alien Pirates, 1/3 chance of Space Plague
+     * Start the day and gets random event to occur, 
+     * 1/3 chance of no event, 
+     * 1/3 chance of Alien Pirates, 
+     * 1/3 chance of Space Plague
      */
     public void startDay() {
     	String template = "";
@@ -242,7 +244,10 @@ public class CommandCenter {
     }
 
     /**
-     * Refreshes page, makes sure all statuses are updates at the beginning of each day
+     * Refreshes page, 
+     * updates the current ship pieces found, 
+     * current day count, current money and whether the planet has 
+     * a ship piece or not
      */
     private void refreshPage() {
         currShipPieces.setText(String.valueOf(engine.getFoundShipPieces()));
@@ -254,7 +259,7 @@ public class CommandCenter {
     }
 
     /**
-     * Updates space ship shield levels
+     * Updates space ship shield levels label
      */
     private void refreshSpaceshipPage() {
         int shipHealth = engine.getSpaceshipHealth();
@@ -268,7 +273,7 @@ public class CommandCenter {
     }
 
     /**
-     * Updates the inventory 
+     * Updates the inventory label
      */
     private void refreshInventory() {
         ArrayList<ArrayList<String>> crewConsumables = engine.getCrewConsumables();
@@ -284,7 +289,7 @@ public class CommandCenter {
     }
 
     /**
-     * gets description of item on the visit outpost page
+     * Gets description of item on the visit outpost page
      * @param itemName name of item 
      */
     private void getItemDescription(String itemName) {
@@ -336,7 +341,7 @@ public class CommandCenter {
     }
 
     /**
-     * Displays the details of a specific item
+     * Displays the details of a specific item on the outpost
      * @param item the name of the item
      */
     private void showItemDetails(String item) {
@@ -469,7 +474,7 @@ public class CommandCenter {
     }
 
     /**
-     * Checks if crew member is dead if so d not display in commit actions page
+     * Checks if crew member is dead if so do not display in commit actions page
      * @param commitActions the page
      */
     private void refreshCrewButtons(JPanel commitActions) {
@@ -522,7 +527,7 @@ public class CommandCenter {
     }
 
     /**
-     * If there's more than 2 crew members selected, deselect the first crew member
+     * If there's more than 2 crew members selected, unselect the first crew member
      */
     private void refreshSelectedCrews() {
         for (int i = 0; i < crewButtons.size(); i++) {
@@ -534,7 +539,7 @@ public class CommandCenter {
     }
 
     /**
-     * Tells the game engine which crew is in selection
+     * Informs the game engine which crew is in selection
      * @param index index of crew member
      */
     private void addCrewToSelection(int index) {
@@ -564,6 +569,7 @@ public class CommandCenter {
 
     /**
      * Displays consumables user has in inventory
+     * and waits for user's input to select which consumable to use
      * @param consumables list of consumables in inventory
      */
     private void getInputCrewConsume(ArrayList<ArrayList<String>> consumables) {
@@ -631,21 +637,21 @@ public class CommandCenter {
     }
 
     /**
-     * loads game
+     * Loads the game
      */
     public void loadGameState() {
         game.loadGame(this);
     }
 
     /**
-     * closes window
+     * Closes window
      */
     public void closeWindow() {
         frmCommandCenter.dispose();
     }
 
     /**
-     * closes window
+     * Closes window
      */
     public void finishedWindow() {
         game.closeCommandCenter(this);

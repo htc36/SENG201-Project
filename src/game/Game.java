@@ -273,10 +273,6 @@ public class Game {
     }
 
     /**
-     * Prints the list of items in a pretty table
-     * @param consumables list of items
-     */
-    /**
      * Get the player input for the items they are going to buy
      */
     public void getInputShoppingList() {

@@ -95,9 +95,10 @@ public class GameEngine {
 
     /**
      * Constructor for GameEngine
-     * it sets up the current day
-     *      "     the outpost menu
-     *      "     the initial planet
+     * Sets the current planet index to be the first planet,
+     * Initialises found ship pieces to be 0,
+     * Initialises the crewMembers list
+     * and Sets up the outpost
      */
     public GameEngine() {
         currDay = 1;
@@ -325,7 +326,7 @@ public class GameEngine {
     }
 
     /**
-     * Returns if the number of crew members is between 2 to 4
+     * Checks if the number of crew members is between 2 to 4
      * @param amount the amount of crew members
      * @return boolean true if valid, false otherwise
      */
@@ -334,7 +335,7 @@ public class GameEngine {
     }
 
     /**
-     * Returns if the crew member name is a duplicate of an existing one (not valid)
+     * Checks if the crew member name is a duplicate of an existing one
      * @param crewList list of existing crews
      * @param name the name of the new crew member
      * @return boolean true if not a duplicate, false otherwise

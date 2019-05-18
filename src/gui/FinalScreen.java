@@ -16,7 +16,7 @@ public class FinalScreen {
     private JFrame frame;
 
     /**
-     * The gui manager
+     * The GUI manager
      */
     private GameGUI game;
 
@@ -46,6 +46,7 @@ public class FinalScreen {
     public void finishedWindow() {
         game.closeFinalScreen(this);
     }
+
     /**
      * Sets up the final screen window
      */

@@ -25,7 +25,7 @@ public class GameGUI {
     private GraphicsEnvironment gameEnv;
 
     /**
-     * Constructor for game gui
+     * Constructor for game GUI
      */
     public GameGUI() {
         engine = new GameEngine();
@@ -128,7 +128,7 @@ public class GameGUI {
     }
 
     /**
-     * launches command center
+     * Launches command center
      */
     public void launchCommandCenter() {
         new CommandCenter(engine, this);
@@ -163,9 +163,7 @@ public class GameGUI {
      * @param args 
      */
     public static void main(String[] args) {
-        // Load the custom font we use for the game
         GameGUI game = new GameGUI();
         game.launchMainScreen();
-        //game.launchFinalScreen();
     }
 }

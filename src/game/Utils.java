@@ -19,9 +19,9 @@ public class Utils {
     }
 
     /**
-     * Prints the spaceship travelling to another planet, if unlucky is 
+     * Prints the spaceship traveling to another planet, if unlucky is 
      * set to True, is will also show the spaceship crashing an asteroid
-     * @param unlucky True if crashed, false otherwire
+     * @param unlucky True if crashed, false otherwise
      */
     public static void printSpaceshipTravelling(boolean unlucky) {
         for (int i = 5; i > 0; i--) {
@@ -231,7 +231,7 @@ public class Utils {
 
     /**
      * Prints out String message as if it was typed
-     * the delay between each char can be set with param
+     * the delay between each char can be set with parameter
      * delay (in miliseconds)
      * @param message the message it prints
      * @param delay delay between each chars

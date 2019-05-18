@@ -20,14 +20,14 @@ public class DarkSlider extends BasicSliderUI {
 
     /**
      * Constructs dark slider
-     * @param b Jslider
+     * @param b JSlider
      */
     public DarkSlider(JSlider b) {
         super(b);
     }
 
     /**
-     * Doesn't display outline when focused
+     * Don't display outline when focused
      * @param g Graphics
      */
     @Override
@@ -35,7 +35,7 @@ public class DarkSlider extends BasicSliderUI {
     }
 
     /**
-     * Makes white line
+     * Sets the track to white
      * @param g Graphics
      */
     @Override
@@ -49,6 +49,9 @@ public class DarkSlider extends BasicSliderUI {
         g2d.setStroke(old);
     }
 
+    /**
+     * Set the pointer to be 10x30
+     */
     protected Dimension getThumbSize() {
         return new Dimension(10, 30);
     }

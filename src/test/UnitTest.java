@@ -43,15 +43,6 @@ class UnitTest {
     }
 
     @Test
-    void createUnit() {
-        String name = "automaton007";
-        Unit u = new Unit(name);
-        assertEquals(100, u.getHealth());
-        assertEquals(name, u.getName());
-        assertEquals(true, u.isAlive());
-    }
-
-    @Test
     void createSpaceship() {
         String name = "deathstar";
         Spaceship s = new Spaceship(name);
