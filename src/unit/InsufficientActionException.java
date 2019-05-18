@@ -3,12 +3,12 @@ package unit;
 public class InsufficientActionException extends IllegalStateException {
 
     /**
-     * constructor for InsufficientActionException
+     * Constructor for InsufficientActionException
      */
     public InsufficientActionException() {}
 
     /**
-     * constructor for InsufficientActionException
+     * Constructor for InsufficientActionException
      * @param message the error message
      */
     public InsufficientActionException(String message) {

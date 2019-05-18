@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Sleeper extends CrewMember{
 
     /**
-     * constructor for sleeper type crew member
+     * Constructor for sleeper type crew member
      * sleeper type units benefit more from sleeping
      * @param memberName name of the sleeper unit
      */
@@ -14,7 +14,7 @@ public class Sleeper extends CrewMember{
     }
 
     /**
-     * sleeper sleeps zZzzZzzZZ
+     * Sleeper sleeps zZzzZzzZZ
      * sleeper type units benefit more from sleeping
      * @param amount amount of fatique level reduced
      */

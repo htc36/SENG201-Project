@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Medic extends CrewMember {
 
     /**
-     * constructor for medic type crew member
+     * Constructor for medic type crew member
      * medic type units receive less damage compared to other units
      * @param memberName name of the medic unit
      */
@@ -14,7 +14,7 @@ public class Medic extends CrewMember {
     }
 
     /**
-     * reduces the health of medic type unit
+     * Reduces the health of medic type unit
      * medic type units receive less damage compared to other units
      * @param amount amount of damage received
      */

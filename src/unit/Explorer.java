@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Explorer extends CrewMember {
 
     /**
-     * constructor for explorer type crew member
+     * Constructor for explorer type crew member
      * explorer unit has higher luck than other type members
      * @param memberName name of the explorer unit
      */

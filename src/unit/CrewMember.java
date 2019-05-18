@@ -143,7 +143,7 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * decreases the hunger level of a unit for amount specified
+     * Decreases the hunger level of a unit for amount specified
      * @param amount decreased hunger level
      */
     public void decreaseHunger(int amount) {
@@ -173,14 +173,14 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * gives a plagued status to a crew member
+     * Gives a plagued status to a crew member
      */
     public void makeSick() {
         hasPlague = true;
     }
 
     /**
-     * removes plagued status from a crew member
+     * Removes plagued status from a crew member
      */
     public void cureSick() {
         hasPlague = false;
@@ -249,7 +249,7 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * refreshes a crew member's actions setting it back to
+     * Refreshes a crew member's actions setting it back to
      * the amount specified
      * @param amount number of actions a crew member has
      */
@@ -258,7 +258,7 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * feeding an item to a crew member, increasing their health
+     * Feeding an item to a crew member, increasing their health
      * and decreasing their hunger level
      * @param item the item
      */
@@ -268,7 +268,7 @@ public abstract class CrewMember extends Unit {
     }
 
     /**
-     * feeding an item to a crew member, increasing their health
+     * Feeding an item to a crew member, increasing their health
      * and cures space plague
      * @param item the item
      */
@@ -280,7 +280,7 @@ public abstract class CrewMember extends Unit {
     }
     
     /**
-     * uses an item, calls other useItem depending
+     * Uses an item, calls other useItem depending
      * on the item type
      * @param item
      */

@@ -244,9 +244,10 @@ public class CommandCenter {
     }
 
     /**
-     * Refreshes page, 
-     * updates the current ship pieces found, 
-     * current day count, current money and whether the planet has 
+     * Refreshes the labels on the bottom of command center
+     * 
+     * Updates the current ship pieces found, current day count, 
+     * current money and whether the planet has 
      * a ship piece or not
      */
     private void refreshPage() {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Actioneer extends CrewMember{
 
     /**
-     * constructor for builder type hardworker
+     * Constructor for builder type hardworker
      * hardworker type units have more actions than other units
      * @param memberName name of the hardworker unit
      */
@@ -14,7 +14,7 @@ public class Actioneer extends CrewMember{
     }
 
     /**
-     * refreshes the number of actions of hardworker to 3
+     * Refreshes the number of actions of hardworker to 3
      * @param amount the number of actions
      */
     @Override

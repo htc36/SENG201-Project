@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Hungus extends CrewMember{
 
     /**
-     * constructor for hungus type crew member
+     * Constructor for hungus type crew member
      * hungus type units gets hungry less easily
      * and benefit more from food
      * @param memberName name of the hungus unit
@@ -16,7 +16,7 @@ public class Hungus extends CrewMember{
     }
 
     /**
-     * increases the hunger of hungus unit
+     * Increases the hunger of hungus unit
      * hungus units gets hungry less easily
      * @param amount amount of hunger level increased
      */
@@ -27,7 +27,7 @@ public class Hungus extends CrewMember{
 
 
     /**
-     * decreases the hunger of hungus unit
+     * Decreases the hunger of hungus unit
      * @param amount amount of hunger level decreased
      */
     @Override

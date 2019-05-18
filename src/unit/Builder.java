@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Builder extends CrewMember{
 
     /**
-     * constructor for builder type crew member
+     * Constructor for builder type crew member
      * builder unit can repair shield better than other units
      * @param memberName name of the builder unit
      */
@@ -14,7 +14,7 @@ public class Builder extends CrewMember{
     }
 
     /**
-     * repairs the shield of the spaceship by some amount
+     * Repairs the shield of the spaceship by some amount
      * builder unit gets extra bonus when repairing spaceship
      * @param s the spaceship being repaired
      * @param amount amount of shield repaired

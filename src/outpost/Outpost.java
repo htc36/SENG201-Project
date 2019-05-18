@@ -31,7 +31,7 @@ public class Outpost {
     private int totalPrice;
 
     /**
-     * constructor for Outpost
+     * Constructor for Outpost
      * Outpost acts like a shop for the player
      * Player can purchase foods and medical items from the Outpost
      * @param cons List of consumables that the outpost sells
@@ -48,7 +48,7 @@ public class Outpost {
     }
 
     /**
-     * get the total price of items the player has in their shopping bag
+     * Get the total price of items the player has in their shopping bag
      * @return int total price of items
      */
     public int getTotalPrice() {
@@ -56,7 +56,7 @@ public class Outpost {
     }
 
     /**
-     * adds an item to the player's shopping bag
+     * Adds an item to the player's shopping bag
      * also calculates the total price of items in the shopping bag
      * @param itemName name of the item
      */
@@ -67,7 +67,7 @@ public class Outpost {
     }
 
     /**
-     * removes an item from the player's shopping bag
+     * Removes an item from the player's shopping bag
      * @param itemName name of the item
      */
     public void removeItemFromShoppingBag(String itemName) {
@@ -77,7 +77,7 @@ public class Outpost {
     }
 
     /**
-     * checks if the item is in player's shopping bag
+     * Checks if the item is in player's shopping bag
      * @param itemName name of item in question
      * @return boolean true of item exists, false otherwise
      */
@@ -102,7 +102,7 @@ public class Outpost {
     }
 
     /**
-     * string representation of items on sale
+     * String representation of items on sale
      * @return String string of items on sale
      */
     public ArrayList<ArrayList<String>> getSaleProducts() {
@@ -114,7 +114,7 @@ public class Outpost {
     }
 
     /**
-     * checks if outpost has particular item in their stock
+     * Checks if outpost has particular item in their stock
      * @param itemName name of the item
      * @return boolean true if in stock, false otherwise
      */

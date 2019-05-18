@@ -37,7 +37,7 @@ public class Game {
     }
 
     /**
-     * prints the spaceship status using ASCII characters
+     * Prints the spaceship status using ASCII characters
      */
     public void viewSpaceshipStatus() {
         Utils.printSpaceshipASCII();
