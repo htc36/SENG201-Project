@@ -3,7 +3,7 @@ package consumable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
-public class Consumable implements Comparable<Consumable> {
+public abstract class Consumable implements Comparable<Consumable> {
 
     /**
      * The price of the consumable

@@ -2,7 +2,7 @@ package consumable;
 
 import java.util.ArrayList;
 
-public class MedicalSupply extends Consumable {
+public abstract class MedicalSupply extends Consumable {
 
     /**
      * Can the medical supply heal space plague
