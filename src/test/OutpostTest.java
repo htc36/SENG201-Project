@@ -71,7 +71,6 @@ class OutpostTest {
         String[] itemNames = new String[] {"Brownie", "Dumplings", "FriedRice", "Hotbot",
                 "TikkaMasala", "SpaceCake", "Vaccine", "PolyJuice", "PickledPlum"};
         
-        boolean found = false;
         for (int i = 0; i < itemNames.length; i++) {
             assertEquals(true, o.hasItemInStock(itemNames[i]));
         }

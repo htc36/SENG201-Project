@@ -7,7 +7,7 @@ javac -d bin -cp src/lib/json-simple-1.1.1.jar:. \
 	src/crew/*.java \
 	src/game/*.java \
 	src/outpost/*.java \
-	src/random_events/*.java \
+	src/events/*.java \
 	src/planet/*.java \
 	src/gui/*.java
 
