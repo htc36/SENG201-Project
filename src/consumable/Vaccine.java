@@ -3,7 +3,7 @@ package consumable;
 public class Vaccine extends MedicalSupply {
 
     /**
-     * constructor for Vaccine MedicalSupply
+     * Constructor for Vaccine MedicalSupply.
      * Vaccines heals SpacePlague
      */
     public Vaccine() {

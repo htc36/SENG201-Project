@@ -39,7 +39,7 @@ public abstract class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * return the name of the consumable
+     * Return the name of the consumable
      * @return String name of consumable
      */
     public String getName() {
@@ -47,7 +47,7 @@ public abstract class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * return the price of the consumable
+     * Return the price of the consumable
      * @return int price of consumable
      */
     public int getPrice() {
@@ -55,7 +55,7 @@ public abstract class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * get the healing the consumable provides when consumed
+     * Get the healing the consumable provides when consumed
      * @return int healing amount when consumed
      */
     public int getHealingAmount() {
@@ -63,7 +63,7 @@ public abstract class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * checks if two consumables are similar
+     * Checks if two consumables are similar
      * @param other the other consumable object 
      * @return boolean true if similar, false otherwise
      */
@@ -72,7 +72,7 @@ public abstract class Consumable implements Comparable<Consumable> {
     }
 
     /**
-     * compares two consumable, useful when ordering
+     * Compares two consumable, useful when ordering
      * @param c the other consumable
      * @return int ordering
      */

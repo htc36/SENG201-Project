@@ -42,9 +42,9 @@ public class Crew {
     private Spaceship ship;
 
     /**
-     * constructor for a crew
-     * Crew object is responsible for the state of a player in the game
-     * It keeps track of player's items, money, spaceship, and crew members
+     * Constructor for a crew.
+     * Crew object is responsible for the state of a player in the game. 
+     * It keeps track of player's items, money, spaceship, and crew members.
      * @param crews list of crew members inside this crew
      * @param newShip the spaceship of the crew
      */
@@ -58,7 +58,7 @@ public class Crew {
     }
 
     /**
-     * removes a crew member from the crew members list
+     * Removes a crew member from the crew members list
      * @param c the crew member that is going to be removed
      */
     public void removeCrewMember(CrewMember c) {
@@ -76,8 +76,8 @@ public class Crew {
     }
 
     /**
-     * Increases the fatigue and hunger level for every crew members
-     * this function should be called when the day starts
+     * Increases the fatigue and hunger level for every crew members.
+     * This function should be called when the day starts
      */
     public void updateCrewStatus() {
         for(CrewMember c : crewMembers) {
@@ -116,7 +116,7 @@ public class Crew {
     }
 
     /**
-     * get the spaceship of the crew
+     * Get the spaceship of the crew
      * @return Spaceship the spaceship of the crew
      */
     public Spaceship getSpaceship() {
@@ -124,7 +124,7 @@ public class Crew {
     }
 
     /**
-     * get the list of crew members of the crew
+     * Get the list of crew members of the crew
      * @return list of the crew members
      */
     public ArrayList<CrewMember> getCrewMembers() {
@@ -132,7 +132,7 @@ public class Crew {
     }
 
     /**
-     * get the amount of money the crew has
+     * Get the amount of money the crew has
      * @return int amount of money
      */
     public int getMoney() {
@@ -140,7 +140,7 @@ public class Crew {
     }
 
     /**
-     * adds money to crew's pocket
+     * Adds money to crew's pocket
      * @param sum the amount of money added
      */
     public void addMoney(int sum) {
@@ -156,7 +156,7 @@ public class Crew {
     }
 
     /**
-     * takes out money from a crew's pocket for purchasing stuff
+     * Takes out money from a crew's pocket for purchasing stuff
      * @param sum amount of money taken out
      */
     public void shellOutMoney(int sum) {
@@ -169,7 +169,7 @@ public class Crew {
     }
 
     /**
-     * get the count of particular consumable in crew's possession
+     * Get the count of particular consumable in crew's possession
      * @param itemName the name of the consumable
      * @return int count of the consumable
      */
@@ -186,7 +186,7 @@ public class Crew {
     }
 
     /**
-     * pops a consumable from the crew's possession, removing it
+     * Pops a consumable from the crew's possession, removing it
      * @param itemName name of the consumable
      * @return Consumable the consumable object removed
      */
@@ -212,7 +212,7 @@ public class Crew {
     }
 
     /**
-     * adds a consumable to the crew's possession
+     * Adds a consumable to the crew's possession
      * @param item the consumable item
      */
     public void addConsumable(Consumable item) {
@@ -229,8 +229,8 @@ public class Crew {
     }
 
     /**
-     * get a string representation of crew members status
-     * it is formatted such that it fits nicely in a table
+     * Get a string representation of crew members status.
+     * It is formatted such that it fits nicely in a table
      * @return String string representation of crew members
      */
     public ArrayList<ArrayList<String>> getCrewMemberStatus() {
@@ -242,8 +242,8 @@ public class Crew {
     }
 
     /**
-     * get a string representation of crew's spaceship
-     * it is formatted such that it fits nicely in a table
+     * Get a string representation of crew's spaceship.
+     * It is formatted such that it fits nicely in a table
      * @return String string representation of a spaceship
      */
     public String getSpaceshipStatus() {
@@ -251,7 +251,7 @@ public class Crew {
     }
 
     /**
-     * pops a random consumable from crew's inventory
+     * Pops a random consumable from crew's inventory
      */
     public void popRandomItem() {
         lostItem = "";
@@ -276,7 +276,7 @@ public class Crew {
     }
 
     /**
-     * returns the name of the lost item, useful when alien pirates attacks the crew
+     * Returns the name of the lost item, useful when alien pirates attacks the crew
      * @return String the name of the lost item
      */
     public String getLostItem(){
