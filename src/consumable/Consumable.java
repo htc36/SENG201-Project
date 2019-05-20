@@ -68,7 +68,7 @@ public abstract class Consumable implements Comparable<Consumable> {
      * @return boolean true if similar, false otherwise
      */
     public boolean equals(Consumable other) {
-        return other.getName() == getName();
+        return other.getName().equals(getName());
     }
 
     /**
