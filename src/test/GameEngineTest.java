@@ -62,8 +62,7 @@ public class GameEngineTest {
     
     @Test
     void planetTest() {
-        engine.setCurrentPlanetIndex(0);
-        assertEquals("CX1337", engine.getPlanetName());
+        engine.setCurrentPlanetIndex("CS1337");
         engine.planetExtractShipPieces();
         assertFalse(engine.planetHasShipPieces());
     }
