@@ -202,6 +202,11 @@ public class CommandCenter {
 	 * Label showing splash image of the hovered action in commit action page
 	 */
     private JLabel infoBox;
+    
+    /**
+     * Has crew member tiredness and hunger warning shown this day
+     */
+    private boolean shownCrewMemberWarning = false;
 
     /**
      * Create the application.
@@ -465,17 +470,17 @@ public class CommandCenter {
         	template = "The following crew members are extremely tired:\n";
         	template += String.join(", ", tiredCrews) + "\n\n";
         }        
+
         if (!hungryCrews.isEmpty()) {
         	template += "The following crew members are extremely hungry:\n";
         	template += String.join(", ", hungryCrews) + "\n\n";
         }
 
-        if (!hungryCrews.isEmpty() || !tiredCrews.isEmpty()) {
+        if (!shownCrewMemberWarning && (!hungryCrews.isEmpty() || !tiredCrews.isEmpty())) {
         	template += "Warning: These crew members will now receive excessive damage";
+        	shownCrewMemberWarning = true;
         	JOptionPane.showMessageDialog(new JFrame(), template);
-
         }
-        
 
     }
 
@@ -1541,6 +1546,7 @@ public class CommandCenter {
                     return;
                 }
                 if (engine.getCurrDay() <= engine.getGameLength()) {
+                	shownCrewMemberWarning = false;
                     startDay();
                     engine.updateCrewMemberStatus();
                     refreshPage();
