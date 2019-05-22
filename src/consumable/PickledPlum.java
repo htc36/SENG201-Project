@@ -1,7 +1,7 @@
 package consumable;
 
 /**
- * Defines Medical Supply - PickledPlum, can be consumed to increase health and decrease hunger
+ * Defines Medical Supply - PickledPlum, can be consumed to increase health
  */
 public class PickledPlum extends MedicalSupply {
 

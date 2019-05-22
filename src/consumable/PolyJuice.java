@@ -1,7 +1,7 @@
 package consumable;
 
 /**
- * Defines Medical Supply - PolyJuice, can be consumed to increase health and decrease hunger
+ * Defines Medical Supply - PolyJuice, can be consumed to increase health and cure space plague
  */
 public class PolyJuice extends MedicalSupply {
 
