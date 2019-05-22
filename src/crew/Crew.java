@@ -10,6 +10,11 @@ import unit.CrewMember;
 import unit.CrewMemberNotFoundException;
 import unit.Spaceship;
 
+/**
+ * Defines a crew object. Crew is a container that holds 
+ * all the details of the player's
+ * spaceship, crew members, consumables, money
+ */
 public class Crew {
     /**
      * Map of crew's consumables and their count

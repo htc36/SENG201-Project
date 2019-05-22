@@ -1,8 +1,11 @@
 package planet;
 
+/**
+ * Defines the planet where crew can travel to, 
+ * some of the planets have ship pieces
+ */
 public class Planet {
 
-    
     /**
      * Name of the planet
      */

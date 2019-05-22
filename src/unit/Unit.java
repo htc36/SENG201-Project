@@ -1,5 +1,9 @@
 package unit;
 
+/**
+ * Defines a unit. A unit has health and name.
+ * This class is a parent class for crew member and spaceship
+ */
 public abstract class Unit {
     
     /**

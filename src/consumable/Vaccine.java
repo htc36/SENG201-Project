@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines MedicalSupply - Vaccine, can be consumed to increase health and decrease hunger
+ */
 public class Vaccine extends MedicalSupply {
 
     /**

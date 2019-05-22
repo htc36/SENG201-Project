@@ -2,6 +2,12 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines a spaceship, the crew member 
+ * uses a spaceship to get from planet to planet.
+ * The spaceship needs to be a certain amount of health
+ * before it can take off
+ */
 public class Spaceship extends Unit {
 
     /**

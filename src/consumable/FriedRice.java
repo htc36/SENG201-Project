@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines Food - FriedRice, can be consumed to increase health and decrease hunger
+ */
 public class FriedRice extends Food {
 
     /**

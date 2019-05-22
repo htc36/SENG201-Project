@@ -1,4 +1,9 @@
 package game;
+
+/**
+ * Exception that is thrown when there are not enough money to purchase
+ * something from the outpost
+ */
 public class InsufficientFundException extends RuntimeException {
     /**
      * Default constructor for Insufficient Fund Exception

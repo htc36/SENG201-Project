@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 
 import game.GameEngine;
 
+/**
+ * Defines GUI Manager that handles which window to open/close next
+ */
 public class GameGUI {
 
     /**

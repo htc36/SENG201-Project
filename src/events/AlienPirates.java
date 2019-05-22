@@ -2,6 +2,11 @@ package events;
 
 import crew.Crew;
 
+/**
+ * Defines one of the random events, 
+ * Alien pirates can steal one of the 
+ * player's consumables
+ */
 public class AlienPirates implements RandomEvents{
 
     /**

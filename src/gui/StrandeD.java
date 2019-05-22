@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.UIManager;
 
+/**
+ * Defines the first window that shows the title, start and load button
+ */
 public class StrandeD {
 
     /**

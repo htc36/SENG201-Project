@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines Food - Hotbot, can be consumed to increase health and decrease hunger
+ */
 public class Hotbot extends Food {
 
     /**

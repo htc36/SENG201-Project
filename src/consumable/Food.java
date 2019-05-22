@@ -2,6 +2,9 @@ package consumable;
 
 import java.util.ArrayList;
 
+/**
+ * Defines Abstract class for all the foods in the game
+ */
 public abstract class Food extends Consumable {
 
     /**

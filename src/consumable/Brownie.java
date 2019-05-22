@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines Food - Brownie, can be consumed to increase health and decrease hunger
+ */
 public class Brownie extends Food {
 
     /**

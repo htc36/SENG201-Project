@@ -40,6 +40,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+/**
+ * Defines window where the game is being played, 
+ * the player can see the crew status, commit actions, 
+ * view spaceship status, and visit outpost
+ */
 public class CommandCenter {
 
     /**

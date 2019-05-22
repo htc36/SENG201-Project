@@ -2,6 +2,10 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines the builder crew member,
+ * Builder can repair the spaceship faster
+ */
 public class Builder extends CrewMember{
 
     /**

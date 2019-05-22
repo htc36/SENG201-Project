@@ -8,6 +8,9 @@ import java.util.TreeSet;
 
 import consumable.Consumable;
 
+/**
+ * Defines shop where player can buy food and medical supply for the crew
+ */
 public class Outpost {
     
     /**

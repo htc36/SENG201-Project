@@ -6,6 +6,11 @@ import java.util.Random;
 import crew.Crew;
 import unit.CrewMember;
 
+/**
+ * Defines one of the random events, 
+ * Space Plague causes health of the crew members
+ * to reduce every day until they consumed an item that cures space plague
+ */
 public class SpacePlague implements RandomEvents {
 
     /**

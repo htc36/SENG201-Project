@@ -2,6 +2,12 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines a Medic crew member,
+ * Medic receives less damage compared to other crew members
+ * @author kta79
+ *
+ */
 public class Medic extends CrewMember {
 
     /**

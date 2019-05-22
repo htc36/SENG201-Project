@@ -2,6 +2,10 @@ package game;
 
 import java.util.Random;
 
+/**
+ * Defines utilities that are used to make the game prettier,
+ * mostly used by the command line application
+ */
 public class Utils {
     /**
      * Prints COOL AS HELL Spaceship ASCII

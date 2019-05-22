@@ -7,6 +7,10 @@ import consumable.Consumable;
 import consumable.Food;
 import consumable.MedicalSupply;
 
+/**
+ * Defines the crew member for the crew. Each crew 
+ * can have up to 4 crew members and a minimum of 2.
+ */
 public abstract class CrewMember extends Unit {
 
     /**

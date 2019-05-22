@@ -2,6 +2,11 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines a Hungus crew member, 
+ * Hungus benefits more from eating and gets hungry
+ * slower compared to other crew members
+ */
 public class Hungus extends CrewMember{
 
     /**

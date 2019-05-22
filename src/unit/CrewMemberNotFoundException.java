@@ -1,5 +1,9 @@
 package unit;
 
+/**
+ * Exception that is thrown when attempting to delete
+ * an non existent crew member
+ */
 public class CrewMemberNotFoundException extends RuntimeException {
 
     /**

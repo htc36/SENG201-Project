@@ -2,6 +2,11 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines a explorer crew member, explorer
+ * has better chances of finding an item compared
+ * to other crew members
+ */
 public class Explorer extends CrewMember {
 
     /**

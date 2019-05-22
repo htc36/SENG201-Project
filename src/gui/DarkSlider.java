@@ -11,6 +11,9 @@ import java.awt.geom.GeneralPath;
 import javax.swing.JSlider;
 import javax.swing.plaf.basic.BasicSliderUI;
 
+/**
+ * Defines a custom slider for the setup screen
+ */
 public class DarkSlider extends BasicSliderUI {
 
     /**

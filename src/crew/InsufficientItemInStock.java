@@ -1,4 +1,8 @@
 package crew;
+
+/**
+ * Exception that is thrown when there are not enough items in the stock
+ */
 public class InsufficientItemInStock extends RuntimeException {
     /**
      * Constructor for InsufficientItemInStock

@@ -2,6 +2,9 @@ package consumable;
 
 import java.util.ArrayList;
 
+/**
+ * Defines Abstract class for all the medical supplies in the game
+ */
 public abstract class MedicalSupply extends Consumable {
 
     /**

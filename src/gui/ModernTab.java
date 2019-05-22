@@ -12,6 +12,9 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 // CODE IN THIS CLASS IS SLIGHTLY MODIFIED FROM 
 // https://java-swing-tips.blogspot.com/2017/01/change-tab-shape-of-jtabbedpane-to.html
 
+/**
+ * Defines a smart looking tab that is implemented in the Command Center window
+ */
 public class ModernTab extends BasicTabbedPaneUI {
     private final Color selectedTabColor = Color.BLACK;
     private final Color tabBackgroundColor = Color.DARK_GRAY;

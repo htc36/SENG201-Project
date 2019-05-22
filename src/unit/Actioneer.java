@@ -2,7 +2,11 @@ package unit;
 
 import java.util.ArrayList;
 
-public class Actioneer extends CrewMember{
+/**
+ * Defines the actioneer crew member,
+ * Actioneer can do 3 actions instead of the usual 2
+ */
+public class Actioneer extends CrewMember {
 
     /**
      * Constructor for builder type hardworker

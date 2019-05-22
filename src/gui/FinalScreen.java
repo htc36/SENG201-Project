@@ -8,6 +8,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * Defines window showing the final score when the game has ended
+ */
 public class FinalScreen {
 
     /**

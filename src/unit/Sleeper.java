@@ -2,6 +2,10 @@ package unit;
 
 import java.util.ArrayList;
 
+/**
+ * Defines a Sleeper crew member, 
+ * Sleeper benefits more from sleeping compared to other crew members
+ */
 public class Sleeper extends CrewMember{
 
     /**

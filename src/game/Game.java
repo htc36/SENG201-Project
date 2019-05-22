@@ -12,6 +12,9 @@ import java.util.regex.Pattern;
 import crew.InsufficientItemInStock;
 import game.InsufficientFundException;
 
+/**
+ * Defines the command line implementation for the game
+ */
 public class Game {
     /**
      * Scanner object to read input from user

@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines Food - SpaceCake, can be consumed to increase health and decrease hunger
+ */
 public class SpaceCake extends Food {
 
     /**

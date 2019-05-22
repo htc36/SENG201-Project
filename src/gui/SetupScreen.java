@@ -27,6 +27,9 @@ import java.awt.Font;
 import javax.swing.border.MatteBorder;
 import java.awt.SystemColor;
 
+/**
+ * Defines window that handles the initial setup of crew member, game length and spaceship
+ */
 public class SetupScreen {
 
     /**

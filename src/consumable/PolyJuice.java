@@ -1,5 +1,8 @@
 package consumable;
 
+/**
+ * Defines Medical Supply - PolyJuice, can be consumed to increase health and decrease hunger
+ */
 public class PolyJuice extends MedicalSupply {
 
     /**

@@ -3,6 +3,12 @@ package events;
 import crew.Crew;
 import unit.Spaceship;
 
+/**
+ * Defines one of the random events, 
+ * Asteroid belt can cause
+ * damage to the spaceship whenever the crew goes to another
+ * planet
+ */
 public class AsteroidBelt implements RandomEvents{
 
     /**

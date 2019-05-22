@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import game.GameEngine;
 import game.InsufficientFundException;
 
+/**
+ * Defines the shopping cart of the player, keeps track of items and prices
+ * 
+ */
 public class ShoppingCart {
 
     /**

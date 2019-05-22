@@ -3,6 +3,10 @@ package consumable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+
+/**
+ * Defines Abstract class for all the consumables in the game
+ */
 public abstract class Consumable implements Comparable<Consumable> {
 
     /**

@@ -26,6 +26,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Defines the game environment that keeps track of all the components
+ * in the game. Every client of the game should call the methods 
+ * provided by the game environment to run the game logic
+ * 
+ */
 public class GameEngine {
 
     /**
