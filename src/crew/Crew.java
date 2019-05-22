@@ -31,7 +31,7 @@ public class Crew {
      */
     private int money;
     
-    /*
+    /**
      * List of crew members in the crew
      */
     private ArrayList<CrewMember> crewMembers;

@@ -145,7 +145,15 @@ public class GameEngine {
 
             setFoundShipPieces((int) (long) gameState.get("foundShipPieces"));
 
-            setCurrentPlanetIndex((int) (long) gameState.get("currPlanetIndex"));
+            planets = new ArrayList<>();
+            JSONObject planetsJSON = (JSONObject) gameState.get("planets");
+            for (Object p : planetsJSON.keySet()) {
+                String planetName = (String) p;
+                boolean hasShipPiece = (boolean) planetsJSON.get(p);
+                planets.add(new Planet(planetName, hasShipPiece));
+            }
+
+            setCurrentPlanetIndex((String) gameState.get("currPlanet"));
 
             setupOutpost();
             JSONArray crewMembersJSON = (JSONArray) gameState.get("crewMembers");
@@ -164,14 +172,6 @@ public class GameEngine {
             loadCrewMembers(crewMemberArrayList);
             crew = new Crew(crewMembers, ship);
             crew.setMoney((int) (long) gameState.get("money"));
-
-            planets = new ArrayList<>();
-            JSONObject planetsJSON = (JSONObject) gameState.get("planets");
-            for (Object p : planetsJSON.keySet()) {
-                String planetName = (String) p;
-                boolean hasShipPiece = (boolean) planetsJSON.get(p);
-                planets.add(new Planet(planetName, hasShipPiece));
-            }
 
             // consumables
             JSONArray consumablesJSON = (JSONArray) gameState.get("consumables");
@@ -840,8 +840,13 @@ public class GameEngine {
      * Sets the current location of the spaceship to planet index
      * @param index Index of planet
      */
-    public void setCurrentPlanetIndex(int index) {
-        currentPlanetIndex = index;
+    public void setCurrentPlanetIndex(String planetName) {
+    	for (Planet p : planets) {
+    		if (planetName.equals(p.getName())) {
+    			currentPlanetIndex = planets.indexOf(p);
+    			break;
+    		}
+    	}
     }
 
     // PLANET RELATED FUNCTIONS END
@@ -1033,7 +1038,7 @@ public class GameEngine {
         gameState.put("shipPieces", shipPieces);
         gameState.put("currDay", currDay);
         gameState.put("foundShipPieces", foundShipPieces);
-        gameState.put("currPlanetIndex", currentPlanetIndex);
+        gameState.put("currPlanet", planets.get(currentPlanetIndex).getName());
         gameState.put("money", crew.getMoney());
 
         // planets state
