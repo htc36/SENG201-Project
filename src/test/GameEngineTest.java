@@ -280,7 +280,6 @@ public class GameEngineTest {
         switch(randomEvent) {
         case 0:
             // test curing plague with vaccine
-            System.out.println("Testing Cure Plague");
             String crewOneHealth = engine.getCrewMemberStatus().get(0).get(1);
             assertEquals("95", crewOneHealth);
             String crewOneSick = engine.getCrewMemberStatus().get(0).get(3);
@@ -305,7 +304,6 @@ public class GameEngineTest {
         boolean foundPieces = engine.selectedCrewSearchPlanet();
 
         if (foundPieces) {
-            System.out.println("Found ship piece");
             engine.incrementFoundShipPieces();
             engine.planetExtractShipPieces();
             // the ship piece should now be gone
@@ -314,18 +312,15 @@ public class GameEngineTest {
             assertEquals(1, engine.getFoundShipPieces());
         } else {
             if (engine.unlucky(20)) { // 20% of finding nothing
-                System.out.println("Found nothing");
                 //
             } else if (engine.unlucky(50)) { // or if found something, 50% chance it's item
                 assertEquals(1, engine.getCrewConsumables().size());
-                System.out.println("Found random item");
                 String randomItem = engine.crewGetRandomItem();
                 if (randomItem.equals("Vaccine"))
                     assertEquals(1, engine.getCrewConsumables().size());
                 else
                     assertEquals(2, engine.getCrewConsumables().size());
             } else { // 50% chance it's money
-                System.out.println("Found money");
                 engine.crewAddMoney();
                 assertEquals(145, engine.getCrewMoney());
             }
