@@ -47,7 +47,7 @@ III. Running the code from Eclipse:
       clicking the run button on top left
 
 IV. Credits:
-    - All photos were taken from https://unsplash.com
+    - All photos were taken from https://unsplash.com. All photos published on Unsplash can be used for free
     - All consumables images were made by Kenzie Tandun
 
 Have lots of fun, captain.
