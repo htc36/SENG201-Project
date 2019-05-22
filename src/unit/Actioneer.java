@@ -9,16 +9,16 @@ import java.util.ArrayList;
 public class Actioneer extends CrewMember {
 
     /**
-     * Constructor for builder type hardworker
-     * hardworker type units have more actions than other units
-     * @param memberName name of the hardworker unit
+     * Constructor for builder type actioneer
+     * actioneer type units have more actions than other units
+     * @param memberName name of the actioneer unit
      */
     public Actioneer(String memberName) {
         super(memberName, 30, 3);
     }
 
     /**
-     * Refreshes the number of actions of hardworker to 3
+     * Refreshes the number of actions of actioneer to 3
      * @param amount the number of actions
      */
     @Override
